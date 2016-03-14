@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# Simple fun_plug
+#
+#dmesg > /mnt/HD_a2/dmesg.out
+#rm -R /mnt/HD_a2/Backups/Crap

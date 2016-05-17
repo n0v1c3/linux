@@ -1,0 +1,55 @@
+# Partition HDD (BIOS boot, Linux swap, Linux filesystem)
+cfdisk /dev/sda
+
+# Swap
+mkswap /dev/sda2
+swapon /dev/sda2
+
+# Ext4 filesystem
+mkfs.ext4 /dev/sda3
+
+# Mount filesystem
+mount /dev/sda3 /mnt
+
+# Edit mirrors
+nano /etc/pacman.d/mirrorlist
+
+# Install base
+pacstrap /mnt base
+
+# Generate an fstab
+genfstab -p /mnt >> /mnt/etc/fstab
+
+# Change root into the new system
+arch-chroot /mnt
+
+# Set the hostname
+echo tjg-arch > /etc/hostname
+
+# Set the timezone
+ln -s /usr/share/zoneinfo/Canada/Mountain /etc/localtime
+
+# Set the root password
+passwd
+
+# Configure network
+systemctl enable dhcpcd.service
+
+# Install GRUB
+pacman -S grub
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Reboot
+reboot
+
+### POST-INSTALL ###
+
+# Add user account
+useradd -m -g users -s /bin/bash travis
+passwd travis
+
+# Install sudo
+pacman -S sudo
+echo "travis ALL=(ALL) NOPASSWD: ALL >> /etc/sudoers
+

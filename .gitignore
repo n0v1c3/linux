@@ -1,0 +1,22 @@
+# linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip

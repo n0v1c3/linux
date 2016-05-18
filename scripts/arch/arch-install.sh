@@ -30,7 +30,7 @@ mkfs.ext4 ${diskPath}3
 mount ${diskPath}3 /mnt
 
 # Use prebuilt mirrorlist
-wget https://raw.githubusercontent.com/n0v1c3/arch-linux/master/pacman/mirrorlist
+wget https://raw.githubusercontent.com/n0v1c3/linux/master/config/pacman/mirrorlist
 mkdir /mnt/etc/pacman.d
 mv ./mirrorlist /mnt/etc/pacman.d/
 

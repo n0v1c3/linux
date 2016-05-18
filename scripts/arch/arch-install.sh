@@ -10,6 +10,10 @@ read email
 
 echo -e "Please enter your username: "
 read nameUser
+echo -e "Please enter your password: "
+read password
+echo -e "Please enter root password: "
+read rootPass
 echo -e "Please enter a hostname: "
 read nameHost
 
@@ -30,7 +34,7 @@ mkfs.ext4 ${diskPath}3
 mount ${diskPath}3 /mnt
 
 # Use prebuilt mirrorlist
-wget https://raw.githubusercontent.com/n0v1c3/arch-linux/master/pacman/mirrorlist
+wget https://raw.githubusercontent.com/n0v1c3/linux/master/config/pacman/mirrorlist
 mkdir /mnt/etc/pacman.d
 mv ./mirrorlist /mnt/etc/pacman.d/
 
@@ -48,8 +52,18 @@ genfstab -p /mnt >> /mnt/etc/fstab
 # chroot
 #arch-chroot /mnt
 
+# Root password
+arch-chroot /mnt echo "root:$rootPass" | chpasswd
+
+# Create user
+arch-chroot /mnt useradd -m -g users -s /bin/bash $nameUser
+arch-chroot /mnt echo "$nameUser:$password" | chpasswd
+
 # Set hostname
 echo ${nameHost} > /mnt/etc/hostname
+
+# Set timezone
+arch-chroot /mnt ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
 
 # Configure locales
 echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" > /mnt/etc/locale.gen	# Write desired locales
@@ -96,6 +110,10 @@ arch-chroot /mnt systemctl enable slim.service				# Enable and load on boot
 arch-chroot ln -s /usr/bin/slimlock /usr/local/bin/xflock4	# Overwrite default lock screen
 echo "exec xfce4-session" > /mnt/root/.xinitrc				# Load xfce on login of root
 
+# sudo - Substitute user do
+arch-chroot /mnt pacman -S --noconfirm sudo
+arch-chroot echo "$nameUser ALL=(ALL) ALL" >> /mnt/etc/sudoers
+
 # CurlFTPFS - FTP File System Manager
 arch-chroot /mnt pacman -S --noconfirm curlftpfs																						# Install
 echo "curlftpfs#rgretchen:Cycology1@ftp.cycologybikes.ca /mnt/cycology-ftp fuse auto,user,allow_other,_netdev 0 0" >> /mnt/etc/fstab	# Configure fstab
@@ -138,8 +156,6 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg       # Set grub configura
 
 mkdir /mnt/root/Documents/
 git clone https://github.com/n0v1c3/arch-linux.git /mnt/root/Documents
-
-
 
 # Directory variables
 configDir=/mnt/root/.config/xfce4
@@ -184,7 +200,6 @@ rm $configDir/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 
 # Copy desired panel configuration
 cp $backupDir/xfconf/xfce-perchannel-xml/xfce4-desktop.xml $configDir/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
-
 
 echo -e "\nInstallation Complete\n"	# Message
 sleep 1								# Delay

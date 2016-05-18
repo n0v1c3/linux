@@ -1,0 +1,26 @@
+#!/bin/bash
+
+gitdir="/home/rneadmin/Documents/projects/linux/.git"
+cd /home/rneadmin/Documents/projects/linux
+
+title="$(basename `git --git-dir=$gitdir rev-parse --show-toplevel`)"
+title1="BRANCH"
+title2="STATUS"
+title3="LOG"
+
+line1="$(git --git-dir=$gitdir branch)"
+line2="$(git --git-dir=$gitdir status -s /home/rneadmin/Documents/projects/linux)"
+line3="$(git --git-dir=$gitdir log --pretty=format:'%h - %s' --graph -n 5 | sed 's/\\/\\\\/')"
+
+kill $(pgrep -u $(whoami) notify)
+
+notify-send "$title" "
+<b>$title1</b>
+$line1
+
+<b>$title2</b>
+S | U
+$line2
+
+<b>$title3</b>
+$line3"

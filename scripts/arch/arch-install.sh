@@ -80,6 +80,9 @@ arch-chroot /mnt pacman -S --noconfirm xfwm4             # Window manager
 arch-chroot /mnt pacman -S --noconfirm xfce4-panel       # Panel manager
 arch-chroot /mnt pacman -S --noconfirm xfce4-settings    # Default setting applications
 
+# Xorg
+arch-chroot /mnt pacman -S --noconfirm xorg
+
 ########################################################################
 # Tools
 ########################################################################
@@ -96,7 +99,7 @@ echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 ########################################################################
 
 # Git - Distributed version control system
-arch-chroot /mnt pacman -S --noconfirm git					# Install
+arch-chroot /mnt pacman -S --noconfirm git			# Install
 arch-chroot /mnt git config --global user.email ${email}	# Set email
 arch-chroot /mnt git config --global user.name ${nameFull}	# Set name
 

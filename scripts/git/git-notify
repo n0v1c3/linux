@@ -12,8 +12,6 @@ line1="$(git --git-dir=$gitdir branch)"
 line2="$(git --git-dir=$gitdir status -s /home/rneadmin/Documents/projects/linux)"
 line3="$(git --git-dir=$gitdir log --pretty=format:'%h - %s' --graph -n 5 | sed 's/\\/\\\\/')"
 
-kill $(pgrep -u $(whoami) notify)
-
 notify-send "$title" "
 <b>$title1</b>
 $line1

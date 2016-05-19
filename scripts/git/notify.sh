@@ -41,7 +41,7 @@ while true; do
 
 	echo ""
 	printf "${WHITE}$title3${NC}\n"
-	git --no-pager --git-dir=$gitdir log --pretty=format:'%h - %s' --graph -n 10 | cut -c1-40
+	git --no-pager --git-dir=$gitdir log --pretty=format:'%s' -n 10 | cut -c1-44
 
 	sleep 1
 done

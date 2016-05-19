@@ -139,6 +139,7 @@ arch-chroot /mnt pacman -S --noconfirm samba                # Windows network sh
 arch-chroot /mnt pacman -S --noconfirm sshfs                # Secure shell file system
 #arch-chroot /mnt pacman -S --noconfirm teamviewer          # Remote connections
 arch-chroot /mnt pacman -S --noconfirm thunderbird          # Email client (replace with evolution)
+arch-chroot /mnt pacman -S --noconfirm terminator		# Working terminal
 arch-chroot /mnt pacman -S --noconfirm virtualbox           # System virtualization
 arch-chroot /mnt pacman -S --noconfirm vlc                  # Media player
 arch-chroot /mnt pacman -S --noconfirm wget					# Non-interactive network downloader

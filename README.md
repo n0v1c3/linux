@@ -23,7 +23,7 @@ Custom installation and configuration for Arch.
 ### Install Guide
 ```bash
 ## Download latest install script
-wget https://raw.githubusercontent.com/n0v1c3/arch-linux/master/arch-install.sh
+wget https://raw.githubusercontent.com/n0v1c3/linux/master/scripts/arch/arch-install.sh
 
 ## Run installation script
 bash ./arch-install.sh  # Follow onscreen instructions

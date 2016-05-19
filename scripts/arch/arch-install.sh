@@ -139,10 +139,12 @@ arch-chroot /mnt pacman -S --noconfirm samba                # Windows network sh
 arch-chroot /mnt pacman -S --noconfirm sshfs                # Secure shell file system
 #arch-chroot /mnt pacman -S --noconfirm teamviewer          # Remote connections
 arch-chroot /mnt pacman -S --noconfirm thunderbird          # Email client (replace with evolution)
+arch-chroot /mnt pacman -S --noconfirm terminator		# Working terminal
 arch-chroot /mnt pacman -S --noconfirm virtualbox           # System virtualization
 arch-chroot /mnt pacman -S --noconfirm vlc                  # Media player
 arch-chroot /mnt pacman -S --noconfirm wget					# Non-interactive network downloader
 #arch-chroot /mnt pacman -S --noconfirm wine                # Windows "emulator"
+arch-chroot /mnt pacman -S --noconfirm xfcef-notifyd		# Notification handler for xfce4
 
 ########################################################################
 # Bootloader
@@ -158,11 +160,11 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg       # Set grub configura
 ########################################################################
 
 mkdir /mnt/root/Documents/
-git clone https://github.com/n0v1c3/arch-linux.git /mnt/root/Documents
+git clone https://github.com/n0v1c3/linux.git /mnt/root/Documents
 
 # Directory variables
 configDir=/mnt/root/.config/xfce4
-backupDir=/mnt/root/Documents/arch-linux/xfce/config
+backupDir=/mnt/root/Documents/linux/config/xfce
 
 # Backup current panel configuration
 cp $configDir/xfconf/xfce-perchannel-xml/xfce4-panel.xml $configDir/xfconf/xfce-perchannel-xml/xfce4-panel.xml.backup

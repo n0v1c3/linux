@@ -159,7 +159,7 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg       # Set grub configura
 ########################################################################
 
 mkdir /mnt/root/Documents/
-git clone https://github.com/n0v1c3/arch-linux.git /mnt/root/Documents
+git clone https://github.com/n0v1c3/linux.git /mnt/root/Documents
 
 # Directory variables
 configDir=/mnt/root/.config/xfce4

@@ -144,6 +144,7 @@ arch-chroot /mnt pacman -S --noconfirm virtualbox           # System virtualizat
 arch-chroot /mnt pacman -S --noconfirm vlc                  # Media player
 arch-chroot /mnt pacman -S --noconfirm wget					# Non-interactive network downloader
 #arch-chroot /mnt pacman -S --noconfirm wine                # Windows "emulator"
+arch-chroot /mnt pacman -S --noconfirm xfcef-notifyd		# Notification handler for xfce4
 
 ########################################################################
 # Bootloader
@@ -163,7 +164,7 @@ git clone https://github.com/n0v1c3/linux.git /mnt/root/Documents
 
 # Directory variables
 configDir=/mnt/root/.config/xfce4
-backupDir=/mnt/root/Documents/arch-linux/xfce/config
+backupDir=/mnt/root/Documents/linux/config/xfce
 
 # Backup current panel configuration
 cp $configDir/xfconf/xfce-perchannel-xml/xfce4-panel.xml $configDir/xfconf/xfce-perchannel-xml/xfce4-panel.xml.backup

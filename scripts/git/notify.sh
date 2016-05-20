@@ -1,12 +1,10 @@
 #!/bin/bash
 
-basedir="/home/rneadmin/Documents/projects/linux"
-gitdir="$basedir/.git"
-cd $basedir
+gitdir="$(pwd)/.git"
 
 # Titles
 title="$(basename `git --git-dir=$gitdir rev-parse --show-toplevel`)"
-size=$((${#title} + 2))
+titleWidth=$((${#title} + 2))
 title1="BRANCH"
 title2="STATUS"
 title3="LOG"
@@ -21,12 +19,12 @@ while true; do
 
 	printf "${PURPLE}"
 	printf "╔"
-	printf "%0.s═" $(seq 1 $size)
+	printf "%0.s═" $(seq 1 $titleWidth)
 	printf "╗"
 	echo ""
 	printf "║ $title ║\n"
 	printf "╚"
-	printf "%0.s═" $(seq 1 $size)
+	printf "%0.s═" $(seq 1 $titleWidth)
 	printf "╝"
 	echo ""
 	printf "${NC}"
@@ -37,11 +35,11 @@ while true; do
 
 	echo ""
 	printf "${WHITE}$title2${NC}\n"
-	git --git-dir=$gitdir status -s $basedir
+	git --git-dir=$gitdir status -s 
 
 	echo ""
 	printf "${WHITE}$title3${NC}\n"
 	git --no-pager --git-dir=$gitdir log --pretty=format:'%s' -n 10 | cut -c1-44
 
-	sleep 1
+	sleep 3
 done

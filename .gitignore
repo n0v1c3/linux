@@ -1,5 +1,6 @@
 # linux
 *~
+*.swp
 .fuse_hidden*
 .directory
 .Trash-*

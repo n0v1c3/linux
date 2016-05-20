@@ -52,13 +52,6 @@ genfstab -p /mnt >> /mnt/etc/fstab
 # chroot
 #arch-chroot /mnt
 
-# Root password
-arch-chroot /mnt echo "root:$rootPass" | chpasswd
-
-# Create user
-arch-chroot /mnt useradd -m -g users -s /bin/bash $nameUser
-arch-chroot /mnt echo "$nameUser:$password" | chpasswd
-
 # Set hostname
 echo ${nameHost} > /mnt/etc/hostname
 

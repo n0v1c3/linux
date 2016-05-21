@@ -91,27 +91,39 @@ echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 # Software
 ########################################################################
 
+# CurlFTPFS - FTP File System Manager
+arch-chroot /mnt pacman -S --noconfirm curlftpfs
+
 # Git - Distributed version control system
-arch-chroot /mnt pacman -S --noconfirm git			# Install
-arch-chroot /mnt git config --global user.email ${email}	# Set email
-arch-chroot /mnt git config --global user.name ${nameFull}	# Set name
+arch-chroot /mnt pacman -S --noconfirm git
+arch-chroot /mnt git config --global user.email ${email}
+arch-chroot /mnt git config --global user.name ${nameFull}
+
+# Linux repository
+mkdir /mnt/root/Documents/
+git clone https://github.com/n0v1c3/linux.git /mnt/root/Documents
 
 # Guake - Terminal
-arch-chroot /mnt pacman -S --noconfirm guake                						# Install
-cp /mnt/usr/share/applications/guake.desktop /mnt/etc/xdg/autostart/guake.desktop	# Autostart
+arch-chroot /mnt pacman -S --noconfirm guake
+cp /mnt/usr/share/applications/guake.desktop /mnt/etc/xdg/autostart/guake.desktop
 
-# SLiM - Login Manager
-arch-chroot /mnt pacman -S --noconfirm slim					# Install
-arch-chroot /mnt systemctl enable slim.service				# Enable and load on boot
-arch-chroot ln -s /usr/bin/slimlock /usr/local/bin/xflock4	# Overwrite default lock screen
-echo "exec xfce4-session" > /mnt/root/.xinitrc				# Load xfce on login of root
+# SLiM - Login manager
+arch-chroot /mnt pacman -S --noconfirm slim
+arch-chroot /mnt systemctl enable slim.service
+ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
+echo "exec xfce4-session" > /mnt/root/.xinitrc
 
 # sudo - Substitute user do
 arch-chroot /mnt pacman -S --noconfirm sudo
-arch-chroot echo "$nameUser ALL=(ALL) ALL" >> /mnt/etc/sudoers
+echo "$nameUser ALL=(ALL) ALL" >> /mnt/etc/sudoers
 
-# CurlFTPFS - FTP File System Manager
-arch-chroot /mnt pacman -S --noconfirm curlftpfs																						# Install
+# Terminator - Terminal emulator
+arch-chroot /mnt pacman -S --noconfirm terminator
+mkdir /mnt/root/.config/terminator
+cp /mnt/root/Documents/linux/config/terminator/config /mnt/root/.config/terminator/config
+mkdir /mnt/home/$nameUser/.config/terminator
+cp /mnt/root/Documents/linux/config/terminator/config /mnt/home/$nameUser/.config/terminator/config
+
 echo "curlftpfs#rgretchen:Cycology1@ftp.cycologybikes.ca /mnt/cycology-ftp fuse auto,user,allow_other,_netdev 0 0" >> /mnt/etc/fstab	# Configure fstab
 
 arch-chroot /mnt pacman -S --noconfirm firefox		# Web browser
@@ -119,7 +131,6 @@ arch-chroot /mnt pacman -S --noconfirm openssh		# Secure shell
 arch-chroot /mnt pacman -S --noconfirm rsync		# Folder synchronization
 arch-chroot /mnt pacman -S --noconfirm samba		# Windows network shares
 arch-chroot /mnt pacman -S --noconfirm sshfs		# Secure shell file system
-arch-chroot /mnt pacman -S --noconfirm terminator	# Working terminal
 arch-chroot /mnt pacman -S --noconfirm wget		# Non-interactive network downloader
 
 ########################################################################
@@ -134,9 +145,6 @@ arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg       # Set grub configura
 ########################################################################
 # Finished
 ########################################################################
-
-mkdir /mnt/root/Documents/
-git clone https://github.com/n0v1c3/linux.git /mnt/root/Documents
 
 # Directory variables
 configDir=/mnt/root/.config/xfce4

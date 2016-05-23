@@ -1,37 +1,13 @@
 #!/bin/bash
 
-# Remove username/password from ftp mount
+echo -e "Please enter a hostname: "
+read nameHost
 
 # User enter disk path
 echo -e "Please enter your full name: "
 read nameFull
 echo -e "Please enter your email: "
 read email
-
-echo -e "Please enter your username: "
-read nameUser
-echo -e "Please enter your password: "
-read password
-echo -e "Please enter root password: "
-read rootPass
-echo -e "Please enter a hostname: "
-read nameHost
-
-echo -e "Please enter path to disk (/dev/sd[x]): "
-read diskPath
-
-# Partition disk
-echo -e "o\nn\np\n1\n\n+100M\nn\np\n2\n\n+2G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n" | fdisk ${diskPath}
-
-# Swap file system
-mkswap ${diskPath}2	# Make swap file system
-swapon ${diskPath}2	# Turn swap file system on
-
-# Create ext4 file system
-mkfs.ext4 ${diskPath}3
-
-# Mount new file system
-mount ${diskPath}3 /mnt
 
 # Use prebuilt mirrorlist
 wget https://raw.githubusercontent.com/n0v1c3/linux/master/config/pacman/mirrorlist
@@ -45,15 +21,6 @@ mv ./mirrorlist /mnt/etc/pacman.d/
 
 # Install base Arch packages
 pacstrap /mnt base
-
-# Generate fstab
-genfstab -p /mnt >> /mnt/etc/fstab
-
-# chroot
-#arch-chroot /mnt
-
-# Set hostname
-echo ${nameHost} > /mnt/etc/hostname
 
 # Set timezone
 arch-chroot /mnt ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
@@ -124,23 +91,6 @@ cp /mnt/root/Documents/linux/config/terminator/config /mnt/root/.config/terminat
 mkdir /mnt/home/$nameUser/.config/terminator
 cp /mnt/root/Documents/linux/config/terminator/config /mnt/home/$nameUser/.config/terminator/config
 
-echo "curlftpfs#rgretchen:Cycology1@ftp.cycologybikes.ca /mnt/cycology-ftp fuse auto,user,allow_other,_netdev 0 0" >> /mnt/etc/fstab	# Configure fstab
-
-arch-chroot /mnt pacman -S --noconfirm firefox		# Web browser
-arch-chroot /mnt pacman -S --noconfirm openssh		# Secure shell
-arch-chroot /mnt pacman -S --noconfirm rsync		# Folder synchronization
-arch-chroot /mnt pacman -S --noconfirm samba		# Windows network shares
-arch-chroot /mnt pacman -S --noconfirm sshfs		# Secure shell file system
-arch-chroot /mnt pacman -S --noconfirm wget		# Non-interactive network downloader
-
-########################################################################
-# Bootloader
-########################################################################
-
-# Grub - Bootloader
-arch-chroot /mnt pacman -S --noconfirm grub                 # Install
-arch-chroot /mnt grub-install --target=i386-pc ${diskPath}	# Install grub into boot section of /dev/sd(x)
-arch-chroot /mnt grub-mkconfig -o /boot/grub/grub.cfg       # Set grub configuration
 
 ########################################################################
 # Finished

@@ -6,3 +6,14 @@ colorscheme evening
 
 " Display relative line number along the left hand side
 set relativenumber
+
+" Disable arrow keys for navigation
+imap <up> <NOP>
+imap <down> <NOP>
+imap <left> <NOP>
+imap <right> <NOP>
+
+map <up> <NOP>
+map <down> <NOP>
+map <left> <NOP>
+map <right> <NOP>

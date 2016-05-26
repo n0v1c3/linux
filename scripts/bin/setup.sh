@@ -2,12 +2,13 @@
 
 repo_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 length=`echo $repo_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
-
 parent_dir=${repo_dir:0:$length}"/linux"
-echo "$parent_dir"
 
 # Backkup user's existing .bin folder
 cp -r ~/.bin ~/.bin-backup
+
+# Delete current .bin folder
+rm -r ~/.bin
 
 # Create .bin folder if none exists
 mkdir ~/.bin
@@ -15,7 +16,6 @@ mkdir ~/.bin
 # Add path to .bashrc file
 bashrc_path="export PATH=\$PATH:~/.bin"
 count=$(cat ~/.bashrc | grep "$bashrc_path" | wc -l)
-echo $count
 if [ $count -eq 0 ]; then
 	echo "$bashrc_path" >> ~/.bashrc
 fi

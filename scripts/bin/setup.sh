@@ -19,4 +19,5 @@ ln -s ~/Documents/linux/scripts/bash/c.sh ~/.bin/c
 ln -s ~/Documents/linux/scripts/bash/ca.sh ~/.bin/ca
 ln -s ~/Documents/linux/scripts/bash/cl.sh ~/.bin/cl
 ln -s ~/Documents/linux/scripts/bash/cla.sh ~/.bin/cla
-ln -s ~/Documents/linux/scritps/tmux/my-tmux.sh ~/.bin/my-tmux
+ln -s ~/Documents/linux/scripts/tmux/my-tmux.sh ~/.bin/my-tmux
+ln -s ~/Documents/linux/scripts/git/notify.sh ~/.bin/notify

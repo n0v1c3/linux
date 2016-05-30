@@ -35,7 +35,7 @@ while true; do
 
 	echo ""
 	printf "${WHITE}$title2${NC}\n"
-	git --git-dir=$gitdir status -s 
+	git --git-dir=$gitdir status -sb
 
 	echo ""
 	printf "${WHITE}$title3${NC}\n"

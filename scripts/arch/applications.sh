@@ -11,6 +11,7 @@ arch-chroot /mnt pacman -S --noconfirm gnome-system-monitor	# System monitor
 arch-chroot /mnt pacman -S --noconfirm gparted			# Disk partition manager
 arch-chroot /mnt pacman -S --noconfirm libreoffice		# Office documents
 arch-chroot /mnt pacman -S --noconfirm openssh			# Secure shell
+arch-chroot /mnt pacman -S --noconfirm python			# Python
 arch-chroot /mnt pacman -S --noconfirm remmina freerdp		# Remote desktop connection manager
 arch-chroot /mnt pacman -S --noconfirm rsync			# Folder synchronization
 arch-chroot /mnt pacman -S --noconfirm samba			# Windows network shares

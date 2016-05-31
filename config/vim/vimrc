@@ -1,11 +1,14 @@
-" Prefered background
+" Preferred background
 set background=dark
 
-" Prefered colorscheme
+" Preferred color scheme
 colorscheme evening
 
 " Display relative line number along the left hand side
 set relativenumber
+
+" Display line number for current line
+set number
 
 " Turn on spell check
 setlocal spell spelllang=en_us

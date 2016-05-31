@@ -17,6 +17,7 @@ WHITE='\033[1;37m'
 while true; do
 	clear
 
+	# Branch title
 	printf "${PURPLE}"
 	printf "╔"
 	printf "%0.s═" $(seq 1 $titleWidth)
@@ -28,18 +29,31 @@ while true; do
 	printf "╝"
 	echo ""
 	printf "${NC}"
-
+	
+	# Branch list
 	echo ""
 	printf "${WHITE}$title1${NC}\n"
 	git --git-dir=$gitdir branch
 
+	# Current status
 	echo ""
 	printf "${WHITE}$title2${NC}\n"
 	git --git-dir=$gitdir status -sb
 
+	# Log
 	echo ""
 	printf "${WHITE}$title3${NC}\n"
 	git --no-pager --git-dir=$gitdir log --pretty=format:'%s' -n 10 | cut -c1-44
 
-	sleep 3
+	sleep 1
+
+	if read -t0; then
+		read a
+
+		if [[ "$a" == "q" ]]; then
+			clear
+			break
+		fi
+		git checkout $a
+	fi
 done

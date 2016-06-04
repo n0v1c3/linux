@@ -1,11 +1,7 @@
 #!/bin/bash
 
 source repo-dir.sh
-echo $(repoDir)
-
-repo_dr="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-length=`echo $repo_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
-parent_dir=${repo_dir:0:$length}"/linux"
+parent_dir=echo $(repoDir)
 
 echo -e "Please enter a hostname: "
 read nameHost

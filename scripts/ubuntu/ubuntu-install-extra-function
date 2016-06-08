@@ -1,0 +1,262 @@
+#!/bin/bash
+
+
+function apt_install {
+	
+	len=${#1}
+	echo $len
+	echo -n "╔══════════════════"
+	printf '%0.s═' {1..6}
+	echo "══╗"
+	echo "║ apt-get install '$1' ║"
+	echo -n "╚══════════════════"
+	printf  "%0.s═" {1..$len}
+	echo "══╝"
+	exit
+	
+	
+	
+	echo "╚══════════════════"
+	echo "╔════════════════════════╗"
+	echo "║ apt-get install 'lamp' ║"
+	echo "╚════════════════════════╝"
+	sleep 1
+	sudo apt-get -y install $1
+}
+
+apt_install "Travis"
+
+# ASCII 'window' configuration options
+optionTitle="Select Packages:"	# Title at the top of the window
+optionCount=10					# Number of options to display at once
+optionHeight=$numOptions + 7	# '7' offset for borders and buttons
+optionWidth=80					# Width of the window
+
+# ASCII 'window' create command
+cmd=(dialog --separate-output --checklist "$optionTitle" "$optionHeight" "$optionWidth" "$optionCount")
+
+# ASCII 'window' options to display
+options=(
+	0 "Update - apt-get" on
+	1 "LAMP - apache, mysql, php" off
+    2 "Development - gimp, git, geany" off
+    3 "Terminal - guake, tmux, tree" off
+    4 "Media - clementine, vlc" off
+    5 "Internet - chrome, firefox, lynx" off
+    6 "Virtualization - samba, virtualbox" off
+    7 "cherrytree" off
+    8 "fliezilla" off
+    9 "compiz" off)
+    
+# ASCII 'window' run command with options, store results in choices
+choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+
+# ASCII 'window' close
+clear
+
+# Loop through all 'on' options in choices
+for choice in $choices
+do
+	# Run command related to current 'on' option in choice
+    case $choice in
+		0)
+			# Update
+			
+			# apt-get
+			echo "╔════════════════╗"
+			echo "║ apt-get update ║"
+			echo "╚════════════════╝"
+			sleep 1
+			sudo apt-get -y update
+			sudo apt-get -y upgrade
+			;;
+        1)
+			# LAMP
+			
+			# apache
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'lamp' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install apache2
+			sudo service apache2 restart
+
+			# php
+			sudo apt-get -y install php5
+			sudo apt-get -y install libapache2-mod-php5
+			sudo service apache2 restart
+
+			# mysql
+			sudo apt-get -y install mysql-server
+			sudo apt-get -y install mysql-client
+			sudo apt-get -y install mysql-workbench
+			sudo apt-get -y install php5-mysql
+			sudo apt-get -y install phpmyadmin
+			sudo service apache2 restart
+        	;;
+        2)
+			# Development
+			
+			# git
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'gimp' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install gimp
+			
+			# git
+            clear					
+			echo "╔═══════════════════════╗"
+			echo "║ apt-get install 'git' ║"
+			echo "╚═══════════════════════╝"
+			sleep 1
+			sudo apt-get -y install git
+			sudo apt-get -y install gitk
+			
+			# geany
+            clear					
+			echo "╔═════════════════════════╗"
+			echo "║ apt-get install 'geany' ║"
+			echo "╚═════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install geany
+			;;
+        3)
+			# Terminal
+			
+			# guake
+            clear					
+			echo "╔═════════════════════════╗"
+			echo "║ apt-get install 'guake' ║"
+			echo "╚═════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install guake
+			
+			# terminal - add-ons
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'tmux' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install tmux
+			
+            # tree
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'tree' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install tree
+            ;;
+        4)
+			# Media
+			
+			# vlc
+            clear					
+			echo "╔══════════════════════════════╗"
+			echo "║ apt-get install 'clementine' ║"
+			echo "╚══════════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install clementine
+			
+			# vlc
+            clear					
+			echo "╔═══════════════════════╗"
+			echo "║ apt-get install 'vlc' ║"
+			echo "╚═══════════════════════╝"
+			sleep 1
+			sudo apt-get -y install vlc
+			sudo apt-get -y install mozilla-plugin-vlc
+			;;
+        5)
+			# Internet
+			
+			# chromium
+            clear					
+			echo "╔══════════════════════════╗"
+			echo "║ apt-get install 'chrome' ║"
+			echo "╚══════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install chromium
+			
+			# firefox
+            clear					
+			echo "╔═══════════════════════════╗"
+			echo "║ apt-get install 'firefox' ║"
+			echo "╚═══════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install firefox
+			
+			# lynx
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'lynx' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install lynx
+			;;
+        6)
+			# Virtualization
+			
+			# samba
+            clear					
+			echo "╔═════════════════════════╗"
+			echo "║ apt-get install 'samba' ║"
+			echo "╚═════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install samba
+			
+			# Virtual-Box
+            clear					
+			echo "╔════════════════════════╗"
+			echo "║ apt-get install 'vbox' ║"
+			echo "╚════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install virtualbox
+			;;
+        7)
+			# cherrytree
+            clear					
+			echo "╔══════════════════════════════╗"
+			echo "║ apt-get install 'cherrytree' ║"
+			echo "╚══════════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install cherrytree
+			;;
+        8)
+			# filezilla
+            clear					
+			echo "╔═════════════════════════════╗"
+			echo "║ apt-get install 'filezilla' ║"
+			echo "╚═════════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install filezilla
+			;;
+        9)
+			# compiz
+            clear					
+			echo "╔══════════════════════════╗"
+			echo "║ apt-get install 'compiz' ║"
+			echo "╚══════════════════════════╝"
+			sleep 1
+			sudo apt-get -y install compiz
+			sudo apt-get -y install compizconfig-settings-manager
+			sudo apt-get -y install compiz-plugins
+			;;
+    esac
+done
+
+# Clean-up after installations
+clear
+echo "╔══════════════════╗"
+echo "║ apt-get clean-up ║"
+echo "╚══════════════════╝"
+sleep 1
+sudo apt-get -y clean
+sudo apt-get -y autoclean
+sudo apt-get -y autoremove
+
+# Clear screen
+clear

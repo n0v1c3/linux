@@ -1,0 +1,3 @@
+startvm <name> --type headless
+
+VBoxManage modifyvm <name> --biossystemtimeoffset <msec>

@@ -1,4 +1,0 @@
-VBoxManage modifyvm <name> --biossystemtimeoffset <msec>
-
-Ex// Set system time back 10 years
-VBoxManage modifyvm "Windows XP" --biossystemtimeoffset -315569520000

@@ -25,5 +25,6 @@ ln -s $parent_dir"/scripts/bash/c.sh" ~/.bin/c
 ln -s $parent_dir"/scripts/bash/ca.sh" ~/.bin/ca
 ln -s $parent_dir"/scripts/bash/cl.sh" ~/.bin/cl
 ln -s $parent_dir"/scripts/bash/cla.sh" ~/.bin/cla
+ln -s $parent_dir"/scripts/bash/clock.sh" ~/.bin/clock
 ln -s $parent_dir"/scripts/tmux/my-tmux.sh" ~/.bin/my-tmux
 ln -s $parent_dir"/scripts/git/notify.sh" ~/.bin/notify

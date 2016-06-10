@@ -98,3 +98,8 @@ alias ca="clear; pwd; ls -a --color=auto;"
 alias cl="clear; pwd; ls -l --color=auto;"
 alias cla="clear; pwd; ls -al --color=auto;"
 
+# dirs, pushd and popd shortcuts
+alias dirs="dirs -v"
+alias p="pushd . > /dev/null"
+alias P="popd > /dev/null ; pwd"
+alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"

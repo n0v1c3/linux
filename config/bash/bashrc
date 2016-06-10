@@ -15,10 +15,6 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -52,11 +48,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -81,7 +72,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
+####################################################################################################
 # Custom
+####################################################################################################
 
 # Personal bash commands
 export PATH=$PATH:~/.bin
@@ -89,3 +82,19 @@ export PATH=$PATH:~/.bin
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
 PS2="\[\033[97m\]> \[\033[00m\]"
+
+# History length, see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# Predefined ls shortcuts (Ubuntu)
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# Predefined clear shortcuts (custom)
+alias c="clear; pwd; ls --color=auto;"
+alias ca="clear; pwd; ls -a --color=auto;"
+alias cl="clear; pwd; ls -l --color=auto;"
+alias cla="clear; pwd; ls -al --color=auto;"
+

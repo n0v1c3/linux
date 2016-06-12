@@ -90,9 +90,11 @@ alias cla="clear; pwd; ls -al --color=auto;"
 
 # dirs, pushd and popd shortcuts
 alias dirs="dirs -v"
+alias d="dirs"
 alias p="pushd . > /dev/null"
 alias P="popd > /dev/null ; pwd"
 alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"
+alias Pp="popd > /dev/null ; pushd . > /dev/null ; pwd"
 
 # Predefined ls shortcuts (Ubuntu)
 alias ll='ls -alF --color=auto'

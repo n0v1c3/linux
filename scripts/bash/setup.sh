@@ -7,7 +7,10 @@ repo_dir=${script_dir:0:$length}"/linux"
 mv ~/.bashrc ~/.bashrc-backup-$(date +%y%m%d-%H%M%S-%N)
 
 # Add custom PATH folder to bashrc and save into HOME directory
-sed "s|PATH=\$PATH:~/\.bin|&\nexport PATH=\$PATH:${repo_dir}/config/bin|" $repo_dir/config/bash/bashrc > ~/.bashrc
+sed "s|PATH=\$PATH:~/\.bin|&\nexport PATH=\$PATH:${repo_dir}/home/.bin|" $repo_dir/home/.bashrc > ~/.bashrc
+
+rm ~/.bin/autolock
+ln -s $repo_dir/scripts/bash/autolock.sh ~/.bin/autolock
 
 # Run the bashrc dotfile to update current settings
 source ~/.bashrc

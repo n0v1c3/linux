@@ -68,8 +68,16 @@ fi
 # Custom
 ####################################################################################################
 
+# Get working directory
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+length=`echo $script_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
+export LINUX_ROOT=${script_dir:0:$length}"/linux"
+
 # Personal bash commands
 export PATH=$PATH:~/.bin
+
+# Custom screen lock
+xautolock -time 3 -locker autolock &
 
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "

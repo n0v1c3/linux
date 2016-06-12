@@ -68,11 +68,6 @@ fi
 # Custom
 ####################################################################################################
 
-# Get working directory
-script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-length=`echo $script_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
-export LINUX_ROOT=${script_dir:0:$length}"/linux"
-
 # Personal bash commands
 export PATH=$PATH:~/.bin
 

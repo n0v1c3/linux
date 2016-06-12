@@ -71,8 +71,9 @@ fi
 # Personal bash commands
 export PATH=$PATH:~/.bin
 
-# Custom screen lock
-xautolock -time 3 -locker autolock &
+# Kill existing and restart xautolock using custom autolock
+killall xautolock
+xautolock -time 3 -locker autolock > /dev/null &
 
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "

@@ -104,3 +104,8 @@ alias Pp="popd > /dev/null ; pushd . > /dev/null ; pwd"
 alias ll='ls -alF --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
+
+# Ranger file browser
+alias ranger="ranger -d ."
+
+export TERMINAL="xterm -fa monospace -fs 9"

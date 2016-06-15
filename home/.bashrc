@@ -69,6 +69,7 @@ fi
 ####################################################################################################
 
 # Personal bash commands
+# scripts/bash/setup.sh will add a path for the repo's .bin folder here
 export PATH=$PATH:~/.bin
 
 # Kill existing and restart xautolock using custom autolock
@@ -104,3 +105,6 @@ alias Pp="popd > /dev/null ; pushd . > /dev/null ; pwd"
 alias ll='ls -alF --color=auto'
 alias la='ls -A --color=auto'
 alias l='ls -CF --color=auto'
+
+alias xterm="xterm -fa monospace -fs 10"
+export TERMINAL="xterm -fa monospace -fs 10"

@@ -69,6 +69,7 @@ fi
 ####################################################################################################
 
 # Personal bash commands
+# scripts/bash/setup.sh will add a path for the repo's .bin folder here
 export PATH=$PATH:~/.bin
 
 # Kill existing and restart xautolock using custom autolock
@@ -108,4 +109,5 @@ alias l='ls -CF --color=auto'
 # Ranger file browser
 alias ranger="ranger -d ."
 
-export TERMINAL="xterm -fa monospace -fs 9"
+alias xterm="xterm -fa monospace -fs 10"
+export TERMINAL="xterm -fa monospace -fs 10"

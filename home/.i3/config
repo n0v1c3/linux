@@ -23,9 +23,6 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
-
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -43,10 +40,10 @@ bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-#bindsym $mod+Left focus left
-#bindsym $mod+Down focus down
-#bindsym $mod+Up focus up
-#bindsym $mod+Right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -117,17 +114,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-        status_command i3status
-}
-
-# Custom
-bindsym $mod+Return exec guake
-bindsym $mod+Left exec i3-msg move workspace to output left
-bindsym $mod+Right exec i3-msg move workspace to output right
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -154,5 +140,34 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Set desktop background
-exec -solid "#333333"
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	status_command	i3status
+
+}
+
+###################################################################################################
+# Custom
+###################################################################################################
+
+# Custom "F" commands
+bindsym $mod+F1 exec firefox
+
+# System volume
+bindsym $mod+Next exec pactl set-sink-volume 0 -- -10%
+bindsym $mod+Prior exec pactl set-sink-volume 0 -- +10%
+bindsym $mod+End exec pactl set-sink-mute 0 -- toggle
+
+# Hide info bar
+bindsym $mod+m bar mode toggle
+
+# Background color
+exec --no-startup-id xsetroot -solid "#333333"
+
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xterm -fa monospace -fs 10
+
+# bindsym $mod+Left exec i3-msg move workspace to output left
+# bindsym $mod+Right exec i3-msg move workspace to output right

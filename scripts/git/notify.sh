@@ -45,7 +45,7 @@ while true; do
 	printf "${WHITE}$title3${NC}\n"
 	git --no-pager --git-dir=$gitdir log --pretty=format:'%s' -n 10 | cut -c1-44
 
-	sleep 1
+	sleep 3
 
 	if read -t0; then
 		read a

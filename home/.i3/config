@@ -171,3 +171,6 @@ bindsym $mod+Return exec xterm -fa monospace -fs 10
 
 # bindsym $mod+Left exec i3-msg move workspace to output left
 # bindsym $mod+Right exec i3-msg move workspace to output right
+
+# Start the network management application
+exec --no-startup-id nm-applet

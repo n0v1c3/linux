@@ -40,6 +40,12 @@ $install_cmd grub
 $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
+# Git
+
+# Only push current branch to the corresponding remote branch that 'git pull' uses to update the current branch (this takes effect starting in Git 2.0)
+# Set to 'matching' to maintain pre 2.0 behavior, git will push local branches to the remote branches that already exist with the same name
+git config --global push.default simple
+
 # Default window manager
 $install_cmd i3
 

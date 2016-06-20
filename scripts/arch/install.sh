@@ -1,17 +1,4 @@
 #!/bin/bash
-
-source repo-dir.sh
-parent_dir=echo $(repoDir)
-
-echo -e "Please enter a hostname: "
-read nameHost
-
-# User enter disk path
-echo -e "Please enter your full name: "
-read nameFull
-echo -e "Please enter your email: "
-read email
-
 # Use prebuilt mirrorlist
 wget https://raw.githubusercontent.com/n0v1c3/linux/master/config/pacman/mirrorlist
 mkdir /mnt/etc/pacman.d
@@ -21,17 +8,6 @@ mv ./mirrorlist /mnt/etc/pacman.d/
 #cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup             # Backup
 #sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup             # Uncomment
 #rankmirrors /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist  # Rank
-
-# Install base Arch packages
-pacstrap /mnt base
-
-# Set timezone
-arch-chroot /mnt ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
-
-# Configure locales
-echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" > /mnt/etc/locale.gen	# Write desired locales
-arch-chroot /mnt locale-gen											# Generate locales
-echo LANG=en_US.UTF-8 > /mnt/etc/locale.conf						# Set LANG
 
 # Configure networkd DHCP
 arch-chroot /mnt systemctl enable dhcpcd.service

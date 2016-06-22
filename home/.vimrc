@@ -13,6 +13,9 @@ set number
 " Turn on spell check
 setlocal spell spelllang=en_us
 
+" Enable case auto-indent plugin
+let g:sh_indent_case_labels=1
+
 " Disable arrow keys for navigation
 imap <up> <NOP>
 imap <down> <NOP>

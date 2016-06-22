@@ -52,6 +52,7 @@ case $(uname -a | tr '[:upper:]' '[:lower:]') in
 	*)
 		echo "Invalid OS"
 		exit 1
+		;;
 esac
 
 # Install command to be used when installing new software

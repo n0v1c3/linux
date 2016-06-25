@@ -66,7 +66,7 @@ install_cmd="$sudo $installer install"
 
 # 5
 # Set timezone
-$sude ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
+$sudo ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
 
 # 6
 # Configure locales

@@ -81,7 +81,8 @@ $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # User - Add user and set password
 $sudo useradd -m -g users -s /bin/bash $user_name 
-$sudo $(echo "$user_name:$user_pass" | chpasswd)
+#$sudo $(echo "$user_name:$user_pass" | chpasswd)
+echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 
 # Initialize network configuration
 source $DIR/network-config.sh $hostname

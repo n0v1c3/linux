@@ -24,6 +24,8 @@ read hostname
 # 4
 echo -n "Enter username: "
 read user_name
+echo -n "Enter password: "
+read user_pass
 echo -n "Enter full name: "
 read user_full
 echo -n "Enter email: "
@@ -38,7 +40,7 @@ case $(uname -a | tr '[:upper:]' '[:lower:]') in
 		os="arch"
 		sudo="arch-chroot /mnt"
 		installer="pacman -S --noconfirm"
-		pacstrap /mnt base
+		base_install="pacstrap /mnt base"
 		;;
 
 	# Ubuntu OS
@@ -46,6 +48,7 @@ case $(uname -a | tr '[:upper:]' '[:lower:]') in
 		os="ubuntu"
 		sudo="sudo"
 		installer="apt-get -y"
+		base_install=""
 		;;
 
 	# Invalid OS
@@ -54,6 +57,9 @@ case $(uname -a | tr '[:upper:]' '[:lower:]') in
 		exit 1
 		;;
 esac
+
+# Install base kernel
+$base_install
 
 # Install command to be used when installing new software
 install_cmd="$sudo $installer install"
@@ -73,20 +79,61 @@ $install_cmd grub
 $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
+# User - Add user and set password
+$sudo useradd -m -g users -s /bin/bash $user_name 
+$sudo $(echo "$user_name:$user_pass" | chpasswd)
+
 # Initialize network configuration
 source $DIR/network-config.sh $hostname
 
-# Default window manager
+# Install xSession
 $install_cmd i3
+$install_cmd xorg
+$sudo xinit i3
 
-# Default terminal editor
-$install_cmd vim
+# Terminal tools
+$install_cmd curl	# FTP application
+$install_cmd curlftpfs	# FTP file-system
+$install_cmd git	# Git
+$install_cmd openssh	# SSH
+$install_cmd python	# Python
+$install_cmd ranger	# File manager
+$install_cmd rsync	# Folder sync
+$install_cmd samba	# Windows shares
+$install_cmd sshfs	# SSH mounts
+$install_cmd sudo	# Substitute user do
+$install_cmd vim	# Text editor
+$install_cmd wget	# FTP application
+$install_cmd xrandr	# Monitor configuration
 
-# Default terminal file browser
-$install_cmd ranger
+# xSession tools
+$install_cmd i3
+$install_cmd arandr		# Monitor configuration
+$install_cmd baobab		# Disk usage
+$install_cmd clementine		# Music player
+$install_cmd deluge		# Bit torrent
+$install_cmd firefox		# Web browser
+$install_cmd freerdp		# RDP protocol
+$install_cmd imagemagick	# Image manipulation
+$install_cmd libreoffice	# Office suite
+$install_cmd remmina		# RDP client
+$install_cmd scrot		# Screen shot
+$install_cmd terminator		# Terminal emulator
+$install_cmd virtualbox		# System virtualization
+$install_cmd vlc		# Media player
+$install_cmd xautolock		# Session lockout
 
-# Custom lock screen
-$install_cmd i3lock
-$install_cmd scrot
-$install_cmd imagemagick
-$install_cmd xautolock
+# Configuration
+
+# Git
+$sudo git config --global user.email ${user_email}
+$sudo git config --global user.name ${user_full}
+
+# Linux repository
+mkdir /mnt/home/$user_name/Documents/development
+git clone https://github.com/n0v1c3/linux.git /mnt/home/$user_name/Documents/development
+
+# Virtualbox - Guest
+$install_cmd virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-dkms
+echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
+

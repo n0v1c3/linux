@@ -62,7 +62,7 @@ esac
 $base_install
 
 # Install command to be used when installing new software
-install_cmd="$sudo $installer install"
+install_cmd="$sudo $installer"
 
 # 5
 # Set timezone
@@ -90,7 +90,6 @@ source $DIR/network-config.sh $hostname
 # Install xSession
 $install_cmd i3
 $install_cmd xorg
-$sudo xinit i3
 
 # Terminal tools
 $install_cmd curl	# FTP application
@@ -108,7 +107,6 @@ $install_cmd wget	# FTP application
 $install_cmd xrandr	# Monitor configuration
 
 # xSession tools
-$install_cmd i3
 $install_cmd arandr		# Monitor configuration
 $install_cmd baobab		# Disk usage
 $install_cmd clementine		# Music player
@@ -119,6 +117,7 @@ $install_cmd imagemagick	# Image manipulation
 $install_cmd libreoffice	# Office suite
 $install_cmd remmina		# RDP client
 $install_cmd scrot		# Screen shot
+$install_cmd slim		# Login manager
 $install_cmd terminator		# Terminal emulator
 $install_cmd virtualbox		# System virtualization
 $install_cmd vlc		# Media player
@@ -131,10 +130,17 @@ $sudo git config --global user.email ${user_email}
 $sudo git config --global user.name ${user_full}
 
 # Linux repository
-mkdir /mnt/home/$user_name/Documents/development
-git clone https://github.com/n0v1c3/linux.git /mnt/home/$user_name/Documents/development
+mkdir /mnt/home/$user_name/documents
+mkdir /mnt/home/$user_name/documents/development
+$sudo git clone https://github.com/n0v1c3/linux.git /mnt/home/$user_name/documents/development
+
+# SLiM
+$sudo systemctl enable slim.service
+ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 
 # Virtualbox - Guest
-$install_cmd virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-dkms
+$install_cmd virtualbox-guest-modules-arch
 echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 
+# Xinit
+echo "exec i3" > /mnt/root/.xinitrc

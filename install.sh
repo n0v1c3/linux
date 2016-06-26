@@ -32,11 +32,8 @@ do
 	# Backup existing dotfile at $dst in place with timestamp
 	backup $dst
 
-	# Remove existing dotfile
-	rm $dst
-
 	# Create symlink
-	ln -s $src $dst
+	ln -sf $src $dst
 done
 
 ##

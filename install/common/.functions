@@ -1,3 +1,11 @@
+# Cron tasks
+for script in $(find ~/.cron -iname "*.sh")
+do
+	exec $script
+done
+
 # Kill existing and restart xautolock using custom autolock
 killall xautolock
 xautolock -time 3 -locker autolock > /dev/null &
+
+

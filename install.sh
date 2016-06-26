@@ -4,6 +4,7 @@
 # Backup
 ##
 
+# Copy and date-stamp a given file
 function backup() {
 	cp $1 $1.backup-$(date +%y%m%d-%H%M%S-%N)
 }
@@ -13,7 +14,7 @@ function backup() {
 ##
 
 # Loop through all dotfiles contained in this repository
-for link in $(find . -type f -iname '*' -not -path '*install.sh' -not -path './func/*' -not -path './.git/*' -not -path './README.md')
+for link in $(find . -type f -iname '*' -not -path '*install.sh' -not -path './func/*' -not -path './.git/*' -not -path './README.md' -not -path '*.zsh')
 do
 	# File to be copied ($src) and destination ($dst)
 	src=${link}
@@ -33,7 +34,7 @@ do
 	backup $dst
 
 	# Create symlink
-	ln -sf $src $dst
+	#ln -sf $src $dst
 done
 
 ##

@@ -1,3 +1,9 @@
+# Import common configurations
+source ~/.zsh/aliases.zsh
+source ~/.zsh/exports.zsh
+source ~/.zsh/functions.zsh
+source ~/.zsh/variables.zsh
+
 # Path to your oh-my-zsh installation.
 export ZSH=/home/travis/.oh-my-zsh
 

@@ -27,3 +27,6 @@ do
 	echo $script
 	#sh $script
 done
+
+#ln -s ./home/.bin ~/.bin
+#ln -s ./home/.func ~/.func

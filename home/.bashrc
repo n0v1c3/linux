@@ -64,50 +64,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-####################################################################################################
+##
 # Custom
-####################################################################################################
-
-# Personal bash commands
-# scripts/bash/setup.sh will add a path for the repo's .bin folder here
-export PATH=$PATH:~/.bin
-
-# Kill existing and restart xautolock using custom autolock
-killall xautolock
-xautolock -time 3 -locker autolock > /dev/null &
+##
 
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
 PS2="\[\033[97m\]> \[\033[00m\]"
-
-# History length, see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# Add an "alert" alias for long running commands
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Predefined clear shortcuts (custom)
-alias c="clear; pwd; ls --color=auto;"
-alias ca="clear; pwd; ls -a --color=auto;"
-alias cl="clear; pwd; ls -l --color=auto;"
-alias cla="clear; pwd; ls -al --color=auto;"
-
-# dirs, pushd and popd shortcuts
-alias dirs="dirs -v"
-alias d="dirs"
-alias p="pushd . > /dev/null"
-alias P="popd > /dev/null ; pwd"
-alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"
-alias Pp="popd > /dev/null ; pushd . > /dev/null ; pwd"
-
-# Predefined ls shortcuts (Ubuntu)
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
-
-# Ranger file browser
-alias ranger="ranger -d ."
-
-alias xterm="xterm -fa monospace -fs 10"
-export TERMINAL="xterm -fa monospace -fs 10"

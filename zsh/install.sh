@@ -1,4 +1,2 @@
-sh "$(curl -sfFA https://raw.githubusercontent.com/ohmyzsh/master/install.sh)"
-
-echo "\n\n" >> ~/.zshrc
-cat ./aliases.zsh >> ~/.zshrc
+# Install Oh-My-Zsh
+sh "$(curl -sfFA https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"

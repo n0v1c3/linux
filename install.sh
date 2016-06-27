@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Script directory
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 ##
 # Backup
 ##
@@ -13,12 +16,15 @@ function backup() {
 # Symlinks
 ##
 
+# List all dotfiles
+files=$(find $DIR -type f -name "*" | egrep -v "$DIR/.git|$DIR/README.md|$DIR/install|$*.swp")
+
 # Loop through all dotfiles contained in this repository
-for link in $(find . -type f -iname '*' -not -path '*install.sh' -not -path './func/*' -not -path './.git/*' -not -path './README.md' -not -path '*.zsh')
+for file in $files
 do
 	# File to be copied ($src) and destination ($dst)
-	src=${link}
-	dst=/${link#*./}
+	dst=/${file#*$DIR/}
+	src=$file
 
 	# Adjust $dst path for current user's home directory
 	if ( [[ $dst == */home/* ]] )
@@ -31,26 +37,30 @@ do
 	echo $src - $dst
 
 	# Backup existing dotfile at $dst in place with timestamp
-	backup $dst
+	#backup $dst
 
 	# Create symlink
 	#ln -sf $src $dst
 done
 
 ##
-# Installs
+# Scripts
 ##
 
+# List all .sh scripts
+files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/install.sh")
+
 # Loop through all installation scripts in this repository
-for script in $(find . -iname '*install*.sh' -not -path './install.sh' -not -path './.git/*')
+for file in $files
 do
 	# Test current $script value
-	echo $script
+	echo $file
 
 	# Run current $script
-	#sh $script
+	#sh $file
 done
 
 # Link .bin and .func folders to current user's home directory
-#ln -s ./home/.bin ~/.bin
-#ln -s ./home/.func ~/.func
+#ln -s $DIR/install/bin $HOME/.bin
+#ln -s $DIR/install/cron $HOME/.cron
+#ln -s $DIR/install/func $HOME/.func

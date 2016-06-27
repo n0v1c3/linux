@@ -170,3 +170,5 @@ bindsym $mod+Return exec xterm -fa monospace -fs 10
 
 # Start the network management application
 exec --no-startup-id nm-applet
+
+for_window [class="gource" instance="gource"] floating enable

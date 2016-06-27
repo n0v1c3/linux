@@ -26,3 +26,18 @@ map <up> <NOP>
 map <down> <NOP>
 map <left> <NOP>
 map <right> <NOP>
+
+""
+" Plugins
+""
+
+" Enable plugins for indentation
+filetype plugin indent on
+set smartindent
+
+""
+" Bash
+""
+
+" Add auto indent for case
+let g:sh_indent_case_labels=1

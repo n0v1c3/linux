@@ -17,13 +17,13 @@ function backup() {
 ##
 
 # List all dotfiles
-files=$(find $DIR -type f -name "*" | egrep -v "$DIR/.git|$DIR/README.md|$DIR/install|$*.swp")
+files=$(find $DIR -type f -name "*" | egrep "$DIR/config")
 
 # Loop through all dotfiles contained in this repository
 for file in $files
 do
 	# File to be copied ($src) and destination ($dst)
-	dst=/${file#*$DIR/}
+	dst=${file#*$DIR/config}
 	src=$file
 
 	# Adjust $dst path for current user's home directory
@@ -61,6 +61,6 @@ do
 done
 
 # Link .bin and .func folders to current user's home directory
-#ln -s $DIR/install/bin $HOME/.bin
-#ln -s $DIR/install/cron $HOME/.cron
-#ln -s $DIR/install/func $HOME/.func
+#ln -s $DIR/links/bin $HOME/.bin
+#ln -s $DIR/links/cron $HOME/.cron
+#ln -s $DIR/links/func $HOME/.func

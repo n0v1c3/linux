@@ -34,10 +34,3 @@ map <right> <NOP>
 " Enable plugins for indentation
 filetype plugin indent on
 set smartindent
-
-""
-" Bash
-""
-
-" Add auto indent for case
-let g:sh_indent_case_labels=1

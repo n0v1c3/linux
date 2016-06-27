@@ -1,8 +1,5 @@
-# Import common configurations
-source ~/.shell/.aliases
-source ~/.shell/.exports
-source ~/.shell/.functions
-source ~/.shell/.variables
+# Source common shell configurations
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh

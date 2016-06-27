@@ -1,3 +1,5 @@
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples

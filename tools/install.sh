@@ -40,7 +40,7 @@ do
 	backup $dst
 
 	# Create symlink
-	#ln -sf $src $dst
+	ln -sf $src $dst
 done
 
 ##

@@ -1,8 +1,8 @@
 # Import common configurations
-source ~/.zsh/aliases.zsh
-source ~/.zsh/exports.zsh
-source ~/.zsh/functions.zsh
-source ~/.zsh/variables.zsh
+source ~/.shell/.aliases
+source ~/.shell/.exports
+source ~/.shell/.functions
+source ~/.shell/.variables
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh

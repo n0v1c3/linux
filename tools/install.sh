@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script directory
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd )"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
 ##
 # Backup
@@ -37,7 +37,7 @@ do
 	echo $src - $dst
 
 	# Backup existing dotfile at $dst in place with timestamp
-	#backup $dst
+	backup $dst
 
 	# Create symlink
 	#ln -sf $src $dst
@@ -48,7 +48,7 @@ done
 ##
 
 # List all .sh scripts
-files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/install.sh")
+files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/tools/")
 
 # Loop through all installation scripts in this repository
 for file in $files

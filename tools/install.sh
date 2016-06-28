@@ -1,5 +1,12 @@
 #!/bin/bash
 
+##
+# Directories
+##
+
+# Current directory
+CUR="$(pwd)"
+
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
@@ -17,7 +24,7 @@ function backup() {
 ##
 
 # List all dotfiles
-files=$(find $DIR -type f -name "*" | egrep "$DIR/config")
+files=$(find $DIR -type f -name "*" | egrep "$DIR/config/")
 
 # Loop through all dotfiles contained in this repository
 for file in $files
@@ -60,7 +67,12 @@ do
 	#sh $file
 done
 
-# Link .bin and .func folders to current user's home directory
-#ln -s $DIR/links/bin $HOME/.bin
-#ln -s $DIR/links/cron $HOME/.cron
-#ln -s $DIR/links/func $HOME/.func
+# Create symlinks for all folders and files found in the link directory
+for folder in $(ls -A $DIR/links)
+do
+	rm $HOME/$folder
+	ln -sf $DIR/links/$folder $HOME/$folder
+done
+
+# Link common shell functions
+ln -sf $DIR/shell $HOME/.shell

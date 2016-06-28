@@ -11,7 +11,7 @@ CUR="$(pwd)"
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
 ##
-# Backup
+# Functions
 ##
 
 # Copy and date-stamp a given file
@@ -41,7 +41,7 @@ do
 	fi
 
 	# Test current $src and $dst values
-	echo $src - $dst
+	#echo $src - $dst
 
 	# Backup existing dotfile at $dst in place with timestamp
 	backup $dst

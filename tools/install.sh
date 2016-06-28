@@ -19,6 +19,21 @@ function backup() {
 	cp $1 $1.backup-$(date +%y%m%d-%H%M%S-%N)
 }
 
+# TODO - Not Used
+function isLink() {
+	# Link common shell functions
+	ln -sf $DIR/shell $HOME/.shell
+	raw=$1
+	stat=$(stat -c %N -- "$raw")
+
+	if [ "‘$raw’" != "$stat" ]
+	then
+		return true
+	fi
+
+	return false
+}
+
 ##
 # Symlinks
 ##
@@ -40,14 +55,34 @@ do
 		dst=$HOME/${dst#*/*/}
 	fi
 
-	# Test current $src and $dst values
-	#echo $src - $dst
-
 	# Backup existing dotfile at $dst in place with timestamp
 	backup $dst
 
 	# Create symlink
 	ln -sf $src $dst
+done
+
+links=$(find -L $DIR -xtype l -name "*" | egrep "/config/")
+for link in $links
+do
+	# Destination path
+	dst=${link#*$DIR/config}
+
+	# Adjust $dst path for current user's home directory
+	if ( [[ $dst == */home/* ]] )
+	then
+		# Add current user's home path and strip ./home/* from $dst
+		dst=$HOME/${dst#/home/*}
+	fi
+
+	# Source path
+	src=$(stat -c %N $link)
+	src=${src#*->\ ‘}
+	src=$DIR/${src%*’}
+	
+	# Create symlink to directory
+	rm $dst
+	ln -s $link $dst
 done
 
 ##
@@ -60,19 +95,6 @@ files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/tools/")
 # Loop through all installation scripts in this repository
 for file in $files
 do
-	# Test current $script value
-	echo $file
-
 	# Run current $script
 	#sh $file
 done
-
-# Create symlinks for all folders and files found in the link directory
-for folder in $(ls -A $DIR/links)
-do
-	rm $HOME/$folder
-	ln -sf $DIR/links/$folder $HOME/$folder
-done
-
-# Link common shell functions
-ln -sf $DIR/shell $HOME/.shell

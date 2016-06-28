@@ -34,7 +34,5 @@ do
 	fi
 
 	# Test current $src and $dst values
-	echo BOB$src - $dst
 	diff $src $dst
-	echo ""
 done

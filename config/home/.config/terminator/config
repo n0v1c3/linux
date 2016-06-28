@@ -1,0 +1,51 @@
+[global_config]
+  window_state = maximise
+  borderless = True
+  tab_position = hidden
+  sticky = True
+[keybindings]
+[profiles]
+  [[default]]
+    use_custom_command = True
+    background_image = None
+    show_titlebar = False
+    custom_command = zsh
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      order = 0
+      parent = ""
+    [[[child0]]]
+      type = HPaned
+      order = 0
+      parent = window0
+    [[[child1]]]
+      type = VPaned
+      order = 0
+      parent = child0
+    [[[child2]]]
+      type = VPaned
+      order = 1
+      parent = child0
+    [[[terminal0]]]
+      type = Terminal
+      order = 0
+      parent = child1
+      command = cd ~/Documents; bash;
+    [[[terminal1]]]
+      type = Terminal
+      order = 1
+      parent = child1
+      command = cd ~/Documents; bash;
+    [[[terminal2]]]
+      type = Terminal
+      order = 0
+      parent = child2
+      command = cd /home/travis/Documents/linux; bash notify; bash;
+    [[[terminal3]]]
+      type = Terminal
+      order = 1
+      parent = child2
+      command = top -u $(whoami); bash;
+[plugins]

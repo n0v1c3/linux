@@ -1,13 +1,18 @@
-# Source common shell configurations
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+##
+# Oh-My-Zsh
+##
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+#ZSH_THEME="random"
 #ZSH_THEME="agnoster"
 ZSH_THEME="robbyrussell"
 
@@ -27,20 +32,18 @@ HIST_STAMPS="yyyy-mm-dd"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git vi-mode)
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
 # Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
 
+##
+# Shell
+##
+
+# Source common shell configurations
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+
 # Reload zsh dotfile
 alias reload!='. ~/.zshrc'
-
-##
-# zle
-# Taken from: https://dougblack.ie/words/zsh-vi-mode.html
-# Go there for more common key bindings
-##
 
 # Vi mode
 bindkey -v

@@ -13,6 +13,9 @@ set number
 " Turn on spell check
 setlocal spell spelllang=en_us
 
+" Custom spell-check list
+set spellfile=~/.vim/spell/wordlist.utf-8.add
+
 " Enable case auto-indent plugin
 let g:sh_indent_case_labels=1
 

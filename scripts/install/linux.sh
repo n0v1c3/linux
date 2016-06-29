@@ -104,7 +104,7 @@ arch-chroot /mnt systemctl enable dhcpcd.service
 # Grub
 $install_cmd grub
 
-# xSession
+# xSessio
 $install_cmd i3
 $install_cmd xorg
 
@@ -135,6 +135,7 @@ $install_cmd freerdp		# RDP protocol
 $install_cmd imagemagick	# Image manipulation
 $install_cmd libreoffice	# Office suite
 $install_cmd remmina		# RDP client
+$install_cmd retext		# Markdown viewer/editor
 $install_cmd scrot		# Screen shot
 $install_cmd slim		# Login manager
 $install_cmd terminator		# Terminal emulator

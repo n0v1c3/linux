@@ -4,7 +4,8 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
 # TODO - Not Used
-function isLink() {
+function isLink() 
+{
 	# Link common shell functions
 	ln -sf $DIR/shell $HOME/.shell
 	raw=$1
@@ -28,7 +29,7 @@ function getDst()
 		# Add current user's home path and strip ./home/* from $dst
 		dst=$HOME/${dst#*/*/}
 	fi
-	
+
 	echo $dst
 }
 
@@ -78,7 +79,7 @@ do
 
 				# Create symlink to directory
 				rm $dst
-				ln -s $link $dst
+				ln -s $src $dst
 			done
 			;;
 

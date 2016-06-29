@@ -1,0 +1,3 @@
+#!/bin/bash
+
+source ~/Documents/development/dotfiles/tools/install.sh

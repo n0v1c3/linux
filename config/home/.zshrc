@@ -18,7 +18,7 @@ HYPHEN_INSENSITIVE="true"
 DISABLE_AUTO_UPDATE="true"
 
 # Command auto correction
-ENABLE_CORRECTION="true"
+#ENABLE_CORRECTION="true"
 
 # History date stamp format
 HIST_STAMPS="yyyy-mm-dd"

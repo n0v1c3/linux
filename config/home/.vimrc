@@ -10,6 +10,22 @@ set relativenumber
 " Display line number for current line
 set number
 
+" Highlight current line
+set cursorline
+
+" Set tab width to 4 spaces
+set tabstop=4
+
+" Show 'invisible' characters
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+set list
+
+" Highlight searches
+set hlsearch
+
+" Start scrolling five lines before window border
+set scrolloff=5
+
 " Turn on spell check
 setlocal spell spelllang=en_us
 

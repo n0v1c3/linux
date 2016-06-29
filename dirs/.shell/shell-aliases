@@ -16,7 +16,6 @@ alias cl="clear; pwd; ls -l --color=auto;"
 alias cla="clear; pwd; ls -al --color=auto;"
 alias d='dirs'
 alias dirs='dirs -v'
-alias g='git'
 alias h='history'
 alias j='jobs'
 alias ll='ls -alF --color=auto'

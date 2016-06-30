@@ -8,7 +8,7 @@ BOLD='\033[1;37m'
 
 git-notify() {
 while true; do
-	current_branch=$(git --git-dir=$gitdir branch)		
+	current_branch=$(git --git-dir=$gitdir branch)
 	current_status=$(git --git-dir=$gitdir status -sb)
 	current_log=$(git --git-dir=$gitdir log --pretty=format:'%s' -n 1)
 

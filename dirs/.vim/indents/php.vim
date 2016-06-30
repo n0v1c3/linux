@@ -1,31 +1,6 @@
-" Vim indent file
-" Language:	Php
-" Authors:	Miles Lott <milos@groupwhere.org>, Johannes Zellner <johannes@zellner.org>, Pim Snel <pim@lingewoud.nl> 
-" URL:		http://lingewoud.nl/downloads.php
-" Last Change:	23 feb 2004 
-" Version:	0.3
-" Notes:  	This is a combination of the PHP indent file of Miles Lott with 
-"         	the HTML indent file of Johannes Zellner. Usefull for editing 
-"         	php-files with html parts in it. 
-"         	
-" Changelog: 
-" 			 0.3 - 25 mar 2004
-" 			 - fixed wrong indention when a php-tag is opened and closed on
-" 			   one single line.
-" 			 0.2 - 23 feb 2004
-" 			 - applied patch from Holger Dzeik <dzeik@nentec.de>
-"            - added changelog
-"            - added default indention of 3 spaces after the <?php for better
-"              reading
-"            - replaced URL
-"            - reformatted the options section
-"            0.1 - 27 mar 2003
-"            - initial creation of html-enhanced php indent-file
-
-" Options: 
-let php_noindent_switch=0    " set this to '1' to not try to indent switch/case statements
-set sw=3                     " default shiftwidth of 3 spaces
-
+" Options:
+let php_noindent_switch=0 " set this to '1' to not try to indent switch/case statements
+set sw=3 " default shiftwidth of 3 spaces
 
 if exists("b:did_indent")
 	finish
@@ -51,15 +26,15 @@ if exists('g:html_indent_tags')
 endif
 
 function GetPhpIndent()
-    " Find a non-empty line above the current line.
+	" Find a non-empty line above the current line.
 	let lnum = prevnonblank(v:lnum - 1)
 
 	" Hit the start of the file, use zero indent.
 	if lnum == 0
-	    return 0
+		return 0
 	endif
 
-	let line = getline(lnum)    " last line
+	let line = getline(lnum) " last line
 	let cline = getline(v:lnum) " current line
 	let pline = getline(lnum - 1) " previous to last line
 	let ind = indent(lnum)
@@ -71,17 +46,16 @@ function GetPhpIndent()
 	let ind = ind + <SID>HtmlIndentSum(v:lnum, 0)
 
 	let &ic=restore_ic
-	
+
 	let ind = indent(lnum) + (&sw * ind)
 
-	" Indent after php open tags 
+	" Indent after php open tags
 	if line =~ '<?php' && line !~ '?>'
 		let ind = ind + &sw
 	endif
 	if cline =~ '^\s*[?>]' " // Fix from Holger Dzeik <dzeik@nentec.de> Thanks!
 		let ind = ind - &sw
 	endif
-
 
 	if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
 		" Indent blocks enclosed by {} or ()
@@ -117,22 +91,18 @@ function GetPhpIndent()
 	endif
 endfunction
 
-
 " [-- local settings (must come before aborting the script) --]
 "setlocal indentexpr=HtmlIndentGet(v:lnum)
 "setlocal indentkeys=o,O,*<Return>,<>>,<bs>,{,}
 
-
-
 " [-- helper function to assemble tag list --]
 fun! <SID>HtmlIndentPush(tag)
-    if exists('g:html_indent_tags')
-	let g:html_indent_tags = g:html_indent_tags.'\|'.a:tag
-    else
-	let g:html_indent_tags = a:tag
-    endif
+	if exists('g:html_indent_tags')
+		let g:html_indent_tags = g:html_indent_tags.'\|'.a:tag
+	else
+		let g:html_indent_tags = a:tag
+	endif
 endfun
-
 
 " [-- <ELEMENT ? - - ...> --]
 call <SID>HtmlIndentPush('a')
@@ -198,23 +168,21 @@ call <SID>HtmlIndentPush('u')
 call <SID>HtmlIndentPush('ul')
 call <SID>HtmlIndentPush('var')
 
-
 " [-- <ELEMENT ? O O ...> --]
 if !exists('g:html_indent_strict')
-    call <SID>HtmlIndentPush('body')
-    call <SID>HtmlIndentPush('head')
-    call <SID>HtmlIndentPush('html')
-    call <SID>HtmlIndentPush('tbody')
+	call <SID>HtmlIndentPush('body')
+	call <SID>HtmlIndentPush('head')
+	call <SID>HtmlIndentPush('html')
+	call <SID>HtmlIndentPush('tbody')
 endif
-
 
 " [-- <ELEMENT ? O - ...> --]
 if !exists('g:html_indent_strict_table')
-    call <SID>HtmlIndentPush('th')
-    call <SID>HtmlIndentPush('td')
-    call <SID>HtmlIndentPush('tr')
-    call <SID>HtmlIndentPush('tfoot')
-    call <SID>HtmlIndentPush('thead')
+	call <SID>HtmlIndentPush('th')
+	call <SID>HtmlIndentPush('td')
+	call <SID>HtmlIndentPush('tr')
+	call <SID>HtmlIndentPush('tfoot')
+	call <SID>HtmlIndentPush('thead')
 endif
 
 delfun <SID>HtmlIndentPush
@@ -223,50 +191,50 @@ set cpo-=C
 
 " [-- count indent-increasing tags of line a:lnum --]
 fun! <SID>HtmlIndentOpen(lnum)
-    let s = substitute('x'.getline(a:lnum),
-    \ '.\{-}\(\(<\)\('.g:html_indent_tags.'\)\>\)', "\1", 'g')
-    let s = substitute(s, "[^\1].*$", '', '')
-    return strlen(s)
+	let s = substitute('x'.getline(a:lnum),
+	\ '.\{-}\(\(<\)\('.g:html_indent_tags.'\)\>\)', "\1", 'g')
+	let s = substitute(s, "[^\1].*$", '', '')
+	return strlen(s)
 endfun
 
 " [-- count indent-decreasing tags of line a:lnum --]
 fun! <SID>HtmlIndentClose(lnum)
-    let s = substitute('x'.getline(a:lnum),
-    \ '.\{-}\(\(<\)/\('.g:html_indent_tags.'\)\>>\)', "\1", 'g')
-    let s = substitute(s, "[^\1].*$", '', '')
-    return strlen(s)
+	let s = substitute('x'.getline(a:lnum),
+	\ '.\{-}\(\(<\)/\('.g:html_indent_tags.'\)\>>\)', "\1", 'g')
+	let s = substitute(s, "[^\1].*$", '', '')
+	return strlen(s)
 endfun
 
 " [-- count indent-increasing '{' of (java|css) line a:lnum --]
 fun! <SID>HtmlIndentOpenAlt(lnum)
-    return strlen(substitute(getline(a:lnum), '[^{]\+', '', 'g'))
+	return strlen(substitute(getline(a:lnum), '[^{]\+', '', 'g'))
 endfun
 
 " [-- count indent-decreasing '}' of (java|css) line a:lnum --]
 fun! <SID>HtmlIndentCloseAlt(lnum)
-    return strlen(substitute(getline(a:lnum), '[^}]\+', '', 'g'))
+	return strlen(substitute(getline(a:lnum), '[^}]\+', '', 'g'))
 endfun
 
 " [-- return the sum of indents respecting the syntax of a:lnum --]
 fun! <SID>HtmlIndentSum(lnum, style)
-    if a:style == match(getline(a:lnum), '^\s*</')
-	if a:style == match(getline(a:lnum), '^\s*</\<\('.g:html_indent_tags.'\)\>')
-	    let open = <SID>HtmlIndentOpen(a:lnum)
-	    let close = <SID>HtmlIndentClose(a:lnum)
-	    if 0 != open || 0 != close
-		return open - close
-	    endif
+	if a:style == match(getline(a:lnum), '^\s*</')
+		if a:style == match(getline(a:lnum), '^\s*</\<\('.g:html_indent_tags.'\)\>')
+			let open = <SID>HtmlIndentOpen(a:lnum)
+			let close = <SID>HtmlIndentClose(a:lnum)
+			if 0 != open || 0 != close
+				return open - close
+			endif
+		endif
 	endif
-    endif
-    if '' != &syntax &&
+	if '' != &syntax &&
 	\ synIDattr(synID(a:lnum, 1, 1), 'name') =~ '\(css\|java\).*' &&
 	\ synIDattr(synID(a:lnum, strlen(getline(a:lnum)) - 1, 1), 'name')
 	\ =~ '\(css\|java\).*'
-	if a:style == match(getline(a:lnum), '^\s*}')
-	    return <SID>HtmlIndentOpenAlt(a:lnum) - <SID>HtmlIndentCloseAlt(a:lnum)
+		if a:style == match(getline(a:lnum), '^\s*}')
+			return <SID>HtmlIndentOpenAlt(a:lnum) - <SID>HtmlIndentCloseAlt(a:lnum)
+		endif
 	endif
-    endif
-    return 0
+	return 0
 endfun
 
 " vim: set ts=3 sw=3:

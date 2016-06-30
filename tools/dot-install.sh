@@ -4,7 +4,7 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
 # TODO - Not Used
-function isLink() 
+function isLink()
 {
 	# Link common shell functions
 	ln -sf $DIR/shell $HOME/.shell
@@ -19,7 +19,7 @@ function isLink()
 	return false
 }
 
-function getDst() 
+function getDst()
 {
 	dst=${1#*$DIR/config}
 

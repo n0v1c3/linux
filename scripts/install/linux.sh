@@ -169,7 +169,7 @@ $sudo systemctl enable slim.service
 ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 
 # User
-$sudo useradd -m -g users -s /bin/bash $user_name 
+$sudo useradd -m -g users -s /bin/bash $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 $sudo chown -R "$user_name:root" /home/$user_name
 

@@ -17,22 +17,22 @@ gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ vsize $ro
 
 #--------------------------------------------------
 # fstab_write
-# desc: Write new mount to fstab without 
+# desc: Write new mount to fstab without
 #		overwriting the existing entries.
 #--------------------------------------------------
 # Write new mount to fstab, will not overwrite existing
 function fstab_write {
-	# Count entries existing in 'fstab'
-	count=$(grep -c "$1" /etc/fstab)			# Count entries existing in 'fstab'
-	
-	# Map new servers to fstab	
-	if [ $count -eq 0 ]; then					# Confirm mount does not exist
-		sudo echo -e "\n# $1\n$2" >> /etc/fstab	# Write mounting information to 'fstab'
-		
-	else										# Server already mapped
-		echo "Host name '$1' is already mapped"	# Display error for user
-	fi
-	exit										# Exit function
+# Count entries existing in 'fstab'
+count=$(grep -c "$1" /etc/fstab)			# Count entries existing in 'fstab'
+
+# Map new servers to fstab
+if [ $count -eq 0 ]; then					# Confirm mount does not exist
+	sudo echo -e "\n# $1\n$2" >> /etc/fstab	# Write mounting information to 'fstab'
+
+else										# Server already mapped
+	echo "Host name '$1' is already mapped"	# Display error for user
+fi
+exit										# Exit function
 }
 
 # Make required 'mount' dir(s)

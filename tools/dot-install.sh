@@ -44,21 +44,36 @@ do
 	case "$1" in
 		-h|--help)
 			echo "Script: $DIR/tools/install.sh"
-			echo "-h, --help	show brief help"
-			echo "-b, --backup	backup all dotfiles"
-			echo "-l, --links	link all dotfiles and dotfolders"
-			echo "-s, --scripts	run all scripts in repository"
+			echo "-h, --help		show brief help"
+			echo "-b, --backup		backup all dotfiles"
+			echo "-c, --clean-up	backup all dotfiles"
+			echo "-d, --diff		backup all dotfiles"
+			echo "-l, --links		link all dotfiles and dotfolders"
+			echo "-s, --scripts		run all scripts in repository"
 			;;
-		-b|--backup)
+	-b|--backup)
 			# Backup existing dotfiles in place with timestamp
 			for file in $files
 			do
-				dst=$(getDst $file)
-				cp $dst $dst.backup-$(date +%y%m%d-%H%M%S-%N)
+					dst=$(getDst $file)
+					cp $dst $dst.backup-$(date +%y%m%d-%H%M%S-%N)
 			done
 			;;
 
-		-l|--link)
+	-c|--clean-up)
+			# TODO - Add diff check only removing identical backups
+			find . -type f -iname '*.backup-*' | xargs rm
+			;;
+
+	-d|--diff)
+			for file in $files
+			do
+					# Test current $src and $dst values
+					diff $file $(getDst $file)
+			done
+			;;
+
+	-l|--link)
 			# Link all confg dotfiles
 			for file in $files
 			do

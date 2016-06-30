@@ -132,6 +132,7 @@ $install_cmd clementine		# Music player
 $install_cmd deluge		# Bit torrent
 $install_cmd firefox		# Web browser
 $install_cmd freerdp		# RDP protocol
+$install_cmd fslint		# File compare
 $install_cmd imagemagick	# Image manipulation
 $install_cmd libreoffice	# Office suite
 $install_cmd remmina		# RDP client

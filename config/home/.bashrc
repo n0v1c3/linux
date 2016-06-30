@@ -1,4 +1,4 @@
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+# 
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -73,3 +73,5 @@ fi
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
 PS2="\[\033[97m\]> \[\033[00m\]"
+
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done

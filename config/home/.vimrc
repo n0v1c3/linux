@@ -14,7 +14,7 @@ set number
 set cursorline
 
 " Set tab width to 4 spaces
-set tabstop=4
+"set tabstop=4
 
 " Show 'invisible' characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_

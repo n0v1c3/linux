@@ -1,15 +1,18 @@
 [global_config]
+  title_hide_sizetext = True
   window_state = maximise
   borderless = True
-  tab_position = hidden
-  sticky = True
+  focus = mouse
+  tab_position = right
 [keybindings]
 [profiles]
   [[default]]
-    use_custom_command = True
-    background_image = None
-    show_titlebar = False
+    scrollbar_position = hidden
     custom_command = zsh
+    scrollback_lines = 0
+    background_image = None
+    use_custom_command = True
+    show_titlebar = False
 [layouts]
   [[default]]
     [[[window0]]]
@@ -32,20 +35,21 @@
       type = Terminal
       order = 0
       parent = child1
-      command = cd ~/Documents; bash;
+      command = ""
     [[[terminal1]]]
       type = Terminal
       order = 1
       parent = child1
-      command = cd ~/Documents; bash;
+      command = ""
     [[[terminal2]]]
       type = Terminal
       order = 0
       parent = child2
-      command = cd /home/travis/Documents/linux; bash notify; bash;
+      command = ""
     [[[terminal3]]]
       type = Terminal
       order = 1
       parent = child2
-      command = top -u $(whoami); bash;
+      command = ""
+      profile = default
 [plugins]

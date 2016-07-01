@@ -19,37 +19,9 @@
       type = Window
       order = 0
       parent = ""
-    [[[child0]]]
-      type = HPaned
-      order = 0
-      parent = window0
-    [[[child1]]]
-      type = VPaned
-      order = 0
-      parent = child0
-    [[[child2]]]
-      type = VPaned
-      order = 1
-      parent = child0
     [[[terminal0]]]
       type = Terminal
       order = 0
-      parent = child1
+      parent = window0
       command = ""
-    [[[terminal1]]]
-      type = Terminal
-      order = 1
-      parent = child1
-      command = ""
-    [[[terminal2]]]
-      type = Terminal
-      order = 0
-      parent = child2
-      command = ""
-    [[[terminal3]]]
-      type = Terminal
-      order = 1
-      parent = child2
-      command = ""
-      profile = default
 [plugins]

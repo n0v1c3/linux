@@ -180,3 +180,8 @@ echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 # Xinit
 echo "exec i3" > /mnt/root/.xinitrc
 echo "exec i3" > /mnt/home/$user_name/.xinitrc
+
+# Install dotfiles
+$sudo mkdir /home/$user_name/documents/development
+$sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
+$sudo bash /home/$user_name/documents/development/dotfiles/tools/dot-install.sh -l

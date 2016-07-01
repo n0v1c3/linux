@@ -3,6 +3,9 @@
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 
+# Set newline as only list separator
+IFS=$'\n'
+
 # TODO - Not Used
 function isLink()
 {
@@ -36,8 +39,8 @@ function getDst()
 # List all config dotfiles
 files=$(find $DIR -type f -name "*" | egrep "$DIR/config/")
 
-# List all dir dotfiles
-links=$(find -L $DIR -xtype l -name "*" | egrep "/config/")
+# List all dotdirs
+links=$(find -L $DIR -xtype l -name "*" | egrep "$DIR/config/")
 
 while test $# -gt 0
 do
@@ -48,14 +51,14 @@ do
 			echo "-b, --backup		backup all dotfiles"
 			echo "-c, --clean-up		backup all dotfiles"
 			echo "-d, --diff		backup all dotfiles"
-			echo "-l, --links		link all dotfiles and dotfolders"
+			echo "-l, --links		link all dotfiles and dotdirs"
 			echo "-s, --scripts		run all scripts in repository"
 			;;
 		-b|--backup)
 			# Backup existing dotfiles in place with timestamp
 			for file in $files
 			do
-				dst=$(getDst $file)
+				dst=$(getDst "$file")
 				cp $dst $dst.backup-$(date +%y%m%d-%H%M%S-%N)
 			done
 			;;
@@ -69,7 +72,7 @@ do
 			for file in $files
 			do
 				# Test current $src and $dst values
-				diff $file $(getDst $file)
+				diff "$file" "$(getDst $file)"
 			done
 			;;
 
@@ -77,24 +80,24 @@ do
 			# Link all confg dotfiles
 			for file in $files
 			do
-				dst=$(getDst $file)
-				ln -sf $file $dst
+				dst=$(getDst "$file")
+				ln -sf "$file" "$dst"
 			done
 
 			# Link all directory dotfolders
 			for link in $links
 			do
 				# Destination path
-				dst=$(getDst $link)
+				dst=$(getDst "$link")
 
 				# Source path
-				src=$(stat -c %N $link)
+				src=$(stat -c %N "$link")
 				src=${src#*->\ ‘}
 				src=$DIR/${src%*’}
 
 				# Create symlink to directory
-				rm $dst
-				ln -s $src $dst
+				rm "$dst"
+				ln -s "$src" "$dst"
 			done
 			;;
 
@@ -103,7 +106,7 @@ do
 			files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/tools/")
 
 			# Loop through all installation scripts in this repository
-			for file in $files ; do sh $file ; done
+			for file in $files ; do sh "$file" ; done
 			;;
 
 		*)

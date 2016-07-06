@@ -132,6 +132,7 @@ $install_cmd clementine		# Music player
 $install_cmd deluge		# Bit torrent
 $install_cmd firefox		# Web browser
 $install_cmd freerdp		# RDP protocol
+$install_cmd gnome-icon-theme-full	# Icon package
 $install_cmd gource		# Graphical git representation
 $install_cmd imagemagick	# Image manipulation
 $install_cmd libreoffice	# Office suite

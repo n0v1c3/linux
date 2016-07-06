@@ -8,6 +8,8 @@ DMENU='dmenu -i -b -nb #000000 -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(echo "
 arandr
+clementine
+deluge
 firefox
 geany
 gedit
@@ -16,16 +18,26 @@ hibernate
 libreoffice
 logout
 reboot
+remmina
+retext
 shutdown
 software-center
 suspend
 teamviewer
 terminator
-thunar" | $DMENU)
+thunar
+virtualbox
+vlc" | $DMENU)
 
 	case "$choice" in
 		arandr)
 			arandr &
+			;;
+		clementine)
+			clementine &
+			;;
+		deluge)
+			deluge &
 			;;
 		firefox)
 			firefox &
@@ -51,6 +63,12 @@ thunar" | $DMENU)
 		reboot)
 			sudo shutdown -r now &
 			;;
+		retext)
+			retext &
+			;;
+		remmina)
+			remmina &
+			;;
 		shutdown)
 			sudo shutdown -h now &
 			;;
@@ -68,5 +86,11 @@ thunar" | $DMENU)
 			;;
 		thunar)
 			thunar &
+			;;
+		virtualbox)
+			virtualbox &
+			;;
+		vlc)
+			vlc &
 			;;
 	esac

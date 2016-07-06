@@ -2,11 +2,11 @@
 alias reload!='. $HOME/.${SHELL#*/bin/}rc'
 
 # Navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ~='cd ~':
+alias ..='cd .. ; pwd ; ls'
+alias ...='cd ../.. ; pwd ; ls'
+alias ....='cd ../../.. ; pwd ; ls'
+alias .....='cd ../../../.. ; pwd ; ls'
+alias ~='cd $HOME ; pwd ; ls'
 alias -- -='cd -'
 
 # Shortcuts

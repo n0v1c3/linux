@@ -126,25 +126,26 @@ $install_cmd xrandr	# Monitor configuration
 $install_cmd zsh	# ZSh
 
 # xSession tools
-$install_cmd arandr		# Monitor configuration
-$install_cmd baobab		# Disk usage
-$install_cmd clementine		# Music player
-$install_cmd deluge		# Bit torrent
-$install_cmd firefox		# Web browser
-$install_cmd freerdp		# RDP protocol
-$install_cmd fslint		# File compare
+$install_cmd arandr			# Monitor configuration
+$install_cmd baobab			# Disk usage
+$install_cmd clementine			# Music player
+$install_cmd conky			# System information
+$install_cmd deluge			# Bit torrent
+$install_cmd firefox			# Web browser
+$install_cmd freerdp			# RDP protocol
+$install_cmd fslint			# File compare
 $install_cmd gnome-icon-theme-full	# Icon package
-$install_cmd gource		# Graphical git representation
-$install_cmd imagemagick	# Image manipulation
-$install_cmd libreoffice	# Office suite
-$install_cmd remmina		# RDP client
-$install_cmd retext		# Markdown viewer/editor
-$install_cmd scrot		# Screen shot
-$install_cmd slim		# Login manager
-$install_cmd terminator		# Terminal emulator
-$install_cmd virtualbox		# System virtualization
-$install_cmd vlc		# Media player
-$install_cmd xautolock		# Session lockout
+$install_cmd gource			# Graphical git representation
+$install_cmd imagemagick		# Image manipulation
+$install_cmd libreoffice		# Office suite
+$install_cmd remmina			# RDP client
+$install_cmd retext			# Markdown viewer/editor
+$install_cmd scrot			# Screen shot
+$install_cmd slim			# Login manager
+$install_cmd terminator			# Terminal emulator
+$install_cmd virtualbox			# System virtualization
+$install_cmd vlc			# Media player
+$install_cmd xautolock			# Session lockout
 
 ##
 # Configuration

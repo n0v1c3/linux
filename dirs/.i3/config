@@ -171,4 +171,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # Start the network management application
 exec --no-startup-id nm-applet
 
+# Gource
 for_window [class="gource" instance="gource"] floating enable
+
+# Teamviewer
+for_window [class="Wine" instance="TeamViewer.exe" title="Computers & Contacts"] floating enable; resize shrink width 10000px; resize grow width 150px; resize shrink height 10000px; resize grow height 430px;
+for_window [class="Wine" instance="TeamViewer.exe" title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;

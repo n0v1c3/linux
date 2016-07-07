@@ -133,6 +133,8 @@ $install_cmd deluge		# Bit torrent
 $install_cmd firefox		# Web browser
 $install_cmd freerdp		# RDP protocol
 $install_cmd fslint		# File compare
+$install_cmd gnome-icon-theme-full	# Icon package
+$install_cmd gource		# Graphical git representation
 $install_cmd imagemagick	# Image manipulation
 $install_cmd libreoffice	# Office suite
 $install_cmd remmina		# RDP client
@@ -180,3 +182,8 @@ echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 # Xinit
 echo "exec i3" > /mnt/root/.xinitrc
 echo "exec i3" > /mnt/home/$user_name/.xinitrc
+
+# Install dotfiles
+$sudo mkdir /home/$user_name/documents/development
+$sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
+$sudo bash /home/$user_name/documents/development/dotfiles/tools/dot-install.sh -l

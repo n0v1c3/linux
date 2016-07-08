@@ -3,4 +3,4 @@
 # Script directory
 DIR="$(cd -P "$(dirname "${BASH_SOURCE[0]}" )/../.." && pwd)"
 
-bash $DIR/scripts/dmenu-custom.sh
+source $DIR/scripts/dmenu-custom.sh

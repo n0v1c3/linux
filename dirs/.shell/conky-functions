@@ -1,0 +1,1 @@
+for file in $(find $HOME/.conky/ -type f -name "*.conky") ; do conky -c $file ; done

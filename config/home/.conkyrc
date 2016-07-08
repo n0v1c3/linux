@@ -1,0 +1,14 @@
+TEXT
+${include /home/travis/.conky/template.conky}
+
+Desktop Details
+Desktop: ${desktop}
+Users: ${user_number} | ${user_names}
+Temp: $acpitemp
+Fan Speed: $acpifan
+
+Memory Information
+RAM:  ${membar 5, 105} | $mem/$memmax - $memperc%
+
+${include /home/travis/.conky/cpu.conky}
+${include /home/travis/.conky/battery.conky}

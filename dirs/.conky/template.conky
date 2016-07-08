@@ -1,4 +1,4 @@
-update_interval 0.1
+update_interval 2
 double_buffer yes
 background yes
 

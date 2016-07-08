@@ -1,0 +1,8 @@
+update_interval 1
+TEXT
+CPU Information
+CPU0: ${cpubar 5, 105} | ${cpu cpu0}%
+CPU1: ${cpubar 5, 105} | ${cpu cpu1}%
+CPU2: ${cpubar 5, 105} | ${cpu cpu2}%
+CPU3: ${cpubar 5, 105} | ${cpu cpu3}%
+${cpugraph 50, 155}

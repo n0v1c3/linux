@@ -4,10 +4,9 @@
 #
 ###
 
-DMENU='dmenu -i -b -nb #000000 -nf #999999 -sb #000000 -sf #31658C'
+DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
-choice=$(echo "
-arandr
+choice=$(echo "arandr
 clementine
 deluge
 firefox

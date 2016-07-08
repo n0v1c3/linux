@@ -103,10 +103,17 @@ do
 
 		-s|--scripts)
 			# List all .sh scripts
-			files=$(find $DIR -type f -name "*.sh" | egrep -v "$DIR/.git|$DIR/tools/")
+			files=$(find $DIR/scripts/ -type f -name "*install.sh")
 
 			# Loop through all installation scripts in this repository
-			for file in $files ; do sh "$file" ; done
+			for file in $files
+			do
+				if [[ $file != *dot-install.sh ]]
+				then
+					#echo $file
+					sh "$file"
+				fi
+			done
 			;;
 
 		*)

@@ -1,20 +1,20 @@
 TEXT
 ${include /home/travis/.config/conky/template.conky}
 
---DESKTOP--
-Desktop: ${desktop}
+${color lightblue}--DESKTOP--
+${color lightgreen}Desktop: ${desktop}
 Users: ${user_number} | ${user_names}
 Temp: $acpitemp
 Fan Speed: $acpifan
 
---MEMORY--
-RAM:  ${membar 5, 105} | $mem/$memmax - $memperc%
+${color lightblue}--MEMORY--
+${color lightgreen}RAM:  ${membar 5, 105} | $mem/$memmax - $memperc%
 
---NETWORK--
-${execi 5 sh /home/travis/.config/conky/network.sh}
+${color lightblue}--NETWORK--
+${color lightgreen}${execi 5 sh /home/travis/.config/conky/network.sh}$color
 
---CPU--
-${include /home/travis/.config/conky/cpu.conky}
+${color lightblue}--CPU--
+${color lightgreen}${include /home/travis/.config/conky/cpu.conky}
 
---BATTERY--
-${include /home/travis/.config/conky/battery.conky}
+${color lightblue}--BATTERY--
+${color lightgreen}${include /home/travis/.config/conky/battery.conky}

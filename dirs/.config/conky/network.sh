@@ -8,7 +8,7 @@ linkspeed_sleep=5
 
 # Static headers
 echo "HOSTNAME: $(hostname)"
-echo "INTERFACE  IP ADDRESS       SUBNET         GATEWAY          RX (kBps)  TX (kBps)"
+printf "%-15s | %-15s | %-15s | %-15s | %-15s | %-15s\n" "INTERFACE" "IP ADDRESS" "SUBNET" "GATEWAY" "RX (kBps)" "TX (kBps)"
 
 # Loop through all mapped network interfaces
 for i in $interfaces
@@ -32,7 +32,7 @@ do
 		sub="$(ifconfig $i | grep 'inet addr:' | cut -d : -f 4 | awk '{print $1}')"
 		gate="$(ip route | grep '^default' | awk -v var="/$i/" '{print $3}')"
 
-		# Display information
-		echo "$i:     $ip_addr  $sub  $gate  $rx_linkspeed          $tx_linkspeed"
+		# Display information #echo "$i:     $ip_addr  $sub  $gate  $rx_linkspeed          $tx_linkspeed"
+		printf "%-15s | %15s | %15s | %15s | %15s | %15s\n" "$i" "$ip_addr" "$sub" "$gate" "$rx_linkspeed" "$tx_linkspeed"
 	fi
 done

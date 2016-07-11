@@ -8,6 +8,7 @@ DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(echo "arandr
 clementine
+conky
 deluge
 firefox
 geany
@@ -34,6 +35,12 @@ vlc" | $DMENU)
 			;;
 		clementine)
 			clementine &
+			;;
+		conky)
+			conky -c ~/.config/conky/desktop.conky & 
+			conky -c ~/.config/conky/memory.conky &
+			conky -c ~/.config/conky/network.conky &
+			conky -c ~/.config/conky/htop.conky &
 			;;
 		deluge)
 			deluge &

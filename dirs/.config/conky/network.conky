@@ -1,4 +1,0 @@
-TEXT
-${include /home/travis/.config/conky/template.conky}
-${color lightblue}--NETWORK--
-${color lightgreen}${execpi 1 sh /home/travis/.config/conky/network.sh}

@@ -1,8 +1,0 @@
-gap_y 212
-TEXT
-${include /home/travis/.config/conky/template.conky}
-${color lightblue}--DESKTOP--
-${color lightgreen}+------------+-----------------+
-| USERS      | ${scroll 15 5 ${execi 1 who | cut -d ' ' -f 1 | uniq | sort}} |
-+------------+-----------------+${color}
-#Temp: $acpitemp

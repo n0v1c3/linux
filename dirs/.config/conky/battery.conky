@@ -1,4 +1,0 @@
-update_interval 10
-
-TEXT
-BAT0: ${battery_bar 5, 105} | ${battery}

@@ -1,6 +1,0 @@
-gap_x 900
-gap_y 212
-TEXT
-${include /home/travis/.config/conky/template.conky}
-${color lightblue}--PS--
-${color lightgreen}${execpi 1 ps -U $USER -u $USER x | grep pts | grep -v grep | grep -v "ps -U $USER -u $USER"}

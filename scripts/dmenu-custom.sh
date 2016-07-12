@@ -37,10 +37,7 @@ vlc" | $DMENU)
 			clementine &
 			;;
 		conky)
-			conky -c ~/.config/conky/desktop.conky & 
-			conky -c ~/.config/conky/memory.conky &
-			conky -c ~/.config/conky/network.conky &
-			conky -c ~/.config/conky/htop.conky &
+			conky &
 			;;
 		deluge)
 			deluge &

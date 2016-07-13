@@ -21,7 +21,7 @@ ${color lightgreen}${texeci 1 ps u | grep -v "ps u"}
 
 ${goto 100}${voffset 0}${color lightblue}--SYSTEM--
 ${color lightgreen}+------------+-----------------+
-| USERS      | ${scroll 15 5 ${execi 1 who | cut -d ' ' -f 1 | uniq | sort}} |
+| USERS      | ${scroll 15 1 ${execi 1 who | cut -d ' ' -f 1 | uniq | sort}} |
 +------------+-----------------+${color}
 #Temp: $acpitemp
 

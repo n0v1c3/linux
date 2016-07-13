@@ -188,9 +188,21 @@ bindsym $mod+Return exec i3-sensible-terminal
 # Start the network management application
 exec --no-startup-id nm-applet
 
-# Gource
+# User "xprop" from a terminal to get information regarding a window
+# WM_CLASS(STRING) = "instance", "class"
+# WM_NAME(STRING} = "title"
+# for_window [class="class" instance="instance" title="title"] floating window
+
+# Gource (any title will be floating by default)
 for_window [class="gource" instance="gource"] floating enable
 
+# Thunar
+# Progress window
+for_window [class="Thunar" instance="thunar" title="File Operation Progress"] floating enable
+
 # Teamviewer
+# Computers & Contacts (resize to default Windows size)
 for_window [class="Wine" instance="TeamViewer.exe" title="Computers & Contacts"] floating enable; resize shrink width 10000px; resize grow width 150px; resize shrink height 10000px; resize grow height 430px;
+
+# Main window (resize to default Windows size)
 for_window [class="Wine" instance="TeamViewer.exe" title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;

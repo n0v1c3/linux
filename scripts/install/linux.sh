@@ -128,25 +128,27 @@ $install_cmd xrandr	# Monitor configuration
 $install_cmd zsh	# ZSh
 
 # xSession tools
-$install_cmd arandr		# Monitor configuration
-$install_cmd baobab		# Disk usage
-$install_cmd clementine		# Music player
-$install_cmd deluge		# Bit torrent
-$install_cmd dmenu		# Program launcher
-$install_cmd firefox		# Web browser
-$install_cmd freerdp		# RDP protocol
+$install_cmd arandr			# Monitor configuration
+$install_cmd baobab			# Disk usage
+$install_cmd clementine			# Music player
+$install_cmd conky			# System information
+$install_cmd deluge			# Bit torrent
+$install_cmd dmenu			# Program launcher
+$install_cmd firefox			# Web browser
+$install_cmd freerdp			# RDP protocol
+$install_cmd fslint			# File compare
 $install_cmd gnome-icon-theme-full	# Icon package
-$install_cmd gource		# Graphical git representation
-$install_cmd imagemagick	# Image manipulation
-$install_cmd libreoffice	# Office suite
-$install_cmd remmina		# RDP client
-$install_cmd retext		# Markdown viewer/editor
-$install_cmd scrot		# Screen shot
-$install_cmd slim		# Login manager
-$install_cmd terminator		# Terminal emulator
-$install_cmd virtualbox		# System virtualization
-$install_cmd vlc		# Media player
-$install_cmd xautolock		# Session lockout
+$install_cmd gource			# Graphical git representation
+$install_cmd imagemagick		# Image manipulation
+$install_cmd libreoffice		# Office suite
+$install_cmd remmina			# RDP client
+$install_cmd retext			# Markdown viewer/editor
+$install_cmd scrot			# Screen shot
+$install_cmd slim			# Login manager
+$install_cmd terminator			# Terminal emulator
+$install_cmd virtualbox			# System virtualization
+$install_cmd vlc			# Media player
+$install_cmd xautolock			# Session lockout
 
 ##
 # Configuration
@@ -173,7 +175,7 @@ $sudo systemctl enable slim.service
 ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 
 # User
-$sudo useradd -m -g users -s /bin/bash $user_name 
+$sudo useradd -m -g users -s /bin/bash $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 $sudo chown -R "$user_name:root" /home/$user_name
 
@@ -188,4 +190,4 @@ echo "exec i3" > /mnt/home/$user_name/.xinitrc
 # Install dotfiles
 $sudo mkdir /home/$user_name/documents/development
 $sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
-$sudo bash /home/$user_name/documents/development/dotfiles/tools/dot-install.sh -l
+$sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -l

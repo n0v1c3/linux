@@ -105,7 +105,9 @@ arch-chroot /mnt systemctl enable dhcpcd.service
 $install_cmd grub
 
 # xSessio
-$install_cmd i3
+#$install_cmd i3 # i3lock package corrupted
+$install_cmd i3wm
+$install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
@@ -130,6 +132,7 @@ $install_cmd arandr		# Monitor configuration
 $install_cmd baobab		# Disk usage
 $install_cmd clementine		# Music player
 $install_cmd deluge		# Bit torrent
+$install_cmd dmenu		# Program launcher
 $install_cmd firefox		# Web browser
 $install_cmd freerdp		# RDP protocol
 $install_cmd gnome-icon-theme-full	# Icon package

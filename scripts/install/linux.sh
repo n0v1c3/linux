@@ -177,6 +177,7 @@ ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 $sudo useradd -m -g users -s /bin/bash $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 $sudo chown -R "$user_name:root" /home/$user_name
+$sudo adduser $user_name sudo
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch

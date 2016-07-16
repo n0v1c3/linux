@@ -202,7 +202,7 @@ for_window [class="Thunar" instance="thunar" title="File Operation Progress"] fl
 
 # Teamviewer
 # Computers & Contacts (resize to default Windows size)
-for_window [class="Wine" instance="TeamViewer.exe" title="Computers & Contacts"] floating enable; resize shrink width 10000px; resize grow width 150px; resize shrink height 10000px; resize grow height 430px;
+for_window [class="TeamViewer" instance="TeamViewer" title="Computers & Contacts"] floating enable; resize shrink width 10000px; resize grow width 150px; resize shrink height 10000px; resize grow height 430px;
 
 # Main window (resize to default Windows size)
-for_window [class="Wine" instance="TeamViewer.exe" title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;
+for_window [title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;

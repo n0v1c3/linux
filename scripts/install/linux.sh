@@ -106,7 +106,7 @@ $install_cmd grub
 
 # xSessio
 #$install_cmd i3 # i3lock package corrupted
-$install_cmd i3wm
+$install_cmd i3-wm
 $install_cmd i3status
 $install_cmd xorg
 

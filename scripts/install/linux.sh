@@ -163,9 +163,8 @@ $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Linux repository
-mkdir /mnt/home/$user_name/documents
-mkdir /mnt/home/$user_name/documents/development
-$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/documents/development
+mkdir --parents /mnt/home/$user_name/documents/development
+$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/documents/development/linux
 
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd

@@ -84,7 +84,6 @@ do
 				ln -sf "$file" "$dst"
 			done
 
-			# Link all directory dotfolders
 			for link in $links
 			do
 				# Destination path
@@ -92,13 +91,18 @@ do
 
 				# Source path
 				src=$(stat -c %N "$link")
-				src=${src#*->\ ‘}
-				src=$DIR/${src%*’}
+				#src=${src#*->\ ‘}
+				src=${src#*-> \'}
+				#src=$DIR/${src%*’}
+				src=$DIR/${src%\'*}
 
 				# Create symlink to directory
-				rm "$dst"
-				ln -s "$src" "$dst"
+				rm $dst
+				ln -s $src $dst
 			done
+
+			sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
 			;;
 
 		-s|--scripts)

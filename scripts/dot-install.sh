@@ -85,6 +85,22 @@ do
 			done
 
 			# Link all directory dotfolders
+			#for link in $links
+			#do
+				# Destination path
+			#	dst=$(getDst "$link")
+
+				# Source path
+			#	src=$(stat -c %N "$link")
+			#	src=${src#*->\ ‘}
+			#	src=$DIR/${src%*’}
+
+				# Create symlink to directory
+			#	rm "$dst"
+			#	ln -s "$src" "$dst"
+			#done
+			# Arch patch for dir soft-links
+
 			for link in $links
 			do
 				# Destination path
@@ -92,13 +108,14 @@ do
 
 				# Source path
 				src=$(stat -c %N "$link")
-				src=${src#*->\ ‘}
-				src=$DIR/${src%*’}
+				echo $src
+				src=${src#*-> \'}
+				src="$DIR/${src%\'*}"
 
 				# Create symlink to directory
-				rm "$dst"
-				ln -s "$src" "$dst"
+				ln -sf "$src" "$dst"
 			done
+
 			;;
 
 		-s|--scripts)

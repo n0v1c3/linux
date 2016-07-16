@@ -17,7 +17,7 @@ TEXT
 ${font Monospace:bold:size=7}
 
 ${color lightblue}--PS--
-${color lightgreen}${texeci 1 ps u | grep -v "ps u"}
+${color lightgreen}${texeci 1 ps aux | grep $USER | grep -v grep | grep -v zsh | grep -v i3 | grep -v "ps aux" | grep -v ".config/conky" | grep -v "gnome" | grep -v pulseaudio | grep -v sleep | grep -v system32 | grep -v gconfd-2 | grep -v ibus | grep -v nm-applet | grep -v // | grep -v gvfs | grep -v dbus | grep -v at-spi | grep -v notify-osd | grep -v TeamViewer.exe}
 
 ${goto 100}${voffset 0}${color lightblue}--SYSTEM--
 ${color lightgreen}+------------+-----------------+
@@ -28,15 +28,11 @@ ${color lightgreen}+------------+-----------------+
 ${goto 100}${voffset 0}${color lightblue}--NETWORK--
 ${color lightgreen}${texeci 1 bash $HOME/.config/conky/network.sh}
 
-${goto 100}${voffset 0}${color lightblue}--CPU--
-CPU0: ${cpubar 5, 105} | ${cpu cpu0}%
-CPU1: ${cpubar 5, 105} | ${cpu cpu1}%
-CPU2: ${cpubar 5, 105} | ${cpu cpu2}%
-CPU3: ${cpubar 5, 105} | ${cpu cpu3}%
-${cpugraph 50, 155}
-
 ${goto 100}${voffset 0}${color lightblue}--MEMORY--
 ${color lightgreen}${texeci 1 bash $HOME/.config/conky/memory.sh}
+
+${goto 100}${voffset 0}${color lightblue}--CPU ${cpu} %--
+${color lightgreen}${execpi 1 sh $HOME/.config/conky/cpu.sh}
 
 BAT0: ${battery_bar 5, 105} | ${battery}
 

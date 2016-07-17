@@ -50,7 +50,7 @@ map <down> <NOP>
 map <left> <NOP>
 map <right> <NOP>
 
-command TODO vimgrep TODO **/*.* | cw
+command TODO vimgrep TODO **/* | cw
 
 ""
 " Plugins

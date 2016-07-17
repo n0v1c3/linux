@@ -128,7 +128,6 @@ do
 
 		-u|--user)
 			shift
-			ln -s /root/.oh-my-zsh /home/$1/.oh-my-zsh
 			user=$1
 			mkdir /home/$user/.config
 			;;

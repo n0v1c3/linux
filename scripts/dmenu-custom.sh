@@ -4,6 +4,10 @@
 #
 ###
 
+# Script directory
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/../.." && pwd)"
+
+
 DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(echo "arandr
@@ -52,7 +56,7 @@ vlc" | $DMENU)
 			gedit &
 			;;
 		gource)
-			gource $HOME/Documents/development/dotfiles &
+			gource $DIR &
 			;;
 		hibernate)
 			sudo pm-hibernate &

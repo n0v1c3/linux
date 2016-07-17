@@ -206,7 +206,7 @@ echo "exec i3" > /mnt/home/$user_name/.xinitrc
 # Install dotfiles
 $sudo mkdir /home/$user_name/documents/development
 $sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
-$sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -l
+$sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
 
 ##
 # Clean-up

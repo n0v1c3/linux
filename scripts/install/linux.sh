@@ -182,6 +182,7 @@ $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/documents/d
 
 # Oh-My-ZSH
 $sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$sudo mv /root/.oh-my-zsh /bin/.oh-my-zsh
 
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
@@ -203,8 +204,17 @@ echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 echo "exec i3" > /mnt/root/.xinitrc
 echo "exec i3" > /mnt/home/$user_name/.xinitrc
 
-# Install dotfiles
-$sudo mkdir /home/$user_name/documents/development
+##
+# Dotfiles
+##
+
+# Root dotfiles
+$sudo mkdir --parents /root/documents/development
+$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/documents/development/dotfiles
+$sudo bash /root/documents/development/dotfiles/scripts/dot-install.sh -l
+
+# User dotfiles
+$sudo mkdir --parents /home/$user_name/documents/development
 $sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
 $sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
 
@@ -215,4 +225,5 @@ $sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.s
 # Proper owner for all of user's home directory
 $sudo chown -R $user_name:root /home/$user_name
 
+# Proper owner for sudoers file as root
 $sudo chown root:root /home/$user_name/documents/development/dotfiles/config/etc/sudoers

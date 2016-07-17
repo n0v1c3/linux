@@ -7,7 +7,7 @@
 sudo_gid=1000
 install=true
 
-if ( $1 == '-t' )
+if ( [[ $1 == '-t' ]] )
 then
 	install=false
 fi
@@ -139,6 +139,7 @@ $install_cmd zsh	# ZSh
 
 # xSession tools
 $install_cmd arandr			# Monitor configuration
+$install_cmd dmenu			# Program launcher
 $install_cmd firefox			# Web browser
 $install_cmd gnome-icon-theme-full	# Icon package
 $install_cmd slim			# Login manager
@@ -158,7 +159,6 @@ then
 	$install_cmd clementine			# Music player
 	$install_cmd conky			# System information
 	$install_cmd deluge			# Bit torrent
-	$install_cmd dmenu			# Program launcher
 	$install_cmd freerdp			# RDP protocol
 	$install_cmd fslint			# File compare
 	$install_cmd gource			# Graphical git representation

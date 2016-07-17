@@ -214,3 +214,5 @@ $sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.s
 
 # Proper owner for all of user's home directory
 $sudo chown -R $user_name:root /home/$user_name
+
+$sudo chown root:root /home/$user_name/documents/development/dotfiles/config/etc/sudoers

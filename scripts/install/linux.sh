@@ -188,8 +188,8 @@ $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Linux repository
-mkdir --parents /mnt/home/$user_name/documents/development
-$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/documents/development/linux
+mkdir --parents /mnt/home/$user_name/Documents/development
+$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
 
 # Oh-My-ZSH
 $sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
@@ -215,14 +215,14 @@ $install_cmd virtualbox-guest-modules-arch
 ##
 
 # Root dotfiles
-$sudo mkdir --parents /root/documents/development
-$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/documents/development/dotfiles
-$sudo bash /root/documents/development/dotfiles/scripts/dot-install.sh -l
+$sudo mkdir --parents /root/Documents/development
+$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/Documents/development/dotfiles
+$sudo bash /root/Documents/development/dotfiles/scripts/dot-install.sh -l
 
 # User dotfiles
-$sudo mkdir --parents /home/$user_name/documents/development
-$sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
-$sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
+$sudo mkdir --parents /home/$user_name/Documents/development
+$sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/Documents/development/dotfiles
+$sudo bash /home/$user_name/Documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
 
 ##
 # Clean-up
@@ -232,4 +232,4 @@ $sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.s
 $sudo chown -R $user_name:root /home/$user_name
 
 # Proper owner for sudoers file as root
-$sudo chown root:root /home/$user_name/documents/development/dotfiles/config/etc/sudoers
+$sudo chown root:root /home/$user_name/Documents/development/dotfiles/config/etc/sudoers

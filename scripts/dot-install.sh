@@ -29,8 +29,15 @@ function getDst()
 	# Adjust $dst path for current user's home directory
 	if ( [[ $dst == /home/* ]] )
 	then
+		if ( [[ $2 ]] )
+		then
+			home=/home/$2
+		else
+			home=$HOME
+		fi
+
 		# Add current user's home path and strip ./home/* from $dst
-		dst=$HOME/${dst#*/*/}
+		dst=$home/${dst#*/*/}
 	fi
 
 	echo $dst
@@ -58,7 +65,7 @@ do
 			# Backup existing dotfiles in place with timestamp
 			for file in $files
 			do
-				dst=$(getDst "$file")
+				dst=$(getDst "$file" $user)
 				cp $dst $dst.backup-$(date +%y%m%d-%H%M%S-%N)
 			done
 			;;
@@ -72,22 +79,25 @@ do
 			for file in $files
 			do
 				# Test current $src and $dst values
-				diff "$file" "$(getDst $file)"
+				diff "$file" "$(getDst $file $user)"
 			done
 			;;
 
 		-l|--link)
+			# Install Oh-My-ZSH
+			sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
 			# Link all confg dotfiles
 			for file in $files
 			do
-				dst=$(getDst "$file")
+				dst=$(getDst "$file" $user)
 				ln -sf "$file" "$dst"
 			done
 
 			for link in $links
 			do
 				# Destination path
-				dst=$(getDst "$link")
+				dst=$(getDst "$link" $user)
 
 				# Source path
 				src=$(stat -c %N "$link")
@@ -100,9 +110,6 @@ do
 				rm $dst
 				ln -s $src $dst
 			done
-
-			sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
 			;;
 
 		-s|--scripts)
@@ -118,6 +125,12 @@ do
 					sh "$file"
 				fi
 			done
+			;;
+
+		-u|--user)
+			shift
+			cp -r /root/.oh-my-zsh /home/$1/
+			user=$1
 			;;
 
 		*)

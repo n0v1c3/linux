@@ -7,6 +7,10 @@ colorscheme evening
 " Display relative line number along the left hand side
 set relativenumber
 
+" Syntax highlighting
+filetype plugin on
+syntax on
+
 " Display line number for current line
 set number
 

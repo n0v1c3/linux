@@ -7,7 +7,7 @@
 sudo_gid=1000
 install=true
 
-if $1 == '-t' ]] )
+if ( $1 == '-t' )
 then
 	install=false
 fi
@@ -144,7 +144,7 @@ $install_cmd gnome-icon-theme-full	# Icon package
 $install_cmd slim			# Login manager
 $install_cmd terminator			# Terminal emulator
 
-if ( [[ $install ]] )
+if ( $install )
 then
 	$install_cmd curl	# FTP application
 	$install_cmd curlftpfs	# FTP file-system
@@ -209,7 +209,6 @@ $sudo adduser $user_name sudo
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch
-echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
 
 ##
 # Dotfiles

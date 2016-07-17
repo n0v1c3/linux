@@ -1,6 +1,12 @@
 #!/bin/bash
 
 ##
+# Variables
+##
+
+sudo_gid=1000
+
+##
 # Read
 ##
 
@@ -163,6 +169,9 @@ $install_cmd xautolock			# Session lockout
 $sudo git config --global user.email ${user_email}
 $sudo git config --global user.name ${user_full}
 
+# Groups
+$sudo groupadd -g $sudo_gid sudo
+
 # Grub
 $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -181,7 +190,6 @@ ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 # User
 $sudo useradd -m -g users -s /bin/bash $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
-$sudo chown -R "$user_name:root" /home/$user_name
 $sudo adduser $user_name sudo
 
 # Virtualbox guest
@@ -196,3 +204,10 @@ echo "exec i3" > /mnt/home/$user_name/.xinitrc
 $sudo mkdir /home/$user_name/documents/development
 $sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/documents/development/dotfiles
 $sudo bash /home/$user_name/documents/development/dotfiles/scripts/dot-install.sh -l
+
+##
+# Clean-up
+##
+
+# Proper owner for all of user's home directory
+$sudo chown -R $user_name:root /home/$user_name

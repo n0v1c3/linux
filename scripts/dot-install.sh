@@ -86,9 +86,6 @@ do
 			;;
 
 		-l|--link)
-			# Install Oh-My-ZSH
-			sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-
 			# Link all confg dotfiles
 			for file in $files
 			do
@@ -131,7 +128,7 @@ do
 
 		-u|--user)
 			shift
-			cp -r /root/.oh-my-zsh /home/$1/
+			ln -s /root/.oh-my-zsh /home/$1/.oh-my-zsh
 			user=$1
 			mkdir /home/$user/.config
 			;;

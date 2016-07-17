@@ -180,6 +180,9 @@ $sudo grub-mkconfig -o /boot/grub/grub.cfg
 mkdir --parents /mnt/home/$user_name/documents/development
 $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/documents/development/linux
 
+# Oh-My-ZSH
+$sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 

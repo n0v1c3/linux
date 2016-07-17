@@ -5,6 +5,12 @@
 ##
 
 sudo_gid=1000
+install=true
+
+if $1 == '-t' ]] )
+then
+	install=false
+fi
 
 ##
 # Read
@@ -106,7 +112,7 @@ genfstab -p /mnt >> /mnt/etc/fstab
 echo $hostname > /mnt/etc/hostname
 
 # Enable DHCP
-arch-chroot /mnt systemctl enable dhcpcd.service
+$sudo systemctl enable dhcpcd.service
 
 ##
 # Install
@@ -122,15 +128,8 @@ $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
-$install_cmd curl	# FTP application
-$install_cmd curlftpfs	# FTP file-system
 $install_cmd git	# Git
-$install_cmd openssh	# SSH
 $install_cmd python	# Python
-$install_cmd ranger	# File manager
-$install_cmd rsync	# Folder sync
-$install_cmd samba	# Windows shares
-$install_cmd sshfs	# SSH mounts
 $install_cmd sudo	# Substitute user do
 $install_cmd tmux	# Substitute user do
 $install_cmd vim	# Text editor
@@ -140,26 +139,38 @@ $install_cmd zsh	# ZSh
 
 # xSession tools
 $install_cmd arandr			# Monitor configuration
-$install_cmd baobab			# Disk usage
-$install_cmd clementine			# Music player
-$install_cmd conky			# System information
-$install_cmd deluge			# Bit torrent
-$install_cmd dmenu			# Program launcher
 $install_cmd firefox			# Web browser
-$install_cmd freerdp			# RDP protocol
-$install_cmd fslint			# File compare
 $install_cmd gnome-icon-theme-full	# Icon package
-$install_cmd gource			# Graphical git representation
-$install_cmd imagemagick		# Image manipulation
-$install_cmd libreoffice		# Office suite
-$install_cmd remmina			# RDP client
-$install_cmd retext			# Markdown viewer/editor
-$install_cmd scrot			# Screen shot
 $install_cmd slim			# Login manager
 $install_cmd terminator			# Terminal emulator
-$install_cmd virtualbox			# System virtualization
-$install_cmd vlc			# Media player
-$install_cmd xautolock			# Session lockout
+
+if ( [[ $install ]] )
+then
+	$install_cmd curl	# FTP application
+	$install_cmd curlftpfs	# FTP file-system
+	$install_cmd openssh	# SSH
+	$install_cmd ranger	# File manager
+	$install_cmd rsync	# Folder sync
+	$install_cmd samba	# Windows shares
+	$install_cmd sshfs	# SSH mounts
+
+	$install_cmd baobab			# Disk usage
+	$install_cmd clementine			# Music player
+	$install_cmd conky			# System information
+	$install_cmd deluge			# Bit torrent
+	$install_cmd dmenu			# Program launcher
+	$install_cmd freerdp			# RDP protocol
+	$install_cmd fslint			# File compare
+	$install_cmd gource			# Graphical git representation
+	$install_cmd imagemagick		# Image manipulation
+	$install_cmd libreoffice		# Office suite
+	$install_cmd remmina			# RDP client
+	$install_cmd retext			# Markdown viewer/editor
+	$install_cmd scrot			# Screen shot
+	$install_cmd virtualbox			# System virtualization
+	$install_cmd vlc			# Media player
+	$install_cmd xautolock			# Session lockout
+fi
 
 ##
 # Configuration
@@ -199,10 +210,6 @@ $sudo adduser $user_name sudo
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch
 echo -e "vboxguest\nvboxsf\nvboxvideo" > /mnt/etc/modules-load.d/virtualbox.conf
-
-# Xinit
-echo "exec i3" > /mnt/root/.xinitrc
-echo "exec i3" > /mnt/home/$user_name/.xinitrc
 
 ##
 # Dotfiles

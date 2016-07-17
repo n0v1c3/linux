@@ -6,6 +6,11 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 # Set newline as only list separator
 IFS=$'\n'
 
+mkdir $HOME/.config
+mkdir $HOME/.config/i3status
+mkdir $HOME/.config/ranger
+mkdir $HOME/.config/terminator
+
 # TODO - Not Used
 function isLink()
 {
@@ -131,6 +136,10 @@ do
 			shift
 			cp -r /root/.oh-my-zsh /home/$1/
 			user=$1
+			mkdir /home/$user/.config
+			mkdir /home/$user/.config/i3status
+			mkdir /home/$user/.config/ranger
+			mkdir /home/$user/.config/terminator
 			;;
 
 		*)

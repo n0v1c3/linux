@@ -8,7 +8,7 @@ column_25=185
 echo   "+------------+-----------------+-----------------+-----------------+"
 printf "| %-10s | %-15s | %-15s | %-15s |\n" "CPU" "BAR GRAPH" "USAGE (%)" "T"
 echo   "+------------+-----------------+-----------------+-----------------+"
-for i in `seq 0  $(( $cpu_count-1 ))`
+for i in `seq 1  $(( $cpu_count ))`
 do
 	printf "| %-10s | %-15s | %-15s | %15s |\n" "cpu$i" "\${cpu cpu$i} %\${goto $column_25}" "\${cpubar cpu$i 10,90}" "\${cpugraph cpu$i 10,90}"
 done

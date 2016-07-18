@@ -192,8 +192,7 @@ mkdir --parents /mnt/home/$user_name/Documents/development
 $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
 
 # Oh-My-ZSH
-$sudo sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-$sudo mv /root/.oh-my-zsh /bin/.oh-my-zsh
+$sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh
 
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd

@@ -103,7 +103,14 @@ do
 				#src=${src#*->\ ‘}
 				src=${src#*-> \'}
 				#src=$DIR/${src%*’}
-				src=$DIR/${src%\'*}
+				src=${src%\'*}
+
+				# Add dotfile dir if not on local system
+				# local files will be prefixed with a '/'
+				if ( [[ $src != /* ]] )
+				then
+					src=$DIR/$src
+				fi
 
 				# Create symlink to directory
 				rm $dst

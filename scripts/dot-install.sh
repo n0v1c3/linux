@@ -8,22 +8,6 @@ IFS=$'\n'
 
 mkdir $HOME/.config
 
-# TODO - Not Used
-function isLink()
-{
-	# Link common shell functions
-	ln -sf $DIR/shell $HOME/.shell
-	raw=$1
-	stat=$(stat -c %N -- "$raw")
-
-	if [ "‘$raw’" != "$stat" ]
-	then
-		return true
-	fi
-
-	return false
-}
-
 function getDst()
 {
 	dst=${1#*$DIR/config}
@@ -73,7 +57,6 @@ do
 			;;
 
 		-c|--clean-up)
-			# TODO - Add diff check only removing identical backups
 			find . -type f -iname '*.backup-*' | xargs rm
 			;;
 
@@ -113,7 +96,7 @@ do
 				fi
 
 				# Create symlink to directory
-				rm $dst
+				rm -rf $dst
 				ln -s $src $dst
 			done
 			;;

@@ -188,6 +188,9 @@ bindsym $mod+Return exec i3-sensible-terminal
 # Start the network management application
 exec --no-startup-id nm-applet
 
+# Start conky on load
+exec --no-startup-id conky
+
 # User "xprop" from a terminal to get information regarding a window
 # WM_CLASS(STRING) = "instance", "class"
 # WM_NAME(STRING} = "title"

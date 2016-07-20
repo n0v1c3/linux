@@ -128,14 +128,15 @@ $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
-$install_cmd git	# Git
-$install_cmd python	# Python
-$install_cmd sudo	# Substitute user do
-$install_cmd tmux	# Substitute user do
-$install_cmd vim	# Text editor
-$install_cmd wget	# FTP application
-$install_cmd xrandr	# Monitor configuration
-$install_cmd zsh	# ZSh
+$install_cmd alsa-utils		# Sound architecture
+$install_cmd git		# Git
+$install_cmd python		# Python
+$install_cmd sudo		# Substitute user do
+$install_cmd tmux		# Terminal multiplexer
+$install_cmd vim		# Text editor
+$install_cmd wget		# FTP application
+$install_cmd xrandr		# Monitor configuration
+$install_cmd zsh		# ZSh
 
 # xSession tools
 $install_cmd arandr			# Monitor configuration

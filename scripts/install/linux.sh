@@ -128,9 +128,12 @@ $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
+# TODO - Replace networkmanager with wicd and wicd-gtk
 $install_cmd alsa-utils	# Advanced linux sound architecture
 $install_cmd git	# Git
 $install_cmd lm_sensors	# Linux monitoring sensors
+$install_cmd networkmanager	# Network management
+$install_cmd network-manager-applet	# Network management graphical
 $install_cmd python	# Python
 $install_cmd sudo	# Substitute user do
 $install_cmd tmux	# Terminal multiplexer

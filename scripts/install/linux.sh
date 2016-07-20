@@ -128,15 +128,16 @@ $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
-$install_cmd alsa-utils		# Sound architecture
-$install_cmd git		# Git
-$install_cmd python		# Python
-$install_cmd sudo		# Substitute user do
-$install_cmd tmux		# Terminal multiplexer
-$install_cmd vim		# Text editor
-$install_cmd wget		# FTP application
-$install_cmd xrandr		# Monitor configuration
-$install_cmd zsh		# ZSh
+$install_cmd alsa-utils	# Advanced linux sound architecture
+$install_cmd git	# Git
+$install_cmd lm_sensors	# Linux monitoring sensors
+$install_cmd python	# Python
+$install_cmd sudo	# Substitute user do
+$install_cmd tmux	# Terminal multiplexer
+$install_cmd vim	# Text editor
+$install_cmd wget	# FTP application
+$install_cmd xrandr	# Monitor configuration
+$install_cmd zsh	# ZSh
 
 # xSession tools
 $install_cmd arandr			# Monitor configuration
@@ -156,21 +157,21 @@ then
 	$install_cmd samba	# Windows shares
 	$install_cmd sshfs	# SSH mounts
 
-	$install_cmd baobab			# Disk usage
-	$install_cmd clementine			# Music player
-	$install_cmd conky			# System information
-	$install_cmd deluge			# Bit torrent
-	$install_cmd freerdp			# RDP protocol
-	$install_cmd fslint			# File compare
-	$install_cmd gource			# Graphical git representation
-	$install_cmd imagemagick		# Image manipulation
-	$install_cmd libreoffice		# Office suite
-	$install_cmd remmina			# RDP client
-	$install_cmd retext			# Markdown viewer/editor
-	$install_cmd scrot			# Screen shot
-	$install_cmd virtualbox			# System virtualization
-	$install_cmd vlc			# Media player
-	$install_cmd xautolock			# Session lockout
+	$install_cmd baobab		# Disk usage
+	$install_cmd clementine		# Music player
+	$install_cmd conky		# System information
+	$install_cmd deluge		# Bit torrent
+	$install_cmd freerdp		# RDP protocol
+	$install_cmd fslint		# File compare
+	$install_cmd gource		# Graphical git representation
+	$install_cmd imagemagick	# Image manipulation
+	$install_cmd libreoffice	# Office suite
+	$install_cmd remmina		# RDP client
+	$install_cmd retext		# Markdown viewer/editor
+	$install_cmd scrot		# Screen shot
+	$install_cmd virtualbox		# System virtualization
+	$install_cmd vlc		# Media player
+	$install_cmd xautolock		# Session lockout
 fi
 
 ##
@@ -191,6 +192,9 @@ $sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Linux repository
 mkdir --parents /mnt/home/$user_name/Documents/development
 $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
+
+# Linux monitoring sensors
+$sudo sensors-detect --auto
 
 # Oh-My-ZSH
 $sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh

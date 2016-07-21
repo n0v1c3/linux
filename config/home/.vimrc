@@ -1,3 +1,8 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Name: .vimrc
+" Description: Configuration file that is automatically loaded and applied to Vim
+" TODO (160720) - Clean-up this file (see "Tabs/Indenting")
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Preferred background
 set background=dark
 
@@ -17,8 +22,17 @@ set number
 " Highlight current line
 set cursorline
 
-" Set tab width to 4 spaces
-"set tabstop=4
+""
+" Tabs/Indenting
+" TODO (160720) - Single var for all tab widths
+""
+
+" Enable plugins for indentation
+filetype plugin indent on
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 " Show 'invisible' characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
@@ -50,12 +64,10 @@ map <down> <NOP>
 map <left> <NOP>
 map <right> <NOP>
 
-command TODO vimgrep TODO **/* | cw
+command INDENT args **/* **/.* | argdo execute "normal gg=G" | update
+command TODO vimgrep TODO **/* **/.* | cw
 
 ""
 " Plugins
 ""
 
-" Enable plugins for indentation
-filetype plugin indent on
-set smartindent

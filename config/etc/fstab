@@ -1,0 +1,16 @@
+##
+# RNE
+##
+
+# rne-server
+//192.168.227.12/rne	/mnt/rne	cifs	sec=ntlm,username=,password=,iocharset=utf8,dir_mode=0770,noperm,nobootwait,nofail	0	0
+
+#rne-dlink
+//192.168.227.2/Volume_1	mnt/dlink	cifs	sec=ntlm,username=,password=,iocharset=utf8,nobootwait,nofail	0	0
+
+##
+# TJG
+##
+
+# tjg-nas
+//192.168.228.100/storage/usb1_1	/mnt/nas	cifs	guest,uid=1000,iocharset=utf8,nobootwait,nofail	0	0

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO (160721) - This should be replaced by the general linux installer
+
 arch-chroot /mnt pacman -S --noconfirm baobab			# Disk usage analyzer
 arch-chroot /mnt pacman -S --noconfirm clementine		# Music player
 #arch-chroot /mnt pacman -S --noconfirm conky			# System monitor (side panel)

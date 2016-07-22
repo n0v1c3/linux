@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO (160721) - I believe this file is un-used since a single installer for multiple versions
+
 # User install
 
 # Root password

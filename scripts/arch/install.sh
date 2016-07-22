@@ -1,4 +1,6 @@
 #!/bin/bash
+
+# TODO (160721) - This should be replaced by the current general linux installer
 # Use prebuilt mirrorlist
 wget https://raw.githubusercontent.com/n0v1c3/linux/master/config/pacman/mirrorlist
 mkdir /mnt/etc/pacman.d

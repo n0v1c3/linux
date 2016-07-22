@@ -1,6 +1,8 @@
 //====================================================================================================
 // Virtural networks
 // This will add an aditional static network to the existing dhcp OR static networks on any NIC
+
+// TODO (160721) - Turn this into a useful script
 //====================================================================================================
 
 // Add the following information to /etc/network/interfaces

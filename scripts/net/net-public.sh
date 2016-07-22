@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO (160721) - Update to use the mail function to send information directly to email
+
 # Get script working directory
 swd="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

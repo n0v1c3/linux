@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO (160721) - This should be replaced by the general linux install
+
 # ASCII 'window' configuration options
 optionTitle="Select Packages:"	# Title at the top of the window
 optionCount=10					# Number of options to display at once

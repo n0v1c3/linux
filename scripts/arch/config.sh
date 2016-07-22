@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# TODO (160721) - This should be replaced by the general linux installer
+
 # Directory variables
 configDir=/mnt/root/.config/xfce4
 backupDir=/mnt/root/Documents/linux/config/xfce

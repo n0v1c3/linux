@@ -1,5 +1,8 @@
 ##
-# Oh-My-Zsh
+# .zshrc
+# Configuratin for zsh shell
+#
+# TODO (160721) - Seach history for partially typed content on UP-ARROW key press
 ##
 
 # Path to your oh-my-zsh installation.

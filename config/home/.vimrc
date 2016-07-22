@@ -66,8 +66,3 @@ map <right> <NOP>
 
 command INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 command TODO vimgrep TODO **/* **/.* | cw
-
-""
-" Plugins
-""
-

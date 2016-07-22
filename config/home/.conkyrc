@@ -1,3 +1,14 @@
+################################################################################
+# conky.rc
+# Display current information regarding the local system
+#
+# TODO (160721) - CPU temperature
+# TODO (160721) - Clean up battery information
+# TODO (160721) - Graph network usage
+# TODO (160721) - Move hostname into SYSTEM
+################################################################################
+
+# System resources
 update_interval 1
 double_buffer yes
 text_buffer_size 2048

@@ -1,3 +1,10 @@
+################################################################################
+# .bashrc
+# Configuration file for the bash shell
+#
+# TODO (160721) - Ensure up-to-date with all current modifications (see .zshrc)
+################################################################################
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples

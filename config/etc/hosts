@@ -12,5 +12,9 @@ ff02::2		ip6-allrouters
 # Custom
 ##
 
-# Work time-control
+# Global
 96.53.22.134	tc
+
+# RNE
+192.168.227.12	rne-file
+192.168.227.20	rpi-000

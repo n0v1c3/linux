@@ -7,25 +7,10 @@
 " Notes:  	This is a combination of the PHP indent file of Miles Lott with 
 "         	the HTML indent file of Johannes Zellner. Usefull for editing 
 "         	php-files with html parts in it. 
-"         	
-" Changelog: 
-" 			 0.3 - 25 mar 2004
-" 			 - fixed wrong indention when a php-tag is opened and closed on
-" 			   one single line.
-" 			 0.2 - 23 feb 2004
-" 			 - applied patch from Holger Dzeik <dzeik@nentec.de>
-"            - added changelog
-"            - added default indention of 3 spaces after the <?php for better
-"              reading
-"            - replaced URL
-"            - reformatted the options section
-"            0.1 - 27 mar 2003
-"            - initial creation of html-enhanced php indent-file
 
 " Options: 
 let php_noindent_switch=0    " set this to '1' to not try to indent switch/case statements
 set sw=3                     " default shiftwidth of 3 spaces
-
 
 if exists("b:did_indent")
 	finish
@@ -82,7 +67,6 @@ function GetPhpIndent()
 		let ind = ind - &sw
 	endif
 
-
 	if exists("b:php_noindent_switch") " version 1 behavior, diy switch/case,etc
 		" Indent blocks enclosed by {} or ()
 		if line =~ '[{(]\s*\(#[^)}]*\)\=$'
@@ -117,12 +101,9 @@ function GetPhpIndent()
 	endif
 endfunction
 
-
 " [-- local settings (must come before aborting the script) --]
 "setlocal indentexpr=HtmlIndentGet(v:lnum)
 "setlocal indentkeys=o,O,*<Return>,<>>,<bs>,{,}
-
-
 
 " [-- helper function to assemble tag list --]
 fun! <SID>HtmlIndentPush(tag)
@@ -132,7 +113,6 @@ fun! <SID>HtmlIndentPush(tag)
 	let g:html_indent_tags = a:tag
     endif
 endfun
-
 
 " [-- <ELEMENT ? - - ...> --]
 call <SID>HtmlIndentPush('a')
@@ -198,7 +178,6 @@ call <SID>HtmlIndentPush('u')
 call <SID>HtmlIndentPush('ul')
 call <SID>HtmlIndentPush('var')
 
-
 " [-- <ELEMENT ? O O ...> --]
 if !exists('g:html_indent_strict')
     call <SID>HtmlIndentPush('body')
@@ -206,7 +185,6 @@ if !exists('g:html_indent_strict')
     call <SID>HtmlIndentPush('html')
     call <SID>HtmlIndentPush('tbody')
 endif
-
 
 " [-- <ELEMENT ? O - ...> --]
 if !exists('g:html_indent_strict_table')

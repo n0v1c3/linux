@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# TODO (160721) - Turn into an alias
+
 function mcd() {
 	mkdir -p "$1"
 	cd "$1"

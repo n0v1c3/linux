@@ -99,6 +99,8 @@ do
 			rm -rf $dst
 			ln -s $src $dst
 		 done
+		 
+		 git config --global push.default simple
 		 ;;
 
 	  -s|--scripts)

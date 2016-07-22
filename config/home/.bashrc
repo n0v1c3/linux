@@ -2,7 +2,6 @@
 # .bashrc
 # Configuration file for the bash shell
 #
-# TODO (160721) - Ensure up-to-date with all current modifications (see .zshrc)
 ################################################################################
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -15,8 +14,10 @@ case $- in
 *) return;;
 esac
 
+# Source common shell configurations
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+
 # don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
@@ -30,7 +31,8 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]
+then
    debian_chroot=$(cat /etc/debian_chroot)
 fi
 
@@ -40,27 +42,6 @@ case "$TERM" in
 	  color_prompt=yes
 	  ;;
 esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-   test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-   alias ls='ls --color=auto'
-   alias dir='dir --color=auto'
-   alias vdir='vdir --color=auto'
-
-   alias grep='grep --color=auto'
-   alias fgrep='fgrep --color=auto'
-   alias egrep='egrep --color=auto'
-fi
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-   . ~/.bash_aliases
-fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -73,12 +54,6 @@ if ! shopt -oq posix; then
    fi
 fi
 
-##
-# Custom
-##
-
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
 PS2="\[\033[97m\]> \[\033[00m\]"
-
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done

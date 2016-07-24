@@ -130,51 +130,52 @@ $install_cmd xorg
 # Terminal tools
 # TODO - Replace networkmanager with wicd and wicd-gtk
 $install_cmd alsa-utils	# Advanced linux sound architecture
-$install_cmd git	# Git
+$install_cmd git
 $install_cmd lm_sensors	# Linux monitoring sensors
-$install_cmd networkmanager	# Network management
-$install_cmd network-manager-applet	# Network management graphical
-$install_cmd python	# Python
-$install_cmd sudo	# Substitute user do
-$install_cmd tmux	# Terminal multiplexer
-$install_cmd vim	# Text editor
-$install_cmd wget	# FTP application
-$install_cmd xrandr	# Monitor configuration
-$install_cmd zsh	# ZSh
+$install_cmd networkmanager
+$install_cmd network-manager-applet
+$install_cmd python
+$install_cmd sudo
+$install_cmd tmux
+$install_cmd vim
+$install_cmd wget
+$install_cmd xrandr
+$install_cmd zsh
 
 # xSession tools
-$install_cmd arandr			# Monitor configuration
-$install_cmd dmenu			# Program launcher
-$install_cmd firefox			# Web browser
-$install_cmd gnome-icon-theme-full	# Icon package
-$install_cmd slim			# Login manager
-$install_cmd terminator			# Terminal emulator
+$install_cmd arandr
+$install_cmd dmenu
+$install_cmd firefox
+$install_cmd gnome-icon-theme-full
+$install_cmd slim
+$install_cmd terminator
 
 if ( $install )
 then
-	$install_cmd curl	# FTP application
-	$install_cmd curlftpfs	# FTP file-system
-	$install_cmd openssh	# SSH
-	$install_cmd ranger	# File manager
-	$install_cmd rsync	# Folder sync
-	$install_cmd samba	# Windows shares
-	$install_cmd sshfs	# SSH mounts
+	$install_cmd curl
+	$install_cmd curlftpfs
+	$install_cmd ghostscript # Used for imaagemagick
+	$install_cmd openssh
+	$install_cmd ranger
+	$install_cmd rsync
+	$install_cmd samba
+	$install_cmd sshfs
 
 	$install_cmd baobab		# Disk usage
-	$install_cmd clementine		# Music player
-	$install_cmd conky		# System information
-	$install_cmd deluge		# Bit torrent
-	$install_cmd freerdp		# RDP protocol
+	$install_cmd clementine
+	$install_cmd conky
+	$install_cmd deluge
+	$install_cmd freerdp
 	$install_cmd fslint		# File compare
-	$install_cmd gource		# Graphical git representation
-	$install_cmd imagemagick	# Image manipulation
-	$install_cmd libreoffice	# Office suite
-	$install_cmd remmina		# RDP client
-	$install_cmd retext		# Markdown viewer/editor
+	$install_cmd gource
+	$install_cmd imagemagick
+	$install_cmd libreoffice
+	$install_cmd remmina
+	$install_cmd retext
 	$install_cmd scrot		# Screen shot
-	$install_cmd virtualbox		# System virtualization
-	$install_cmd vlc		# Media player
-	$install_cmd xautolock		# Session lockout
+	$install_cmd virtualbox
+	$install_cmd vlc
+	$install_cmd xautolock
 fi
 
 ##

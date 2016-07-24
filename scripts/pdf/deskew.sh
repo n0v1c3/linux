@@ -19,7 +19,7 @@ do
    convert -quality 90 -density 300 "$pdf" ${pdf%.pdf}.png
 
    # Loop through png files
-   pngs=$(find . -type f -name "*.png")
+   pngs=$(find . -type f -name "*.png" | sed 's/.\///g' | sort -V)
    for png in $pngs
    do
 	  # CLI update
@@ -33,7 +33,7 @@ do
    echo ${pdf%.pdf}-DESKEW.pdf: Importing
 
    # Convert newly created deskewed back to pdf
-   convert "*.png" ${pdf%.pdf}-DESKEW.pdf
+   convert $(echo $(find . -type f -name '*-DESKEW.png' | sed 's/.\///g' | sort -V)) ${pdf%.pdf}-DESKEW.pdf
 
    # Clean-up remaining png files
    rm ${pdf%.pdf}*.png

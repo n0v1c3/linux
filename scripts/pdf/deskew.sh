@@ -40,6 +40,7 @@
 # TODO (160722) - Scale each png to be 11x17
 # TODO (160724) - Use temporary folder for png files
 # TODO (160724) - Add to PATH dir $HOME/.bin
+# TODO (160724) - Convert png to monochrome (threshold 0-100)
 #
 ################################################################################
 

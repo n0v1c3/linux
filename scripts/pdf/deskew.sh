@@ -4,6 +4,15 @@
 # deskew.sh
 # Deskew and clean up scanned pdf files to improve digital document quality
 #
+# How-to:
+# - New file in from client
+# - Deskew
+# - Align pages (Bluebeam)
+# - Reduce file size (Bluebeam)
+# - Remove old pdfs
+# - Overlay (Bluebeam)
+# - Manual Compare (Bluebeam)
+#
 # TODO (160722) - Remove scan noise while looping through each png file
 # TODO (160722) - Scale each png to be 11x17
 ################################################################################

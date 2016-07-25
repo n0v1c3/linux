@@ -200,6 +200,9 @@ $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/d
 # Linux monitoring sensors
 $sudo sensors-detect --auto
 
+# NetworkManager - Enable load on boot
+$sudo systemctl enable NetworkManger
+
 # TODO (160721) - Look at zsh installer found in the dotfiles repo
 # Oh-My-ZSH
 $sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh

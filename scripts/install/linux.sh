@@ -1,5 +1,15 @@
 #!/bin/bash
 
+################################################################################
+# linux.sh
+# Install Arch Linux with desired software and configurations 
+################################################################################
+#
+# TODO (160721) - Look at zsh installer found in the dotfiles repo
+# TODO - Replace networkmanager with wicd and wicd-gtk
+#
+################################################################################
+
 ##
 # Variables
 ##
@@ -128,7 +138,6 @@ $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
-# TODO - Replace networkmanager with wicd and wicd-gtk
 $install_cmd alsa-utils	# Advanced linux sound architecture
 $install_cmd git
 $install_cmd lm_sensors	# Linux monitoring sensors
@@ -203,7 +212,6 @@ $sudo sensors-detect --auto
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
 
-# TODO (160721) - Look at zsh installer found in the dotfiles repo
 # Oh-My-ZSH
 $sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh
 

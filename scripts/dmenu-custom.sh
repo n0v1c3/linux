@@ -10,7 +10,8 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/../.." && pwd)"
 
 DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
-choice=$(echo "arandr
+choice=$(echo "android-studio
+arandr
 clementine
 conky
 deluge
@@ -34,6 +35,9 @@ virtualbox
 vlc" | $DMENU)
 
 case "$choice" in
+   android-studio)
+	  bash /opt/android-studio/bin/studio.sh
+	  ;;
    arandr)
 	  arandr &
 	  ;;
@@ -59,7 +63,7 @@ case "$choice" in
 	  gource $DIR &
 	  ;;
    hibernate)
-	  sudo pm-hibernate &
+	  pm-hibernate &
 	  ;;
    libreoffice)
 	  libreoffice &
@@ -68,7 +72,7 @@ case "$choice" in
 	  i3-msg exit &
 	  ;;
    reboot)
-	  sudo shutdown -r now &
+	  shutdown -r now &
 	  ;;
    retext)
 	  retext &
@@ -77,7 +81,7 @@ case "$choice" in
 	  remmina &
 	  ;;
    shutdown)
-	  sudo shutdown -h now &
+	  shutdown -h now &
 	  ;;
    software-center)
 	  software-center &

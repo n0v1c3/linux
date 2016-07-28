@@ -158,6 +158,7 @@ $install_cmd firefox
 $install_cmd gnome-icon-theme-full
 $install_cmd slim
 $install_cmd terminator
+$install_cmd thunar
 
 if ( $install )
 then

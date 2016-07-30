@@ -139,10 +139,12 @@ $install_cmd xorg
 
 # Terminal tools
 $install_cmd alsa-utils	# Advanced linux sound architecture
+$install_cmd fuse	# Mount for ntfs
 $install_cmd git
 $install_cmd lm_sensors	# Linux monitoring sensors
 $install_cmd networkmanager
 $install_cmd network-manager-applet
+$install_cmd ntfs-3g	# Mount for ntfs
 $install_cmd python
 $install_cmd sudo
 $install_cmd tmux

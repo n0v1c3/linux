@@ -177,6 +177,7 @@ then
 	$install_cmd clementine
 	$install_cmd conky
 	$install_cmd deluge
+	$install_cmd fdupes
 	$install_cmd freerdp
 	$install_cmd fslint		# File compare
 	$install_cmd gource

@@ -29,6 +29,9 @@ fi
 # Get directory of the current bash script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Echo readable layout of available hard drives to be formatted
+lsblk
+
 # Get user's information
 echo -n "Enter disk path (/dev/sd[x]): "
 read diskpath

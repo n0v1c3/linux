@@ -4,10 +4,6 @@
 # dot-install.sh
 # Installation and configuration of all dot-files being used
 ################################################################################
-#
-# TODO (160728) - Updates of shortcuts using ~/.config/gtk-3.0/bookmarks
-#
-################################################################################
 
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"

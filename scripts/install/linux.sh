@@ -4,11 +4,6 @@
 # linux.sh
 # Install Arch Linux with desired software and configurations 
 ################################################################################
-#
-# TODO (160721) - Look at zsh installer found in the dotfiles repo
-# TODO - Replace networkmanager with wicd and wicd-gtk
-#
-################################################################################
 
 ##
 # Variables

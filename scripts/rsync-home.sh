@@ -1,9 +1,24 @@
 #!/bin/bash
 
-# File Backup
-BACKUP_ROOT="/"
-MEDIA_ROOT="/media/travis/Home - Backup/travis/"
-USBWD_ROOT="usbWD"
+while test $# -gt 0
+do
+   case "$1" in
+	  -l|--local)
+		 opt="-avh --progress"
+		 src=$HOME
+		 dst=/mnt/nas
+		 break
+		 ;;
+	  -s|--server)
+		 opt="-avh --delete --progress"
+		 src=/mnt/tjg-wd
+		 dst=/mnt/nas
+		 break
+		 ;;
+	  *)
+		 break
+		 ;;
+   esac
+done
 
-# usbWD
-rsync --dry-run --delete -az $BACKUP_ROOT $MEDIA_ROOT&$USBWD_ROOT
+rsync $opt $src $dst

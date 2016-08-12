@@ -1,18 +1,30 @@
 #!/bin/bash
 
+opt="-avh --progress"
+dst="/mnt/nas"
+
 while test $# -gt 0
 do
    case "$1" in
+	  -f|--file)
+		 shift
+		 file=$1
+
+		 opt="$opt"
+		 src="$file"
+		 dst="$dst"
+		 break
+		 ;;
 	  -l|--local)
-		 opt="-avh --progress"
-		 src=$HOME
-		 dst=/mnt/nas
+		 opt="$opt"
+		 src="$HOME"
+		 dst="$dst"
 		 break
 		 ;;
 	  -s|--server)
-		 opt="-avh --delete --progress"
+		 opt="$opt --delete"
 		 src=/mnt/tjg-wd
-		 dst=/mnt/nas
+		 dst="$dst"
 		 break
 		 ;;
 	  *)
@@ -21,4 +33,4 @@ do
    esac
 done
 
-rsync $opt $src $dst
+rsync $opt --dry-run $src $dst

@@ -31,5 +31,8 @@ plugins=(git vi-mode)
 # Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
 
+# Source common shell configurations
+for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+
 # Vi mode
 bindkey -v

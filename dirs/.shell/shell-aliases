@@ -22,17 +22,17 @@ alias ~='cd $HOME ; pwd ; ls'
 alias -- -='cd -'
 
 # Shortcuts
-alias c="clear; pwd; ls --color=auto;"
-alias ca="clear; pwd; ls -a --color=auto;"
-alias cl="clear; pwd; ls -l --color=auto;"
-alias cla="clear; pwd; ls -al --color=auto;"
+alias c="clear; pwd; ls --group-directories-first --color=auto;"
+alias ca="clear; pwd; ls -a --group-directories-first --color=auto;"
+alias cl="clear; pwd; ls -l --group-directories-first --color=auto;"
+alias cla="clear; pwd; ls -al --group-directories-first --color=auto;"
 alias d='dirs'
 alias dirs='dirs -v'
 alias h='history'
 alias j='jobs'
-alias ll='ls -alF --color=auto'
-alias la='ls -A --color=auto'
-alias l='ls -CF --color=auto'
+alias ll='ls -alF --group-directories-first --color=auto'
+alias la='ls -A --group-directories-first --color=auto'
+alias l='ls -CF --group-directories-first --color=auto'
 alias p='pushd . > /dev/null'
 alias P="popd > /dev/null ; pwd"
 alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"

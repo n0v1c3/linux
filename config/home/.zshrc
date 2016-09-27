@@ -1,8 +1,6 @@
 ##
 # .zshrc
 # Configuratin for zsh shell
-#
-# TODO (160721) - Seach history for partially typed content on UP-ARROW key press
 ##
 
 # Source common shell configurations
@@ -26,7 +24,7 @@ DISABLE_AUTO_UPDATE="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-plugins=(git vi-mode)
+plugins=(git vi-mode history-substring-search)
 
 # Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh

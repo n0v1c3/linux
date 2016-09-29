@@ -15,7 +15,7 @@ alias gd='git diff'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 
 alias gpsh='git push'
-alias gpul='git pull --prune'
+alias gpul=bash\ ~/Documents/development/n0v1c3/linux/scripts/git/pull.sh
 
 alias grc='gource -i 0'
 

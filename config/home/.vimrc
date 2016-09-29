@@ -3,7 +3,18 @@
 " Description: Configuration file that is automatically loaded and applied to Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+""
+" Plugins
+""
+
+" Load bundle plugins
 execute pathogen#infect()
+
+" Enable case auto-indent plugin
+let g:sh_indent_case_labels=1
+
+" Open split-view to the right
+let g:NERDTreeWinPos="right"
 
 ""
 " Highlighting
@@ -70,38 +81,30 @@ setlocal spell spelllang=en_us
 set spellfile=~/.vim/spell/wordlist.utf-8.add
 
 ""
-" Plugins
-""
-
-" Enable case auto-indent plugin
-let g:sh_indent_case_labels=1
-let g:NERDTreeWinPos="right"
-
-""
 " Mappings
 ""
 
 " Disable arrow keys for navigation
 noremap <up> <NOP>
-inoremap <up> <NOP>
-vnoremap <up> <NOP>
-
 noremap <down> <NOP>
-inoremap <down> <NOP>
-vnoremap <down> <NOP>
-
 noremap <left> <NOP>
-inoremap <left> <NOP>
-vnoremap <left> <NOP>
-
 noremap <right> <NOP>
-inoremap <right> <NOP>
-vnoremap <right> <NOP>
 
-" Save file or visual selection with Ctrl+W
-noremap <silent><C-w> :update<CR>
-inoremap <silent><C-w> <C-C>:update<CR>a
-vnoremap <silent><C-w> <C-O>:update!<CR>
+nnoremap <silent><space> viw
+vnoremap <silent><space> va
+
+" Do not skip wrapped lines
+noremap j gj
+noremap k gk
+
+" Leader maps
+let mapleader="-"
+noremap <silent><leader>g gg=G<C-O>
+noremap <silent><leader>s :update<CR>
+noremap <silent><leader>o :NERDTree<CR>
+noremap <silent><leader>q :wq<CR>
+vnoremap <silent><leader>/ y/<C-R>"<CR>
+noremap <silent><leader>w <C-w>w<CR>
 
 ""
 " Commands
@@ -109,5 +112,5 @@ vnoremap <silent><C-w> <C-O>:update!<CR>
 
 " TODO [160928] - Create command or mapping to quickly insert a new TODO
 
-command INDENT args **/* **/.* | argdo execute "normal gg=G" | update
-command TODO vimgrep TODO **/* **/.* | cw
+command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
+command! TODO vimgrep TODO **/* **/.* | cw

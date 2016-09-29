@@ -3,6 +3,8 @@
 " Description: Configuration file that is automatically loaded and applied to Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+execute pathogen#infect()
+
 ""
 " Highlighting
 ""
@@ -73,21 +75,33 @@ set spellfile=~/.vim/spell/wordlist.utf-8.add
 
 " Enable case auto-indent plugin
 let g:sh_indent_case_labels=1
+let g:NERDTreeWinPos="right"
 
 ""
 " Mappings
 ""
 
 " Disable arrow keys for navigation
-imap <up> <NOP>
-imap <down> <NOP>
-imap <left> <NOP>
-imap <right> <NOP>
+noremap <up> <NOP>
+inoremap <up> <NOP>
+vnoremap <up> <NOP>
 
-map <up> <NOP>
-map <down> <NOP>
-map <left> <NOP>
-map <right> <NOP>
+noremap <down> <NOP>
+inoremap <down> <NOP>
+vnoremap <down> <NOP>
+
+noremap <left> <NOP>
+inoremap <left> <NOP>
+vnoremap <left> <NOP>
+
+noremap <right> <NOP>
+inoremap <right> <NOP>
+vnoremap <right> <NOP>
+
+" Save file or visual selection with Ctrl+W
+noremap <silent><C-w> :update<CR>
+inoremap <silent><C-w> <C-C>:update<CR>a
+vnoremap <silent><C-w> <C-O>:update!<CR>
 
 ""
 " Commands

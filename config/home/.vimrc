@@ -7,6 +7,8 @@
 " Highlighting
 ""
 
+" TODO [160928] - Add highlighting for the width of the page (can be toggled on, off by default)
+
 " Preferred background
 set background=dark
 
@@ -22,7 +24,6 @@ syntax on
 
 " Highlight searches
 set hlsearch
-
 
 ""
 " Numbering
@@ -91,6 +92,8 @@ map <right> <NOP>
 ""
 " Commands
 ""
+
+" TODO [160928] - Create command or mapping to quickly insert a new TODO
 
 command INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 command TODO vimgrep TODO **/* **/.* | cw

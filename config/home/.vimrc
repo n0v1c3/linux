@@ -7,14 +7,18 @@
 " Plugins
 ""
 
-" Load bundle plugins
+" Pathogen
 execute pathogen#infect()
 
 " Enable case auto-indent plugin
 let g:sh_indent_case_labels=1
 
-" Open split-view to the right
+" NERDTree
+" Open to right
 let g:NERDTreeWinPos="right"
+
+" NERDCommenter
+let g:NERDSpaceDelims=1
 
 ""
 " Highlighting
@@ -83,34 +87,45 @@ set spellfile=~/.vim/spell/wordlist.utf-8.add
 ""
 " Mappings
 ""
-
-" Disable arrow keys for navigation
+let mapleader="\<space>"
 noremap <up> <NOP>
 noremap <down> <NOP>
 noremap <left> <NOP>
 noremap <right> <NOP>
-
-nnoremap <silent><space> viw
-vnoremap <silent><space> va
-
-" Do not skip wrapped lines
+noremap <leader>bi I<CR><ESC>kiBUG [<C-R>=strftime("%y%m%d")<CR>] - <C-c>:call NERDComment(0,"toggle")<CR>A
+noremap <leader>bc :BUG<CR>
+noremap c" ci"
+noremap c' ci'
+noremap <leader>cq :cclose<CR>
+noremap <leader>co :copen<CR>
+" BUG [161001] - Delay in original dd command after d" and d' (PATCHED)
+nnoremap dd dd
+nnoremap d" di"
+nnoremap d' di'
+noremap <leader>gg gg=G<C-o><C-o>
 noremap j gj
+noremap <leader>j 10j
 noremap k gk
-
-" Leader maps
-let mapleader="-"
-noremap <silent><leader>g gg=G<C-O>
-noremap <silent><leader>s :update<CR>
-noremap <silent><leader>o :NERDTree<CR>
-noremap <silent><leader>q :wq<CR>
-vnoremap <silent><leader>/ y/<C-R>"<CR>
-noremap <silent><leader>w <C-w>w<CR>
+noremap <leader>k 10k
+noremap <leader>nh :noh<CR>
+noremap <leader>o :NERDTree<CR>
+map q: :q
+noremap <leader>q :wq<CR>
+noremap <leader>s :update<CR>
+noremap <leader>ti I<CR><ESC>kiTODO [<C-R>=strftime("%y%m%d")<CR>] - <C-c>:call NERDComment(0,"toggle")<CR>A
+noremap <leader>tc :TODO<CR>
+noremap v" vi"
+noremap v' vi'
+noremap <leader>w <C-w>w
+vnoremap <leader>/ y/<C-R>"<CR>
+imap -=- <C-c>
 
 ""
 " Commands
 ""
-
-" TODO [160928] - Create command or mapping to quickly insert a new TODO
-
+" Indent all files recursively in current directory
 command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
-command! TODO vimgrep TODO **/* **/.* | cw
+" Find all TODO's recursively in current directory
+command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
+" Find all BUG's recursively in current directory
+command! BUG vimgrep /BUG \[\d\d\d\d\d\d\]/  **/* **/.* | cw

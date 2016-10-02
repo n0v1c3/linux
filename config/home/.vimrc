@@ -87,18 +87,16 @@ set spellfile=~/.vim/spell/wordlist.utf-8.add
 ""
 " Mappings
 ""
+
 let mapleader="\<space>"
 noremap <up> <NOP>
 noremap <down> <NOP>
 noremap <left> <NOP>
 noremap <right> <NOP>
-noremap <leader>bi I<CR><ESC>kiBUG [<C-R>=strftime("%y%m%d")<CR>] - <C-c>:call NERDComment(0,"toggle")<CR>A
-noremap <leader>bc :BUG<CR>
 noremap c" ci"
 noremap c' ci'
 noremap <leader>cq :cclose<CR>
 noremap <leader>co :copen<CR>
-" BUG [161001] - Delay in original dd command after d" and d' (PATCHED)
 nnoremap dd dd
 nnoremap d" di"
 nnoremap d' di'
@@ -110,8 +108,9 @@ noremap <leader>k 10k
 noremap <leader>nh :noh<CR>
 noremap <leader>o :NERDTree<CR>
 map q: :q
-noremap <leader>q :wq<CR>
+noremap <leader>q gg=G:wq<CR>
 noremap <leader>s :update<CR>
+" TODO [161001] - Not working for indented (always back 1 indent)
 noremap <leader>ti I<CR><ESC>kiTODO [<C-R>=strftime("%y%m%d")<CR>] - <C-c>:call NERDComment(0,"toggle")<CR>A
 noremap <leader>tc :TODO<CR>
 noremap v" vi"
@@ -123,9 +122,9 @@ imap -=- <C-c>
 ""
 " Commands
 ""
+
 " Indent all files recursively in current directory
 command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
+
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
-" Find all BUG's recursively in current directory
-command! BUG vimgrep /BUG \[\d\d\d\d\d\d\]/  **/* **/.* | cw

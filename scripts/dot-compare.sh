@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO [161001] - I don't know what the purpose of this file is any more
 
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -7,6 +8,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # Backup
 ##
 
+# TODO [161001] - Why is this here?
 # Copy and date-stamp a given file
 function backup() {
 cp $1 $1.backup-$(date +%y%m%d-%H%M%S-%N)

@@ -1,8 +1,8 @@
 #!/bin/bash
-#
+
+#===================================================================================================
 # a simple dmenu session script 
-#
-###
+#===================================================================================================
 
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/../.." && pwd)"
@@ -34,74 +34,75 @@ thunar
 virtualbox
 vlc" | $DMENU)
 
-case "$choice" in
-   android-studio)
-	  bash /opt/android-studio/bin/studio.sh
-	  ;;
-   arandr)
-	  arandr &
-	  ;;
-   clementine)
-	  clementine &
-	  ;;
-   conky)
-	  conky &
-	  ;;
-   deluge)
-	  deluge &
-	  ;;
-   firefox)
-	  firefox &
-	  ;;
-   geany)
-	  geany &
-	  ;;
-   gedit)
-	  gedit &
-	  ;;
-   gource)
-	  gource $DIR &
-	  ;;
-   hibernate)
-	  pm-hibernate &
-	  ;;
-   libreoffice)
-	  libreoffice &
-	  ;;
-   logout)
-	  i3-msg exit &
-	  ;;
-   reboot)
-	  shutdown -r now &
-	  ;;
-   retext)
-	  retext &
-	  ;;
-   remmina)
-	  remmina &
-	  ;;
-   shutdown)
-	  shutdown -h now &
-	  ;;
-   software-center)
-	  software-center &
-	  ;;
-   suspend)
-	  sudo pm-suspend &
-	  ;;
-   teamviewer)
-	  teamviewer &
-	  ;;
-   terminator)
-	  terminator &
-	  ;;
-   thunar)
-	  thunar &
-	  ;;
-   virtualbox)
-	  virtualbox &
-	  ;;
-   vlc)
-	  vlc &
-	  ;;
-esac
+	case "$choice" in
+		android-studio)
+			bash /opt/android-studio/bin/studio.sh
+			;;
+		arandr)
+			arandr &
+			;;
+		clementine)
+			clementine &
+			;;
+		conky)
+			conky &
+			;;
+		deluge)
+			deluge &
+			;;
+		firefox)
+			firefox &
+			;;
+		geany)
+			geany &
+			;;
+		gedit)
+			gedit &
+			;;
+		# TODO [161001] - Not functioning
+		gource)
+			gource $DIR &
+			;;
+		hibernate)
+			pm-hibernate &
+			;;
+		libreoffice)
+			libreoffice &
+			;;
+		logout)
+			i3-msg exit &
+			;;
+		reboot)
+			shutdown -r now &
+			;;
+		retext)
+			retext &
+			;;
+		remmina)
+			remmina &
+			;;
+		shutdown)
+			shutdown -h now &
+			;;
+		software-center)
+			software-center &
+			;;
+		suspend)
+			sudo pm-suspend &
+			;;
+		teamviewer)
+			teamviewer &
+			;;
+		terminator)
+			terminator &
+			;;
+		thunar)
+			thunar &
+			;;
+		virtualbox)
+			virtualbox &
+			;;
+		vlc)
+			vlc &
+			;;
+	esac

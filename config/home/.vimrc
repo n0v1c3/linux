@@ -1,11 +1,7 @@
-" ==============================================================================
 " Name: .vimrc
 " Desc: Configuration file that is automatically loaded and applied to Vim
-" ==============================================================================
 
-" ====================
-" Plugins
-" ====================
+" === Plugins {{{
 
 " --------------------
 " Pathogen
@@ -29,9 +25,9 @@ let g:NERDTreeWinPos="left"
 " --------------------
 let g:NERDSpaceDelims=1
 
-" ====================
-" Highlighting
-" ====================
+" === / Plugins }}}
+
+" === Highlighting {{{
 
 " Highlighting for the width of the page
 set colorcolumn=80
@@ -52,9 +48,11 @@ syntax on
 " Highlight searches
 set hlsearch
 
-" ====================
-" Numbering
-" ====================
+au BufNewFile,BufRead *.nd set filetype=markdown
+
+" === / Highlighting }}}
+
+" === Numbering {{{
 
 " Display line number for current line
 set number
@@ -65,9 +63,9 @@ set cursorline
 " Start scrolling five lines before window border
 set scrolloff=5
 
-" ====================
-" Tabs/Indenting
-" ====================
+" === / Numbering }}}
+
+" === Tabs/Indenting {{{
 
 " Enable plugins for indentation
 filetype plugin indent on
@@ -77,26 +75,25 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
-" ====================
-" Folding
-" ====================
+" === / Tabs/Indenting }}}
 
-set foldmethod=manual
+" === Folding {{{
+set foldenable
+set foldlevelstart=0
 set foldnestmax=10
-set nofoldenable
+set foldmethod=indent
 set foldlevel=2
+au BufNewFile,BufRead *.nd set foldmethod=marker
+au BufNewFile,BufRead *.vimrc set foldmethod=marker
+" === Folding }}}
 
-" ====================
-" Display
-" ====================
-
+" === Display {{{
 " Show 'invisible' characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
+" === / Display }}}
 
-" ====================
-" Spelling
-" ====================
+" === Spelling {{{
 
 " Turn on spell check
 setlocal spell spelllang=en_us
@@ -104,58 +101,48 @@ setlocal spell spelllang=en_us
 " Custom spell-check list
 set spellfile=~/.vim/spell/wordlist.utf-8.add
 
-" ====================
-" Mappings
-" ====================
+" === / Spelling }}}
 
-" --------------------
-" Leader key
-" --------------------
+" === Mappings {{{
+
+" --- Leader key {{{
 let mapleader="\<space>"
+" --- }}}
 
-" --------------------
-" Change
-" --------------------
+" --- Change {{{
 noremap c" ci"
 noremap c' ci'
+" --- }}}
 
-" --------------------
-" C window
-" --------------------
+" --- C window {{{
 noremap <leader>cq :cclose<CR>
 noremap <leader>co :copen<CR>
+" --- }}}
 
-" --------------------
-" Delete
-" --------------------
+" --- Delete {{{
 nnoremap dd dd
 nnoremap d" di"
 nnoremap d' di'
+" --- }}}
 
-" --------------------
-" File system
-" --------------------
+" --- File system {{{
 nnoremap <leader>o :NERDTree<CR>
+" --- }}}
 
-" --------------------
-" File management
-" --------------------
+" --- File management {{{
 noremap <leader>q gg=G:wq<CR>
 noremap <leader>s :update<CR>
+" --- }}}
 
-" --------------------
-" Highlight
-" --------------------
-noremap <leader>hn :noh<CR>
+" --- Highlight {{{
+nnoremap <leader>hn :noh<CR>
+" --- }}}
 
-" --------------------
-" Indent
-" --------------------
+" --- Indent {{{
 noremap <leader>gg gg=G<C-o><C-o>
+" --- }}}
 
-" --------------------
-" Navigation
-" --------------------
+" --- Navigation {{{
 noremap <up> <NOP>
 noremap <down> <NOP>
 noremap <left> <NOP>
@@ -164,44 +151,43 @@ noremap j gj
 noremap <leader>j jjjjjjjjjjjjjjj
 noremap k gk
 noremap <leader>k kkkkkkkkkkkkkkk
+" --- }}}
 
-" --------------------
-" Search
-" --------------------
+" --- Search {{{
 vnoremap <leader>/ y/<C-R>"<CR>
+" --- }}}
 
-" --------------------
-" TODO
-" --------------------
+" --- TODO {{{
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
 noremap <leader>tc :TODO<CR>
+" --- }}}
 
-" --------------------
-" Typos
-" --------------------
+" --- Typos {{{
 map q: :q
+imap tehre there
+" --- }}}
 
-" --------------------
-" Visual
-" --------------------
+" --- Visual {{{
 noremap v" vi"
 noremap v' vi'
+" --- }}}
 
-" --------------------
-" Window
-" --------------------
+" --- Window {{{
 nnoremap <leader>w <C-w>w
 nnoremap <leader>wv :vertical resize -5<CR>
 nnoremap <leader>wV :vertical resize +5<CR>
 nnoremap <leader>wh :resize -5<CR>
 nnoremap <leader>wH :resize +5<CR>
+" --- }}}
 
-" ====================
-" Commands
-" ====================
+" === / Mappings }}}
+
+" === Commands {{{
 
 " Indent all files recursively in current directory
 command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
+
+" === / Commands }}}

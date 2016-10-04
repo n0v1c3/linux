@@ -78,6 +78,15 @@ set softtabstop=4
 set shiftwidth=4
 
 " ====================
+" Folding
+" ====================
+
+set foldmethod=manual
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
+" ====================
 " Display
 " ====================
 

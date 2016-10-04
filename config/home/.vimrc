@@ -1,72 +1,65 @@
+" vim:foldmethod=marker:foldlevel=0
+
 " Name: .vimrc
 " Desc: Configuration file that is automatically loaded and applied to Vim
 
-" === Plugins {{{
-
-" --------------------
-" Pathogen
-" --------------------
+" Plugins {{{
+" Pathogen source all vim bundles found in ~/.vim/bundle
 execute pathogen#infect()
 
-" --------------------
-" Case Auto-Indent
-" --------------------
-" Enable case auto-indent plugin
+" Case Auto-Indent enable
 let g:sh_indent_case_labels=1
 
-" --------------------
-" NERDTree
-" --------------------
-" Open to right
+" NERDTree open to right
 let g:NERDTreeWinPos="left"
 
-" --------------------
-" NERDCommenter
-" --------------------
+" NerdCommenter add a space after auto comments
 let g:NERDSpaceDelims=1
+" }}}
 
-" === / Plugins }}}
+" Editor {{{
+" Backspace over autoindent, line breaks, start of insert
+set backspace=indent,eol,start
+" }}}
 
-" === Highlighting {{{
-
-" Highlighting for the width of the page
-set colorcolumn=80
-
+" Colouring {{{
 " Preferred background
 set background=dark
 
 " Preferred color scheme
-colorscheme evening
+colorscheme desert
+" }}}
 
-" Display relative line number along the left hand side
-set relativenumber
+" Highlighting {{{
+" Highlighting for the width of the page
+set colorcolumn=80
 
 " Syntax highlighting
 filetype plugin on
 syntax on
 
+" Highlight current line
+set cursorline
+
+" Search as characters are entered
+set incsearch
+
 " Highlight searches
 set hlsearch
+" }}}
 
-au BufNewFile,BufRead *.nd set filetype=markdown
-
-" === / Highlighting }}}
-
-" === Numbering {{{
+" Numbering {{{
+" Display relative line number along the left hand side
+set relativenumber
 
 " Display line number for current line
 set number
 
-" Highlight current line
-set cursorline
-
 " Start scrolling five lines before window border
 set scrolloff=5
+" }}}
 
-" === / Numbering }}}
-
-" === Tabs/Indenting {{{
-
+" Tabs/Indenting {{{
 " Enable plugins for indentation
 filetype plugin indent on
 
@@ -74,75 +67,93 @@ filetype plugin indent on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+"}}}
 
-" === / Tabs/Indenting }}}
-
-" === Folding {{{
+" Folding {{{
 set foldenable
 set foldlevelstart=0
 set foldnestmax=10
 set foldmethod=indent
 set foldlevel=2
-au BufNewFile,BufRead *.nd set foldmethod=marker
-au BufNewFile,BufRead *.vimrc set foldmethod=marker
-" === Folding }}}
+" }}}
 
-" === Display {{{
+" Display {{{
+" Visual Autocomplete for command menu
+set wildmenu
+
+" Show command in bottom bar
+set showcmd
+
+" Do not redraw during operations such as macros
+set lazyredraw
+
 " Show 'invisible' characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
-" === / Display }}}
 
-" === Spelling {{{
+" Always display the status line even if only one window is displayed
+set laststatus=2
+" }}}
 
+" Searching {{{
+" Ignore case of given search terms
+set ignorecase
+
+" Only search for matching capitals when they are used
+set smartcase
+" }}}
+
+" Spelling {{{
 " Turn on spell check
 setlocal spell spelllang=en_us
 
 " Custom spell-check list
 set spellfile=~/.vim/spell/wordlist.utf-8.add
+" }}}
 
-" === / Spelling }}}
-
-" === Mappings {{{
-
-" --- Leader key {{{
+" Mappings {{{
+" Leader key {{{
 let mapleader="\<space>"
-" --- }}}
+" }}}
 
-" --- Change {{{
+" Change {{{
 noremap c" ci"
 noremap c' ci'
-" --- }}}
+" }}}
 
-" --- C window {{{
+" C window {{{
 noremap <leader>cq :cclose<CR>
 noremap <leader>co :copen<CR>
-" --- }}}
+" }}}
 
-" --- Delete {{{
+" Delete {{{
 nnoremap dd dd
 nnoremap d" di"
 nnoremap d' di'
-" --- }}}
+" }}}
 
-" --- File system {{{
+" File system {{{
 nnoremap <leader>o :NERDTree<CR>
-" --- }}}
+" }}}
 
-" --- File management {{{
+" File management {{{
 noremap <leader>q gg=G:wq<CR>
 noremap <leader>s :update<CR>
-" --- }}}
+" }}}
 
-" --- Highlight {{{
+" Folding {{{
+nnoremap <leader>f za
+" }}}
+
+" Highlight {{{
 nnoremap <leader>hn :noh<CR>
-" --- }}}
+" }}}
 
-" --- Indent {{{
+" Indent {{{
 noremap <leader>gg gg=G<C-o><C-o>
-" --- }}}
+" }}}
 
-" --- Navigation {{{
+" Navigation {{{
 noremap <up> <NOP>
 noremap <down> <NOP>
 noremap <left> <NOP>
@@ -151,43 +162,65 @@ noremap j gj
 noremap <leader>j jjjjjjjjjjjjjjj
 noremap k gk
 noremap <leader>k kkkkkkkkkkkkkkk
-" --- }}}
+" }}}
 
-" --- Search {{{
+" Search {{{
 vnoremap <leader>/ y/<C-R>"<CR>
-" --- }}}
+" }}}
 
-" --- TODO {{{
+" TODO {{{
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
 noremap <leader>tc :TODO<CR>
-" --- }}}
+" }}}
 
-" --- Typos {{{
+" Typos {{{
 map q: :q
-imap tehre there
-" --- }}}
+" }}}
 
-" --- Visual {{{
+" Yank {{{
+map Y y$
+" }}}
+
+" Visual {{{
 noremap v" vi"
 noremap v' vi'
-" --- }}}
+" }}}
 
-" --- Window {{{
+" Window {{{
 nnoremap <leader>w <C-w>w
 nnoremap <leader>wv :vertical resize -5<CR>
 nnoremap <leader>wV :vertical resize +5<CR>
 nnoremap <leader>wh :resize -5<CR>
 nnoremap <leader>wH :resize +5<CR>
-" --- }}}
+" }}}
 
-" === / Mappings }}}
+" Screen {{{
+nnoremap <C-L> :noh<CR><C-L>
+" }}}
 
-" === Commands {{{
+" dotfiles {{{
+nnoremap <leader>ev :sp ~/.vimrc<CR>
+nnoremap <leader>ez :sp ~/.zshrc<CR>
+nnoremap <leader>sv :so ~/.vimrc<CR>
+" }}}
+" }}}
 
+" Abbreviations {{{
+k common typos {{{
+iabbrev abit a bit
+iabbrev acess access
+iabbrev abd and
+iabbrev adn and
+iabbrev teh the
+iabbrev tehn then
+iabbrev waht what
+" }}}
+" }}}
+
+" Commands {{{
 " Indent all files recursively in current directory
 command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
-
-" === / Commands }}}
+"}}}

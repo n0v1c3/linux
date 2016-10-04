@@ -206,7 +206,7 @@ nnoremap <leader>sv :so ~/.vimrc<CR>
 " }}}
 
 " Abbreviations {{{
-k common typos {{{
+" common typos {{{
 iabbrev abit a bit
 iabbrev acess access
 iabbrev abd and

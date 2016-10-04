@@ -1,3 +1,5 @@
+" vim: foldmethod=marker:foldlevel=0
+
 " Name: .vimrc
 " Desc: Configuration file that is automatically loaded and applied to Vim
 
@@ -73,7 +75,14 @@ set foldlevelstart=0
 set foldnestmax=10
 set foldmethod=indent
 set foldlevel=2
-set modelines=1
+
+" Enable vim to check for modelines throughout your files (best practice to
+" keep them at the top or the bottom of the file
+set modeline
+
+" Number of modelines to be checked, if set to zero then modeline checking
+" will be disabled
+set modelines=5
 " :set foldexpr=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum+1)=~'\\S'?'<1':1
 " }}}
 
@@ -216,8 +225,11 @@ iabbrev tehn then
 iabbrev waht what
 " }}}
 " short-hand {{{
+iabbrev rne RN Engineering
 iabbrev tx transmitter
+iabbrev txs transmitters
 iabbrev Tx Transmitter
+iabbrev Txs Transmitters
 " }}}
 " }}}
 
@@ -228,5 +240,3 @@ command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
 " }}}
-
-" vim:foldmethod=marker:foldlevel=1

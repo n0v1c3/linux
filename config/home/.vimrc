@@ -6,7 +6,7 @@
 " ====================
 " Plugins
 " ====================
-
+" {{{
 " --------------------
 " Pathogen
 " --------------------
@@ -28,11 +28,12 @@ let g:NERDTreeWinPos="left"
 " NERDCommenter
 " --------------------
 let g:NERDSpaceDelims=1
+" }}}
 
 " ====================
 " Highlighting
 " ====================
-
+" {{{
 " Highlighting for the width of the page
 set colorcolumn=80
 
@@ -51,11 +52,12 @@ syntax on
 
 " Highlight searches
 set hlsearch
+" }}}
 
 " ====================
 " Numbering
 " ====================
-
+" {{{
 " Display line number for current line
 set number
 
@@ -64,11 +66,12 @@ set cursorline
 
 " Start scrolling five lines before window border
 set scrolloff=5
+" }}}
 
 " ====================
 " Tabs/Indenting
 " ====================
-
+" {{{
 " Enable plugins for indentation
 filetype plugin indent on
 
@@ -76,29 +79,42 @@ filetype plugin indent on
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" }}}
+
+" ====================
+" Folding
+" ====================
+" {{{
+set foldmethod=marker
+set foldnestmax=10
+set foldlevel=2
+
+"This will make a fold out of paragraphs separated by blank lines:
+" :set foldexpr=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum+1)=~'\\S'?'<1':1
+" }}}
 
 " ====================
 " Display
 " ====================
-
+" {{{
 " Show 'invisible' characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
+" }}}
 
 " ====================
-" Spelling
-" ====================
-
+" Spelling 
+" ==================== 
+" {{{ 
 " Turn on spell check
 setlocal spell spelllang=en_us
-
 " Custom spell-check list
-set spellfile=~/.vim/spell/wordlist.utf-8.add
-
-" ====================
+ set spellfile=~/.vim/spell/wordlist.utf-8.add
+" }}}
+" ==================== 
 " Mappings
 " ====================
-
+" {{{
 " --------------------
 " Leader key
 " --------------------
@@ -186,13 +202,15 @@ nnoremap <leader>wv :vertical resize -5<CR>
 nnoremap <leader>wV :vertical resize +5<CR>
 nnoremap <leader>wh :resize -5<CR>
 nnoremap <leader>wH :resize +5<CR>
+" }}}
 
 " ====================
 " Commands
 " ====================
-
+" {{{
 " Indent all files recursively in current directory
 command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
+" }}}

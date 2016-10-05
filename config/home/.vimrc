@@ -117,7 +117,7 @@ set smartcase
 setlocal spell spelllang=en_us
 
 " Custom spell-check list
- set spellfile=~/.vim/spell/wordlist.utf-8.add
+set spellfile=~/.vim/spell/wordlist.utf-8.add
 " }}}
 
 " Mappings {{{
@@ -151,6 +151,8 @@ noremap <leader>q gg=G:wq<CR>
 
 " Folding {{{
 nnoremap <leader>f za
+noremap <leader>j zj
+noremap <leader>k zk
 " }}}
 
 " Highlight {{{
@@ -167,9 +169,7 @@ noremap <down> <NOP>
 noremap <left> <NOP>
 noremap <right> <NOP>
 noremap j gj
-noremap <leader>j jjjjjjjjjjjjjjj
 noremap k gk
-noremap <leader>k kkkkkkkkkkkkkkk
 " }}}
 
 " Search {{{
@@ -211,8 +211,14 @@ nnoremap <C-L> :noh<CR><C-L>
 " }}}
 
 " dotfiles {{{
+"
+" Open vimrc file in split view
 nnoremap <leader>ev :sp ~/.vimrc<CR>
+
+" Open zshrc file in split view
 nnoremap <leader>ez :sp ~/.zshrc<CR>
+
+" Source vimrc into current session
 nnoremap <leader>sv :so ~/.vimrc<CR>
 " }}}
 " }}}

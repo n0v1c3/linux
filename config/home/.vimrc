@@ -28,6 +28,9 @@ set background=dark
 
 " Preferred color scheme
 colorscheme desert
+
+" Autohotkey
+au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 
 " Highlighting {{{

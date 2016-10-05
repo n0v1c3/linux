@@ -147,7 +147,6 @@ nnoremap <leader>o :NERDTree<CR>
 
 " File management {{{
 noremap <leader>q gg=G:wq<CR>
-noremap <leader>s :update<CR>
 " }}}
 
 " Folding {{{
@@ -175,6 +174,10 @@ noremap <leader>k kkkkkkkkkkkkkkk
 
 " Search {{{
 vnoremap <leader>/ y/<C-R>"<CR>
+" }}}
+
+" Sorting {{{
+vnoremap <leader>sm :'<,'>sort -M
 " }}}
 
 " TODO {{{
@@ -224,12 +227,57 @@ iabbrev teh the
 iabbrev tehn then
 iabbrev waht what
 " }}}
+
 " short-hand {{{
 iabbrev rne RN Engineering
+iabbrev tatg travis.gall@gmail.com
+iabbrev tatr tgall@rnengineering.com
+iabbrev tgall Travis Gall
 iabbrev tx transmitter
 iabbrev txs transmitters
 iabbrev Tx Transmitter
 iabbrev Txs Transmitters
+
+iabbrev Tue Tuesday
+iabbrev Mon Monday
+iabbrev Wed Wednsday
+iabbrev Thu Thursday
+iabbrev Fri Friday
+iabbrev Sat Saturday
+iabbrev Sun Sunday
+iabbrev Jan January
+iabbrev Feb February
+iabbrev Mar March
+iabbrev Apr April
+iabbrev May May
+iabbrev Jun June
+iabbrev Jul July
+iabbrev Aug August
+iabbrev Sept September
+iabbrev Oct October
+iabbrev Nov November
+iabbrev Dec December
+iabbrev mon Monday
+iabbrev tue Tuesday
+iabbrev wed Wednsday
+iabbrev thu Thursday
+iabbrev fri Friday
+iabbrev sat Saturday
+iabbrev sun Sunday
+iabbrev jan January
+iabbrev feb February
+iabbrev mar March
+iabbrev apr April
+iabbrev may May
+iabbrev jun June
+iabbrev jul July
+iabbrev aug August
+iabbrev sept September
+iabbrev oct October
+iabbrev nov November
+iabbrev dec December
+
+
 " }}}
 " }}}
 

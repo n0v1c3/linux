@@ -34,3 +34,5 @@ for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
 
 # Vi mode
 bindkey -v
+
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"

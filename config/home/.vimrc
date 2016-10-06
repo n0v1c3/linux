@@ -75,6 +75,7 @@ set foldlevelstart=0
 set foldnestmax=10
 set foldmethod=indent
 set foldlevel=2
+set foldcolumn=3
 
 " Enable vim to check for modelines throughout your files (best practice to
 " keep them at the top or the bottom of the file
@@ -151,6 +152,8 @@ noremap <leader>q gg=G:wq<CR>
 
 " Folding {{{
 nnoremap <leader>f za
+nnoremap <leader>j zj
+nnoremap <leader>k zk
 " }}}
 
 " Highlight {{{
@@ -167,9 +170,22 @@ noremap <down> <NOP>
 noremap <left> <NOP>
 noremap <right> <NOP>
 noremap j gj
-noremap <leader>j jjjjjjjjjjjjjjj
 noremap k gk
-noremap <leader>k kkkkkkkkkkkkkkk
+
+" NO more substitution use cl (Change Letter)
+noremap s <NOP>
+
+" Scroll Backward
+noremap <silent><leader>sb :call smooth_scroll#up(&scroll * 2, 10, 4)<CR>
+
+" Scroll Up
+noremap <silent><leader>su :call smooth_scroll#up(&scroll, 10, 2)<CR>
+
+" Scroll Down
+noremap <silent><leader>sd :call smooth_scroll#down(&scroll, 10, 2)<CR>
+
+" Scroll Forward
+noremap <silent><leader>sf :call smooth_scroll#down(&scroll * 2, 10, 4)<CR>
 " }}}
 
 " Search {{{
@@ -263,7 +279,7 @@ iabbrev wed Wednsday
 iabbrev thu Thursday
 iabbrev fri Friday
 iabbrev sat Saturday
-iabbrev sun Sunday
+iabbrev sund Sunday
 iabbrev jan January
 iabbrev feb February
 iabbrev mar March
@@ -276,8 +292,6 @@ iabbrev sept September
 iabbrev oct October
 iabbrev nov November
 iabbrev dec December
-
-
 " }}}
 " }}}
 

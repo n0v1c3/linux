@@ -28,6 +28,9 @@ set background=dark
 
 " Preferred color scheme
 colorscheme desert
+
+" Autohotkey
+au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 
 " Highlighting {{{
@@ -118,7 +121,7 @@ set smartcase
 setlocal spell spelllang=en_us
 
 " Custom spell-check list
- set spellfile=~/.vim/spell/wordlist.utf-8.add
+set spellfile=~/.vim/spell/wordlist.utf-8.add
 " }}}
 
 " Mappings {{{
@@ -227,8 +230,14 @@ nnoremap <C-L> :noh<CR><C-L>
 " }}}
 
 " dotfiles {{{
+"
+" Open vimrc file in split view
 nnoremap <leader>ev :sp ~/.vimrc<CR>
+
+" Open zshrc file in split view
 nnoremap <leader>ez :sp ~/.zshrc<CR>
+
+" Source vimrc into current session
 nnoremap <leader>sv :so ~/.vimrc<CR>
 " }}}
 " }}}

@@ -255,6 +255,7 @@ iabbrev waht what
 
 " short-hand {{{
 iabbrev rne RN Engineering
+iabbrev SDK Shutdown Key
 iabbrev tatg travis.gall@gmail.com
 iabbrev tatr tgall@rnengineering.com
 iabbrev tgall Travis Gall
@@ -310,4 +311,42 @@ command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
+" }}}
+
+" Functions {{{
+
+let g:word_count="<unknown>"
+
+function WordCount()
+	return g:word_count
+endfunction
+
+function UpdateWordCount()
+	let lnum = 1
+	let n = 0
+	while lnum <= line('$')
+		let n = n + len(split(getline(lnum)))
+		let lnum = lnum + 1
+	endwhile
+	let g:word_count = n
+endfunction
+
+" Update the count when cursor is idle in command or insert mode
+" Update when idle for 1000 msec (default is 4000 msec)
+set updatetime=1000
+augroup WordCounter
+	au! CursorHold,CursorHoldI * call UpdateWordCount()
+augroup END
+
+" }}}
+
+" Statusline {{{
+" Set statusline, shown here a piece at a time
+highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
+set statusline=%1*							" Switch to User1 color highlight
+set statusline+=%<%t						" File name
+set statusline+=%M							" Modified flag
+set statusline+=%y							" File type
+set statusline+=%=\ %{WordCount()}\ words,	" Word count
+set statusline+=\ %l/%L\ lines,\ %P			" Percentage through the file
 " }}}

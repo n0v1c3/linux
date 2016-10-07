@@ -154,9 +154,7 @@ noremap <leader>q gg=G:wq<CR>
 " }}}
 
 " Folding {{{
-nnoremap <leader>f za
-nnoremap <leader>j zj
-nnoremap <leader>k zk
+nnoremap <leader><leader> za
 " }}}
 
 " Highlight {{{
@@ -178,17 +176,10 @@ noremap k gk
 " NO more substitution use cl (Change Letter)
 noremap s <NOP>
 
-" Scroll Backward
-noremap <silent><leader>sb :call smooth_scroll#up(&scroll * 2, 10, 4)<CR>
-
 " Scroll Up
-noremap <silent><leader>su :call smooth_scroll#up(&scroll, 10, 2)<CR>
-
+noremap <silent><leader>k 15<C-Y>
 " Scroll Down
-noremap <silent><leader>sd :call smooth_scroll#down(&scroll, 10, 2)<CR>
-
-" Scroll Forward
-noremap <silent><leader>sf :call smooth_scroll#down(&scroll * 2, 10, 4)<CR>
+noremap <silent><leader>j 15<C-E>
 " }}}
 
 " Search {{{
@@ -218,7 +209,7 @@ noremap v' vi'
 " }}}
 
 " Window {{{
-nnoremap <leader>w <C-w>w
+nnoremap <silent> <leader>w <C-w>w
 nnoremap <leader>wv :vertical resize -5<CR>
 nnoremap <leader>wV :vertical resize +5<CR>
 nnoremap <leader>wh :resize -5<CR>
@@ -230,12 +221,11 @@ nnoremap <C-L> :noh<CR><C-L>
 " }}}
 
 " dotfiles {{{
-"
 " Open vimrc file in split view
-nnoremap <leader>ev :sp ~/.vimrc<CR>
+nnoremap <leader>ev :e ~/.vimrc<CR>
 
 " Open zshrc file in split view
-nnoremap <leader>ez :sp ~/.zshrc<CR>
+nnoremap <leader>ez :e ~/.zshrc<CR>
 
 " Source vimrc into current session
 nnoremap <leader>sv :so ~/.vimrc<CR>
@@ -255,6 +245,7 @@ iabbrev waht what
 
 " short-hand {{{
 iabbrev rne RN Engineering
+iabbrev RNE RN Engineering
 iabbrev tatg travis.gall@gmail.com
 iabbrev tatr tgall@rnengineering.com
 iabbrev tgall Travis Gall
@@ -263,13 +254,13 @@ iabbrev txs transmitters
 iabbrev Tx Transmitter
 iabbrev Txs Transmitters
 
-iabbrev Tue Tuesday
 iabbrev Mon Monday
+iabbrev Tue Tuesday
 iabbrev Wed Wednsday
 iabbrev Thu Thursday
 iabbrev Fri Friday
 iabbrev Sat Saturday
-iabbrev Sun Sunday
+iabbrev Sund Sunday
 iabbrev Jan January
 iabbrev Feb February
 iabbrev Mar March

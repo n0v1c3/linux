@@ -1,7 +1,7 @@
-" vim: foldmethod=marker:foldlevel=0
-
 " Name: .vimrc
 " Desc: Configuration file that is automatically loaded and applied to Vim
+
+set nocompatible
 
 " Plugins {{{
 " Pathogen source all vim bundles found in ~/.vim/bundle
@@ -246,6 +246,7 @@ iabbrev waht what
 " short-hand {{{
 iabbrev rne RN Engineering
 iabbrev RNE RN Engineering
+iabbrev SDK Shutdown Key
 iabbrev tatg travis.gall@gmail.com
 iabbrev tatr tgall@rnengineering.com
 iabbrev tgall Travis Gall
@@ -265,7 +266,6 @@ iabbrev Jan January
 iabbrev Feb February
 iabbrev Mar March
 iabbrev Apr April
-iabbrev May May
 iabbrev Jun June
 iabbrev Jul July
 iabbrev Aug August
@@ -284,7 +284,6 @@ iabbrev jan January
 iabbrev feb February
 iabbrev mar March
 iabbrev apr April
-iabbrev may May
 iabbrev jun June
 iabbrev jul July
 iabbrev aug August
@@ -302,3 +301,46 @@ command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
 " }}}
+
+" Functions {{{
+let g:word_count="<unknown>"
+
+function WordCount()
+	return g:word_count
+endfunction
+
+" Update the value of g:word_count with the current number of words in the
+" file
+function UpdateWordCount()
+	" Reset line count
+	let lnum = 1
+	" Reset word count
+	let n = 0
+	" For each line
+	while lnum <= line('$')
+		" Update the number of words
+		let n = n + len(split(getline(lnum)))
+		" Update the number of lines
+		let lnum = lnum + 1
+	endwhile
+	" Update system value
+	let g:word_count = n
+endfunction
+
+" Update the count when cursor is idle in command or insert mode
+" Update when idle for 1000 msec (default is 4000 msec)
+set updatetime=1000
+augroup WordCounter
+	au! CursorHold,CursorHoldI * call UpdateWordCount()
+augroup END
+" }}}
+
+" Statusline {{{
+" Set statusline
+highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
+" Highlight User1*%modified%file %type%=%word, %line, %percent
+set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
+" }}}
+
+" vim: foldmethod=marker:foldlevel=0
+

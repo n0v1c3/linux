@@ -51,5 +51,3 @@ alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date
 # NoteDown
 alias nd=bash\ ~/Documents/projects/personal/notedown/bash/notedown.sh
 alias nd-clean=bash\ ~/Documents/projects/personal/notedown/bash/nd-pdf_cleanup.sh
-
-alias vim='vim ~/.vimrc'

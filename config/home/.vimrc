@@ -33,9 +33,8 @@ iabbrev waht what
 iabbrev rne RN Engineering
 iabbrev RNE RN Engineering
 iabbrev SDK Shutdown Key
-iabbrev tatg travis.gall@gmail.com
-iabbrev tatr tgall@rnengineering.com
-iabbrev tgall Travis Gall
+iabbrev @@ travis.gall@gmail.com
+iabbrev @@@ tgall@rnengineering.com
 iabbrev tx transmitter
 iabbrev txs transmitters
 iabbrev Tx Transmitter
@@ -102,26 +101,25 @@ command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
 " Display {{{
 " Visual auto complete for command menu
 set wildmenu
-
 " Show command in bottom bar
 set showcmd
-
 " Do not redraw during operations such as macros
 set lazyredraw
-
-" Show 'invisible' characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+" TODO [161008] - What does this do??
 set list
-
 " Always display the status line even if only one window is displayed
 set laststatus=2
+" Hide useless variables
+let g:display_hidden = "hidden"
+set listchars=tab:\ \ ,trail:·,nbsp:_
 " }}}
 " Editor {{{
 " Igore file patterns globally
 set wildignore+=*.swp
-
 " Backspace over auto indent, line breaks, start of insert
 set backspace=indent,eol,start
+" Virtual editing, position cursor where there is are no characters (all modes)
+set virtualedit=all
 " }}}
 " Folding {{{
 set foldenable
@@ -140,6 +138,18 @@ set modeline
 set modelines=5
 " }}}
 "Functions {{{
+" Display {{{
+function DisplayHidden()
+	" Hide useless characters
+	if g:display_hidden == "hidden"
+		set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+		let g:display_hidden = ""
+	else
+		set lcs=tab:\ \ ,trail:·,nbsp:_
+		let g:display_hidden = "hidden"
+	endif
+endfunction
+" }}}
 " Markdown {{{
 " Disable markdown "mode"
 function MarkdownDisable()
@@ -195,19 +205,50 @@ endfunction
 " Spelling {{{
 " TODO [161006] - Add last misspelled word to a custom dictionary
 function SpellingAddLastWrongWord()
-	normal! mm[szg`m
+	execute "normal! mm[szg`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingAddNextWrongWord()
-	normal! mm]szg`m
+	execute "normal! mm]szg`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingFixLastWrongWord()
-	normal! mm[s1z=`m
+	execute "normal! mm[s1z=`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingFixNextWrongWord()
-	normal! mm]s1z=`m
+	execute "normal! mm]s1z=`m\<CR>"
+endfunction
+" }}}
+" Visual {{{
+function BlockMove(direction)
+	" Adjust offset for repositioning the visual marks '<,'>
+	if a:direction == "right"		" Move block RIGHT
+		let col_offset = 1
+		let line_offset = 0
+	elseif a:direction == "left"	" Move block LEFT
+		let col_offset = -1
+		let line_offset = 0
+	elseif a:direction == "up"      " Move block UP
+		let col_offset = 0
+		let line_offset = -1
+	elseif a:direction == "down"    " Move block DOWN
+		let col_offset = 0
+		let line_offset = 1
+	else                            " Invalid Entry
+		let col_offset = 0
+		let line_offset = 0
+	endif
+
+	" Get the current lines and columns from the visual marks
+	let start_line = line("'<")
+	let start_col = col("'<")
+	let end_line = line("'>")
+	let end_col = col("'>")
+
+	" Set visual marks positions {expr}, {list [buffer,line,column,off]}
+	call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])
+	call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])
 endfunction
 " }}}
 " Word Count {{{
@@ -296,6 +337,9 @@ nnoremap dd dd
 nnoremap d" di"
 nnoremap d' di'
 " }}}
+" Display {{{
+nnoremap <leader>dh :call DisplayHidden()<CR>
+" }}}
 " File system {{{
 nnoremap <leader>o :NERDTreeToggle<CR>
 " }}}
@@ -359,8 +403,16 @@ noremap <leader>tc :TODO<CR>
 " Typos {{{
 " }}}
 " Visual {{{
-noremap v" vi"
+" Visual select inside single quotes
 noremap v' vi'
+" Visual select inside double quotes
+noremap v" vi"
+" TODO [161008] - Up and down
+" TODO [161008] - Look into virtual columns to move past existing columns
+" Block move right
+vnoremap <RIGHT> xlP:call BlockMove("right")<CR>gv
+" Block move left
+vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
@@ -393,6 +445,7 @@ set ignorecase
 set smartcase
 " }}}
 " Snippets {{{
+" TODO [161008] - Does not handle indentation levels
 " The beginning of another snippet plugin
 " NOTES: "k" match "<CR>'s"
 " TODO [161007] - Use the NERDComment function to add a common
@@ -435,7 +488,8 @@ set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
 " Tabs/Indenting {{{
 " Enable plugins for indentation
 filetype plugin indent on
-
+" Do smart autoindenting when starting a new line
+set smartindent
 " Set tab width
 set tabstop=4
 set softtabstop=4

@@ -128,159 +128,166 @@ set foldnestmax=10
 set foldmethod=indent
 set foldlevel=2
 set foldcolumn=3
-
 " Enable vim to check for modelines throughout your files (best practice to
 " keep them at the top or the bottom of the file
 set modeline
-
 " Number of modelines to be checked, if set to zero then modeline checking
 " will be disabled
 set modelines=5
 " }}}
 "Functions {{{
+" TODO [161008] - Auto align comments on the right
 " Display {{{
 function DisplayHidden()
-	" Hide useless characters
-	if g:display_hidden == "hidden"
-		set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-		let g:display_hidden = ""
-	else
-		set lcs=tab:\ \ ,trail:·,nbsp:_
-		let g:display_hidden = "hidden"
-	endif
+    " Hide useless characters
+    if g:display_hidden == "hidden"
+        set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+        let g:display_hidden = ""
+    else
+        set lcs=tab:\ \ ,trail:·,nbsp:_
+        let g:display_hidden = "hidden"
+    endif
 endfunction
 " }}}
 " Markdown {{{
 " Disable markdown "mode"
 function MarkdownDisable()
-	" Remove page width
-	set colorcolumn=0
-	" Disable spell checking
-	set nospell
+    " Remove page width
+    set colorcolumn=0
+    " Disable spell checking
+    set nospell
 endfunction
 
 function MarkdownEnable()
-	" Mark page width
-	set colorcolumn=80
-	" Enable spell checking
-	setlocal spell spelllang=en_us
+    " Mark page width
+    set colorcolumn=80
+    " Enable spell checking
+    setlocal spell spelllang=en_us
 endfunction
 
 " Underline the current line for markdown documents
 function MarkdownHeader(level)
-	echom a:level
-	if a:level == ""
-		" Read character from line below
-		normal! mmjv"ry`m
-		" Read the first word on the current line
-		normal! mm^v"ty`m
+    echom a:level
+    if a:level == ""
+        " Read character from line below
+        normal! mmjv"ry`m
+        " Read the first word on the current line
+        normal! mm^v"ty`m
 
-		" Adjust function for current heading status
-		if @r == "="
-			" Replace "=" with "-"
-			normal! mmj^v$r-`m
-		elseif @r == "-"
-			" Replace "-" with leading "#"
-			execute "normal! mmjdd`mI### \<ESC>`m"
-		elseif @t == "#"
-			execute "normal! mmI#\<ESC>`m"
-		else
-			" Insert h1
-			execute "normal! :call MarkdownHeader(1)\<CR>"
-		endif
-	elseif a:level == 1
-		normal! mmyypv$r=`m
-	elseif a:level == 2
-		normal! mmyypv$r-`m
-	else
-		" Set mark at current courser position, move to beginning of line
-		normal! mm^
-		" Insert header
-		execute "normal!" a:level . "i#\<ESC>a "
-		" Return to mark
-		normal! `m
-	endif
+        " Adjust function for current heading status
+        if @r == "="
+            " Replace "=" with "-"
+            normal! mmj^v$r-`m
+        elseif @r == "-"
+            " Replace "-" with leading "#"
+            execute "normal! mmjdd`mI### \<ESC>`m"
+        elseif @t == "#"
+            execute "normal! mmI#\<ESC>`m"
+        else
+            " Insert h1
+            execute "normal! :call MarkdownHeader(1)\<CR>"
+        endif
+    elseif a:level == 1
+        normal! mmyypv$r=`m
+    elseif a:level == 2
+        normal! mmyypv$r-`m
+    else
+        " Set mark at current courser position, move to beginning of line
+        normal! mm^
+        " Insert header
+        execute "normal!" a:level . "i#\<ESC>a "
+        " Return to mark
+        normal! `m
+    endif
 endfunction
 " }}}
 " Spelling {{{
 " TODO [161006] - Add last misspelled word to a custom dictionary
 function SpellingAddLastWrongWord()
-	execute "normal! mm[szg`m\<CR>"
+    execute "normal! mm[szg`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingAddNextWrongWord()
-	execute "normal! mm]szg`m\<CR>"
+    execute "normal! mm]szg`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingFixLastWrongWord()
-	execute "normal! mm[s1z=`m\<CR>"
+    execute "normal! mm[s1z=`m\<CR>"
 endfunction
 " Correct the last incorrect word and return to same position
 function SpellingFixNextWrongWord()
-	execute "normal! mm]s1z=`m\<CR>"
+    execute "normal! mm]s1z=`m\<CR>"
 endfunction
 " }}}
 " Visual {{{
+" TODO [161008] - Clean-up when using the virtual space
 function BlockMove(direction)
-	" Adjust offset for repositioning the visual marks '<,'>
-	if a:direction == "right"		" Move block RIGHT
-		let col_offset = 1
-		let line_offset = 0
-	elseif a:direction == "left"	" Move block LEFT
-		let col_offset = -1
-		let line_offset = 0
-	elseif a:direction == "up"      " Move block UP
-		let col_offset = 0
-		let line_offset = -1
-	elseif a:direction == "down"    " Move block DOWN
-		let col_offset = 0
-		let line_offset = 1
-	else                            " Invalid Entry
-		let col_offset = 0
-		let line_offset = 0
-	endif
-
-	" Get the current lines and columns from the visual marks
-	let start_line = line("'<")
-	let start_col = col("'<")
-	let end_line = line("'>")
-	let end_col = col("'>")
-
-	" Set visual marks positions {expr}, {list [buffer,line,column,off]}
-	call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])
-	call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])
-endfunction
+    " Get the current lines and columns from the visual marks
+    let start_line = line("'<")
+    let start_col = col("'<")
+    let end_line = line("'>")
+    let end_col = col("'>")
+    let block_height = getpos("'>")[1]-getpos("'<")[1]+1
+    let block_width = getpos("'>")[2]-getpos("'<")[2]+1
+    " Adjust offset for repositioning the visual marks '<,'>
+    if a:direction == "right"		
+        " Move block RIGHT
+        let col_offset = 1
+        let line_offset = 0
+    elseif a:direction == "left"	
+        " Move block LEFT
+        let col_offset = -1
+        let line_offset = 0
+    elseif a:direction == "up"
+        " Move block UP
+        execute "normal " . (block_width-1) . "l" . block_width . "x" . block_width . "h" . block_height . "jP"
+        let col_offset = 0
+        let line_offset = -1
+    elseif a:direction == "down"
+        " Move block DOWN
+        execute "normal " . (block_height-1) . "j" . (block_width-1) . "l" . block_width . "x" . block_width . "h" . block_height . "kP"
+        let col_offset = 0
+        let line_offset = 1
+    else
+        " Invalid Entry
+        let col_offset = 0
+        let line_offset = 0
+    endif
+    " Set visual marks positions {expr}, {list [buffer,line,column,off]}
+    call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])
+    call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])
+endfunction  
 " }}}
 " Word Count {{{
 let g:word_count="<unknown>"
 
 function WordCount()
-	return g:word_count
+    return g:word_count
 endfunction
 
 " Update the value of g:word_count with the current number of words in the
 " file
 function UpdateWordCount()
-	" Reset line count
-	let lnum = 1
-	" Reset word count
-	let n = 0
-	" For each line
-	while lnum <= line('$')
-		" Update the number of words
-		let n = n + len(split(getline(lnum)))
-		" Update the number of lines
-		let lnum = lnum + 1
-	endwhile
-	" Update system value
-	let g:word_count = n
+    " Reset line count
+    let lnum = 1
+    " Reset word count
+    let n = 0
+    " For each line
+    while lnum <= line('$')
+        " Update the number of words
+        let n = n + len(split(getline(lnum)))
+        " Update the number of lines
+        let lnum = lnum + 1
+    endwhile
+    " Update system value
+    let g:word_count = n
 endfunction
 
 " Update the count when cursor is idle in command or insert mode
 " Update when idle for 1000 msec (default is 4000 msec)
 set updatetime=1000
 augroup WordCounter
-	au! CursorHold,CursorHoldI * call UpdateWordCount()
+    au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END
 "}}}
 " }}}
@@ -308,7 +315,7 @@ autocmd BufRead,BufNewFile * syntax match CommentOpen /\"\ }}}/
 " Leader key {{{
 let mapleader="\<space>"
 " }}}
-" dotfiles {{{
+" Dotfiles {{{
 " Open vimrc file in split view
 nnoremap <leader>et :sp ~/.tmux.conf<CR>
 
@@ -407,12 +414,14 @@ noremap <leader>tc :TODO<CR>
 noremap v' vi'
 " Visual select inside double quotes
 noremap v" vi"
-" TODO [161008] - Up and down
-" TODO [161008] - Look into virtual columns to move past existing columns
 " Block move right
 vnoremap <RIGHT> xlP:call BlockMove("right")<CR>gv
 " Block move left
 vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
+" Block move up
+vnoremap <UP> xkP:call BlockMove("up")<CR>gv
+" Block move down
+vnoremap <DOWN> xjP:call BlockMove("down")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
@@ -451,27 +460,27 @@ set smartcase
 " TODO [161007] - Use the NERDComment function to add a common
 " Class {{{
 function SnipClass()
-	if &filetype == "php"
-		execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert
-	endif
+    if &filetype == "php"
+        execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert
+    endif
 endfunction
 " }}}
 " Function {{{
 function SnipFunction()
-	if &filetype == "vim"
-		execute "normal! ofunction \<CR>endfunction\<ESC>k" | startinsert!
-	elseif &filetype == "sh"
-		execute "normal! ofunction \<CR>{\<CR>}\<ESC>kk" | startinsert!
-	endif
+    if &filetype == "vim"
+        execute "normal! ofunction \<CR>endfunction\<ESC>k" | startinsert!
+    elseif &filetype == "sh"
+        execute "normal! ofunction \<CR>{\<CR>}\<ESC>kk" | startinsert!
+    endif
 endfunction
 " }}}
 " If {{{
 function SnipIf()
-	if &filetype == "php"
-		execute "normal! o// IF\<CR>\<ESC>^Diif () {\<CR>}\<ESC>kf)" | startinsert
-	elseif &filetype == "vim"
-		execute "normal! o\" IF\<CR>\<ESC>^Diif \<CR>endif\<ESC>k" | startinsert!
-	endif
+    if &filetype == "php"
+        execute "normal! o// IF\<CR>\<ESC>^Diif () {\<CR>}\<ESC>kf)" | startinsert
+    elseif &filetype == "vim"
+        execute "normal! o\" IF\<CR>\<ESC>^Diif \<CR>endif\<ESC>k" | startinsert!
+    endif
 endfunction
 " }}}
 " }}}
@@ -494,6 +503,8 @@ set smartindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+" Expand all tabs
+set expandtab
 " }}}
 
 " vim: foldmethod=marker:foldlevel=0

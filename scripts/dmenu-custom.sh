@@ -3,11 +3,6 @@
 #===================================================================================================
 # a simple dmenu session script 
 #===================================================================================================
-
-# Script directory
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/../.." && pwd)"
-
-
 DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(echo "android-studio
@@ -58,10 +53,6 @@ vlc" | $DMENU)
 			;;
 		gedit)
 			gedit &
-			;;
-		# TODO [161001] - Not functioning
-		gource)
-			gource $DIR &
 			;;
 		hibernate)
 			pm-hibernate &

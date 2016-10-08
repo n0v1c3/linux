@@ -1,5 +1,5 @@
 " Name: .vimrc
-" Desc: Configuration file that is automatically loaded and applied to Vim
+" Description: Configuration file that is automatically loaded and applied to Vim
 
 set nocompatible
 
@@ -89,7 +89,7 @@ set background=dark
 " Preferred color scheme
 colorscheme desert
 
-" Autohotkey
+" AutoHotKey
 au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Commands {{{
@@ -100,7 +100,7 @@ command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
 " }}}
 " Display {{{
-" Visual Autocomplete for command menu
+" Visual auto complete for command menu
 set wildmenu
 
 " Show command in bottom bar
@@ -117,7 +117,10 @@ set list
 set laststatus=2
 " }}}
 " Editor {{{
-" Backspace over autoindent, line breaks, start of insert
+" Igore file patterns globally
+set wildignore+=*.swp
+
+" Backspace over auto indent, line breaks, start of insert
 set backspace=indent,eol,start
 " }}}
 " Folding {{{
@@ -135,9 +138,8 @@ set modeline
 " Number of modelines to be checked, if set to zero then modeline checking
 " will be disabled
 set modelines=5
-" :set foldexpr=getline(v:lnum)=~'^\\s*$'&&getline(v:lnum+1)=~'\\S'?'<1':1
 " }}}
-" Functions {{{
+"Functions {{{
 " Markdown {{{
 " Disable markdown "mode"
 function MarkdownDisable()
@@ -168,13 +170,11 @@ function MarkdownHeader(level)
 			" Replace "=" with "-"
 			normal! mmj^v$r-`m
 		elseif @r == "-"
-			" TODO [161007] - Adjust for last line in the document
 			" Replace "-" with leading "#"
-			execute "normal! mmjddkI### \<ESC>`m"
+			execute "normal! mmjdd`mI### \<ESC>`m"
 		elseif @t == "#"
 			execute "normal! mmI#\<ESC>`m"
 		else
-			" TODO [161007] - Can this be cleaner?
 			" Insert h1
 			execute "normal! :call MarkdownHeader(1)\<CR>"
 		endif
@@ -194,12 +194,19 @@ endfunction
 " }}}
 " Spelling {{{
 " TODO [161006] - Add last misspelled word to a custom dictionary
+function SpellingAddLastWrongWord()
+	normal! mm[szg`m
+endfunction
 " Correct the last incorrect word and return to same position
-function SpellingLastWrongWord()
+function SpellingAddNextWrongWord()
+	normal! mm]szg`m
+endfunction
+" Correct the last incorrect word and return to same position
+function SpellingFixLastWrongWord()
 	normal! mm[s1z=`m
 endfunction
 " Correct the last incorrect word and return to same position
-function SpellingNextWrongWord()
+function SpellingFixNextWrongWord()
 	normal! mm]s1z=`m
 endfunction
 " }}}
@@ -237,9 +244,6 @@ augroup END
 "}}}
 " }}}
 " Highlighting {{{
-" Highlighting for the width of the page (moved to MarkdownEnable())
-"set colorcolumn=80
-
 " Syntax highlighting
 filetype plugin on
 syntax on
@@ -334,13 +338,19 @@ nnoremap <C-L> :noh<CR><C-L>
 " Search {{{
 vnoremap <leader>/ y/<C-R>"<CR>
 " }}}
+" Snippets {{{
+nnoremap <leader>snc :call SnipClass()<CR>
+nnoremap <leader>snf :call SnipFunction()<CR>
+nnoremap <leader>sni :call SnipIf()<CR>
+" }}}
 " Sorting {{{
 vnoremap <leader>sm :'<,'>sort -M
 " }}}
 " Spelling {{{
-nnoremap <leader>spl :call SpellingLastWrongWord()
-nnoremap <leader>spn :call SpellingNextWrongWord()
-
+nnoremap <leader>sal :call SpellingAddLastWrongWord()
+nnoremap <leader>san :call SpellingAddNextWrongWord()
+nnoremap <leader>sfl :call SpellingFixLastWrongWord()
+nnoremap <leader>sfn :call SpellingFixNextWrongWord()
 " }}}
 " TODO {{{
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
@@ -353,11 +363,13 @@ noremap v" vi"
 noremap v' vi'
 " }}}
 " Window {{{
-nnoremap <silent> <leader>w <C-w>w
-nnoremap <leader>wv :vertical resize -5<CR>
-nnoremap <leader>wV :vertical resize +5<CR>
-nnoremap <leader>wh :resize -5<CR>
-nnoremap <leader>wH :resize +5<CR>
+nnoremap <silent> <leader>w <C-w>
+
+" TODO [161007] - Overlap with vertical split
+"nnoremap <leader>wv :vertical resize -5<CR>
+"nnoremap <leader>wV :vertical resize +5<CR>
+"nnoremap <leader>wh :resize -5<CR>
+"nnoremap <leader>wH :resize +5<CR>
 " }}}
 " Yank {{{
 map Y y$
@@ -380,10 +392,37 @@ set ignorecase
 " Only search for matching capitals when they are used
 set smartcase
 " }}}
+" Snippets {{{
+" The beginning of another snippet plugin
+" NOTES: "k" match "<CR>'s"
+" TODO [161007] - Use the NERDComment function to add a common
+" Class {{{
+function SnipClass()
+	if &filetype == "php"
+		execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert
+	endif
+endfunction
+" }}}
+" Function {{{
+function SnipFunction()
+	if &filetype == "vim"
+		execute "normal! ofunction \<CR>endfunction\<ESC>k" | startinsert!
+	elseif &filetype == "sh"
+		execute "normal! ofunction \<CR>{\<CR>}\<ESC>kk" | startinsert!
+	endif
+endfunction
+" }}}
+" If {{{
+function SnipIf()
+	if &filetype == "php"
+		execute "normal! o// IF\<CR>\<ESC>^Diif () {\<CR>}\<ESC>kf)" | startinsert
+	elseif &filetype == "vim"
+		execute "normal! o\" IF\<CR>\<ESC>^Diif \<CR>endif\<ESC>k" | startinsert!
+	endif
+endfunction
+" }}}
+" }}}
 " Spelling {{{
-" Turn on spell check (moved to MarkdownEnable())
-"setlocal spell spelllang=en_us
-
 " Custom spell-check list
 set spellfile=~/.vim/spell/wordlist.utf-8.add
 " }}}
@@ -404,4 +443,3 @@ set shiftwidth=4
 " }}}
 
 " vim: foldmethod=marker:foldlevel=0
-

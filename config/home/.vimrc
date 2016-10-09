@@ -6,19 +6,16 @@ set nocompatible
 " Plugins {{{
 " Pathogen source all vim bundles found in ~/.vim/bundle
 execute pathogen#infect()
-
 " Case Auto-Indent enable
 let g:sh_indent_case_labels=1
-
 " NERDTree open to right
 let g:NERDTreeWinPos="left"
-
 " NerdCommenter add a space after auto comments
 let g:NERDSpaceDelims=1
 " }}}
 " Abbreviations {{{
 " clean code {{{
-iabbrev <cr> <CR>
+iabbrev cr CR
 " }}}
 " common typos {{{
 iabbrev abit a bit
@@ -230,11 +227,11 @@ function BlockMove(direction)
     let block_height = getpos("'>")[1]-getpos("'<")[1]+1
     let block_width = getpos("'>")[2]-getpos("'<")[2]+1
     " Adjust offset for repositioning the visual marks '<,'>
-    if a:direction == "right"		
+    if a:direction == "right"
         " Move block RIGHT
         let col_offset = 1
         let line_offset = 0
-    elseif a:direction == "left"	
+    elseif a:direction == "left"
         " Move block LEFT
         let col_offset = -1
         let line_offset = 0
@@ -256,7 +253,7 @@ function BlockMove(direction)
     " Set visual marks positions {expr}, {list [buffer,line,column,off]}
     call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])
     call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])
-endfunction  
+endfunction
 " }}}
 " Word Count {{{
 let g:word_count="<unknown>"
@@ -306,8 +303,8 @@ set incsearch
 set hlsearch
 
 " Keep the manual folding highlighting
-highlight CommentClose ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender 
-highlight CommentOpen ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender 
+highlight CommentClose ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender
+highlight CommentOpen ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender
 autocmd BufRead,BufNewFile * syntax match CommentClose /\".*{{{/
 autocmd BufRead,BufNewFile * syntax match CommentOpen /\"\ }}}/
 " }}}
@@ -351,7 +348,7 @@ nnoremap <leader>dh :call DisplayHidden()<CR>
 nnoremap <leader>o :NERDTreeToggle<CR>
 " }}}
 " File management {{{
-noremap <leader>q gg=G:wq<CR>
+noremap <leader>q gg=G<C-o><C-o>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>:wq<CR>
 " }}}
 " Folding {{{
 nnoremap <leader><leader> za
@@ -360,7 +357,7 @@ nnoremap <leader><leader> za
 nnoremap <leader>hn :noh<CR>
 " }}}
 " Indent {{{
-noremap <leader>gg gg=G<C-o><C-o>
+noremap <leader>gg gg=G<C-o><C-o>:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " }}}
 " Markdown {{{
 nnoremap <leader>md :call MarkdownDisable()<CR>
@@ -435,7 +432,6 @@ nnoremap <silent> <leader>w <C-w>
 " Yank {{{
 map Y y$
 " }}}
-" }}}
 " Numbering {{{
 " Display relative line number along the left hand side
 set relativenumber
@@ -449,7 +445,6 @@ set scrolloff=5
 " Searching {{{
 " Ignore case of given search terms
 set ignorecase
-
 " Only search for matching capitals when they are used
 set smartcase
 " }}}

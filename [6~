@@ -1,0 +1,344 @@
+[1mdiff --git a/config/home/.vimrc b/config/home/.vimrc[m
+[1mindex 632180a..54303f7 100644[m
+[1m--- a/config/home/.vimrc[m
+[1m+++ b/config/home/.vimrc[m
+[36m@@ -128,159 +128,166 @@[m [mset foldnestmax=10[m
+ set foldmethod=indent[m
+ set foldlevel=2[m
+ set foldcolumn=3[m
+[31m-[m
+ " Enable vim to check for modelines throughout your files (best practice to[m
+ " keep them at the top or the bottom of the file[m
+ set modeline[m
+[31m-[m
+ " Number of modelines to be checked, if set to zero then modeline checking[m
+ " will be disabled[m
+ set modelines=5[m
+ " }}}[m
+ "Functions {{{[m
+[32m+[m[32m" TODO [161008] - Auto align comments on the right[m
+ " Display {{{[m
+ function DisplayHidden()[m
+[31m-	" Hide useless characters[m
+[31m-	if g:display_hidden == "hidden"[m
+[31m-		set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_[m
+[31m-		let g:display_hidden = ""[m
+[31m-	else[m
+[31m-		set lcs=tab:\ \ ,trail:·,nbsp:_[m
+[31m-		let g:display_hidden = "hidden"[m
+[31m-	endif[m
+[32m+[m[32m    " Hide useless characters[m
+[32m+[m[32m    if g:display_hidden == "hidden"[m
+[32m+[m[32m        set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_[m
+[32m+[m[32m        let g:display_hidden = ""[m
+[32m+[m[32m    else[m
+[32m+[m[32m        set lcs=tab:\ \ ,trail:·,nbsp:_[m
+[32m+[m[32m        let g:display_hidden = "hidden"[m
+[32m+[m[32m    endif[m
+ endfunction[m
+ " }}}[m
+ " Markdown {{{[m
+ " Disable markdown "mode"[m
+ function MarkdownDisable()[m
+[31m-	" Remove page width[m
+[31m-	set colorcolumn=0[m
+[31m-	" Disable spell checking[m
+[31m-	set nospell[m
+[32m+[m[32m    " Remove page width[m
+[32m+[m[32m    set colorcolumn=0[m
+[32m+[m[32m    " Disable spell checking[m
+[32m+[m[32m    set nospell[m
+ endfunction[m
+ [m
+ function MarkdownEnable()[m
+[31m-	" Mark page width[m
+[31m-	set colorcolumn=80[m
+[31m-	" Enable spell checking[m
+[31m-	setlocal spell spelllang=en_us[m
+[32m+[m[32m    " Mark page width[m
+[32m+[m[32m    set colorcolumn=80[m
+[32m+[m[32m    " Enable spell checking[m
+[32m+[m[32m    setlocal spell spelllang=en_us[m
+ endfunction[m
+ [m
+ " Underline the current line for markdown documents[m
+ function MarkdownHeader(level)[m
+[31m-	echom a:level[m
+[31m-	if a:level == ""[m
+[31m-		" Read character from line below[m
+[31m-		normal! mmjv"ry`m[m
+[31m-		" Read the first word on the current line[m
+[31m-		normal! mm^v"ty`m[m
+[31m-[m
+[31m-		" Adjust function for current heading status[m
+[31m-		if @r == "="[m
+[31m-			" Replace "=" with "-"[m
+[31m-			normal! mmj^v$r-`m[m
+[31m-		elseif @r == "-"[m
+[31m-			" Replace "-" with leading "#"[m
+[31m-			execute "normal! mmjdd`mI### \<ESC>`m"[m
+[31m-		elseif @t == "#"[m
+[31m-			execute "normal! mmI#\<ESC>`m"[m
+[31m-		else[m
+[31m-			" Insert h1[m
+[31m-			execute "normal! :call MarkdownHeader(1)\<CR>"[m
+[31m-		endif[m
+[31m-	elseif a:level == 1[m
+[31m-		normal! mmyypv$r=`m[m
+[31m-	elseif a:level == 2[m
+[31m-		normal! mmyypv$r-`m[m
+[31m-	else[m
+[31m-		" Set mark at current courser position, move to beginning of line[m
+[31m-		normal! mm^[m
+[31m-		" Insert header[m
+[31m-		execute "normal!" a:level . "i#\<ESC>a "[m
+[31m-		" Return to mark[m
+[31m-		normal! `m[m
+[31m-	endif[m
+[32m+[m[32m    echom a:level[m
+[32m+[m[32m    if a:level == ""[m
+[32m+[m[32m        " Read character from line below[m
+[32m+[m[32m        normal! mmjv"ry`m[m
+[32m+[m[32m        " Read the first word on the current line[m
+[32m+[m[32m        normal! mm^v"ty`m[m
+[32m+[m
+[32m+[m[32m        " Adjust function for current heading status[m
+[32m+[m[32m        if @r == "="[m
+[32m+[m[32m            " Replace "=" with "-"[m
+[32m+[m[32m            normal! mmj^v$r-`m[m
+[32m+[m[32m        elseif @r == "-"[m
+[32m+[m[32m            " Replace "-" with leading "#"[m
+[32m+[m[32m            execute "normal! mmjdd`mI### \<ESC>`m"[m
+[32m+[m[32m        elseif @t == "#"[m
+[32m+[m[32m            execute "normal! mmI#\<ESC>`m"[m
+[32m+[m[32m        else[m
+[32m+[m[32m            " Insert h1[m
+[32m+[m[32m            execute "normal! :call MarkdownHeader(1)\<CR>"[m
+[32m+[m[32m        endif[m
+[32m+[m[32m    elseif a:level == 1[m
+[32m+[m[32m        normal! mmyypv$r=`m[m
+[32m+[m[32m    elseif a:level == 2[m
+[32m+[m[32m        normal! mmyypv$r-`m[m
+[32m+[m[32m    else[m
+[32m+[m[32m        " Set mark at current courser position, move to beginning of line[m
+[32m+[m[32m        normal! mm^[m
+[32m+[m[32m        " Insert header[m
+[32m+[m[32m        execute "normal!" a:level . "i#\<ESC>a "[m
+[32m+[m[32m        " Return to mark[m
+[32m+[m[32m        normal! `m[m
+[32m+[m[32m    endif[m
+ endfunction[m
+ " }}}[m
+ " Spelling {{{[m
+ " TODO [161006] - Add last misspelled word to a custom dictionary[m
+ function SpellingAddLastWrongWord()[m
+[31m-	execute "normal! mm[szg`m\<CR>"[m
+[32m+[m[32m    execute "normal! mm[szg`m\<CR>"[m
+ endfunction[m
+ " Correct the last incorrect word and return to same position[m
+ function SpellingAddNextWrongWord()[m
+[31m-	execute "normal! mm]szg`m\<CR>"[m
+[32m+[m[32m    execute "normal! mm]szg`m\<CR>"[m
+ endfunction[m
+ " Correct the last incorrect word and return to same position[m
+ function SpellingFixLastWrongWord()[m
+[31m-	execute "normal! mm[s1z=`m\<CR>"[m
+[32m+[m[32m    execute "normal! mm[s1z=`m\<CR>"[m
+ endfunction[m
+ " Correct the last incorrect word and return to same position[m
+ function SpellingFixNextWrongWord()[m
+[31m-	execute "normal! mm]s1z=`m\<CR>"[m
+[32m+[m[32m    execute "normal! mm]s1z=`m\<CR>"[m
+ endfunction[m
+ " }}}[m
+ " Visual {{{[m
+[32m+[m[32m" TODO [161008] - Clean-up when using the virtual space[m
+ function BlockMove(direction)[m
+[31m-	" Adjust offset for repositioning the visual marks '<,'>[m
+[31m-	if a:direction == "right"		" Move block RIGHT[m
+[31m-		let col_offset = 1[m
+[31m-		let line_offset = 0[m
+[31m-	elseif a:direction == "left"	" Move block LEFT[m
+[31m-		let col_offset = -1[m
+[31m-		let line_offset = 0[m
+[31m-	elseif a:direction == "up"      " Move block UP[m
+[31m-		let col_offset = 0[m
+[31m-		let line_offset = -1[m
+[31m-	elseif a:direction == "down"    " Move block DOWN[m
+[31m-		let col_offset = 0[m
+[31m-		let line_offset = 1[m
+[31m-	else                            " Invalid Entry[m
+[31m-		let col_offset = 0[m
+[31m-		let line_offset = 0[m
+[31m-	endif[m
+[31m-[m
+[31m-	" Get the current lines and columns from the visual marks[m
+[31m-	let start_line = line("'<")[m
+[31m-	let start_col = col("'<")[m
+[31m-	let end_line = line("'>")[m
+[31m-	let end_col = col("'>")[m
+[31m-[m
+[31m-	" Set visual marks positions {expr}, {list [buffer,line,column,off]}[m
+[31m-	call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])[m
+[31m-	call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])[m
+[31m-endfunction[m
+[32m+[m[32m    " Get the current lines and columns from the visual marks[m
+[32m+[m[32m    let start_line = line("'<")[m
+[32m+[m[32m    let start_col = col("'<")[m
+[32m+[m[32m    let end_line = line("'>")[m
+[32m+[m[32m    let end_col = col("'>")[m
+[32m+[m[32m    let block_height = getpos("'>")[1]-getpos("'<")[1]+1[m
+[32m+[m[32m    let block_width = getpos("'>")[2]-getpos("'<")[2]+1[m
+[32m+[m[32m    " Adjust offset for repositioning the visual marks '<,'>[m
+[32m+[m[32m    if a:direction == "right"[m[41m		[m
+[32m+[m[32m        " Move block RIGHT[m
+[32m+[m[32m        let col_offset = 1[m
+[32m+[m[32m        let line_offset = 0[m
+[32m+[m[32m    elseif a:direction == "left"[m[41m	[m
+[32m+[m[32m        " Move block LEFT[m
+[32m+[m[32m        let col_offset = -1[m
+[32m+[m[32m        let line_offset = 0[m
+[32m+[m[32m    elseif a:direction == "up"[m
+[32m+[m[32m        " Move block UP[m
+[32m+[m[32m        execute "normal " . (block_width-1) . "l" . block_width . "x" . block_width . "h" . block_height . "jP"[m
+[32m+[m[32m        let col_offset = 0[m
+[32m+[m[32m        let line_offset = -1[m
+[32m+[m[32m    elseif a:direction == "down"[m
+[32m+[m[32m        " Move block DOWN[m
+[32m+[m[32m        execute "normal " . (block_height-1) . "j" . (block_width-1) . "l" . block_width . "x" . block_width . "h" . block_height . "kP"[m
+[32m+[m[32m        let col_offset = 0[m
+[32m+[m[32m        let line_offset = 1[m
+[32m+[m[32m    else[m
+[32m+[m[32m        " Invalid Entry[m
+[32m+[m[32m        let col_offset = 0[m
+[32m+[m[32m        let line_offset = 0[m
+[32m+[m[32m    endif[m
+[32m+[m[32m    " Set visual marks positions {expr}, {list [buffer,line,column,off]}[m
+[32m+[m[32m    call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])[m
+[32m+[m[32m    call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])[m
+[32m+[m[32mendfunction[m[41m  [m
+ " }}}[m
+ " Word Count {{{[m
+ let g:word_count="<unknown>"[m
+ [m
+ function WordCount()[m
+[31m-	return g:word_count[m
+[32m+[m[32m    return g:word_count[m
+ endfunction[m
+ [m
+ " Update the value of g:word_count with the current number of words in the[m
+ " file[m
+ function UpdateWordCount()[m
+[31m-	" Reset line count[m
+[31m-	let lnum = 1[m
+[31m-	" Reset word count[m
+[31m-	let n = 0[m
+[31m-	" For each line[m
+[31m-	while lnum <= line('$')[m
+[31m-		" Update the number of words[m
+[31m-		let n = n + len(split(getline(lnum)))[m
+[31m-		" Update the number of lines[m
+[31m-		let lnum = lnum + 1[m
+[31m-	endwhile[m
+[31m-	" Update system value[m
+[31m-	let g:word_count = n[m
+[32m+[m[32m    " Reset line count[m
+[32m+[m[32m    let lnum = 1[m
+[32m+[m[32m    " Reset word count[m
+[32m+[m[32m    let n = 0[m
+[32m+[m[32m    " For each line[m
+[32m+[m[32m    while lnum <= line('$')[m
+[32m+[m[32m        " Update the number of words[m
+[32m+[m[32m        let n = n + len(split(getline(lnum)))[m
+[32m+[m[32m        " Update the number of lines[m
+[32m+[m[32m        let lnum = lnum + 1[m
+[32m+[m[32m    endwhile[m
+[32m+[m[32m    " Update system value[m
+[32m+[m[32m    let g:word_count = n[m
+ endfunction[m
+ [m
+ " Update the count when cursor is idle in command or insert mode[m
+ " Update when idle for 1000 msec (default is 4000 msec)[m
+ set updatetime=1000[m
+ augroup WordCounter[m
+[31m-	au! CursorHold,CursorHoldI * call UpdateWordCount()[m
+[32m+[m[32m    au! CursorHold,CursorHoldI * call UpdateWordCount()[m
+ augroup END[m
+ "}}}[m
+ " }}}[m
+[36m@@ -308,7 +315,7 @@[m [mautocmd BufRead,BufNewFile * syntax match CommentOpen /\"\ }}}/[m
+ " Leader key {{{[m
+ let mapleader="\<space>"[m
+ " }}}[m
+[31m-" dotfiles {{{[m
+[32m+[m[32m" Dotfiles {{{[m
+ " Open vimrc file in split view[m
+ nnoremap <leader>et :sp ~/.tmux.conf<CR>[m
+ [m
+[36m@@ -407,12 +414,14 @@[m [mnoremap <leader>tc :TODO<CR>[m
+ noremap v' vi'[m
+ " Visual select inside double quotes[m
+ noremap v" vi"[m
+[31m-" TODO [161008] - Up and down[m
+[31m-" TODO [161008] - Look into virtual columns to move past existing columns[m
+ " Block move right[m
+ vnoremap <RIGHT> xlP:call BlockMove("right")<CR>gv[m
+ " Block move left[m
+ vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv[m
+[32m+[m[32m" Block move up[m
+[32m+[m[32mvnoremap <UP> xkP:call BlockMove("up")<CR>gv[m
+[32m+[m[32m" Block move down[m
+[32m+[m[32mvnoremap <DOWN> xjP:call BlockMove("down")<CR>gv[m
+ " }}}[m
+ " Window {{{[m
+ nnoremap <silent> <leader>w <C-w>[m
+[36m@@ -451,27 +460,27 @@[m [mset smartcase[m
+ " TODO [161007] - Use the NERDComment function to add a common[m
+ " Class {{{[m
+ function SnipClass()[m
+[31m-	if &filetype == "php"[m
+[31m-		execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert[m
+[31m-	endif[m
+[32m+[m[32m    if &filetype == "php"[m
+[32m+[m[32m        execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert[m
+[32m+[m[32m    endif[m
+ endfunction[m
+ " }}}[m
+ " Function {{{[m
+ function SnipFunction()[m
+[31m-	if &filetype == "vim"[m
+[31m-		execute "normal! ofunction \<CR>endfunction\<ESC>k" | startinsert![m
+[31m-	elseif &filetype == "sh"[m
+[31m-		execute "normal! ofunction \<CR>{\<CR>}\<ESC>kk" | startinsert![m
+[31m-	endif[m
+[32m+[m[32m    if &filetype == "vim"[m
+[32m+[m[32m        execute "normal! ofunction \<CR>endfunction\<ESC>k" | startinsert![m
+[32m+[m[32m    elseif &filetype == "sh"[m
+[32m+[m[32m        execute "normal! ofunction \<CR>{\<CR>}\<ESC>kk" | startinsert![m
+[32m+[m[32m    endif[m
+ endfunction[m
+ " }}}[m
+ " If {{{[m
+ function SnipIf()[m
+[31m-	if &filetype == "php"[m
+[31m-		execute "normal! o// IF\<CR>\<ESC>^Diif () {\<CR>}\<ESC>kf)" | startinsert[m
+[31m-	elseif &filetype == "vim"[m
+[31m-		execute "normal! o\" IF\<CR>\<ESC>^Diif \<CR>endif\<ESC>k" | startinsert![m
+[31m-	endif[m
+[32m+[m[32m    if &filetype == "php"[m
+[32m+[m[32m        execute "normal! o// IF\<CR>\<ESC>^Diif () {\<CR>}\<ESC>kf)" | startinsert[m
+[32m+[m[32m    elseif &filetype == "vim"[m
+[32m+[m[32m        execute "normal! o\" IF\<CR>\<ESC>^Diif \<CR>endif\<ESC>k" | startinsert![m
+[32m+[m[32m    endif[m
+ endfunction[m
+ " }}}[m
+ " }}}[m
+[36m@@ -494,6 +503,8 @@[m [mset smartindent[m
+ set tabstop=4[m
+ set softtabstop=4[m
+ set shiftwidth=4[m
+[32m+[m[32m" Expand all tabs[m
+[32m+[m[32mset expandtab[m
+ " }}}[m
+ [m
+ " vim: foldmethod=marker:foldlevel=0[m

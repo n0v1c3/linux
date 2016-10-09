@@ -36,7 +36,6 @@ iabbrev tx transmitter
 iabbrev txs transmitters
 iabbrev Tx Transmitter
 iabbrev Txs Transmitters
-
 iabbrev Mon Monday
 iabbrev Tue Tuesday
 iabbrev Wed Wednsday
@@ -431,6 +430,7 @@ nnoremap <silent> <leader>w <C-w>
 " }}}
 " Yank {{{
 map Y y$
+" }}}
 " }}}
 " Numbering {{{
 " Display relative line number along the left hand side

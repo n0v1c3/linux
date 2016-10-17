@@ -8,9 +8,11 @@
 
 " Name: .vimrc
 " Description: Configuration file that is automatically loaded and applied to Vim
+" Notes:
+"   - Manually download spelling files (en_u) ~ ftp://ftp.vim.org/pub/vim/runtime/spell/
 
 " Plugins {{{
-" Pathogen source all vim bundles found in ~/.vim/bundle
+" Pathogen source all Vim bundles found in ~/.vim/bundle
 execute pathogen#infect()
 " Case Auto-Indent enable
 let g:sh_indent_case_labels=1
@@ -128,7 +130,7 @@ set foldnestmax=10
 set foldmethod=indent
 set foldlevel=2
 set foldcolumn=3
-" Enable vim to check for modelines throughout your files (best practice to
+" Enable Vim to check for modelines throughout your files (best practice to
 " keep them at the top or the bottom of the file
 set modeline
 " Number of modelines to be checked, if set to zero then modeline checking
@@ -171,7 +173,7 @@ if a:level == ""
 normal! mmjv"ry`m
 " Read the first word on the current line
 normal! mm^v"ty`m
-" Adjust function for current heading statu
+" Adjust function for current heading status
 if @r == "="
 " Replace "=" with "-"
 normal! mmj^v$r-`m
@@ -304,7 +306,7 @@ syntax on
 set cursorline
 " Search as characters are entered
 set incsearch
-" Highlight searche
+" Highlight search
 set hlsearch
 " Keep the manual folding highlighting
 highlight CommentClose ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender
@@ -495,9 +497,9 @@ highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
 set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
 " }}}
 " Tabs/Indenting {{{
-" Enable plugins for indentation
+" Enable plug-ins for indentation
 filetype plugin indent on
-" Do smart autoindenting when starting a new line
+" Do smart auto indenting when starting a new line
 set smartindent
 " Set tab width
 set tabstop=4

@@ -2,25 +2,35 @@
 
 # Name: vim-bundles.sh
 # Description: Clone and update desired bundles
+# TODO [161017] - This should be included with a dotfiles installer
 
 function gitHubBundle {
-    # Clone repository from github
-    echo "https://github.com/$1.git"
-    git clone "https://github.com/$1.git"
+# Directory path for plugin relative to ~/.vim/bundle
+dir=${1#*/}
 
-    # Update existing repository
-    dir=${1#*/}
-    echo $dir
-    cd $dir
+if [ ! -d $HOME/.vim/bundle/$dir ]; then
+    # Directory does not exist, clone repository from github
+    git clone "https://github.com/$1.git" ~/.vim/bundle/$dir
+else
+    # Directory exists, update from github.com
+    cd ~/.vim/bundle/$dir
     git pull
-    cd ..
+fi
 }
 
-cd ~/.vim/
-mkdir ./bundle
-cd ./bundle
+# Create required directories
+mkdir -p ~/.vim/autoload ~/.vim/bundle && \
 
-gitHubBundle "scrooloose/nerdcommenter"
-gitHubBundle "scrooloose/nerdtree"
-gitHubBundle "ryanoasis/vim-devicons"
-gitHubBundle "dhruvasagar/vim-table-mode"
+# Copy latest copy of pathogen from tpo.pe
+curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+declare -a gitHubList=(
+"scrooloose/nerdcommenter"
+"scrooloose/nerdtree"
+"ryanoasis/vim-devicons"
+"dhruvasagar/vim-table-mode"
+)
+
+for i in ${gitHubList[@]}; do
+    gitHubBundle "$i"
+done

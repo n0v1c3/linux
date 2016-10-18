@@ -1,3 +1,4 @@
 # Vim fies
 *.swp
 *.netrwhist
+dirs/.vim/bundle/**

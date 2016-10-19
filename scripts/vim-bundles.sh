@@ -2,7 +2,8 @@
 
 # Name: vim-bundles.sh
 # Description: Clone and update desired bundles
-# TODO [161017] - This should be included with a dotfiles installer
+# Notes:
+# - Run dot-install.sh -s to automatically run this script
 
 function gitHubBundle {
 # Directory path for plugin relative to ~/.vim/bundle

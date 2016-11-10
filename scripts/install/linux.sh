@@ -129,20 +129,20 @@ $sudo systemctl enable dhcpcd.service
 # Grub
 $install_cmd grub
 
-# xSessio
-#$install_cmd i3 # i3lock package corrupted
+# xSession
+$install_cmd i3
 $install_cmd i3-wm
 $install_cmd i3status
 $install_cmd xorg
 
 # Terminal tools
-$install_cmd alsa-utils	# Advanced linux sound architecture
-$install_cmd fuse	# Mount for ntfs
+$install_cmd alsa-utils # Advanced linux sound architecture
+$install_cmd fuse # Mount for ntfs
 $install_cmd git
-$install_cmd lm_sensors	# Linux monitoring sensors
+$install_cmd lm_sensors # Linux monitoring sensors
 $install_cmd networkmanager
 $install_cmd network-manager-applet
-$install_cmd ntfs-3g	# Mount for ntfs
+$install_cmd ntfs-3g # Mount for ntfs
 $install_cmd python
 $install_cmd sudo
 $install_cmd tmux
@@ -156,7 +156,6 @@ $install_cmd arandr
 $install_cmd dmenu
 $install_cmd firefox
 $install_cmd gnome-icon-theme-full
-$install_cmd slim
 $install_cmd terminator
 $install_cmd thunar
 

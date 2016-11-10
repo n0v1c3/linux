@@ -523,4 +523,14 @@ autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(s
 augroup END
 " }}}
 
+" TODO [161021] - Settings lost if not executed after "Highlighting"
+" Format {{{
+" Remove automatic commenting on text wrap
+autocmd FileType * setlocal formatoptions-=c
+" Remove automatic insert comment leader after hitting <Enter>
+autocmd Filetype * setlocal formatoptions-=r
+" Remove automatic insert the current comment leader after hitting 'o' or 'O'
+autocmd Filetype * setlocal formatoptions-=o
+" }}}
+
 " vim: foldmethod=marker:foldlevel=0

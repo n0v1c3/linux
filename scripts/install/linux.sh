@@ -159,30 +159,34 @@ $install_cmd gnome-icon-theme-full
 $install_cmd terminator
 $install_cmd thunar
 
+# Install non-essential software
 if ( $install )
 then
+    # Terminal tools
 	$install_cmd curl
 	$install_cmd curlftpfs
 	$install_cmd ghostscript # Used for imaagemagick
 	$install_cmd openssh
+	$install_cmd pandoc # General markup converter
 	$install_cmd ranger
 	$install_cmd rsync
 	$install_cmd samba
 	$install_cmd sshfs
 
-	$install_cmd baobab		# Disk usage
+    # xSession tools
+	$install_cmd baobab # Disk usage
 	$install_cmd clementine
 	$install_cmd conky
 	$install_cmd deluge
 	$install_cmd fdupes
 	$install_cmd freerdp
-	$install_cmd fslint		# File compare
+	$install_cmd fslint # File compare
 	$install_cmd gource
 	$install_cmd imagemagick
 	$install_cmd libreoffice
 	$install_cmd remmina
 	$install_cmd retext
-	$install_cmd scrot		# Screen shot
+	$install_cmd scrot # Screen shot
 	$install_cmd virtualbox
 	$install_cmd vlc
 	$install_cmd xautolock
@@ -218,10 +222,6 @@ $sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh
 
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
-
-# SLiM
-$sudo systemctl enable slim.service
-ln -s /usr/bin/slimlock /mnt/usr/local/bin/xflock4
 
 # User
 $sudo useradd -m -g users -s /bin/bash $user_name

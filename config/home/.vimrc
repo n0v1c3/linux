@@ -402,6 +402,9 @@ nnoremap <leader>sfl :call SpellingFixLastWrongWord()<CR>
 nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
 " }}}
 " TODO {{{
+" TODO [161024] - bug: when inserted above another comment (php) bellow
+" comment increases tab-indent, appears to occur at the <CR> following the
+" first open square braked
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
 noremap <leader>tc :TODO<CR>
 " }}}

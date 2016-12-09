@@ -192,6 +192,9 @@ for_window [class="gource" instance="gource"] floating enable
 # Progress window
 for_window [class="Thunar" instance="thunar" title="File Operation Progress"] floating enable
 
+# Arandr
+for_window [class="Arandr" instance="arandr"] floating enable
+
 # Teamviewer
 # Computers & Contacts (resize to default Windows size)
 for_window [class="TeamViewer" instance="TeamViewer" title="Computers & Contacts"] floating enable; resize shrink width 10000px; resize grow width 150px; resize shrink height 10000px; resize grow height 430px;

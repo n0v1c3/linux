@@ -35,9 +35,9 @@ iabbrev tehn then
 iabbrev waht what
 " }}}
 " short-hand {{{
-iabbrev rne RN Engineering
-iabbrev RNE RN Engineering
-iabbrev SDK Shutdown Key
+"iabbrev rne RN Engineering
+"iabbrev RNE RN Engineering
+"iabbrev SDK Shutdown Key
 iabbrev @@ travis.gall@gmail.com
 iabbrev @@@ tgall@rnengineering.com
 iabbrev tx transmitter

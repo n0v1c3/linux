@@ -4,6 +4,7 @@
   title_font = DroidSansMonoForPowerline Nerd Font 8
   title_hide_sizetext = True
   title_use_system_font = False
+  window_state = maximise
 [keybindings]
 [layouts]
   [[default]]

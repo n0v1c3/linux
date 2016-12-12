@@ -108,10 +108,10 @@ set lazyredraw
 " Always display the status line even if only one window is displayed
 set laststatus=2
 " Used with 'set listchars' to display hidden character
-set list
 " Hide useless variable
-let g:display_hidden = "hidden"
-set listchars=tab:\ \ ,trail:·,nbsp:_
+"let g:display_hidden = "hidden"
+"set list listchars=trail:·
+"set
 " }}}
 " Editor {{{
 " Remove vi compatibility

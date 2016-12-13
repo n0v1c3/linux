@@ -13,7 +13,8 @@ ff02::2		ip6-allrouters
 ##
 
 # Global
-96.53.22.134	tc
+96.53.22.134	tc-rn
+192.168.22.21   tc-rt
 
 # RNE
 192.168.227.12	rne-file

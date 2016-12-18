@@ -212,3 +212,7 @@ exec --no-startup-id conky
 
 # Arandr (Display manager)
 exec arandr
+
+# Launch temrinal into initial display
+exec terminator
+

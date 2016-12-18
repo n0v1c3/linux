@@ -210,9 +210,12 @@ exec --no-startup-id nm-applet
 # Conky (background system monitor)
 exec --no-startup-id conky
 
-# Arandr (Display manager)
-exec arandr
+# Launch firefox onto workspace 3
+exec --no-startup-id i3-msg "workspace $ws3; exec firefox"
 
-# Launch temrinal into initial display
-exec terminator
+# Launch thunar onto workspace 2
+exec --no-startup-id i3-msg "workspace $ws2; exec thunar"
 
+# Launch terminator, and arandr onto workspace 1
+exec --no-startup-id i3-msg "workspace $ws1; exec terminator"
+exec --no-startup-id i3-msg "workspace $ws1; exec arandr"

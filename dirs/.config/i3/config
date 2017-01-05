@@ -172,6 +172,10 @@ bindsym $mod+m bar mode toggle
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# Screen-shots (scrot)
+bindsym --release Print exec --no-startup-id scrot
+bindsym --release Shift+Print exec --no-startup-id scrot -s
+
 # bindsym $mod+Left exec i3-msg move workspace to output left
 # bindsym $mod+Right exec i3-msg move workspace to output right
 

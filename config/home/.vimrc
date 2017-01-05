@@ -319,7 +319,7 @@ autocmd BufRead,BufNewFile * syntax match CommentOpen /\"\ }}}/
 let mapleader="\<space>"
 " }}}
 " Dotfiles {{{
-" Open vimrc file in split view
+" Open tmux config file in split view
 nnoremap <leader>et :sp ~/.tmux.conf<CR>
 " Open vimrc file in split view
 nnoremap <leader>ev :sp ~/.vimrc<CR>
@@ -374,8 +374,6 @@ noremap <left> <NOP>
 noremap <right> <NOP>
 noremap j gj
 noremap k gk
-" NO more substitution use cl (Change Letter)
-noremap s <NOP>
 " Scroll Up
 noremap <silent><leader>k 15<C-Y>
 " Scroll Down

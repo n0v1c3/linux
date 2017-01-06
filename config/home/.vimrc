@@ -360,7 +360,7 @@ nnoremap <leader><leader> za
 nnoremap <leader>hn :noh<CR>
 " }}}
 " Indent {{{
-noremap <leader>gg gg=G<C-o><C-o>
+noremap <leader>gg mmgg=G'm
 " }}}
 " Markdown {{{
 nnoremap <leader>md :call MarkdownDisable()<CR>

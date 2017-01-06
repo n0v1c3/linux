@@ -55,9 +55,8 @@ function getDst()
 # Setup
 ##
 
-# TODO [161109] - This should not be used without adjusting for a passed user
 # Create a configuration directory
-mkdir $HOME/.config
+mkdir $home/.config
 
 ##
 # Main

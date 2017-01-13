@@ -27,7 +27,7 @@ iabbrev cr CR
 " }}}
 " common typos {{{
 iabbrev abit a bit
-iabbrev acess acce
+iabbrev acess access
 iabbrev abd and
 iabbrev adn and
 iabbrev teh the
@@ -35,51 +35,7 @@ iabbrev tehn then
 iabbrev waht what
 " }}}
 " short-hand {{{
-"iabbrev rne RN Engineering
-"iabbrev RNE RN Engineering
-"iabbrev SDK Shutdown Key
 iabbrev @@ travis.gall@gmail.com
-iabbrev @@@ tgall@rnengineering.com
-iabbrev tx transmitter
-iabbrev txs transmitter
-iabbrev Tx Transmitter
-iabbrev Txs Transmitter
-iabbrev Mon Monday
-iabbrev Tue Tuesday
-iabbrev Wed Wednsday
-iabbrev Thu Thursday
-iabbrev Fri Friday
-iabbrev Sat Saturday
-iabbrev Sund Sunday
-iabbrev Jan January
-iabbrev Feb February
-iabbrev Mar March
-iabbrev Apr April
-iabbrev Jun June
-iabbrev Jul July
-iabbrev Aug August
-iabbrev Sept September
-iabbrev Oct October
-iabbrev Nov November
-iabbrev Dec December
-iabbrev mon Monday
-iabbrev tue Tuesday
-iabbrev wed Wednsday
-iabbrev thu Thursday
-iabbrev fri Friday
-iabbrev sat Saturday
-iabbrev sund Sunday
-iabbrev jan January
-iabbrev feb February
-iabbrev mar March
-iabbrev apr April
-iabbrev jun June
-iabbrev jul July
-iabbrev aug August
-iabbrev sept September
-iabbrev oct October
-iabbrev nov November
-iabbrev dec December
 " }}}
 " }}}
 " Colouring {{{
@@ -88,13 +44,11 @@ set t_Co=256
 " Preferred background
 set background=dark
 " Preferred color scheme
-colorscheme desert
+colorscheme koehler
 " AutoHotKey
 au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Commands {{{
-" Indent all files recursively in current directory
-command! INDENT args **/* **/.* | argdo execute "normal gg=G" | update
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
 " }}}
@@ -107,11 +61,8 @@ set showcmd
 set lazyredraw
 " Always display the status line even if only one window is displayed
 set laststatus=2
-" Used with 'set listchars' to display hidden character
-" Hide useless variable
-"let g:display_hidden = "hidden"
-"set list listchars=trail:·
-"set
+" Display hidden char
+let g:display_hidden = "hidden"
 " }}}
 " Editor {{{
 " Remove vi compatibility
@@ -314,11 +265,12 @@ nnoremap <leader>ez :sp ~/.zshrc<CR>
 nnoremap <leader>sv :so ~/.vimrc<CR>
 " }}}
 " Case {{{
-noremap <leader>cU viwU
-" }}}
-" Change {{{
-noremap c" ci"
-noremap c' ci'
+" Set word to lowercase
+noremap <leader>u viwu
+" Set word to uppercase
+noremap <leader>U viwU
+" Toggle the case of each letter in a word
+noremap <leader>~ viw~
 " }}}
 " C window {{{
 noremap <leader>cq :cclose<CR>
@@ -340,6 +292,7 @@ noremap <leader>q mmgg=G'm:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>:wq
 " }}}
 " Folding {{{
 nnoremap <leader><leader> za
+nnoremap zC mmggVGzC'm
 " }}}
 " Highlight {{{
 nnoremap <leader>hn :noh<CR>
@@ -353,10 +306,7 @@ nnoremap <leader>me :call MarkdownEnable()<CR>
 nnoremap <silent><leader>mh :<C-u>call MarkdownHeader(v:count)<CR>
 " }}}
 " Navigation {{{
-noremap <up> <NOP>
-noremap <down> <NOP>
-noremap <left> <NOP>
-noremap <right> <NOP>
+" Do not automatically adjust for line wrapping
 noremap j gj
 noremap k gk
 " Scroll Up
@@ -365,6 +315,7 @@ noremap <silent><leader>k 15<C-Y>
 noremap <silent><leader>j 15<C-E>
 " }}}
 " Screen {{{
+" Force redraw of screen (remove any highlighting)
 nnoremap <C-L> :noh<CR><C-L>
 " }}}
 " Search {{{
@@ -389,13 +340,7 @@ noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDCom
 noremap <leader>tI A<CR>TODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
 noremap <leader>tc :TODO<CR>
 " }}}
-" Typos {{{
-" }}}
 " Visual {{{
-" Visual select inside single quote
-noremap v' vi'
-" Visual select inside double quote
-noremap v" vi"
 " Block move right
 vnoremap <RIGHT> xlP:call BlockMove("right")<CR>gv
 " Block move left
@@ -403,7 +348,6 @@ vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
-
 " TODO [161007] - Overlap with vertical split
 "nnoremap <leader>wv :vertical resize -5<CR>
 "nnoremap <leader>wV :vertical resize +5<CR>
@@ -442,7 +386,7 @@ set smartcase
 " Snippets {{{
 " The beginning of another snippet plugin
 " TODO [161008] - Does not handle indentation level
-" TODO [161007] - Use the NERDComment function to add a common
+" TODO [161007] - Use the NERDComment function to add a comment
 " Class {{{
 function! SnipClass()
     if &filetype == "php"
@@ -512,5 +456,8 @@ autocmd Filetype * setlocal formatoptions-=r
 " Remove automatic insert the current comment leader after hitting 'o' or 'O'
 autocmd Filetype * setlocal formatoptions-=o
 " }}}
+
+" Initialize custom functions
+call DisplayHidden()
 
 " vim: foldmethod=marker:foldlevel=0

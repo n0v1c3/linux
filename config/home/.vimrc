@@ -411,7 +411,7 @@ nnoremap <silent> <leader>w <C-w>
 "nnoremap <leader>wH :resize +5<CR>
 " }}}
 " Yank {{{
-map Y y$
+nnoremap Y y$
 " }}}
 " }}}
 " Numbering {{{

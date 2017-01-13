@@ -137,6 +137,7 @@ $install_cmd xorg
 
 # Terminal tools
 $install_cmd alsa-utils # Advanced linux sound architecture
+$install_cmd cronie # Cronjob task manager
 $install_cmd fuse # Mount for ntfs
 $install_cmd git
 $install_cmd lm_sensors # Linux monitoring sensors

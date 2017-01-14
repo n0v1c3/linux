@@ -65,14 +65,16 @@ set laststatus=2
 let g:display_hidden = "hidden"
 " }}}
 " Editor {{{
-" Remove vi compatibility
-set nocompatible
-" Ignore file patterns globally
-set wildignore+=*.swp
 " Backspace over auto indent, line breaks, start of insert
 set backspace=indent,eol,start
+" Remove vi compatibility
+set nocompatible
+" Update when idle for 1000 msec (default is 4000 msec)
+set updatetime=1000
 " Virtual editing, position cursor where there is are no characters (all modes)
 set virtualedit=all
+" Ignore file patterns globally
+set wildignore+=*.swp
 " }}}
 " Folding {{{
 set foldenable
@@ -184,21 +186,17 @@ function! BlockMove(direction)
     let start_col = col("'<")
     let end_line = line("'>")
     let end_col = col("'>")
-    let block_height = getpos("'>")[1]-getpos("'<")[1]+1
-    let block_width = getpos("'>")[2]-getpos("'<")[2]+1
     " Adjust offset for repositioning the visual marks '<,'>
     if a:direction == "right"
         " Move block RIGHT
         let col_offset = 1
-        let line_offset = 0
     elseif a:direction == "left"
         " Move block LEFT
         let col_offset = -1
-        let line_offset = 0
     endif
     " Set visual marks positions {expr}, {list [buffer,line,column,off]}
-    call setpos("'<", [0,start_line+line_offset,start_col+col_offset,0])
-    call setpos("'>", [0,end_line+line_offset,end_col+col_offset,0])
+    call setpos("'<", [0,start_line,start_col+col_offset,0])
+    call setpos("'>", [0,end_line,end_col+col_offset,0])
 endfunction
 " }}}
 " Word Count {{{
@@ -208,8 +206,7 @@ let g:word_count="<unknown>"
 function! WordCount()
     return g:word_count
 endfunction
-" Update the value of g:word_count with the current number of words in the
-" file
+" Update the value of g:word_count with the current number of words in the file
 function! UpdateWordCount()
     " Reset line count
     let lnum = 1
@@ -226,8 +223,6 @@ function! UpdateWordCount()
     let g:word_count = n
 endfunction
 " Update the count when cursor is idle in command or insert mode
-" Update when idle for 1000 msec (default is 4000 msec)
-set updatetime=1000
 augroup WordCounter
     au! CursorHold,CursorHoldI * call UpdateWordCount()
 augroup END

@@ -11,3 +11,6 @@ if ! pgrep -u "$USER" xautolock > /dev/null
 then
     xautolock -time 3 -locker autolock > /dev/null &
 fi
+
+# Load custom keybindings
+xmodmap ~/.xmodmap

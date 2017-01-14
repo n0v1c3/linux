@@ -46,8 +46,3 @@ alias ranger="ranger -d ."
 
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
-
-# TODO [160928] - Make these aliases work for any user
-# NoteDown
-alias nd=bash\ ~/Documents/projects/personal/notedown/bash/notedown.sh
-alias nd-clean=bash\ ~/Documents/projects/personal/notedown/bash/nd-pdf_cleanup.sh

@@ -263,9 +263,6 @@ noremap <leader>~ viw~
 noremap <leader>cc :cclose<CR>
 noremap <leader>co :copen 5<CR>
 " }}}
-" Display {{{
-nnoremap <leader>dh :call DisplayHidden()<CR>
-" }}}
 " File system {{{
 nnoremap <leader>o :NERDTreeToggle<CR>
 " }}}
@@ -279,6 +276,12 @@ nnoremap <leader><leader> za
 nnoremap zC mmggVGzC'm
 " Open all folded sections
 nnoremap zO mmggVGzO'm
+" }}}
+" Help {{{
+nnoremap <leader>? mmyiw:help <C-R>"<CR>'m
+" }}}
+" Hidden {{{
+nnoremap <leader>hs :call DisplayHidden()<CR>
 " }}}
 " Highlight {{{
 nnoremap <leader>hd :noh<CR>
@@ -451,7 +454,5 @@ augroup templates
 augroup END
 " }}}
 
-" Initialize custom functions
-call DisplayHidden()
-
+" Override the default foldmethod in this file
 " vim: foldmethod=marker:foldlevel=0

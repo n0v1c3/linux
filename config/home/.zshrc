@@ -1,6 +1,6 @@
 ##
 # .zshrc
-# Configuratin for zsh shell
+# Configuration for zsh shell
 ##
 
 # Source common shell configurations
@@ -35,4 +35,5 @@ for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
 # Vi mode
 bindkey -v
 
+# Add  ruby executables to the PATH variable
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"

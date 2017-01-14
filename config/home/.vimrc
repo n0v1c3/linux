@@ -90,7 +90,7 @@ set modeline
 " will be disabled
 set modelines=5
 " }}}
-"Functions {{{
+" Functions {{{
 " Display {{{
 function! DisplayHidden()
     " Hide useless character
@@ -159,6 +159,13 @@ endfunction
 function! SaveCode()
     " Remove all trailing spaces ignore errors
     execute "normal! :%s/\\s\\\+$//e\<CR>"
+endfunction
+" }}}
+" Help {{{
+" Display a random help entry
+function! HelpRandom()
+    " Using the shell, produce a list of all help tags and select one (based on $VIMRUNTIM/doc/tags)
+    execute "normal! :help " . system("cat $VIMRUNTIME/doc/tags | shuf -n1 | awk '{print $1;}'")
 endfunction
 " }}}
 " Spelling {{{
@@ -278,7 +285,10 @@ nnoremap zC mmggVGzC'm
 nnoremap zO mmggVGzO'm
 " }}}
 " Help {{{
+" Display help entry for word under the cursor
 nnoremap <leader>? mmyiw:help <C-R>"<CR>'m
+" Display a random help entry
+nnoremap <leader>?? :call HelpRandom()<CR>
 " }}}
 " Hidden {{{
 nnoremap <leader>hs :call DisplayHidden()<CR>
@@ -306,7 +316,9 @@ noremap <silent><leader>k 15<C-Y>
 noremap <silent><leader>j 15<C-E>
 " }}}
 " Search {{{
+" Jump to the next word matching the content under the cursor (same as * except word can be pasted)
 nnoremap <leader>/ viwy/<C-R>"<CR>
+" Jump to the next word matching the content highlihgted in visual mode
 vnoremap <leader>/ y/<C-R>"<CR>
 " }}}
 " Snippets {{{
@@ -360,8 +372,8 @@ autocmd BufReadPre .vimrc execute "normal mmgg=G'm"
 " Write {{{
 " Clean-up for code files prior to save
 autocmd BufWritePre .vimrc call SaveCode()
-" Auto indent on file open (keep files clean)
-autocmd BufWritePre vimrc execute "normal mmgg=G'm"
+" Auto indent on file close (keep files clean)
+autocmd BufWritePre .vimrc execute "normal mmgg=G'mzz"
 " }}}
 " }}}
 " Searching {{{

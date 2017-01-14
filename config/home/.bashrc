@@ -15,7 +15,7 @@ case $- in
 esac
 
 # Source common shell configurations
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
+source ~/.shrc
 
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth

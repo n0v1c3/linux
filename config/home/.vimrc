@@ -348,10 +348,10 @@ vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
-nnoremap <leader>wv :vertical resize -5<CR>
-nnoremap <leader>wV :vertical resize +5<CR>
-nnoremap <leader>wh :resize -5<CR>
-nnoremap <leader>wH :resize +5<CR>
+nnoremap <leader>wgv :vertical resize -5<CR>
+nnoremap <leader>wgV :vertical resize +5<CR>
+nnoremap <leader>wgh :resize -5<CR>
+nnoremap <leader>wgH :resize +5<CR>
 " }}}
 " Yank {{{
 nnoremap Y y$

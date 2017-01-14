@@ -3,9 +3,6 @@
 # Configuration for zsh shell
 ##
 
-# Source common shell configurations
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
-
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="random"
 #ZSH_THEME="agnoster"
@@ -26,14 +23,14 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git vi-mode history-substring-search)
 
-# Oh-My-Zsh
-source $ZSH/oh-my-zsh.sh
-
-# Source common shell configurations
-for file in $(find $HOME/.shell/ -type f -name "*") ; do source $file ; done
-
 # Vi mode
 bindkey -v
 
 # Add  ruby executables to the PATH variable
 PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
+
+# Oh-My-Zsh
+source $ZSH/oh-my-zsh.sh
+
+# Source common shell configurations
+source ~/.shrc

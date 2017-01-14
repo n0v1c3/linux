@@ -50,7 +50,7 @@ au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Commands {{{
 " Find all TODO's recursively in current directory
-command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw
+command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw 5
 " }}}
 " Display {{{
 " Visual auto complete for command menu
@@ -133,7 +133,6 @@ function! MarkdownHeader(level)
             execute "normal! mmjdd`mI; ### \<ESC>`m"
 
         elseif @t == "#"
-            " TODO [170105] - Fix increase passed level 3
             execute "normal! mm02l#\<ESC>`m"
         else
             " Insert h1
@@ -234,35 +233,28 @@ augroup WordCounter
 augroup END
 " }}}
 " }}}
-" Highlighting {{{
-" Syntax highlighting
-filetype plugin on
-syntax on
-" Highlight current line
-set cursorline
-" Search as characters are entered
-set incsearch
-" Highlight search
-set hlsearch
-" Keep the manual folding highlighting
-highlight CommentClose ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender
-highlight CommentOpen ctermbg=DarkGrey guibg=DarkGrey ctermfg=230  guifg=lavender
-autocmd BufRead,BufNewFile * syntax match CommentClose /\".*{{{/
-autocmd BufRead,BufNewFile * syntax match CommentOpen /\"\ }}}/
-" }}}
 " Mappings {{{
 " Leader key {{{
 let mapleader="\<space>"
 " }}}
 " Dotfiles {{{
+" Open i3 config file in split view
+nnoremap <leader>ei :sp ~/.config/i3/config<CR>
 " Open tmux config file in split view
 nnoremap <leader>et :sp ~/.tmux.conf<CR>
 " Open vimrc file in split view
 nnoremap <leader>ev :sp ~/.vimrc<CR>
 " Open zshrc file in split view
 nnoremap <leader>ez :sp ~/.zshrc<CR>
+
+" Source i3 into current session
+nnoremap <leader>si :! i3-msg reload<CR>
+" Source tmux into current session
+nnoremap <leader>st :! tmux source-file ~/.tmux.conf<CR>
 " Source vimrc into current session
 nnoremap <leader>sv :so ~/.vimrc<CR>
+" Source zshrc into current session
+nnoremap <leader>sz :! source ~/.zshrc<CR>
 " }}}
 " Case {{{
 " Set word to lowercase
@@ -273,13 +265,8 @@ noremap <leader>U viwU
 noremap <leader>~ viw~
 " }}}
 " C window {{{
-noremap <leader>cq :cclose<CR>
-noremap <leader>co :copen<CR>
-" }}}
-" Delete {{{
-nnoremap dd dd
-nnoremap d" di"
-nnoremap d' di'
+noremap <leader>cc :cclose<CR>
+noremap <leader>co :copen 5<CR>
 " }}}
 " Display {{{
 nnoremap <leader>dh :call DisplayHidden()<CR>
@@ -291,14 +278,20 @@ nnoremap <leader>o :NERDTreeToggle<CR>
 noremap <leader>q mmgg=G'm:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>:wq<CR>
 " }}}
 " Folding {{{
+" Toggle the section of the current line marker
 nnoremap <leader><leader> za
+" Close all folded sections
 nnoremap zC mmggVGzC'm
+" Open all folded sections
+nnoremap zO mmggVGzO'm
 " }}}
 " Highlight {{{
-nnoremap <leader>hn :noh<CR>
+nnoremap <leader>hd :noh<CR>
+nnoremap <leader>he :set hls<CR>
 " }}}
 " Indent {{{
-noremap <leader>gg mmgg=G'm
+" Indent entire file and return to current line
+nnoremap <leader>I mmgg=G'm
 " }}}
 " Markdown {{{
 nnoremap <leader>md :call MarkdownDisable()<CR>
@@ -314,11 +307,8 @@ noremap <silent><leader>k 15<C-Y>
 " Scroll Down
 noremap <silent><leader>j 15<C-E>
 " }}}
-" Screen {{{
-" Force redraw of screen (remove any highlighting)
-nnoremap <C-L> :noh<CR><C-L>
-" }}}
 " Search {{{
+nnoremap <leader>/ viwy/<C-R>"<CR>
 vnoremap <leader>/ y/<C-R>"<CR>
 " }}}
 " Snippets {{{
@@ -337,8 +327,8 @@ nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
 " }}}
 " TODO {{{
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
-noremap <leader>tI A<CR>TODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
-noremap <leader>tc :TODO<CR>
+noremap <leader>tI A<CR><CR>TODO [<C-R>=strftime("%y%m%d")<CR>] - <C-c>:cal NERDComment(0,"toggle")<CR>A
+noremap <leader>tf :TODO<CR>
 " }}}
 " Visual {{{
 " Block move right
@@ -348,11 +338,10 @@ vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
-" TODO [161007] - Overlap with vertical split
-"nnoremap <leader>wv :vertical resize -5<CR>
-"nnoremap <leader>wV :vertical resize +5<CR>
-"nnoremap <leader>wh :resize -5<CR>
-"nnoremap <leader>wH :resize +5<CR>
+nnoremap <leader>wv :vertical resize -5<CR>
+nnoremap <leader>wV :vertical resize +5<CR>
+nnoremap <leader>wh :resize -5<CR>
+nnoremap <leader>wH :resize +5<CR>
 " }}}
 " Yank {{{
 nnoremap Y y$
@@ -385,8 +374,6 @@ set smartcase
 " }}}
 " Snippets {{{
 " The beginning of another snippet plugin
-" TODO [161008] - Does not handle indentation level
-" TODO [161007] - Use the NERDComment function to add a comment
 " Class {{{
 function! SnipClass()
     if &filetype == "php"
@@ -423,6 +410,28 @@ highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
 " Highlight User1*%modified%file %type%=%word, %line, %percent
 set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
 " }}}
+" Syntax {{{
+" Disable automatic text wrapping
+set textwidth=0
+
+" General settings requried for highlighting
+filetype plugin on
+syntax on
+" Highlight current line
+set cursorline
+" Search as characters are entered
+set incsearch
+" Highlight search
+set hlsearch
+
+" Automatic commentting
+" Remove automatic insert comment leader after hitting <Enter>
+autocmd Filetype * setlocal formatoptions-=r
+" Remove automatic insert the current comment leader after hitting 'o' or 'O'
+autocmd Filetype * setlocal formatoptions-=o
+" Remove automatic commenting on text wrap
+autocmd FileType * set formatoptions-=c
+" }}}
 " Tabs/Indenting {{{
 " Enable plug-ins for indentation
 filetype plugin indent on
@@ -445,16 +454,6 @@ augroup templates
     " Substitute equations between the VIM_EVAL and END_EVAL equations
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
-" }}}
-
-" TODO [161021] - Settings lost if not executed after "Highlighting"
-" Format {{{
-" Remove automatic commenting on text wrap
-autocmd FileType * setlocal formatoptions-=c
-" Remove automatic insert comment leader after hitting <Enter>
-autocmd Filetype * setlocal formatoptions-=r
-" Remove automatic insert the current comment leader after hitting 'o' or 'O'
-autocmd Filetype * setlocal formatoptions-=o
 " }}}
 
 " Initialize custom functions

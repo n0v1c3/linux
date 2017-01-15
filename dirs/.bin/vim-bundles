@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 # Name: vim-bundles.sh
 # Description: Clone and update desired bundles

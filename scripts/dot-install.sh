@@ -7,9 +7,9 @@
 # - $1: 
 ################################################################################
 
-##
+# ===
 # Constants
-##
+# ===
 
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
@@ -56,7 +56,7 @@ function getDst()
 ##
 
 # Create a configuration directory
-mkdir $home/.config
+mkdir $HOME/.config
 
 ##
 # Main
@@ -74,11 +74,11 @@ do
     case "$1" in
         -h|--help)
             # Display help file
-            echo "Script: $DIR/tools/install.sh"
+            echo "Script: $DIR/scripts/dot-install.sh"
             echo "-h, --help		show brief help"
             echo "-b, --backup		backup all dotfiles"
-            echo "-c, --clean-up	backup all dotfiles"
-            echo "-d, --diff		backup all dotfiles"
+            echo "-c, --clean-up	remove old backup files"
+            echo "-d, --diff		display the diff for all dotfiles that would be changed with the -l --links flag"
             echo "-l, --links		link all dotfiles and dot directories"
             echo "-s, --scripts		run all scripts in repository"
             ;;
@@ -93,12 +93,10 @@ do
                 cp $dst $dst.backup-$(date +%y%m%d-%H%M%S-%N)
             done
             ;;
-
         -c|--clean-up)
             # Remove old backup files
             find . -type f -iname '*.backup-*' | xargs rm
             ;;
-
         -d|--diff)
             # Loop through each file
             for file in $files
@@ -107,7 +105,6 @@ do
                 diff "$file" "$(getDst $file $user)"
             done
             ;;
-
         -l|--link)
             # Loop through each file
             for file in $files
@@ -146,7 +143,6 @@ do
             # Git push (without passing a refspec) will fail if the current branch is not tracking an upstream branch (even if a branch of the same name exists upstream)
             git config --global push.default simple
             ;;
-
         -s|--scripts)
             # List all .sh scripts
             files=$(find $DIR/scripts/ -type f -name "*install.sh")
@@ -162,7 +158,6 @@ do
                 fi
             done
             ;;
-
         -u|--user)
             # Shift and store passed username
             shift
@@ -171,7 +166,13 @@ do
             # Create config directory for user
             mkdir /home/$user/.config
             ;;
-
+        -v|--vim)
+            bash $DIR/scripts/vim-bundle.sh
+            ;;
+        -z|--zsh)
+            # Install Oh-My-Zsh
+            sh "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+            ;;
         *)
             break
             ;;

@@ -114,29 +114,12 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Development
 export n0v1c3=$HOME/Documents/development/n0v1c3
-export PHPMYPLC=$n0v1c3/phpmyplc
-export NOTES=$n0v1c3/notes
 
 # ===
 # Custom functions
 # ===
-# Cron tasks
-#for script in $(find ~/.cron -iname "*.sh")
-#do
-#	exec $script
-#done
+# Start only a single instance of xautolock
+if ! pgrep -u "$USER" xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi
 
-# Check is xautolock is running
-if ! pgrep -u "$USER" xautolock > /dev/null
-then
-    # Start a new instance of xautolock
-    nohup xautolock -time 3 -locker autolock > /dev/null &
-fi
-
-# Check if keybindings are already adjusted
-#if "$(xmodmap | grep Caps_Lock)" is null
-if xmodmap | grep -q "Caps_Lock"
-then
-    # Load custom keybindings
-    xmodmap ~/.xmodmap
-fi
+# Load custom keybindings once
+if xmodmap | grep -q "Caps_Lock"; then; xmodmap ~/.xmodmap; fi

@@ -1,0 +1,96 @@
+chown 1000 bash/clock.sh
+chgrp 100 bash/clock.sh
+touch -c -d "2017-01-13 21:35:58.3895480560" bash/clock.sh
+chmod 0755 bash/clock.sh
+chown 1000 bash/get-wan.sh
+chgrp 100 bash/get-wan.sh
+touch -c -d "2017-01-13 21:35:58.3928813890" bash/get-wan.sh
+chmod 0700 bash/get-wan.sh
+chown 1000 bash/http-update.sh
+chgrp 100 bash/http-update.sh
+touch -c -d "2017-01-13 21:35:58.3928813890" bash/http-update.sh
+chmod 0644 bash/http-update.sh
+chown 1000 bash/tree-update
+chgrp 0 bash/tree-update
+touch -c -d "2017-01-13 21:35:58.3962147230" bash/tree-update
+chmod 0755 bash/tree-update
+chown 1000 dlink/funplug/funplug-full
+chgrp 0 dlink/funplug/funplug-full
+touch -c -d "2017-01-13 21:35:58.3995480570" dlink/funplug/funplug-full
+chmod 0644 dlink/funplug/funplug-full
+chown 1000 dlink/funplug/funplug-guide.pdf
+chgrp 0 dlink/funplug/funplug-guide.pdf
+touch -c -d "2017-01-13 21:35:58.4028813900" dlink/funplug/funplug-guide.pdf
+chmod 0644 dlink/funplug/funplug-guide.pdf
+chown 1000 dlink/funplug/funplug-simple
+chgrp 0 dlink/funplug/funplug-simple
+touch -c -d "2017-01-13 21:35:58.4195480570" dlink/funplug/funplug-simple
+chmod 0644 dlink/funplug/funplug-simple
+chown 1000 fonts/google-fonts.sh
+chgrp 100 fonts/google-fonts.sh
+touch -c -d "2017-01-13 21:35:58.4195480570" fonts/google-fonts.sh
+chmod 0644 fonts/google-fonts.sh
+chown 1000 git/git-committer-change.sh
+chgrp 100 git/git-committer-change.sh
+touch -c -d "2017-01-13 21:35:58.4228813910" git/git-committer-change.sh
+chmod 0644 git/git-committer-change.sh
+chown 1000 git/pull.sh
+chgrp 100 git/pull.sh
+touch -c -d "2017-01-19 21:06:59.9127112960" git/pull.sh
+chmod 0744 git/pull.sh
+chown 1000 git/repo-dir.sh
+chgrp 0 git/repo-dir.sh
+touch -c -d "2017-01-19 21:17:48.4560181650" git/repo-dir.sh
+chmod 0644 git/repo-dir.sh
+chown 1000 google/setup.sh
+chgrp 0 google/setup.sh
+touch -c -d "2017-01-13 21:35:58.4295480580" google/setup.sh
+chmod 0644 google/setup.sh
+chown 1000 google/user-add.sh
+chgrp 0 google/user-add.sh
+touch -c -d "2017-01-13 21:35:58.4295480580" google/user-add.sh
+chmod 0644 google/user-add.sh
+chown 1000 install/linux.sh
+chgrp 100 install/linux.sh
+touch -c -d "2017-01-13 21:35:58.4328813910" install/linux.sh
+chmod 0644 install/linux.sh
+chown 1000 mysql/mysql-backup.sh
+chgrp 100 mysql/mysql-backup.sh
+touch -c -d "2017-01-19 21:07:04.9993777560" mysql/mysql-backup.sh
+chmod 0644 mysql/mysql-backup.sh
+chown 1000 net/add-interface
+chgrp 0 net/add-interface
+touch -c -d "2017-01-13 21:35:58.4328813910" net/add-interface
+chmod 0644 net/add-interface
+chown 1000 net/net-public.sh
+chgrp 0 net/net-public.sh
+touch -c -d "2017-01-13 21:35:58.4362147250" net/net-public.sh
+chmod 0644 net/net-public.sh
+chown 1000 pdf/deskew.sh
+chgrp 0 pdf/deskew.sh
+touch -c -d "2017-01-13 21:35:58.4395480580" pdf/deskew.sh
+chmod 0644 pdf/deskew.sh
+chown 1000 qr/qr-encode.sh
+chgrp 0 qr/qr-encode.sh
+touch -c -d "2017-01-13 21:35:58.4395480580" qr/qr-encode.sh
+chmod 0644 qr/qr-encode.sh
+chown 1000 remmina/remmina-crack.py
+chgrp 0 remmina/remmina-crack.py
+touch -c -d "2017-01-13 21:35:58.4428813920" remmina/remmina-crack.py
+chmod 0644 remmina/remmina-crack.py
+chown 1000 rsync/rsync-home.sh
+chgrp 0 rsync/rsync-home.sh
+touch -c -d "2017-01-13 21:35:58.4428813920" rsync/rsync-home.sh
+chmod 0644 rsync/rsync-home.sh
+chown 1000 vbox/bios-rollback.bat
+chgrp 0 vbox/bios-rollback.bat
+touch -c -d "2017-01-13 21:35:58.4462147250" vbox/bios-rollback.bat
+chmod 0644 vbox/bios-rollback.bat
+chown 1000 vbox/commands.txt
+chgrp 0 vbox/commands.txt
+touch -c -d "2017-01-13 21:35:58.4462147250" vbox/commands.txt
+chmod 0644 vbox/commands.txt
+chown 1000 vbox/vbox-manager.sh
+chgrp 0 vbox/vbox-manager.sh
+touch -c -d "2017-01-13 21:35:58.4495480580" vbox/vbox-manager.sh
+chmod 0644 vbox/vbox-manager.sh

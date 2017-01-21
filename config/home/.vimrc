@@ -1,13 +1,13 @@
-" +-------------------+
-" | __   __ _  _   _  |
-" | \ \ / /| || \ / | |
-" |  \ v / | ||  v  | |
-" |   \_/  |_||_|v|_| |
-" |                   |
-" +-------------------+
+"        _
+"       (_)
+" __   ___ _ __ ___  _ __ ___
+" \ \ / / | '_ ` _ \| '__/ __|
+"  \ V /| | | | | | | | | (__
+" (_)_/ |_|_| |_| |_|_|  \___|
 
 " Name: .vimrc
 " Description: Configuration file that is automatically loaded and applied to Vim
+" Author: n0v1c3
 " Notes:
 "   - Manually download spelling files (en_u) ~ ftp://ftp.vim.org/pub/vim/runtime/spell/
 
@@ -181,7 +181,7 @@ endfunction
 function! SpellingFixLastWrongWord()
     execute "normal! mm[s1z=`m\<CR>"
 endfunction
-" Correct the last incorrect word and return to same position
+" Correct the next incorrect word and return to same position
 function! SpellingFixNextWrongWord()
     execute "normal! mm]s1z=`m\<CR>"
 endfunction
@@ -241,13 +241,15 @@ let mapleader="\<space>"
 " }}}
 " Dotfiles {{{
 " Open i3 config file in split view
-nnoremap <leader>ei :sp ~/.config/i3/config<CR>
+nnoremap <leader>ei :sp ~/.config/i3/config<CR><C-W>o
+" Open common shell config file in split view
+nnoremap <leader>es :sp ~/.shrc<CR><C-W>o
 " Open tmux config file in split view
-nnoremap <leader>et :sp ~/.tmux.conf<CR>
+nnoremap <leader>et :sp ~/.tmux.conf<CR><C-W>o
 " Open vimrc file in split view
-nnoremap <leader>ev :sp ~/.vimrc<CR>
+nnoremap <leader>ev :sp ~/.vimrc<CR><C-W>o
 " Open zshrc file in split view
-nnoremap <leader>ez :sp ~/.zshrc<CR>
+nnoremap <leader>ez :sp ~/.zshrc<CR><C-W>o
 
 " Source i3 into current session
 nnoremap <leader>si :! i3-msg reload<CR>
@@ -280,9 +282,9 @@ noremap <leader>q mmgg=G'm:let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>:wq
 " Toggle the section of the current line marker
 nnoremap <leader><leader> za
 " Close all folded sections
-nnoremap zC mmggVGzC'm
+nnoremap zC mmggVGzC`m
 " Open all folded sections
-nnoremap zO mmggVGzO'm
+nnoremap zO mmggVGzO`m
 " }}}
 " Help {{{
 " Display help entry for word under the cursor
@@ -330,10 +332,16 @@ nnoremap <leader>sni :call SnipIf()<CR>
 vnoremap <leader>sm :'<,'>sort -M
 " }}}
 " Spelling {{{
+nnoremap <leader>ss ea<C-X>s<C-P>
+nnoremap <leader>sn ]s
+nnoremap <leader>sN [s
 nnoremap <leader>sal :call SpellingAddLastWrongWord()<CR>
 nnoremap <leader>san :call SpellingAddNextWrongWord()<CR>
 nnoremap <leader>sfl :call SpellingFixLastWrongWord()<CR>
 nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
+" }}}
+" Tabs {{{
+noremap <leader>nt :tabe<CR>
 " }}}
 " TODO {{{
 noremap <leader>ti ITODO [<C-R>=strftime("%y%m%d")<CR>] - <CR><C-c>k:cal NERDComment(0,"toggle")<CR>A
@@ -417,14 +425,13 @@ set spellfile=~/.vim/spell/wordlist.utf-8.add
 " Statusline {{{
 " Set statusline
 highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
-" Highlight User1*%modified%file %type%=%word, %line, %percent
 set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
 " }}}
 " Syntax {{{
 " Disable automatic text wrapping
 set textwidth=0
 
-" General settings requried for highlighting
+" General settings required for highlighting
 filetype plugin on
 syntax on
 " Highlight current line
@@ -434,7 +441,12 @@ set incsearch
 " Highlight search
 set hlsearch
 
-" Automatic commentting
+" Custom highlighting
+" Underline misspelled words
+hi clear SpellBad
+hi SpellBad cterm=underline
+
+" Automatic commenting
 " Remove automatic insert comment leader after hitting <Enter>
 autocmd Filetype * setlocal formatoptions-=r
 " Remove automatic insert the current comment leader after hitting 'o' or 'O'

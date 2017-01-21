@@ -118,8 +118,9 @@ export n0v1c3=$HOME/Documents/development/n0v1c3
 # ===
 # Custom functions
 # ===
-# Start only a single instance of xautolock
-if ! pgrep -u "$USER" xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi
+# Start only a single instance of xautolock (moved to i3 config)
+#if ! pgrep -u "$USER" xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi
+exec $(if ! pgrep -u "$USER" xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock < /dev/null > /dev/null 2>&1 &; fi)
 
 # Load custom keybindings once
 if xmodmap | grep -q "Caps_Lock"; then; xmodmap ~/.xmodmap; fi

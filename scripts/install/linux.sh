@@ -108,13 +108,12 @@ $install_cmd xorg
 # Terminal tools
 $install_cmd alsa-utils # Advanced linux sound architecture
 $install_cmd cronie # Cronjob task manager
-$install_cmd curl
-$install_cmd curlftpfs
+$install_cmd curl # URL data transfer
+$install_cmd curlftpfs # FTP using curl
 $install_cmd fuse # Mount for ntfs
 $install_cmd ghostscript # Used for imagemagick
 $install_cmd git
 $install_cmd lm_sensors # Linux monitoring sensors
-$install_cmd network-manager-applet
 $install_cmd networkmanager
 $install_cmd ntfs-3g # Mount for ntfs
 $install_cmd openssh
@@ -146,6 +145,7 @@ $install_cmd gnome-icon-theme-full
 $install_cmd gource
 $install_cmd imagemagick
 $install_cmd libreoffice
+$install_cmd network-manager-applet
 $install_cmd remmina
 $install_cmd retext
 $install_cmd scrot # Screen shot

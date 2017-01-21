@@ -1,25 +1,17 @@
 #!/bin/bash
 
-################################################################################
-# linux.sh
-# Install Arch Linux with desired software and configurations 
-################################################################################
+# Name: linux/scripts/install/linux.sh
+# Description: Install Arch Linux with desired software and configurations 
 
-##
+###
 # Variables
-##
+###
 
 sudo_gid=1000
-install=true
 
-if ( [[ $1 == '-t' ]] )
-then
-	install=false
-fi
-
-##
+###
 # Read
-##
+###
 
 # Get directory of the current bash script
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -43,38 +35,16 @@ read user_full
 echo -n "Enter email: "
 read user_email
 
-# Set parameters based on the current operating system
-case $(uname -a | tr '[:upper:]' '[:lower:]') in
-
-	# Arch OS
-	*arch*)
-		os="arch"
-		sudo="arch-chroot /mnt"
-		installer="pacman -S --noconfirm"
-		base_install="pacstrap /mnt base"
-		;;
-
-	# Ubuntu OS
-	*ubuntu*)
-		os="ubuntu"
-		sudo="sudo"
-		installer="apt-get -y"
-		base_install=""
-		;;
-
-	# Invalid OS
-	*)
-		echo "Invalid OS"
-		exit 1
-		;;
-esac
+sudo="arch-chroot /mnt"
+installer="pacman -S --noconfirm"
+base_install="pacstrap /mnt base"
 
 # Install command to be used when installing new software
 install_cmd="$sudo $installer"
 
-##
+###
 # Disks
-##
+###
 
 # Partition (100M Grub | 2G Swap | x ext)
 echo -e "o\nn\np\n1\n\n+100M\nn\np\n2\n\n+2G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n" | fdisk ${diskpath}
@@ -89,9 +59,9 @@ mkfs.ext4 ${diskpath}3
 # Mount new file system
 mount ${diskpath}3 /mnt
 
-##
+###
 # Base
-##
+###
 
 # Rank mirrors by speed
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -109,9 +79,9 @@ echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" > /mnt/etc/locale.gen
 $sudo locale-gen
 echo LANG=en_US.UTF-8 > /mnt/etc/locale.conf
 
-##
+###
 # Network
-##
+###
 
 # Generate fstab
 genfstab -p /mnt >> /mnt/etc/fstab
@@ -122,9 +92,9 @@ echo $hostname > /mnt/etc/hostname
 # Enable DHCP
 $sudo systemctl enable dhcpcd.service
 
-##
+###
 # Install
-##
+###
 
 # Grub
 $install_cmd grub
@@ -138,13 +108,22 @@ $install_cmd xorg
 # Terminal tools
 $install_cmd alsa-utils # Advanced linux sound architecture
 $install_cmd cronie # Cronjob task manager
+$install_cmd curl
+$install_cmd curlftpfs
 $install_cmd fuse # Mount for ntfs
+$install_cmd ghostscript # Used for imagemagick
 $install_cmd git
 $install_cmd lm_sensors # Linux monitoring sensors
-$install_cmd networkmanager
 $install_cmd network-manager-applet
+$install_cmd networkmanager
 $install_cmd ntfs-3g # Mount for ntfs
+$install_cmd openssh
+$install_cmd pandoc # General markup converter
 $install_cmd python
+$install_cmd ranger
+$install_cmd rsync
+$install_cmd samba
+$install_cmd sshfs
 $install_cmd sudo
 $install_cmd tmux
 $install_cmd vim
@@ -154,48 +133,31 @@ $install_cmd zsh
 
 # xSession tools
 $install_cmd arandr
+$install_cmd baobab # Disk usage
+$install_cmd clementine
+$install_cmd conky
+$install_cmd deluge
 $install_cmd dmenu
+$install_cmd fdupes
 $install_cmd firefox
+$install_cmd freerdp
+$install_cmd fslint # File compare
 $install_cmd gnome-icon-theme-full
+$install_cmd gource
+$install_cmd imagemagick
+$install_cmd libreoffice
+$install_cmd remmina
+$install_cmd retext
+$install_cmd scrot # Screen shot
 $install_cmd terminator
 $install_cmd thunar
+$install_cmd virtualbox
+$install_cmd vlc
+$install_cmd xautolock
 
-# Install non-essential software
-if ( $install )
-then
-    # Terminal tools
-	$install_cmd curl
-	$install_cmd curlftpfs
-	$install_cmd ghostscript # Used for imaagemagick
-	$install_cmd openssh
-	$install_cmd pandoc # General markup converter
-	$install_cmd ranger
-	$install_cmd rsync
-	$install_cmd samba
-	$install_cmd sshfs
-
-    # xSession tools
-	$install_cmd baobab # Disk usage
-	$install_cmd clementine
-	$install_cmd conky
-	$install_cmd deluge
-	$install_cmd fdupes
-	$install_cmd freerdp
-	$install_cmd fslint # File compare
-	$install_cmd gource
-	$install_cmd imagemagick
-	$install_cmd libreoffice
-	$install_cmd remmina
-	$install_cmd retext
-	$install_cmd scrot # Screen shot
-	$install_cmd virtualbox
-	$install_cmd vlc
-	$install_cmd xautolock
-fi
-
-##
+###
 # Configuration
-##
+###
 
 # Git
 $sudo git config --global user.email ${user_email}
@@ -232,9 +194,9 @@ $sudo usermod -a -G sudo $user_name
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch
 
-##
+###
 # Dotfiles
-##
+###
 
 # Root dotfiles
 $sudo mkdir --parents /root/Documents/development
@@ -246,9 +208,9 @@ $sudo mkdir --parents /home/$user_name/Documents/development
 $sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/Documents/development/dotfiles
 $sudo bash /home/$user_name/Documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
 
-##
+###
 # Clean-up
-##
+###
 
 # Proper owner for all of user's home directory
 $sudo chown -R $user_name:root /home/$user_name

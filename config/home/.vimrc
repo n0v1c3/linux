@@ -51,6 +51,8 @@ au BufNewFile,BufRead *.ahk setf autohotkey
 " Commands {{{
 " Find all TODO's recursively in current directory
 command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw 5
+" Force quite current window
+command! Q q!
 " }}}
 " Display {{{
 " Visual auto complete for command menu
@@ -170,20 +172,8 @@ endfunction
 " }}}
 " Spelling {{{
 " Add last misspelled word to a custom dictionary
-function! SpellingAddLastWrongWord()
-    execute "normal! mm[szg`m\<CR>"
-endfunction
-" Add next misspelled word to a custom dictionary
-function! SpellingAddNextWrongWord()
-    execute "normal! mm]szg`m\<CR>"
-endfunction
-" Correct the last incorrect word and return to same position
-function! SpellingFixLastWrongWord()
-    execute "normal! mm[s1z=`m\<CR>"
-endfunction
-" Correct the next incorrect word and return to same position
-function! SpellingFixNextWrongWord()
-    execute "normal! mm]s1z=`m\<CR>"
+function! SpellingAddWord()
+    execute "normal! zg\<CR>"
 endfunction
 " }}}
 " Visual {{{
@@ -243,11 +233,15 @@ let mapleader="\<space>"
 " Open i3 config file in split view
 nnoremap <leader>ei :sp ~/.config/i3/config<CR><C-W>o
 " Open common shell config file in split view
+nnoremap <leader>ep :sp ~/.pythonrc<CR><C-W>o
+" Open common shell config file in split view
 nnoremap <leader>es :sp ~/.shrc<CR><C-W>o
 " Open tmux config file in split view
 nnoremap <leader>et :sp ~/.tmux.conf<CR><C-W>o
 " Open vimrc file in split view
 nnoremap <leader>ev :sp ~/.vimrc<CR><C-W>o
+" Open xinit file in split view
+nnoremap <leader>ex :sp ~/.xinitrc<CR><C-W>o
 " Open zshrc file in split view
 nnoremap <leader>ez :sp ~/.zshrc<CR><C-W>o
 
@@ -332,13 +326,14 @@ nnoremap <leader>sni :call SnipIf()<CR>
 vnoremap <leader>sm :'<,'>sort -M
 " }}}
 " Spelling {{{
+nnoremap <leader>sa :call SpellingAddWord()<CR>
 nnoremap <leader>ss ea<C-X>s<C-P>
 nnoremap <leader>sn ]s
 nnoremap <leader>sN [s
-nnoremap <leader>sal :call SpellingAddLastWrongWord()<CR>
-nnoremap <leader>san :call SpellingAddNextWrongWord()<CR>
-nnoremap <leader>sfl :call SpellingFixLastWrongWord()<CR>
-nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
+"nnoremap <leader>sal :call SpellingAddLastWrongWord()<CR>
+"nnoremap <leader>san :call SpellingAddNextWrongWord()<CR>
+"nnoremap <leader>sfl :call SpellingFixLastWrongWord()<CR>
+"nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
 " }}}
 " Tabs {{{
 noremap <leader>nt :tabe<CR>
@@ -426,6 +421,7 @@ set spellfile=~/.vim/spell/wordlist.utf-8.add
 " Set statusline
 highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
 set statusline=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
+set showcmd
 " }}}
 " Syntax {{{
 " Disable automatic text wrapping
@@ -478,5 +474,11 @@ augroup templates
 augroup END
 " }}}
 
+" Cache {{{
+" Change default location of the .viminfo cache file
+set viminfo+=n~/.vim/.viminfo
+" }}}
+
 " Override the default foldmethod in this file
 " vim: foldmethod=marker:foldlevel=0
+

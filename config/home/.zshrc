@@ -26,11 +26,10 @@ plugins=(git vi-mode history-substring-search)
 # Vi mode
 bindkey -v
 
-# Add  ruby executables to the PATH variable
-PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
-
 # Oh-My-Zsh
 source $ZSH/oh-my-zsh.sh
 
 # Source common shell configurations
 source ~/.shrc
+
+compinit -d ~/.config/zsh/.zcompdump

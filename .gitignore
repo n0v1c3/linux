@@ -2,3 +2,6 @@
 *.swp
 *.netrwhist
 dirs/.vim/bundle/
+
+# Temp ignore
+*.viminfo

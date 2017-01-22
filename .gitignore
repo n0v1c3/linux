@@ -4,4 +4,4 @@
 dirs/.vim/bundle/
 
 # Temp ignore
-.viminfo
+dirs/.vim/.viminfo

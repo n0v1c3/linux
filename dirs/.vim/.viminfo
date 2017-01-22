@@ -20,10 +20,10 @@
 $
 
 # Command Line History (newest to oldest):
-:wq
-|2,0,1485104456,,"wq"
 :q
-|2,0,1485104348,,"q"
+|2,0,1485104598,,"q"
+:wq
+|2,0,1485104594,,"wq"
 :w
 |2,0,1485068248,,"w"
 :vertical resize -40
@@ -347,36 +347,134 @@ $
 |3,0,36,0,1,0,1485068156," "
 
 # File marks:
-'0  7  8  ~/Documents/development/n0v1c3/dotfiles/.gitignore
-|4,48,7,8,1485104456,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
-'1  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
-|4,49,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
-'2  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,50,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'3  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,51,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'4  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,52,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'5  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,53,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'6  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,54,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'7  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,55,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'8  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,56,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
-'9  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,57,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+'0  5  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,48,5,0,1485104598,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+'1  7  9  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,49,7,9,1485104594,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+'2  7  9  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,50,7,9,1485104594,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+'3  7  8  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,51,7,8,1485104456,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+'4  7  8  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,52,7,8,1485104456,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+'5  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,53,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+'6  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,54,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+'7  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,55,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+'8  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,56,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+'9  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,57,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 
 # Jumplist (newest first):
+-'  5  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,5,0,1485104598,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,1,0,1485104596,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  7  9  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,7,9,1485104594,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  7  9  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,7,9,1485104594,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,1,0,1485104579,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
 -'  7  8  ~/Documents/development/n0v1c3/dotfiles/.gitignore
 |4,39,7,8,1485104456,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  7  8  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,7,8,1485104456,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
+|4,39,1,0,1485104435,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
 -'  1  0  ~/Documents/development/n0v1c3/dotfiles/.gitignore
 |4,39,1,0,1485104435,"~/Documents/development/n0v1c3/dotfiles/.gitignore"
 -'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
 |4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
 -'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
 |4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  44  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,44,1,1485104348,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
+-'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
+|4,39,75,1,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
 -'  1  0  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
 |4,39,1,0,1485104317,"~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh"
 -'  75  1  ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
@@ -393,6 +491,62 @@ $
 |4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 -'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
 |4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,1,0,1485068306,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 -'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
 |4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 -'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
@@ -401,183 +555,29 @@ $
 |4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 -'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
 |4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  30  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,30,1485066821,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066679,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066679,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066679,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066679,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,11,1485066677,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066668,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066668,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066668,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  1  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,1,0,1485066668,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  11  14  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
-|4,39,11,14,1485066665,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
--'  12  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,12,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  12  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,12,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  12  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,12,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  12  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,12,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,0,1485066590,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  13  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,13,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  13  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,13,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  13  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,13,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  13  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,13,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  11  11  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,11,11,1485066427,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  10  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,10,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
--'  8  1  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/g
-|4,39,8,1,1485066408,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/g"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
+-'  10  0  ~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd
+|4,39,10,0,1485066956,"~/Documents/development/n0v1c3/dotfiles/dirs/.func/mkcd"
 
 # History of marks within files (newest to oldest):
 
 > ~/Documents/development/n0v1c3/dotfiles/.gitignore
-	*	1485104455	0
-	"	7	8
-	^	7	9
-	.	7	9
-	+	7	9
+	*	1485104597	0
+	"	5	0
+	^	7	10
+	.	7	10
+	+	7	10
 
 > ~/Documents/development/n0v1c3/dotfiles/scripts/dot-install.sh
 	*	1485104347	0

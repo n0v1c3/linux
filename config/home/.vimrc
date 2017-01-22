@@ -65,6 +65,11 @@ set lazyredraw
 set laststatus=2
 " Display hidden char
 let g:display_hidden = "hidden"
+" Change cursor to | and _ for insert and replace modes respectively
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 " }}}
 " Editor {{{
 " Backspace over auto indent, line breaks, start of insert
@@ -77,6 +82,8 @@ set updatetime=1000
 set virtualedit=all
 " Ignore file patterns globally
 set wildignore+=*.swp
+" Change default location of the .viminfo cache file
+set viminfo+=n~/.vim/.viminfo
 " }}}
 " Folding {{{
 set foldenable
@@ -171,9 +178,9 @@ function! HelpRandom()
 endfunction
 " }}}
 " Spelling {{{
-" Add last misspelled word to a custom dictionary
+" Add current misspelled word to a custom dictionary
 function! SpellingAddWord()
-    execute "normal! zg\<CR>"
+    execute "normal! zg"
 endfunction
 " }}}
 " Visual {{{
@@ -229,7 +236,9 @@ augroup END
 " Leader key {{{
 let mapleader="\<space>"
 " }}}
-" Dotfiles {{{
+" Dot-files {{{
+" Open bash config file in split view
+nnoremap <leader>eb :sp ~/.bashrc<CR><C-W>o
 " Open i3 config file in split view
 nnoremap <leader>ei :sp ~/.config/i3/config<CR><C-W>o
 " Open common shell config file in split view
@@ -314,7 +323,7 @@ noremap <silent><leader>j 15<C-E>
 " Search {{{
 " Jump to the next word matching the content under the cursor (same as * except word can be pasted)
 nnoremap <leader>/ viwy/<C-R>"<CR>
-" Jump to the next word matching the content highlihgted in visual mode
+" Jump to the next word matching the content highlighted in visual mode
 vnoremap <leader>/ y/<C-R>"<CR>
 " }}}
 " Snippets {{{
@@ -330,10 +339,6 @@ nnoremap <leader>sa :call SpellingAddWord()<CR>
 nnoremap <leader>ss ea<C-X>s<C-P>
 nnoremap <leader>sn ]s
 nnoremap <leader>sN [s
-"nnoremap <leader>sal :call SpellingAddLastWrongWord()<CR>
-"nnoremap <leader>san :call SpellingAddNextWrongWord()<CR>
-"nnoremap <leader>sfl :call SpellingFixLastWrongWord()<CR>
-"nnoremap <leader>sfn :call SpellingFixNextWrongWord()<CR>
 " }}}
 " Tabs {{{
 noremap <leader>nt :tabe<CR>
@@ -351,10 +356,8 @@ vnoremap <LEFT> xhP:call BlockMove("left")<CR>gv
 " }}}
 " Window {{{
 nnoremap <silent> <leader>w <C-w>
-nnoremap <leader>wgv :vertical resize -5<CR>
-nnoremap <leader>wgV :vertical resize +5<CR>
-nnoremap <leader>wgh :resize -5<CR>
-nnoremap <leader>wgH :resize +5<CR>
+nnoremap <leader>wgv :<C-U>exec "vertical resize +".v:count1<CR>
+nnoremap <leader>wgh :<C-U>exec "resize +".v:count1<CR>
 " }}}
 " Yank {{{
 nnoremap Y y$
@@ -430,8 +433,6 @@ set textwidth=0
 " General settings required for highlighting
 filetype plugin on
 syntax on
-" Highlight current line
-set cursorline
 " Search as characters are entered
 set incsearch
 " Highlight search
@@ -474,11 +475,5 @@ augroup templates
 augroup END
 " }}}
 
-" Cache {{{
-" Change default location of the .viminfo cache file
-set viminfo+=n~/.vim/.viminfo
-" }}}
-
-" Override the default foldmethod in this file
+" Set modeline to override the default foldmethod in this file
 " vim: foldmethod=marker:foldlevel=0
-

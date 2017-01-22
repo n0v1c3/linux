@@ -14,9 +14,6 @@ case $- in
 *) return;;
 esac
 
-# Source common shell configurations
-source ~/.shrc
-
 # don't put duplicate lines or lines starting with space in the history.
 HISTCONTROL=ignoreboth
 
@@ -57,3 +54,7 @@ fi
 # Console prompts
 PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
 PS2="\[\033[97m\]> \[\033[00m\]"
+
+# Source common shell configurations
+source ~/.shrc
+

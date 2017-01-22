@@ -1,3 +1,5 @@
+#!/bin/bash
+
 g() {
 	if [[ $# -gt 0 ]]
 	then
@@ -6,3 +8,6 @@ g() {
 		git status
 	fi
 }
+
+# Vim modeline to set correct filetype syntax
+# vim: set filetype=sh:setlocal

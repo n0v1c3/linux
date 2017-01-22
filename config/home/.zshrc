@@ -1,6 +1,13 @@
+#            _              
+#           | |             
+#    _______| |__  _ __ ___ 
+#   |_  / __| '_ \| '__/ __|
+#  _ / /\__ \ | | | | | (__ 
+# (_)___|___/_| |_|_|  \___|
+
 ##
-# .zshrc
-# Configuration for zsh shell
+# Name: .zshrc
+# Description: Configuration for zsh shell
 ##
 
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
@@ -31,5 +38,3 @@ source $ZSH/oh-my-zsh.sh
 
 # Source common shell configurations
 source ~/.shrc
-
-compinit -d ~/.config/zsh/.zcompdump

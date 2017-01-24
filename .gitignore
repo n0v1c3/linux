@@ -1,9 +1,14 @@
 # linux
 *~
-*.swp
 .fuse_hidden*
 .directory
 .Trash-*
+
+# Vim fies
+*.swp
+/home/.vim/.viminfo
+*.netrwhist
+/dirs/.vim/bundle/*
 
 # windows
 Thumbs.db

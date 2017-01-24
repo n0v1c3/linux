@@ -27,8 +27,8 @@ use_xft yes
 TEXT
 ${font Monospace:bold:size=7}
 
-${goto 100}${voffset 0}${color lightblue}--SYSTEM--
-${color lightgreen}+------------+-----------------+
+${goto 100}${voffset 0}${color lightblue}--SYSTEM--${color lightgreen}
++------------+-----------------+
 | USERS      | ${scroll 15 1 ${execi 1 who | cut -d ' ' -f 1 | uniq | sort}} |
 +------------+-----------------+${color}
 #Temp: $acpitemp
@@ -42,15 +42,15 @@ ${color lightgreen}${texeci 1 bash $HOME/.config/conky/memory.sh}
 ${goto 100}${voffset 0}${color lightblue}--CPU ${cpu} %--
 ${color lightgreen}${execpi 1 sh $HOME/.config/conky/cpu.sh}
 
-${goto 100}${color lightblue}--TOP--
-${color lightgreen}+------------+-----------------+-----------------+-----------------+
+${goto 100}${color lightblue}--TOP--${color lightgreen}
++------------+-----------------+-----------------+-----------------+
 | USER       | PID             | NAME            | CPU             |
 +------------+-----------------+-----------------+-----------------+
-| ${top user 1}${goto 83}| ${top pid 1}${goto 191}| ${top name 1}${goto 299}| ${top cpu 1}${goto 407}|
-| ${top user 2}${goto 83}| ${top pid 2}${goto 191}| ${top name 2}${goto 299}| ${top cpu 2}${goto 407}|
-| ${top user 3}${goto 83}| ${top pid 3}${goto 191}| ${top name 3}${goto 299}| ${top cpu 3}${goto 407}|
-| ${top user 4}${goto 83}| ${top pid 4}${goto 191}| ${top name 4}${goto 299}| ${top cpu 4}${goto 407}|
-| ${top user 5}${goto 83}| ${top pid 5}${goto 191}| ${top name 5}${goto 299}| ${top cpu 5}${goto 407}|
+| ${top user 1}${goto 70}| ${top pid 1}${goto 160}| ${top name 1}${goto 250}| ${top cpu 1}${goto 340}|
+| ${top user 2}${goto 70}| ${top pid 2}${goto 160}| ${top name 2}${goto 250}| ${top cpu 2}${goto 340}|
+| ${top user 3}${goto 70}| ${top pid 3}${goto 160}| ${top name 3}${goto 250}| ${top cpu 3}${goto 340}|
+| ${top user 4}${goto 70}| ${top pid 4}${goto 160}| ${top name 4}${goto 250}| ${top cpu 4}${goto 340}|
+| ${top user 5}${goto 70}| ${top pid 5}${goto 160}| ${top name 5}${goto 250}| ${top cpu 5}${goto 340}|
 +------------+-----------------+-----------------+-----------------+
 
 BAT0: ${battery_bar 5, 105} | ${battery}

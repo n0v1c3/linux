@@ -1,7 +1,7 @@
 # Vim fies
 *.swp
 *.netrwhist
-dirs/.vim/bundle/
+/dirs/.vim/bundle/*
 
 # Temp ignore
-dirs/.vim/.viminfo
+/dirs/.vim/.viminfo

@@ -1,21 +1,21 @@
 # linux
 *~
-.fuse_hidden*
-.directory
 .Trash-*
+.directory
+.fuse_hidden*
 
 # Vim fies
-*.swp
-/home/.vim/.viminfo
 *.netrwhist
-/dirs/.vim/bundle/*
+*.swp
+/dotfiles/home/.vim/.viminfo
+/dotfiles/home/.vim/bundle/*
 
 # windows
-Thumbs.db
-ehthumbs.db
-Desktop.ini
 $RECYCLE.BIN/
 *.lnk
+Desktop.ini
+Thumbs.db
+ehthumbs.db
 
 # packages
 *.7z

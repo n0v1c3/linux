@@ -33,8 +33,9 @@ plugins=(git vi-mode history-substring-search)
 # Vi mode
 bindkey -v
 
+# Oh-My-Zsh
+source /bin/.oh-my-zsh/oh-my-zsh.sh
+
 # Source common shell configurations
 source ~/.shrc
 
-# Oh-My-Zsh
-source $ZSH/oh-my-zsh.sh

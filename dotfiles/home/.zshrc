@@ -5,10 +5,8 @@
 #  _ / /\__ \ | | | | | (__ 
 # (_)___|___/_| |_|_|  \___|
 
-##
 # Name: .zshrc
 # Description: Configuration for zsh shell
-##
 
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="random"
@@ -34,8 +32,7 @@ plugins=(git vi-mode history-substring-search)
 bindkey -v
 
 # Oh-My-Zsh
-source /bin/.oh-my-zsh/oh-my-zsh.sh
+source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 # Source common shell configurations
-source ~/.shrc
-
+source $HOME/.shrc

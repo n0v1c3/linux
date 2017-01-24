@@ -57,4 +57,3 @@ PS2="\[\033[97m\]> \[\033[00m\]"
 
 # Source common shell configurations
 source ~/.shrc
-

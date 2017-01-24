@@ -11,6 +11,7 @@
       parent = window0
       profile = default
       type = Terminal
+      directory = /home/travis
     [[[window0]]]
       parent = ""
       type = Window

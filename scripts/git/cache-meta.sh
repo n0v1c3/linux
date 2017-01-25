@@ -10,7 +10,7 @@
 
 # 2012-03-05 - added filetime, andris9
 
-: ${cacheMetaFile=$(git rev-parse --show-toplevel)/.git_cache_meta}
+: ${cacheMetaFile=$(git rev-parse --show-toplevel)/.gitmeta}
 
 case $@ in
     --store|--stdout)

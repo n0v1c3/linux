@@ -1,0 +1,5 @@
+[user]
+   email = travis.gall@gmail.com
+   name = Travis Gall\n
+[push]
+	default = simple

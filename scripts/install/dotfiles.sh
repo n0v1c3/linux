@@ -1,15 +1,19 @@
 #!/bin/bash
 
-################################################################################
-# dot-install.sh
-# Installation and configuration of all dot-files being used
-# parameters:
-# - $1: 
-################################################################################
-
-# ===
+# Name: linux - install-dotfiles
+# Desc: Install or update current user's configuration
+# Paramaters:
+# - Flags
+#    - -b --backup (output_dir)  Backup any files that would be affected
+#    - -h, --help		show brief help
+#    - -b, --backup		backup all dotfiles
+#    - -c, --clean-up	remove old backup files
+#    - -d, --diff		display the diff for all dotfiles that would be changed
+#    - -l, --links		link all dotfiles and dot directories
+#    - -s, --scripts	run all scripts in repository
+# ---
 # Constants
-# ===
+# ---
 
 # Script directory
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
@@ -17,9 +21,14 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}" )/.." && pwd)"
 # Set newline as only list separator
 IFS=$'\n'
 
-##
+# ===
+# Setup
+# ===
+# Define common variables and functions used throughout
+
+# ---
 # Functions
-##
+# ---
 
 # echo the required destination path
 # Parameters:
@@ -51,16 +60,12 @@ function getDst()
     echo $dst
 }
 
-##
-# Setup
-##
-
 # Create a configuration directory
 mkdir $HOME/.config
 
-##
+# ===
 # Main
-##
+# ===
 
 # Dotfiles
 files=$(find $DIR -type f -name "*" | egrep "$DIR/config/")

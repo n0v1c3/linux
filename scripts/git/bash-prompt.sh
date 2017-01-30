@@ -4,9 +4,13 @@
 # Description: Prepared outputs that can be added to the bash prompt string
 
 function status() {
-if git diff; then
+if git diff-index --quiet HEAD --; then
+    # No changes
+    echo "NO DIFF"
+else
+    # Changes
     echo "DIFF"
-fi > /dev/null
+fi
 }
 
 echo $(status)

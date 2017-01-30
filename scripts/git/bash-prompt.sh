@@ -4,9 +4,9 @@
 # Description: Prepared outputs that can be added to the bash prompt string
 
 function status() {
-if git diff > /dev/null; then
+if git diff; then
     echo "DIFF"
-fi
+fi > /dev/null
 }
 
 echo $(status)

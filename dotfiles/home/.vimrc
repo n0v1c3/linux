@@ -294,6 +294,8 @@ nnoremap zO mmggVGzO`m
 nnoremap <leader>? mmyiw:help <C-R>"<CR>'m
 " Display a random help entry
 nnoremap <leader>?? :call HelpRandom()<CR>
+" Search for all tags on current help page
+nnoremap <leader>?t /\|.\{-}\|
 " }}}
 " Hidden {{{
 nnoremap <leader>hs :call DisplayHidden()<CR>

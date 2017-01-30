@@ -1,28 +1,22 @@
-# linux
-*~
-.Trash-*
-.directory
-.fuse_hidden*
-
-# Vim fies
-*.netrwhist
-*.swp
-/dotfiles/home/.vim/.viminfo
-/dotfiles/home/.vim/bundle/*
-
-# windows
 $RECYCLE.BIN/
-*.lnk
-Desktop.ini
-Thumbs.db
-ehthumbs.db
-
-# packages
 *.7z
 *.dmg
 *.gz
 *.iso
 *.jar
+*.lnk
+*.netrwhist
 *.rar
+*.swp
 *.tar
 *.zip
+*~
+.Trash-*
+.directory
+.fuse_hidden*
+/.git/tags
+/dotfiles/home/.vim/.viminfo
+/dotfiles/home/.vim/bundle/*
+Desktop.ini
+Thumbs.db
+ehthumbs.db

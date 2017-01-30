@@ -229,7 +229,7 @@ exec --no-startup-id i3-msg "workspace $ws3; exec thunar"
 # Launch firefox onto workspace 2
 exec --no-startup-id i3-msg "workspace $ws2; exec firefox"
 
-# Launch terminator, and arandr onto workspace 1
+# Launch terminator onto workspace 1
 exec --no-startup-id i3-msg "workspace $ws1; exec terminator"
 
 # Launch xautolock

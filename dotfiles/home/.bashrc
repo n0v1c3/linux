@@ -52,7 +52,11 @@ if ! shopt -oq posix; then
 fi
 
 # Console prompts
-PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
+psfont_null="\[\033[00m\]" 
+psfont_white="\[\033[97m\]" 
+psfont_blue="\[\033[0;96m\]" 
+psfont_green="\[\033[0;92m\]"
+PS1="$psfont_null[$psfont_blue\u$psfont_null@$psfont_green\h$psfont_white \W$psfont_null]\$ "  
 PS2="\[\033[97m\]> \[\033[00m\]"
 
 # Source common shell configurations

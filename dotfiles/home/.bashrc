@@ -54,7 +54,9 @@ white="\[\033[97m\]"
 blue="\[\033[0;96m\]" 
 green="\[\033[0;92m\]"
 # Default prompts
-PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n$(git-prompt)\$ "  
+PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n"
+PS1+='$(git-prompt)'
+PS1+="\$ "  
 PS2="$white>$grey "
 
 # Clean-up

@@ -61,7 +61,7 @@ GREEN="\[\033[0;92m\]"
 
 git_status() {
     # Default stat
-    stat="$BLUE"
+    stat="$GREEN"
 
     branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
     branch_name="unnamed branch"     # detached HEAD

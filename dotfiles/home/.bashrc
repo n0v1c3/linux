@@ -62,13 +62,13 @@ GREEN="\[\033[0;92m\]"
 git_status() {
     # Default stat
     stat="$BLUE"
+
+    branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+    branch_name="unnamed branch"     # detached HEAD
+    branch_name=${branch_name##refs/heads/}
     # Check for changes in git repo
     if ! git diff-index --quiet HEAD -- 2>/dev/null; then
         # Update '$stat'
-        branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-        branch_name="unnamed branch"     # detached HEAD
-        branch_name=${branch_name##refs/heads/}
-
         stat="$YELLOW"
     fi
     echo "$GREY($stat$branch_name$GREY)"

@@ -3,6 +3,7 @@
 # Name: bash-prompt.sh
 # Description: Prepared outputs that can be added to the bash prompt string
 
+# Generate status prompt based on the git status of the current directory
 function git_status() {
 stat="git"
 if git diff-index --quiet HEAD --; then
@@ -12,11 +13,10 @@ else
     # Changes
     stat=$stat+"DIFF"
 fi
-echo "$stat"
+echo -n "$stat"
 }
 
-prompt=$(git_status)
-echo "$prompt"
+echo $(git_status)
 
 # ---
 # Exit

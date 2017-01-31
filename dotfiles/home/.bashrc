@@ -14,25 +14,19 @@ case $- in
 *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
+# ---
+# History
+# ---
+# Ignore duplicate lines or lines starting with a space
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
+# Append to the history file
 shopt -s histappend
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# ---
+# Display
+# ---
+# Update values of LINES and COLUMNS after each command
 shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]
-then
-   debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
    xterm-color)
@@ -53,13 +47,15 @@ fi
 
 # Source common shell configurations
 source ~/.shrc
-source ~/.bin/git-prompt
 
 # Formatting
-psfont_null="\[\033[00m\]" 
-psfont_white="\[\033[97m\]" 
-psfont_blue="\[\033[0;96m\]" 
-psfont_green="\[\033[0;92m\]"
+grey="\[\033[00m\]" 
+white="\[\033[97m\]" 
+blue="\[\033[0;96m\]" 
+green="\[\033[0;92m\]"
 # Default prompts
-PS1="\n$psfont_null$psfont_blue\u$psfont_null@$psfont_green\h$psfont_white:\W$psfont_null\n\$ "  
-PS2="$psfont_white ... >$psfont_null "
+PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n$(git-prompt)\$ "  
+PS2="$white>$grey "
+
+# Clean-up
+unset grey white blue green

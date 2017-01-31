@@ -3,17 +3,20 @@
 # Name: bash-prompt.sh
 # Description: Prepared outputs that can be added to the bash prompt string
 
-function status() {
+function git_status() {
+stat="git"
 if git diff-index --quiet HEAD --; then
     # No changes
-    echo "NO DIFF"
+    echo -n ""
 else
     # Changes
-    echo "DIFF"
+    stat=$stat+"DIFF"
 fi
+echo "$stat"
 }
 
-echo $(status)
+prompt=$(git_status)
+echo "$prompt"
 
 # ---
 # Exit

@@ -51,13 +51,15 @@ if ! shopt -oq posix; then
    fi
 fi
 
-# Console prompts
+# Source common shell configurations
+source ~/.shrc
+source ~/.bin/git-prompt
+
+# Formatting
 psfont_null="\[\033[00m\]" 
 psfont_white="\[\033[97m\]" 
 psfont_blue="\[\033[0;96m\]" 
 psfont_green="\[\033[0;92m\]"
-PS1="$psfont_null[$psfont_blue\u$psfont_null@$psfont_green\h$psfont_white \W$psfont_null]\$ "  
-PS2="\[\033[97m\]> \[\033[00m\]"
-
-# Source common shell configurations
-source ~/.shrc
+# Default prompts
+PS1="\n$psfont_null$psfont_blue\u$psfont_null@$psfont_green\h$psfont_white:\W$psfont_null\n\$ "  
+PS2="$psfont_white ... >$psfont_null "

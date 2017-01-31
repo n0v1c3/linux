@@ -8,10 +8,10 @@
 [layouts]
   [[default]]
     [[[child1]]]
+      directory = /home/travis
       parent = window0
       profile = default
       type = Terminal
-      directory = /home/travis
     [[[window0]]]
       parent = ""
       type = Window
@@ -23,4 +23,3 @@
     font = Monospace 11
     scrollbar_position = hidden
     show_titlebar = False
-    use_custom_command = True

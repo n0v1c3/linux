@@ -88,7 +88,12 @@ alias grst='git reset'
 alias gs='git status -sb'
 
 # ---
-# Wget
+# w3m
+# ---
+alias w3m='w3m https://google.ca/'
+
+# ---
+# wget
 # ---
 alias wget='wget --hsts-file=~/.config/cache/.wget-hsts'
 

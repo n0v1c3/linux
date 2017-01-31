@@ -1,3 +1,6 @@
+#!/bin/bash
+#. /home/travis/Documents/development/n0v1c3/linux/scripts/git/bash-prompt.sh
+
 ################################################################################
 # .bashrc
 # Configuration file for the bash shell
@@ -14,25 +17,19 @@ case $- in
 *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
+# ---
+# History
+# ---
+# Ignore duplicate lines or lines starting with a space
 HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
+# Append to the history file
 shopt -s histappend
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# ---
+# Display
+# ---
+# Update values of LINES and COLUMNS after each command
 shopt -s checkwinsize
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]
-then
-   debian_chroot=$(cat /etc/debian_chroot)
-fi
-
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
    xterm-color)
@@ -51,9 +48,45 @@ if ! shopt -oq posix; then
    fi
 fi
 
-# Console prompts
-PS1="\[\033[97m\][\[\033[0;96m\]\u\[\033[97m\]@\[\033[0;92m\]\h\[\033[97m\] \W]\[\033[00m\]$ "
-PS2="\[\033[97m\]> \[\033[00m\]"
-
 # Source common shell configurations
+#source ~/.bin/git-prompt
 source ~/.shrc
+
+# Formatting
+GREY="\e[0m"
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m" 
+LIGHT_RED="\e[91m"
+LIGHT_GREEN="\e[92m"
+LIGHT_YELLOW="\e[93m"
+LIGHT_BLUE="\e[94m" 
+WHITE="\e[37m" 
+
+git_status() {
+    # Default stat
+    stat="$GREEN"
+
+    branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+    branch_name="unnamed branch"     # detached HEAD
+    branch_name=${branch_name##refs/heads/}
+    # Check for changes in git repo
+    if ! git diff-index --quiet HEAD -- 2>/dev/null; then
+        # Update '$stat'
+        stat="$RED"
+    fi
+    echo "$GREY($stat$branch_name$GREY)"
+}
+
+# Default prompts
+prompt_command() {
+    PS1="\n$BLUE\u$WHITE@$GREEN\h$WHITE: \w\n"
+    if git rev-parse --git-dir> /dev/null 2>/dev/null; then
+        PS1+="$(git_status)"
+    fi
+    PS1+="\$ "
+}
+PS2="$white>$GREY "
+# Trigger prompt to update all functions
+PROMPT_COMMAND='prompt_command'

@@ -1,3 +1,6 @@
+#!/bin/bash
+#. /home/travis/Documents/development/n0v1c3/linux/scripts/git/bash-prompt.sh
+
 ################################################################################
 # .bashrc
 # Configuration file for the bash shell
@@ -46,18 +49,37 @@ if ! shopt -oq posix; then
 fi
 
 # Source common shell configurations
+#source ~/.bin/git-prompt
 source ~/.shrc
 
 # Formatting
+GREY="\[\033[0m\]"
+YELLOW="\[\033[33m\]"
+git_status() {
+stat="$GREY"
+# Check for changes in git repo
+if ! git diff-index --quiet HEAD -- 2>/dev/null; then
+    # Update '$stat'
+    grey="$GREY"
+    branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+    branch_name="unnamed branch"     # detached HEAD
+    branch_name=${branch_name##refs/heads/}
+
+    stat="$YELLOW"
+fi
+echo "$grey($stat$branch_name$grey)"
+}
 grey="\[\033[00m\]" 
 white="\[\033[97m\]" 
 blue="\[\033[0;96m\]" 
 green="\[\033[0;92m\]"
 # Default prompts
-PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n"
-PS1+='$(git-prompt)'
-PS1+="\$ "  
+prompt_config() {
+    PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n$(git_status)\$ "
+}
 PS2="$white>$grey "
+
+PROMPT_COMMAND='prompt_config'
 
 # Clean-up
 unset grey white blue green

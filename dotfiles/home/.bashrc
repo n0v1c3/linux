@@ -53,12 +53,16 @@ fi
 source ~/.shrc
 
 # Formatting
-GREY="\[\033[0m\]"
-RED="\[\033[31m\]"
-GREEN="\[\033[32m\]"
-YELLOW="\[\033[33m\]"
-BLUE="\[\033[34m\]" 
-WHITE="\[\033[97m\]" 
+GREY="\e[0m"
+RED="\e[31m"
+GREEN="\e[32m"
+YELLOW="\e[33m"
+BLUE="\e[34m" 
+LIGHT_RED="\e[91m"
+LIGHT_GREEN="\e[92m"
+LIGHT_YELLOW="\e[93m"
+LIGHT_BLUE="\e[94m" 
+WHITE="\e[37m" 
 
 git_status() {
     # Default stat
@@ -74,10 +78,15 @@ git_status() {
     fi
     echo "$GREY($stat$branch_name$GREY)"
 }
+
 # Default prompts
-prompt_config() {
-    PS1="\n$GREY$BLUE\u$WHITE@$GREEN\h$WHITE:\w$GREY\n$(git_status)\$ "
+prompt_command() {
+    PS1="\n$BLUE\u$WHITE@$GREEN\h$WHITE: \w\n"
+    if git rev-parse --git-dir> /dev/null 2>/dev/null; then
+        PS1+="$(git_status)"
+    fi
+    PS1+="\$ "
 }
 PS2="$white>$GREY "
-
-PROMPT_COMMAND='prompt_config'
+# Trigger prompt to update all functions
+PROMPT_COMMAND='prompt_command'

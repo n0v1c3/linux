@@ -54,10 +54,11 @@ source ~/.shrc
 
 # Formatting
 GREY="\[\033[0m\]"
+RED="\[\033[31m\]"
+GREEN="\[\033[32m\]"
 YELLOW="\[\033[33m\]"
+BLUE="\[\033[34m\]" 
 WHITE="\[\033[97m\]" 
-BLUE="\[\033[0;96m\]" 
-GREEN="\[\033[0;92m\]"
 
 git_status() {
     # Default stat
@@ -69,7 +70,7 @@ git_status() {
     # Check for changes in git repo
     if ! git diff-index --quiet HEAD -- 2>/dev/null; then
         # Update '$stat'
-        stat="$YELLOW"
+        stat="$RED"
     fi
     echo "$GREY($stat$branch_name$GREY)"
 }

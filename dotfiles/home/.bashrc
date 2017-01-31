@@ -55,31 +55,28 @@ source ~/.shrc
 # Formatting
 GREY="\[\033[0m\]"
 YELLOW="\[\033[33m\]"
-git_status() {
-stat="$GREY"
-# Check for changes in git repo
-if ! git diff-index --quiet HEAD -- 2>/dev/null; then
-    # Update '$stat'
-    grey="$GREY"
-    branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-    branch_name="unnamed branch"     # detached HEAD
-    branch_name=${branch_name##refs/heads/}
+WHITE="\[\033[97m\]" 
+BLUE="\[\033[0;96m\]" 
+GREEN="\[\033[0;92m\]"
 
-    stat="$YELLOW"
-fi
-echo "$grey($stat$branch_name$grey)"
+git_status() {
+    # Default stat
+    stat="$BLUE"
+    # Check for changes in git repo
+    if ! git diff-index --quiet HEAD -- 2>/dev/null; then
+        # Update '$stat'
+        branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+        branch_name="unnamed branch"     # detached HEAD
+        branch_name=${branch_name##refs/heads/}
+
+        stat="$YELLOW"
+    fi
+    echo "$GREY($stat$branch_name$GREY)"
 }
-grey="\[\033[00m\]" 
-white="\[\033[97m\]" 
-blue="\[\033[0;96m\]" 
-green="\[\033[0;92m\]"
 # Default prompts
 prompt_config() {
-    PS1="\n$grey$blue\u$white@$green\h$white:\w$grey\n$(git_status)\$ "
+    PS1="\n$GREY$BLUE\u$WHITE@$GREEN\h$WHITE:\w$GREY\n$(git_status)\$ "
 }
-PS2="$white>$grey "
+PS2="$white>$GREY "
 
 PROMPT_COMMAND='prompt_config'
-
-# Clean-up
-unset grey white blue green

@@ -90,3 +90,11 @@ prompt_command() {
 PS2="$white>$GREY "
 # Trigger prompt to update all functions
 PROMPT_COMMAND='prompt_command'
+
+# Set default edinting mode to vi
+bind 'set editing-mode vi'
+
+# Tab auto complete
+bind 'set completion-ignore-case on'
+bind 'set show-all-if-ambiguous on'
+bind 'TAB:menu-complete'

@@ -5,6 +5,7 @@
 "  \ V /| | | | | | | | | (__
 " (_)_/ |_|_| |_| |_|_|  \___|
 
+
 " Name: .vimrc
 " Description: Configuration file that is automatically loaded and applied to Vim
 " Author: n0v1c3
@@ -18,25 +19,8 @@ execute pathogen#infect()
 let g:sh_indent_case_labels=1
 " NERDTree open to right
 let g:NERDTreeWinPos="left"
-" NerdCommenter add a space after auto comment
+" NERDCommenter add a space after auto comment
 let g:NERDSpaceDelims=1
-" }}}
-" Abbreviations {{{
-" clean code {{{
-iabbrev cr CR
-" }}}
-" common typos {{{
-iabbrev abit a bit
-iabbrev acess access
-iabbrev abd and
-iabbrev adn and
-iabbrev teh the
-iabbrev tehn then
-iabbrev waht what
-" }}}
-" short-hand {{{
-iabbrev @@ travis.gall@gmail.com
-" }}}
 " }}}
 " Colouring {{{
 " 256 color
@@ -45,8 +29,6 @@ set t_Co=256
 set background=dark
 " Preferred color scheme
 colorscheme koehler
-" AutoHotKey
-au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Commands {{{
 " Find all TODO's recursively in current directory
@@ -69,7 +51,6 @@ let g:display_hidden = "hidden"
 let &t_SI = "\<Esc>[6 q"
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
-
 " }}}
 " Editor {{{
 " Backspace over auto indent, line breaks, start of insert
@@ -77,7 +58,7 @@ set backspace=indent,eol,start
 " Remove vi compatibility
 set nocompatible
 " Update when idle for 1000 msec (default is 4000 msec)
-set updatetime=1000
+set updatetime=500
 " Virtual editing, position cursor where there is are no characters (all modes)
 set virtualedit=all
 " Ignore file patterns globally
@@ -177,6 +158,14 @@ function! HelpRandom()
     execute "normal! :help " . system("cat $VIMRUNTIME/doc/tags | shuf -n1 | awk '{print $1;}'")
 endfunction
 " }}}
+" Search {{{
+" Add current misspelled word to a custom dictionary
+function! SearchFlash()
+    silent normal! mmnviw
+    sleep 200m
+    normal! v`m
+endfunction
+" }}}
 " Spelling {{{
 " Add current misspelled word to a custom dictionary
 function! SpellingAddWord()
@@ -272,8 +261,8 @@ noremap <leader>U viwU
 noremap <leader>~ viw~
 " }}}
 " C window {{{
-noremap <leader>cc :cclose<CR>
-noremap <leader>co :copen 5<CR>
+noremap <silent> <leader>cc :cclose<CR>
+noremap <silent> <leader>co :copen 5<CR>
 " }}}
 " File system {{{
 nnoremap <leader>o :NERDTreeToggle<CR>
@@ -288,6 +277,14 @@ nnoremap <leader><leader> za
 nnoremap zC mmggVGzC`m
 " Open all folded sections
 nnoremap zO mmggVGzO`m
+" Open all folded sections
+nnoremap zl 10zo
+" }}}
+" Git {{{
+" Run the :Gdiff command on the current file
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gl :GV?<CR>
+nnoremap <silent> <leader>gs :Gstatus<CR>
 " }}}
 " Help {{{
 " Display help entry for word under the cursor
@@ -301,8 +298,8 @@ nnoremap <leader>?t /\|.\{-}\|
 nnoremap <leader>hs :call DisplayHidden()<CR>
 " }}}
 " Highlight {{{
-nnoremap <leader>hd :noh<CR>
-nnoremap <leader>he :set hls<CR>
+nnoremap <silent> <leader>hd :noh<CR>
+nnoremap <silent> <leader>he :set hls<CR>
 " }}}
 " Indent {{{
 " Indent entire file and return to current line
@@ -375,13 +372,20 @@ set scrolloff=5
 " }}}
 " File Management {{{
 " Read {{{
-autocmd BufReadPre .vimrc execute "normal mmgg=G'm"
+if has("autocmd")
+    au BufReadPre .vimrc exe "normal mmgg=G'm"
+    " Reload file to the last cursor position
+    au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+                \| exe "normal! g`\"" | endif
+endif
 " }}}
 " Write {{{
-" Clean-up for code files prior to save
-autocmd BufWritePre .vimrc call SaveCode()
-" Auto indent on file close (keep files clean)
-autocmd BufWritePre .vimrc execute "normal mmgg=G'mzz"
+if has("autocmd")
+    " Clean-up for code files prior to save
+    au BufWritePre .vimrc call SaveCode()
+    " Auto indent on file close (keep files clean)
+    au BufWritePre .vimrc exe "normal mmgg=G'm"
+endif
 " }}}
 " }}}
 " Searching {{{
@@ -389,6 +393,10 @@ autocmd BufWritePre .vimrc execute "normal mmgg=G'mzz"
 set ignorecase
 " Only search for matching capitals when they are used
 set smartcase
+" Search as characters are entered
+set incsearch
+" Highlight search
+set hlsearch
 " }}}
 " Snippets {{{
 " The beginning of another snippet plugin
@@ -433,14 +441,9 @@ set showcmd
 set textwidth=0
 
 " General settings required for highlighting
-filetype plugin on
+filetype plugin indent on
 syntax on
-" Search as characters are entered
-set incsearch
-" Highlight search
-set hlsearch
 
-" Custom highlighting
 " Underline misspelled words
 hi clear SpellBad
 hi SpellBad cterm=underline
@@ -452,10 +455,12 @@ autocmd Filetype * setlocal formatoptions-=r
 autocmd Filetype * setlocal formatoptions-=o
 " Remove automatic commenting on text wrap
 autocmd FileType * set formatoptions-=c
+
+" Custom file types
+" AutoHotKey
+au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Tabs/Indenting {{{
-" Enable plug-ins for indentation
-filetype plugin indent on
 " Do smart auto indenting when starting a new line
 set smartindent
 " Set tab width

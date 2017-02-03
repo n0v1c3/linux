@@ -1,6 +1,5 @@
 echo -n "Username:"
 read username
-echo
 
 echo -n "Password:"
 read -s password
@@ -8,7 +7,7 @@ echo
 
 cd $n0v1c3
 
-find . -maxdepth 1 -mindepth 1 -type d -iname '*' | while read dir
+find . -maxdepth 1 -mindepth 1 -type d -iname '*' -not -path '*/\.*' | while read dir
 do
 	# Update
 	echo Pulling: $dir

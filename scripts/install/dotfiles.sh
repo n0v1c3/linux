@@ -11,6 +11,8 @@
 #    - -d, --diff		display the diff for all dotfiles that would be changed
 #    - -l, --links		link all dotfiles and dot directories
 #    - -s, --scripts	run all scripts in repository
+#    - -u, --user		run command for a passed user name
+
 # ---
 # Constants
 # ---
@@ -86,6 +88,7 @@ do
             echo "-d, --diff		display the diff for all dotfiles that would be changed with the -l --links flag"
             echo "-l, --links		link all dotfiles and dot directories"
             echo "-s, --scripts		run all scripts in repository"
+            echo "-u, --user		run command for a passed user name"
             ;;
         -b|--backup)
             # Backup existing dotfiles in place with timestamp
@@ -171,12 +174,9 @@ do
             # Create config directory for user
             mkdir /home/$user/.config
             ;;
+        # TODO [170206] - Move this to the vimrc or related file
         -v|--vim)
             bash $DIR/scripts/vim-bundle.sh
-            ;;
-        -z|--zsh)
-            # Install Oh-My-Zsh
-            sh "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
             ;;
         *)
             break

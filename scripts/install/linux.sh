@@ -128,7 +128,6 @@ $install_cmd tmux
 $install_cmd vim
 $install_cmd wget
 $install_cmd xrandr
-$install_cmd zsh
 
 # xSession tools
 $install_cmd arandr
@@ -180,9 +179,6 @@ $sudo sensors-detect --auto
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
 
-# Oh-My-ZSH
-$sudo git clone git://github.com/robbyrussell/oh-my-zsh.git /bin/.oh-my-zsh
-
 # Root
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
@@ -199,14 +195,14 @@ $install_cmd virtualbox-guest-modules-arch
 ###
 
 # Root dotfiles
-$sudo mkdir --parents /root/Documents/development
-$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/Documents/development/dotfiles
-$sudo bash /root/Documents/development/dotfiles/scripts/dot-install.sh -l
+#$sudo mkdir --parents /root/Documents/development
+#$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/Documents/development/dotfiles
+#$sudo bash /root/Documents/development/dotfiles/scripts/dot-install.sh -l
 
 # User dotfiles
 $sudo mkdir --parents /home/$user_name/Documents/development
-$sudo git clone https://github.com/n0v1c3/dotfiles.git /home/$user_name/Documents/development/dotfiles
-$sudo bash /home/$user_name/Documents/development/dotfiles/scripts/dot-install.sh -u $user_name -l
+$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
+$sudo bash /home/$user_name/Documents/development/linux/scripts/install/dotfiles.sh -u $user_name -l
 
 ###
 # Clean-up
@@ -216,4 +212,4 @@ $sudo bash /home/$user_name/Documents/development/dotfiles/scripts/dot-install.s
 $sudo chown -R $user_name:root /home/$user_name
 
 # Proper owner for sudoers file as root
-$sudo chown root:root /home/$user_name/Documents/development/dotfiles/config/etc/sudoers
+#$sudo chown root:root /home/$user_name/Documents/development/dotfiles/config/etc/sudoers

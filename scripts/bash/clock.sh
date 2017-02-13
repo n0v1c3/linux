@@ -37,5 +37,5 @@ while true; do
 	clock
 
 	# Sleep
-	sleep 5
+	sleep 1
 done

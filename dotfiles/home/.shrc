@@ -42,7 +42,8 @@ alias h='history'
 alias j='jobs'
 alias ll='ls -alF --group-directories-first --color=auto'
 alias la='ls -A --group-directories-first --color=auto'
-alias l='ls -CF --group-directories-first --color=auto'
+alias ls='ls -CF --group-directories-first --color=auto'
+alias l='ls -ClF --group-directories-first --color=auto'
 alias p='pushd . > /dev/null'
 alias P="popd > /dev/null ; pwd"
 alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"

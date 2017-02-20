@@ -132,6 +132,7 @@ $install_cmd xrandr
 # xSession tools
 $install_cmd arandr
 $install_cmd baobab # Disk usage
+$install_cmd cbatticon
 $install_cmd clementine
 $install_cmd conky
 $install_cmd deluge
@@ -157,6 +158,9 @@ $install_cmd xautolock
 ###
 # Configuration
 ###
+
+# Cronie
+$sudo systemctl enable cronie
 
 # Git
 $sudo git config --global user.email ${user_email}

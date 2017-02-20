@@ -223,6 +223,9 @@ exec --no-startup-id nm-applet
 # Conky (background system monitor)
 exec --no-startup-id conky
 
+# CBattIcon (background system monitor)
+exec --no-startup-id cbatticon
+
 # Launch thunar onto workspace 3
 exec --no-startup-id i3-msg "workspace $ws3; exec thunar"
 

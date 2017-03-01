@@ -129,6 +129,8 @@ export LESSHISTFILE=$HOME/.config/history/.lesshst
 export MYSQL_HISTFILE=$HOME/.config/history/.mysql_history
 export PYTHONSTARTUP=$HOME/.pythonrc
 
+export WAN=1
+
 # ===
 # Custom functions
 # ===

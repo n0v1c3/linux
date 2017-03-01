@@ -1,12 +1,7 @@
-currentWAN=$(curl ipinfo.io/ip)
-previousWAN=$(cat ~/Documents/temp/wan)
+#!/bin/bash
 
-echo $previousWAN
-echo $currentWAN
-#echo [[ $previousWAN != $currentWAN ]]
-if [ "$previousWAN" != "$currentWAN" ]
-then
-    echo "Updating WAN IP Address and sending E-Mail"
-    echo $currentWAN > ~/Documents/temp/wan
-    echo $currentWAN | mail -s "House WAN" travis.gall@gmail.com
-fi
+# Compare current WAN to previous and send update email when required
+source /home/travis/.shrc
+currentWAN=$(curl -s ipinfo.io/ip)
+[ "$WAN" != "$currentWAN" ] && { sed -i $(cat /home/travis/.shrc | grep -n 'export WAN=' | cut -d : -f 1)'s/.*/export WAN='$currentWAN'/' /home/travis/.shrc; echo $currentWAN; }
+

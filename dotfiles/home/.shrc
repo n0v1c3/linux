@@ -120,6 +120,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Development
 export n0v1c3=$HOME/Documents/development/n0v1c3
+export rne=$HOME/Documents/development/rne-travis
 
 export XAUTHORITY=$HOME/.config/xsession/.Xauthority
 

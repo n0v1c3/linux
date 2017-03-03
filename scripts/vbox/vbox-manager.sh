@@ -21,12 +21,9 @@ for VMNAME in $VMLIST
 do
 	# Valid VM Name
 	if [ $count -eq 1 ]; then
-		echo "Test $curindex - 1"
 		VMSTATE=$(sudo -H -u travis VBoxManage showvminfo "$VMNAME" | grep "State:" | tr -d ' ')
-		echo "Test $curindex - 2"
 		VMSTATES[curindex]=$VMSTATE
 		VMNAMES[curindex]=$VMNAME
-		echo "Test $curindex - 3"
 		echo -e "$curindex - $VMNAME - $VMSTATE"
 		let curindex+=1
 	fi

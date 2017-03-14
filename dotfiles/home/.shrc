@@ -98,9 +98,8 @@ alias w3m='w3m https://google.ca/'
 # ---
 alias wget='wget --hsts-file=~/.config/cache/.wget-hsts'
 
-# ===
 # Exports
-# ===
+
 # User bin
 export PATH=$PATH:~/.bin
 # Ruby bin
@@ -130,6 +129,10 @@ export LESSHISTFILE=$HOME/.config/history/.lesshst
 export MYSQL_HISTFILE=$HOME/.config/history/.mysql_history
 export PYTHONSTARTUP=$HOME/.pythonrc
 
+# Password Store
+export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.password-store
+
+# Networking
 export WAN=75.156.147.235
 
 # ===

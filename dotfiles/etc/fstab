@@ -15,3 +15,4 @@
 # tjg-nas
 #//192.168.228.100/storage/usb1_1	/mnt/tjg/nas	cifs	guest,uid=1000,iocharset=utf8,nobootwait,nofail	0	0
 #travis@tjg-elitebook:/mnt/nas	/mnt/tjg/nas	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
+travis@tjg-mandy:/	/mnt/tjg/mandy	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0

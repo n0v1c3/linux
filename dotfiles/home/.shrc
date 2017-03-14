@@ -130,7 +130,7 @@ export MYSQL_HISTFILE=$HOME/.config/history/.mysql_history
 export PYTHONSTARTUP=$HOME/.pythonrc
 
 # Password Store
-export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.password-store
+export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.ps
 
 # Networking
 export WAN=75.156.147.235

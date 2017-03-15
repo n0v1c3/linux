@@ -107,6 +107,8 @@ $install_cmd xorg
 
 # Terminal tools
 $install_cmd alsa-utils # Advanced linux sound architecture
+$install_cmd bluez # Bluetooth protocol stack
+$install_cmd bluez-utils # Bluetooth bluetoothctl utility
 $install_cmd cronie # Cronjob task manager
 $install_cmd curl # URL data transfer
 $install_cmd curlftpfs # FTP using curl

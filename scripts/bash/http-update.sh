@@ -1,15 +1,14 @@
 #!/bin/bash
 
+options=("$n0v1c3/phpmyplc/http" "$rne/cacGenerator/http" "$rne/rneDatabase/html" "Quit")
 case $(uname -a | tr '[:upper:]' '[:lower:]') in
 	# Arch OS
 	*arch*)
 		mount="/srv/http"
-		options=('/home/travis/Documents/development/phpmyplc/http' '/home/travis/Documents/development/rneDatabase/html' 'Quit')
 		;;
 	# Ubuntu OS
 	*ubuntu*)
 		mount="/var/www/html"
-		options=('/home/rneadmin/Documents/projects/personal/phpmyplc/http' '/home/rneadmin/Documents/projects/rne/rneDatabase/html' 'Quit')
 		;;
 	# Invalid OS
 	*)
@@ -21,21 +20,12 @@ esac
 select opt in "${options[@]}"
 do
 	case $opt in
-		"${options[0]}")
-			selection=${options[0]}
-			break
-			;;
-		"${options[1]}")
-			selection=${options[1]}
-			break
-			;;
 		"Quit")
 			exit 0
 			break
 			;;
 		*)
-			echo "Invalid selection!"
-			exit 1
+            selection=$opt
 			break
 			;;
 	esac

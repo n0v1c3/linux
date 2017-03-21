@@ -208,8 +208,8 @@ $install_cmd virtualbox-guest-modules-arch
 
 # TODO [170320] - Make paths more maintainable
 # User dotfiles
-$sudo mkdir --parents /home/$user_name/Documents/development
-$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
+$sudo mkdir --parents /home/$user_name/Documents/development/n0v1c3
+$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/n0v1c3/linux
 $sudo bash /home/$user_name/Documents/development/n0v1c3/linux/scripts/install/dotfiles.sh -u $user_name -l
 
 ###

@@ -93,7 +93,7 @@ echo $hostname > /mnt/etc/hostname
 $sudo systemctl enable dhcpcd.service
 
 ###
-# Install
+# Software
 ###
 
 # Grub
@@ -200,15 +200,17 @@ $install_cmd virtualbox-guest-modules-arch
 # Dotfiles
 ###
 
+# REMOVED - Custom dotfiles need to be created for the root account
 # Root dotfiles
 #$sudo mkdir --parents /root/Documents/development
 #$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/Documents/development/dotfiles
 #$sudo bash /root/Documents/development/dotfiles/scripts/dot-install.sh -l
 
+# TODO [170320] - Make paths more maintainable
 # User dotfiles
 $sudo mkdir --parents /home/$user_name/Documents/development
 $sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
-$sudo bash /home/$user_name/Documents/development/linux/scripts/install/dotfiles.sh -u $user_name -l
+$sudo bash /home/$user_name/Documents/development/n0v1c3/linux/scripts/install/dotfiles.sh -u $user_name -l
 
 ###
 # Clean-up

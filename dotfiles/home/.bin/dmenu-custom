@@ -7,6 +7,7 @@ DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(echo "android-studio
 arandr
+baobab
 clementine
 conky
 deluge
@@ -35,6 +36,9 @@ vlc" | $DMENU)
 			;;
 		arandr)
 			arandr &
+			;;
+		baobab)
+			baobab &
 			;;
 		clementine)
 			clementine &

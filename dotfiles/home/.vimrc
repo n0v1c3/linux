@@ -230,6 +230,8 @@ let mapleader="\<space>"
 nnoremap <leader>eb :sp ~/.bashrc<CR><C-W>o
 " Open i3 config file in split view
 nnoremap <leader>ei :sp ~/.config/i3/config<CR><C-W>o
+" Open linux install config file in split view
+nnoremap <leader>el :sp $n0v1c3/linux/scripts/install/linux.sh<CR><C-W>o
 " Open common shell config file in split view
 nnoremap <leader>ep :sp ~/.pythonrc<CR><C-W>o
 " Open common shell config file in split view

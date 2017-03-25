@@ -79,7 +79,7 @@ alias gpul=bash\ ~/Documents/development/n0v1c3/linux/scripts/git/pull.sh
 alias grc='gource -i 0'
 alias grm='git rm'
 alias grst='git reset'
-alias gs='git status -s'
+alias gs='git_status'
 
 # w3m
 alias w3m='w3m https://google.ca/'

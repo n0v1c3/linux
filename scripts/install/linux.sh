@@ -220,4 +220,5 @@ $sudo bash $n0v1c3/linux/scripts/install/dotfiles.sh -u $user_name -l
 $sudo chown -R $user_name:root /home/$user_name
 
 # Proper owner for sudoers file as root
+$sudo echo "$username ALL=(ALL) ALL" >> /etc/sudoers
 #$sudo chown root:root /home/$user_name/Documents/development/dotfiles/config/etc/sudoers

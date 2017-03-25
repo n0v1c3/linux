@@ -1,16 +1,8 @@
-"        _
-"       (_)
-" __   ___ _ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__
-" (_)_/ |_|_| |_| |_|_|  \___|
-
-
 " Name: .vimrc
 " Description: Configuration file that is automatically loaded and applied to Vim
 " Author: n0v1c3
 " Notes:
-"   - Manually download spelling files (en_u) ~ ftp://ftp.vim.org/pub/vim/runtime/spell/
+" - Manually download spelling files (en_u) ~ ftp://ftp.vim.org/pub/vim/runtime/spell/
 
 " Plugins {{{
 " Pathogen source all Vim bundles found in ~/.vim/bundle
@@ -335,6 +327,14 @@ nnoremap <leader>sni :call SnipIf()<CR>
 " Sorting {{{
 vnoremap <leader>sm :'<,'>sort -M
 " }}}
+" Spacing {{{
+" Remove duplicate spaces under cursor
+nnoremap <leader>srs diwi<space><esc>
+" Remove duplicate spaces on current line
+nnoremap <leader>srl mmV:s/\s\s\+/ /ge<CR>==`m
+" Remove duplicate spaces entire file
+nnoremap <leader>sra mmggVG:s/\s\s\+/ /ge<CR>gg=G`m
+" }}}
 " Spelling {{{
 nnoremap <leader>sa :call SpellingAddWord()<CR>
 nnoremap <leader>ss ea<C-X>s<C-P>
@@ -405,7 +405,7 @@ set hlsearch
 " Class {{{
 function! SnipClass()
     if &filetype == "php"
-        execute "normal! oclass  {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert
+        execute "normal! oclass {\<CR>public function __construct() {\<CR>}\<CR>}\<ESC>kkk^t{" | startinsert
     endif
 endfunction
 " }}}

@@ -3,3 +3,5 @@
    name = Travis Gall\n
 [push]
 	default = simple
+[alias]
+	hist = log --graph --oneline

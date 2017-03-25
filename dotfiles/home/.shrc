@@ -44,6 +44,12 @@ alias ll='/bin/ls -CAlF --group-directories-first --color | less'
 alias l='/bin/ls -ClF --group-directories-first --color | less'
 alias la='/bin/ls -CNa --group-directories-first --color | less'
 
+# Networking
+alias ip4="ip addr | grep -e 'inet ' -e ':\ '"
+alias ip6="ip addr | grep -e 'inet6 ' -e ':\ '"
+alias wan="curl -s ipinfo.io/ip"
+
+# Directory stack
 alias p='pushd . > /dev/null'
 alias P="popd > /dev/null ; pwd"
 alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"
@@ -116,6 +122,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 
 # Password Store
 export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.ps
+export GNUPGHOME=$HOME/.config/gnupg
 
 # Networking
 export WAN=75.156.147.235

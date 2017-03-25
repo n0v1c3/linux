@@ -32,10 +32,10 @@ alias ~='cd $HOME ; pwd ; ls'
 alias -- -='cd -'
 
 # Shortcuts
-alias c="clear; pwd; ls --group-directories-first --color=fixed;"
-alias ca="clear; pwd; ls -a --group-directories-first --color=fixed;"
-alias cl="clear; pwd; ls -l --group-directories-first --color=fixed;"
-alias cla="clear; pwd; ls -al --group-directories-first --color=fixed;"
+alias c="clear; pwd; ls --group-directories-first --color;"
+alias ca="clear; pwd; ls -a --group-directories-first --color;"
+alias cl="clear; pwd; ls -l --group-directories-first --color;"
+alias cla="clear; pwd; ls -al --group-directories-first --color;"
 alias d='dirs'
 alias dirs='dirs -v'
 alias h='history'

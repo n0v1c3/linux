@@ -7,7 +7,7 @@
 # Syntax highlighting
 
 # Generate status prompt based on the git status of the current directory
-git_status() {
+git_prompt() {
     if [ $(git rev-parse -git-dir 2> /dev/null) ]; then
         stat="\033[0m"
         # Check for changes in git repo
@@ -24,12 +24,22 @@ git_status() {
     fi
 }
 
-# ===
-# Main
-# ===
-# TODO [170130] - Confirm user is in a git repo
-# TODO [170130] - Create a script to configure all desired colours
-git_status
+# git status on current directory or one layer deep in non-repo
+gs() {
+    # Confirm if current directory is a valid git repository
+    if [ $(git rev-parse -git-dir 2> /dev/null) ]; then
+        git status -s
 
-# Successful execution
-exit 0
+    else # current directory is not a git repo
+        for D in `find ./ -mindepth 1 -maxdepth 1 -type d`
+        do
+            cd $D
+            echo "\e[34m==="
+            echo -e "$(pwd)"
+            echo "==="
+            git status -s
+            echo "\e[34m---"
+            cd ..
+        done
+    fi
+}

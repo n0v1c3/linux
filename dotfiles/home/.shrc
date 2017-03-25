@@ -79,7 +79,7 @@ alias gpul=bash\ ~/Documents/development/n0v1c3/linux/scripts/git/pull.sh
 alias grc='gource -i 0'
 alias grm='git rm'
 alias grst='git reset'
-alias gs='echo ""; git status -s'
+alias gs='git status -s'
 
 # w3m
 alias w3m='w3m https://google.ca/'
@@ -126,6 +126,13 @@ export GNUPGHOME=$HOME/.config/gnupg
 
 # Networking
 export WAN=75.156.147.235
+
+# ===
+# Source files
+# ===
+# TODO [170324] - Should have a common folder for all custom source files
+# Git functions
+source $n0v1c3/linux/scripts/bash/git-func.sh
 
 # ===
 # Custom functions

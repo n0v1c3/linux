@@ -170,11 +170,9 @@ do
             # Shift and store passed username
             shift
             user=$1
-
             # Create config directory for user
             mkdir /home/$user/.config
             ;;
-        # TODO [170206] - Move this to the vimrc or related file
         -v|--vim)
             bash $DIR/scripts/vim-bundle.sh
             ;;

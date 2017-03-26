@@ -3,6 +3,9 @@
 # Name: bash-prompt.sh
 # Description: Prepared outputs that can be added to the bash prompt string
 
+blue="\e[34m"
+yellow="\e[33m"
+
 # Get current branch name
 # Syntax highlighting
 
@@ -25,21 +28,99 @@ git_prompt() {
 }
 
 # git status on current directory or one layer deep in non-repo
-gs() {
+git_status() {
     # Confirm if current directory is a valid git repository
     if [ $(git rev-parse -git-dir 2> /dev/null) ]; then
         git status -s
 
-    else # current directory is not a git repo
-        for D in `find ./ -mindepth 1 -maxdepth 1 -type d`
-        do
-            cd $D
-            echo "\e[34m==="
-            echo -e "$(pwd)"
-            echo "==="
-            git status -s
-            echo "\e[34m---"
-            cd ..
+    else
+        # Loop through each directory in the current directory
+        for D in `find . -mindepth 1 -maxdepth 1 -type d`; do
+            # Change directory and display git status
+            pushd $D > /dev/null
+            echo "\n$blue==========$yellow"
+            pwd
+            git status -s; echo ""
+            echo "$blue----------"
+            popd > /dev/null
         done
     fi
+}
+
+# Search for existing commits by email, update, and force push new committer information
+function git_committer_change
+{
+    # 1 - Open terminal
+    # 2 - Create a fresh, bare clone of your repository
+    #   -- git clone --bare https://github.com/user/repo.git
+    #   -- cd repo
+    # 3 - Update OLD_EMAIL, CORRECT_NAME, and CORRECT_EMAIL with desired values
+    # 4 - Run script
+
+    git filter-branch --env-filter '
+    OLD_EMAIL="travis.gall@gmail.com"
+    CORRECT_NAME="Travis Gall"
+    CORRECT_EMAIL="travis.gall@gmail.com"
+    if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_COMMITTER_NAME="$CORRECT_NAME"
+        export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+    fi
+    if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+    then
+        export GIT_AUTHOR_NAME="$CORRECT_NAME"
+        export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+    fi
+    ' --tag-name-filter cat -- --branches --tags
+
+    # 5 - Push the corrected history to GitHub
+    git push --force --tags origin 'refs/heads/*'
+
+    # 6 - Clean-up the temporary clone
+    # cd ..
+    # rm -rf repo
+}
+
+function git_script_dir
+{
+    echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+}
+
+function git_repo_dir
+{
+    script_dir=$(scriptDir)
+    length=`echo $script_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
+    repo_dir=${script_dir:0:$length}"/linux"
+    echo $repo_dir
+}
+
+# Simple file meta data caching and applying
+function git_meta
+{
+    : ${cacheMetaFile=$(git rev-parse --show-toplevel)/.gitmeta}
+
+    case $@ in
+        --store|--stdout)
+            case $1 in
+                --store)
+                    exec > $cacheMetaFile
+                    ;;
+            esac
+
+            find $(git ls-files)\
+            \( -printf 'chown %U %p\n' \) \
+            \( -printf 'chgrp %G %p\n' \) \
+            \( -printf 'touch -c -d "%AY-%Am-%Ad %AH:%AM:%AS" %p\n' \) \
+            \( -printf 'chmod %#m %p\n' \)
+            ;;
+
+        # Apply the current copy of $git
+        --apply)
+            sh -e $cacheMetaFile
+            ;;
+        *)
+            1>&2 echo "Usage: $0 --store|--stdout|--apply"
+            exit 1
+            ;;
+    esac
 }

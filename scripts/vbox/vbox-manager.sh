@@ -4,6 +4,15 @@
 # Clear terminal screen
 clear
 
+# Used to mount an encrypted file system from the admin
+# mountCount=$(mount | grep -c /home/rneadmin/vBox)
+# if [ $mountCount -ge 1 ] ; then
+	# echo "vBox Mounted!"
+# else
+	# echo "Mounting vBox!"	
+	# sudo mount -t ecryptfs /home/rneadmin/vBox /home/rneadmin/vBox > /dev/null
+# fi
+
 IN=$(sudo -H -u travis VBoxManage list vms)
 OIFS=$IFS
 IFS='"*"'
@@ -44,6 +53,7 @@ do
 	printf "Please enter index of VM to {start/stop}: "
 	read vmindex
 done
+echo
 
 # {start/stop} selected VM based on current running status
 if echo "${VMSTATES[$vmindex]}" | grep "running"; then
@@ -52,5 +62,11 @@ else
 	sudo -H -b -u travis VBoxManage startvm "${VMNAMES[$vmindex]}" --type headless
 fi
 
-# Script Complete
+# Wrap up
+echo
+sleep 2s
+echo "Press [Any Key] to continue..."
+read -n 1
+
+# Script complete
 exit 0

@@ -254,6 +254,9 @@ noremap <leader>U viwU
 " Toggle the case of each letter in a word
 noremap <leader>~ viw~
 " }}}
+" Comments {{{
+noremap <leader>ct :cal NERDComment(0,"toggle")<CR>
+" }}}
 " C window {{{
 noremap <silent> <leader>cc :cclose<CR>
 noremap <silent> <leader>co :copen 5<CR>

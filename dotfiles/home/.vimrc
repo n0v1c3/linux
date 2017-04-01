@@ -4,6 +4,14 @@
 " Notes:
 " - Manually download spelling files (en_u) ~ ftp://ftp.vim.org/pub/vim/runtime/spell/
 
+" fix meta-keys which generate <Esc>a .. <Esc>z
+let c='a'
+"while c <= 'z'
+"exec "set <M-".toupper(c).">=\e".c
+"exec "imap \e".c." <M-".toupper(c).">"
+"let c = nr2char(1+char2nr(c))
+"endw
+
 " Plugins {{{
 " Pathogen source all Vim bundles found in ~/.vim/bundle
 execute pathogen#infect()
@@ -301,6 +309,17 @@ nnoremap <silent> <leader>he :set hls<CR>
 " Indent {{{
 " Indent entire file and return to current line
 nnoremap <leader>I mmgg=G'm
+" }}}
+" Insert mode {{{
+" Navigation in insert mode
+" Alt + h
+imap è <LEFT>
+" Alt + j
+imap ê <UP>
+" Alt + k
+imap ë <DOWN>
+" Alt + l
+imap ì <RIGHT>
 " }}}
 " Markdown {{{
 nnoremap <leader>md :call MarkdownDisable()<CR>

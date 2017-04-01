@@ -22,4 +22,4 @@ if [ -d "$HOME/bin" ] ; then
 fi
 PATH="/usr/games:$PATH"
 
-export TERMINAL="terminator"
+export TERMINAL="urxvt"

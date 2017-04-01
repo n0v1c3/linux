@@ -25,8 +25,6 @@ DISABLE_AUTO_UPDATE="true"
 # History date stamp format
 HIST_STAMPS="yyyy-mm-dd"
 
-PROMPT_COMMAND=""
-
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 plugins=(git vi-mode history-substring-search)
 

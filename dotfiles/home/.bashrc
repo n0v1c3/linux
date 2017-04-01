@@ -88,8 +88,10 @@ prompt_command() {
     PS1+="\$ "
 }
 PS2="$white>$GREY "
+
 # Trigger prompt to update all functions
 PROMPT_COMMAND='prompt_command'
+PROMPT_COMMAND=''
 
 # Set default edinting mode to vi
 bind 'set editing-mode vi'

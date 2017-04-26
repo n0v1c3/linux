@@ -1,5 +1,7 @@
 URxvt*geometry:         120x70
 URxvt*depth:            32
+URxvt*meta8:            true
+URxvt*pointerBlank:     true
 URxvt*jumpScroll:       true
 URxvt*skipScroll:       true
 URxvt*visualBell:       false
@@ -10,8 +12,8 @@ URxvt*transparent:      false
 URxvt*fading:           10
 URxvt*fadeColor:        grey
 URxvt*shading:          75
-URxvt*font:             xft:monospace-10
-URxvt*boldFont:         xft:monospace-10-bold
+URxvt*font:             xft:Inconsolata for Powerline-10
+URxvt*boldFont:         xft:Inconsolata for Powerline-10-bold
 URxvt*urlLauncher:      google-chrome
 URxvt.matcher.button:   2
 URxvt.perl-ext-common:  matcher,clipboard

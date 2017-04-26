@@ -5,7 +5,6 @@ $RECYCLE.BIN/
 *.iso
 *.jar
 *.lnk
-*.netrwhist
 *.rar
 *.swp
 *.tar
@@ -16,7 +15,7 @@ $RECYCLE.BIN/
 .fuse_hidden*
 /.git/tags
 /dotfiles/home/.vim/.viminfo
-/dotfiles/home/.vim/bundle/*
+/dotfiles/home/.vim/.netrwhist
 Desktop.ini
 Thumbs.db
 ehthumbs.db

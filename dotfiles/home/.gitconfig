@@ -5,3 +5,7 @@
 	default = simple
 [alias]
 	hist = log --graph --oneline
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false

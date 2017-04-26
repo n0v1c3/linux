@@ -16,6 +16,7 @@ geany
 gedit
 gource
 hibernate
+kodi
 libreoffice
 logout
 reboot
@@ -60,6 +61,9 @@ vlc" | $DMENU)
 			;;
 		hibernate)
 			pm-hibernate &
+			;;
+		kodi)
+			kodi &
 			;;
 		libreoffice)
 			libreoffice &

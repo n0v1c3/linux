@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # ===
 # Shell Variables
 # ===
@@ -26,23 +28,16 @@ alias reload!='. $HOME/.${SHELL#*/bin/}rc'
 # Navigation
 alias ..='cd .. ; pwd ; ls'
 alias ...='cd ../.. ; pwd ; ls'
-alias ....='cd ../../.. ; pwd ; ls'
-alias .....='cd ../../../.. ; pwd ; ls'
 alias ~='cd $HOME ; pwd ; ls'
 alias -- -='cd -'
 
 # Shortcuts
-alias c="clear; pwd; ls --group-directories-first --color;"
-alias ca="clear; pwd; ls -a --group-directories-first --color;"
-alias cl="clear; pwd; ls -l --group-directories-first --color;"
-alias cla="clear; pwd; ls -al --group-directories-first --color;"
-alias d='dirs'
-alias dirs='dirs -v'
-alias h='history'
-alias j='jobs'
-alias ll='/bin/ls -CAlF --group-directories-first --color | less'
-alias l='/bin/ls -ClF --group-directories-first --color | less'
-alias la='/bin/ls -CNa --group-directories-first --color | less'
+function ls_l() {
+pwd
+/bin/ls -ClF --group-directories-first --color $@ | less
+}
+alias l="ls_l"
+alias c="clear; ls_l"
 
 # Networking
 alias ip4="ip addr | grep -e 'inet ' -e ':\ '"
@@ -65,21 +60,8 @@ alias ranger="ranger -d ."
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # git
-alias g='git'
-alias ga='git add'
-alias gA='git add -A :/'
-alias gAc='git add -A :/ && git commit -m'
-alias gb='git branch'
-alias gc='git commit -m'
-alias gco='git checkout'
-alias gd='git diff'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --graph --all"
-alias gpsh='git push'
-alias gpul=bash\ ~/Documents/development/n0v1c3/linux/scripts/git/pull.sh
 alias grc='gource -i 0'
-alias grm='git rm'
-alias grst='git reset'
-alias gs='git_status'
 
 # w3m
 alias w3m='w3m https://google.ca/'

@@ -13,6 +13,7 @@ then
         nohup xautolock -time 3 -locker autolock < /dev/null > /dev/null 2>&1 &
     fi
 
+    # TODO [170504] - Move this into the bashrc for access from tty
     # Check for previous remappings
     if xmodmap | grep -q "Caps_Lock"
     then

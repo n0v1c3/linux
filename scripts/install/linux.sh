@@ -7,21 +7,29 @@
 # Variables
 ###
 
+# Default sudo gid
 sudo_gid=1000
+
+# Common commands
+sudo="arch-chroot /mnt"
+installer="pacman -S --noconfirm"
+base_install="pacstrap /mnt base"
+install_cmd="$sudo $installer"
+
+# n0v1c3 development path
+n0v1c3=/home/$username/Documents/development/n0v1c3
 
 ###
 # Read
 ###
 
-# Get directory of the current bash script
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# Echo readable layout of available hard drives to be formatted
-lsblk
-
 # Get user's information
-echo -n "Enter disk path (/dev/sd[x]): "
-read diskpath
+echo "Select device for installation: "
+select disk in $(lsblk -ndl --output NAME)
+do
+    diskpath=/dev/$disk
+    break
+done;
 echo -n "Enter hostname: "
 read hostname
 echo -n "Enter root password: "
@@ -35,19 +43,12 @@ read user_full
 echo -n "Enter email: "
 read user_email
 
-sudo="arch-chroot /mnt"
-installer="pacman -S --noconfirm"
-base_install="pacstrap /mnt base"
-
-# Install command to be used when installing new software
-install_cmd="$sudo $installer"
-
 ###
 # Disks
 ###
 
-# Partition (100M Grub | 2G Swap | x ext)
-echo -e "o\nn\np\n1\n\n+100M\nn\np\n2\n\n+2G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n" | fdisk ${diskpath}
+# Partition (100M Grub | 4G Swap | x ext)
+echo -e "o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n" | fdisk ${diskpath}
 
 # Swap file system
 mkswap ${diskpath}2
@@ -63,13 +64,17 @@ mount ${diskpath}3 /mnt
 # Base
 ###
 
-# Rank mirrors by speed
+# Rank mirrors by speed 
+echo "Ranking pacman mirrors by connection speed... (This will take a while!)"
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
 sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-rankmirrors -n 16 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+rankmirrors -v -n 16 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
 
 # Kernel
 $base_install
+
+# Pacman mirrors
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 
 # Timezone
 $sudo ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
@@ -104,6 +109,7 @@ $install_cmd i3
 $install_cmd i3-wm
 $install_cmd i3status
 $install_cmd xorg
+$install_cmd xorg-xinit
 
 # Terminal tools
 $install_cmd alsa-utils # Advanced linux sound architecture
@@ -124,6 +130,8 @@ $install_cmd pandoc # General markup converter
 $install_cmd python
 $install_cmd ranger
 $install_cmd rsync
+$install_cmd ruby
+$install_cmd rxvt-unicode
 $install_cmd samba
 $install_cmd sshfs
 $install_cmd sudo
@@ -131,6 +139,7 @@ $install_cmd tmux
 $install_cmd vim
 $install_cmd wget
 $install_cmd xrandr
+$install_cmd zsh
 
 # xSession tools
 $install_cmd arandr
@@ -186,13 +195,14 @@ $sudo sensors-detect --auto
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
 
-# Root
+# Root password
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
-# User
+# User groups and password
 $sudo useradd -m -g users -s /bin/bash $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 $sudo usermod -a -G sudo $user_name
+$sudo echo "$username ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch

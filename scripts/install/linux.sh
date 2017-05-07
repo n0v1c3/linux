@@ -201,25 +201,23 @@ $install_cmd virtualbox-guest-modules-arch
 # Dotfiles
 ###
 
-# REMOVED - Custom dotfiles need to be created for the root account
-# Root dotfiles
-#$sudo mkdir --parents /root/Documents/development
-#$sudo git clone https://github.com/n0v1c3/dotfiles.git /root/Documents/development/dotfiles
-#$sudo bash /root/Documents/development/dotfiles/scripts/dot-install.sh -l
-
 # User dotfiles
-n0v1c3=/home/$username/Documents/development/n0v1c3
 $sudo mkdir --parents $n0v1c3
 $sudo git clone https://github.com/n0v1c3/linux.git $n0v1c3/linux
-$sudo bash $n0v1c3/linux/scripts/install/dotfiles.sh -u $user_name -l
+
+# Add home links
+for file in $(find $n0v1c3/linux/dotfiles/home -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+    $sudo ln -s $file /home/$username/$(basename $file)
+done
+
+# Add home/.config links
+for file in $(find $n0v1c3/linux/dotfiles/home/.config -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+    $sudo ln -s $file /home/$username/.config/$(basename $file)
+done
 
 ###
 # Clean-up
 ###
 
 # Proper owner for all of user's home directory
-$sudo chown -R $user_name:root /home/$user_name
-
-# Proper owner for sudoers file as root
-$sudo echo "$username ALL=(ALL) ALL" >> /etc/sudoers
-#$sudo chown root:root /home/$user_name/Documents/development/dotfiles/config/etc/sudoers
+$sudo chown -R $user_name:users /home/$user_name

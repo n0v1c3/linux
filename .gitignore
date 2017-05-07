@@ -19,3 +19,4 @@ $RECYCLE.BIN/
 Desktop.ini
 Thumbs.db
 ehthumbs.db
+/dotfiles/home/.config/ranger

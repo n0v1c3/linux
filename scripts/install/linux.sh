@@ -131,7 +131,6 @@ $install_cmd python
 $install_cmd ranger
 $install_cmd rsync
 $install_cmd ruby
-$install_cmd rxvt-unicode
 $install_cmd samba
 $install_cmd sshfs
 $install_cmd sudo
@@ -160,8 +159,9 @@ $install_cmd libreoffice
 $install_cmd network-manager-applet
 $install_cmd remmina
 $install_cmd retext
+$install_cmd rxvt-unicode
 $install_cmd scrot # Screen shot
-$install_cmd terminator
+$install_cmd synergy # Network mouse/keyboard share
 $install_cmd thunar
 $install_cmd virtualbox
 $install_cmd vlc

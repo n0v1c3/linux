@@ -138,6 +138,7 @@ $install_cmd tmux
 $install_cmd vim
 $install_cmd wget
 $install_cmd xrandr
+$install_cmd zip
 $install_cmd zsh
 
 # xSession tools

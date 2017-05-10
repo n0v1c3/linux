@@ -129,6 +129,7 @@ $install_cmd openssh
 $install_cmd pandoc # General markup converter
 $install_cmd python
 $install_cmd ranger
+$install_cmd reflector # Pacman mirror update tool
 $install_cmd rsync
 $install_cmd ruby
 $install_cmd samba

@@ -1,0 +1,13 @@
+[Unit]
+Description=Pacman mirrorlist update
+# Required for update on boot
+#Requires=network-online.target
+#After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/reflector -c United\ States -c Canada --sort rate --protocol http --protocol https --fastest 5 --save /etc/pacman.d/mirrorlist --verbose
+
+# Required for update on boot
+#[Install]
+#RequiredBy=multi-user.target

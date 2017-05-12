@@ -16,9 +16,6 @@ installer="pacman -S --noconfirm"
 base_install="pacstrap /mnt base"
 install_cmd="$sudo $installer"
 
-# n0v1c3 development path
-n0v1c3=/home/$username/Documents/development/n0v1c3
-
 ###
 # Read
 ###
@@ -38,6 +35,8 @@ echo -n "Enter username: "
 read user_name
 echo -n "Enter password: "
 read user_pass
+echo -n "Enter git username: "
+read git_name
 echo -n "Enter full name: "
 read user_full
 echo -n "Enter email: "
@@ -64,6 +63,7 @@ mount ${diskpath}3 /mnt
 # Base
 ###
 
+# TODO [170509] - Can reflector be used here?
 # Rank mirrors by speed 
 echo "Ranking pacman mirrors by connection speed... (This will take a while!)"
 cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
@@ -170,11 +170,34 @@ $install_cmd vlc
 $install_cmd xautolock
 
 ###
+# Dotfiles
+###
+
+# n0v1c3 development path
+n0v1c3=/home/$user_name/Documents/development/n0v1c3
+
+# TODO [170511] - Add all repos (see: https://api.github.com/users/n0v1c3/repos)
+# User dotfiles
+$sudo mkdir --parents $n0v1c3
+$sudo git clone https://github.com/$git_user/linux.git $n0v1c3/linux
+
+# Add home links
+for file in $(find $n0v1c3/linux/dotfiles/home -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+    $sudo ln -s $file /home/$username/$(basename $file)
+done
+
+# Add home/.config links
+for file in $(find $n0v1c3/linux/dotfiles/home/.config -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+    $sudo ln -s $file /home/$username/.config/$(basename $file)
+done
+
+###
 # Configuration
 ###
 
 # Cronie
 $sudo systemctl enable cronie
+$sudo echo "MAILTO=\"$user_email\"\n$(cat $n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
 
 # Git
 $sudo git config --global user.email ${user_email}
@@ -186,10 +209,6 @@ $sudo groupadd -g $sudo_gid sudo
 # Grub
 $sudo grub-install --target=i386-pc ${diskpath}
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-# Linux repository
-mkdir --parents /mnt/home/$user_name/Documents/development
-$sudo git clone https://github.com/n0v1c3/linux.git /home/$user_name/Documents/development/linux
 
 # Linux monitoring sensors
 $sudo sensors-detect --auto
@@ -208,24 +227,6 @@ $sudo echo "$username ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch
-
-###
-# Dotfiles
-###
-
-# User dotfiles
-$sudo mkdir --parents $n0v1c3
-$sudo git clone https://github.com/n0v1c3/linux.git $n0v1c3/linux
-
-# Add home links
-for file in $(find $n0v1c3/linux/dotfiles/home -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
-    $sudo ln -s $file /home/$username/$(basename $file)
-done
-
-# Add home/.config links
-for file in $(find $n0v1c3/linux/dotfiles/home/.config -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
-    $sudo ln -s $file /home/$username/.config/$(basename $file)
-done
 
 ###
 # Clean-up

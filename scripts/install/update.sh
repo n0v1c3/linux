@@ -26,3 +26,6 @@ git-pull
 
 # Generate list of "bad" files
 sudo rmlint --types="badlinks,emptydirs,emptyfiles" -o pretty:stdout /home
+
+# Backup current crontab
+crontab -l | tail -n +2 > $n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt

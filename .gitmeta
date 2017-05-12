@@ -1,112 +1,200 @@
-chown 1000 .gitignore
-chgrp 0 .gitignore
-touch -c -d "2017-01-20 08:45:41.1290747390" .gitignore
-chmod 0644 .gitignore
-chown 1000 .gitmeta
-chgrp 100 .gitmeta
-touch -c -d "2017-01-20 14:42:45.3460497740" .gitmeta
-chmod 0644 .gitmeta
-chown 1000 readme.md
-chgrp 100 readme.md
-touch -c -d "2017-01-20 14:41:28.0793819950" readme.md
-chmod 0644 readme.md
-chown 1000 scripts/bash/clock.sh
-chgrp 0 scripts/bash/clock.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/bash/clock.sh
-chmod 0755 scripts/bash/clock.sh
-chown 1000 scripts/bash/get-wan.sh
-chgrp 100 scripts/bash/get-wan.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/bash/get-wan.sh
-chmod 0755 scripts/bash/get-wan.sh
-chown 1000 scripts/bash/http-update.sh
-chgrp 0 scripts/bash/http-update.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/bash/http-update.sh
-chmod 0644 scripts/bash/http-update.sh
-chown 1000 scripts/bash/tree-update
-chgrp 0 scripts/bash/tree-update
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/bash/tree-update
-chmod 0755 scripts/bash/tree-update
-chown 1000 scripts/dlink/funplug/funplug-full
-chgrp 0 scripts/dlink/funplug/funplug-full
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/dlink/funplug/funplug-full
-chmod 0644 scripts/dlink/funplug/funplug-full
-chown 1000 scripts/dlink/funplug/funplug-guide.pdf
-chgrp 0 scripts/dlink/funplug/funplug-guide.pdf
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/dlink/funplug/funplug-guide.pdf
-chmod 0644 scripts/dlink/funplug/funplug-guide.pdf
-chown 1000 scripts/dlink/funplug/funplug-simple
-chgrp 0 scripts/dlink/funplug/funplug-simple
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/dlink/funplug/funplug-simple
-chmod 0644 scripts/dlink/funplug/funplug-simple
-chown 1000 scripts/fonts/google-fonts.sh
-chgrp 0 scripts/fonts/google-fonts.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/fonts/google-fonts.sh
-chmod 0644 scripts/fonts/google-fonts.sh
-chown 1000 scripts/git/cache-meta.sh
-chgrp 100 scripts/git/cache-meta.sh
-touch -c -d "2017-01-20 14:43:33.1760504630" scripts/git/cache-meta.sh
-chmod 0755 scripts/git/cache-meta.sh
-chown 1000 scripts/git/git-committer-change.sh
-chgrp 0 scripts/git/git-committer-change.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/git/git-committer-change.sh
-chmod 0644 scripts/git/git-committer-change.sh
-chown 1000 scripts/git/pull.sh
-chgrp 100 scripts/git/pull.sh
-touch -c -d "2017-01-20 08:59:30.1990866720" scripts/git/pull.sh
-chmod 0755 scripts/git/pull.sh
-chown 1000 scripts/git/repo-dir.sh
-chgrp 0 scripts/git/repo-dir.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/git/repo-dir.sh
-chmod 0644 scripts/git/repo-dir.sh
-chown 1000 scripts/google/setup.sh
-chgrp 0 scripts/google/setup.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/google/setup.sh
-chmod 0644 scripts/google/setup.sh
-chown 1000 scripts/google/user-add.sh
-chgrp 0 scripts/google/user-add.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/google/user-add.sh
-chmod 0644 scripts/google/user-add.sh
-chown 1000 scripts/install/linux.sh
-chgrp 100 scripts/install/linux.sh
-touch -c -d "2017-01-20 08:45:53.0757415780" scripts/install/linux.sh
-chmod 0644 scripts/install/linux.sh
-chown 1000 scripts/mysql/mysql-backup.sh
-chgrp 100 scripts/mysql/mysql-backup.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/mysql/mysql-backup.sh
-chmod 0644 scripts/mysql/mysql-backup.sh
-chown 1000 scripts/net/add-interface
-chgrp 0 scripts/net/add-interface
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/net/add-interface
-chmod 0644 scripts/net/add-interface
-chown 1000 scripts/net/net-public.sh
-chgrp 0 scripts/net/net-public.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/net/net-public.sh
-chmod 0644 scripts/net/net-public.sh
-chown 1000 scripts/pdf/deskew.sh
-chgrp 0 scripts/pdf/deskew.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/pdf/deskew.sh
-chmod 0644 scripts/pdf/deskew.sh
-chown 1000 scripts/qr/qr-encode.sh
-chgrp 0 scripts/qr/qr-encode.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/qr/qr-encode.sh
-chmod 0644 scripts/qr/qr-encode.sh
-chown 1000 scripts/remmina/remmina-crack.py
-chgrp 0 scripts/remmina/remmina-crack.py
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/remmina/remmina-crack.py
-chmod 0644 scripts/remmina/remmina-crack.py
-chown 1000 scripts/rsync/rsync-home.sh
-chgrp 0 scripts/rsync/rsync-home.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/rsync/rsync-home.sh
-chmod 0644 scripts/rsync/rsync-home.sh
-chown 1000 scripts/vbox/bios-rollback.bat
-chgrp 0 scripts/vbox/bios-rollback.bat
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/vbox/bios-rollback.bat
-chmod 0644 scripts/vbox/bios-rollback.bat
-chown 1000 scripts/vbox/commands.txt
-chgrp 0 scripts/vbox/commands.txt
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/vbox/commands.txt
-chmod 0644 scripts/vbox/commands.txt
-chown 1000 scripts/vbox/vbox-manager.sh
-chgrp 0 scripts/vbox/vbox-manager.sh
-touch -c -d "2017-01-16 07:55:00.4811532430" scripts/vbox/vbox-manager.sh
-chmod 0644 scripts/vbox/vbox-manager.sh
+chown 1000 git.sh
+chgrp 100 git.sh
+touch -c -d "2017-05-11 21:28:06.3738327510" git.sh
+chmod 0700 git.sh
+chown 1000 help.sh
+chgrp 100 help.sh
+touch -c -d "2017-05-11 22:06:14.9929405920" help.sh
+chmod 0700 help.sh
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash/functions]1;..ash/functions=>]2;git status]1;gitOn branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../../../dotfiles/home/.shrc
+	deleted:    ../ahk.sh
+	deleted:    ../clock.sh
+	deleted:    ../dot-install.sh
+	deleted:    ../fix.sh
+	renamed:    ../git-func.sh -> git.sh
+	renamed:    ../help.sh -> help.sh
+	new file:   net.sh
+	deleted:    ../git-notify.sh
+	deleted:    ../net-mount.sh
+	deleted:    ../net-start.sh
+	renamed:    ../../pdf/deskew.sh -> ../pdf-deskew.sh
+	modified:   ../qr-encode.sh
+	deleted:    ../tree-update.sh
+	deleted:    ../vim-bundles.sh
+	deleted:    ../../qr/qr-encode.sh
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../../../.gitmeta
+	modified:   ../autolock.sh
+	deleted:    net.sh
+	modified:   ../../install/linux.sh
+	modified:   ../../install/update.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../../../dotfiles/home/.config/cron/crontab.txt
+
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash/functions]1;..ash/functions=>]2;git status]1;gitOn branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../../../dotfiles/home/.shrc
+	deleted:    ../ahk.sh
+	deleted:    ../clock.sh
+	deleted:    ../dot-install.sh
+	deleted:    ../fix.sh
+	renamed:    ../git-func.sh -> git.sh
+	renamed:    ../help.sh -> help.sh
+	new file:   net.sh
+	deleted:    ../git-notify.sh
+	deleted:    ../net-mount.sh
+	deleted:    ../net-start.sh
+	renamed:    ../../pdf/deskew.sh -> ../pdf-deskew.sh
+	modified:   ../qr-encode.sh
+	deleted:    ../tree-update.sh
+	deleted:    ../vim-bundles.sh
+	deleted:    ../../qr/qr-encode.sh
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../../../.gitmeta
+	modified:   ../autolock.sh
+	deleted:    net.sh
+	modified:   ../../install/linux.sh
+	modified:   ../../install/update.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../../../dotfiles/home/.config/cron/crontab.txt
+
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash/functions]1;..ash/functions=>]2;clear; ls_l d..]1;c[H[2J/home/travis/Documents/development/n0v1c3/linux/scripts/bash/functions
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash/functions]1;..ash/functions=>]2;cd ..; pwd; ls --color=auto]1;../home/travis/Documents/development/n0v1c3/linux/scripts/bash
+autolock.sh
+dmenu-custom.sh
+functions
+get-wan.sh
+http-update.sh
+i3-auto.sh
+pdf-deskew.sh
+qr-encode.sh
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash]1;../scripts/bash=>]2;ls_l]1;l/home/travis/Documents/development/n0v1c3/linux/scripts/bash
+total 32
+drwxr-xr-x 2 travis users 4096 May 11 23:24 [0m[01;34mfunctions[0m/
+-rwx------ 1 travis users  338 May 11 21:38 [01;32mautolock.sh[0m*
+-rwx------ 1 travis users 1654 May  6 22:54 [01;32mdmenu-custom.sh[0m*
+-rwx------ 1 travis users  713 Mar 13 00:56 [01;32mget-wan.sh[0m*
+-rwx------ 1 travis users  499 Mar 18 00:33 [01;32mhttp-update.sh[0m*
+-rwx------ 1 travis users  611 May  4 22:45 [01;32mi3-auto.sh[0m*
+-rwx------ 1 travis users 2617 Jul 27  2016 [01;32mpdf-deskew.sh[0m*
+-rwx------ 1 travis users  131 Jul 27  2016 [01;32mqr-encode.sh[0m*
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash]1;../scripts/bash=>]2;git status]1;gitOn branch master
+Your branch is ahead of 'origin/master' by 2 commits.
+  (use "git push" to publish your local commits)
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+	modified:   ../../dotfiles/home/.shrc
+	deleted:    ahk.sh
+	deleted:    clock.sh
+	deleted:    dot-install.sh
+	deleted:    fix.sh
+	renamed:    git-func.sh -> functions/git.sh
+	renamed:    help.sh -> functions/help.sh
+	new file:   functions/net.sh
+	deleted:    git-notify.sh
+	deleted:    net-mount.sh
+	deleted:    net-start.sh
+	renamed:    ../pdf/deskew.sh -> pdf-deskew.sh
+	modified:   qr-encode.sh
+	deleted:    tree-update.sh
+	deleted:    vim-bundles.sh
+	deleted:    ../qr/qr-encode.sh
+
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   ../../.gitmeta
+	modified:   autolock.sh
+	deleted:    functions/net.sh
+	modified:   ../install/linux.sh
+	modified:   ../install/update.sh
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+
+	../../dotfiles/home/.config/cron/crontab.txt
+
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts/bash]1;../scripts/bash=>]2;cd ..]1;cd]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts]1;..linux/scripts=>]2;ls_l]1;l/home/travis/Documents/development/n0v1c3/linux/scripts
+total 44
+drwxr-xr-x 3 travis users 4096 May 11 23:21 [0m[01;34mbash[0m/
+drwxr-xr-x 3 travis users 4096 Sep 27  2016 [01;34mdlink[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mfonts[0m/
+drwxr-xr-x 2 travis users 4096 May 11 21:32 [01;34mgit[0m/
+drwxr-xr-x 2 travis users 4096 May  6 23:23 [01;34mgoogle[0m/
+drwxr-xr-x 2 travis users 4096 May 11 23:17 [01;34minstall[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mmysql[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mnet[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mremmina[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mrsync[0m/
+drwxr-xr-x 2 travis users 4096 May  7 15:14 [01;34mvbox[0m/
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts]1;..linux/scripts=>]2;ls_l]1;l/home/travis/Documents/development/n0v1c3/linux/scripts
+total 44
+drwxr-xr-x 3 travis users 4096 May 11 23:21 [0m[01;34mbash[0m/
+drwxr-xr-x 3 travis users 4096 Sep 27  2016 [01;34mdlink[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mfonts[0m/
+drwxr-xr-x 2 travis users 4096 May 11 21:32 [01;34mgit[0m/
+drwxr-xr-x 2 travis users 4096 May  6 23:23 [01;34mgoogle[0m/
+drwxr-xr-x 2 travis users 4096 May 11 23:17 [01;34minstall[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mmysql[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mnet[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mremmina[0m/
+drwxr-xr-x 2 travis users 4096 Apr  1 15:01 [01;34mrsync[0m/
+drwxr-xr-x 2 travis users 4096 May  7 15:14 [01;34mvbox[0m/
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts]1;..linux/scripts=>]2;cd .]1;cd]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux/scripts]1;..linux/scripts=>]2;cd ..; pwd; ls --color=auto]1;../home/travis/Documents/development/n0v1c3/linux
+dotfiles
+readme.md
+scripts
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3/linux]1;../n0v1c3/linux=>]2;cd ..; pwd; ls --color=auto]1;../home/travis/Documents/development/n0v1c3
+bstemplates
+citect
+contractor
+linux
+mcac
+neural
+phpmyplc
+python
+recontech
+shutdownkey
+vtscada
+windows
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3]1;..opment/n0v1c3=>]2;ls_l]1;l/home/travis/Documents/development/n0v1c3
+total 48
+drwxr-xr-x 6 travis users 4096 Apr  1 15:01 [0m[01;34mbstemplates[0m/
+drwxr-xr-x 6 travis users 4096 Apr  1 15:01 [01;34mcitect[0m/
+drwxr-xr-x 6 travis users 4096 Apr  1 15:01 [01;34mcontractor[0m/
+drwxr-xr-x 5 travis users 4096 May 11 21:11 [01;34mlinux[0m/
+drwxr-xr-x 8 travis users 4096 Apr  1 15:01 [01;34mmcac[0m/
+drwxr-xr-x 5 travis users 4096 Apr 23 20:52 [01;34mneural[0m/
+drwxr-xr-x 5 travis users 4096 Apr 22 12:21 [01;34mphpmyplc[0m/
+drwxr-xr-x 5 travis users 4096 Sep 21  2016 [01;34mpython[0m/
+drwxr-xr-x 5 travis users 4096 Apr  1 15:01 [01;34mrecontech[0m/
+drwxr-xr-x 6 travis users 4096 Apr  1 15:01 [01;34mshutdownkey[0m/
+drwxr-xr-x 4 travis users 4096 Apr  1 15:01 [01;34mvtscada[0m/
+drwxr-xr-x 7 travis users 4096 Apr 26 10:42 [01;34mwindows[0m/
+]2;travis@tjg-hp: ~/Documents/development/n0v1c3]1;..opment/n0v1c3=]2;travis@tjg-hp: ~/Documents/development/n0v1c3]1;..opment/n0v1c3=>]2;exit]1;exit

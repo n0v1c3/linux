@@ -114,7 +114,7 @@ export WAN=75.156.147.235
 # ===
 # TODO [170324] - Should have a common folder for all custom source files
 # Git functions
-source $n0v1c3/linux/scripts/bash/git-func.sh
+source $n0v1c3/linux/scripts/bash/functions/git.sh
 
 # ===
 # Custom functions

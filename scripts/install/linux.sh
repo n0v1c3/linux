@@ -7,7 +7,10 @@
 # Variables
 ###
 
-# Default sudo gid
+# Disk partition
+disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n"
+
+# Sudo gid
 sudo_gid=1000
 
 # Common commands
@@ -16,30 +19,46 @@ installer="pacman -S --noconfirm"
 base_install="pacstrap /mnt base"
 install_cmd="$sudo $installer"
 
+# Prompts
+prompt_device="Select device for installation: "
+prompt_host="Enter hostname: "
+prompt_root="Enter root password: "
+prompt_reroot="Re-enter root password: "
+prompt_user="Enter primary username: "
+prompt_git="Enter git username: "
+prompt_pass="Enter primary password: "
+prompt_repass="Re-enter primary password: "
+prompt_full="Enter user's full name: "
+prompt_email="Enter user's email address: "
+prompt_rank="Ranking pacman mirrors by connection speed... (This will take a while!)"
+
+# Files
+file_mirrors=/etc/pacman.d/mirrorlist
+
 ###
 # Read
 ###
 
 # Get user's information
-echo "Select device for installation: "
+echo $prompt_device
 select disk in $(lsblk -ndl --output NAME)
 do
     diskpath=/dev/$disk
     break
 done;
-echo -n "Enter hostname: "
+echo -n $prompt_host
 read hostname
-echo -n "Enter root password: "
+echo -n $prompt_root
 read root_pass
-echo -n "Enter username: "
+echo -n $promt_user
 read user_name
-echo -n "Enter password: "
+echo -n $promt_pass
 read user_pass
-echo -n "Enter git username: "
+echo -n $prompt_git
 read git_name
-echo -n "Enter full name: "
+echo -n $prompt_full
 read user_full
-echo -n "Enter email: "
+echo -n $prompt_email
 read user_email
 
 ###
@@ -47,7 +66,7 @@ read user_email
 ###
 
 # Partition (100M Grub | 4G Swap | x ext)
-echo -e "o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n" | fdisk ${diskpath}
+echo -e $disk_partition | fdisk ${diskpath}
 
 # Swap file system
 mkswap ${diskpath}2
@@ -65,16 +84,16 @@ mount ${diskpath}3 /mnt
 
 # TODO [170509] - Can reflector be used here?
 # Rank mirrors by speed 
-echo "Ranking pacman mirrors by connection speed... (This will take a while!)"
-cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-rankmirrors -v -n 16 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+echo $prompt_rank
+cp $file_mirrors $file_mirrors.backup
+sed -i 's/^#Server/Server/' $file_mirrors.backup
+rankmirrors -v -n 16 $file_mirrors.backup > $file_mirrors
 
 # Kernel
 $base_install
 
 # Pacman mirrors
-cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+cp $file_mirrors /mnt$file_mirrors
 
 # Timezone
 $sudo ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime

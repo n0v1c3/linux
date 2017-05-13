@@ -182,13 +182,20 @@ $sudo mkdir --parents $n0v1c3
 $sudo git clone https://github.com/$git_user/linux.git $n0v1c3/linux
 
 # Add home links
-for file in $(find $n0v1c3/linux/dotfiles/home -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+path=$n0v1c3/linux/dotfiles/home
+for file in $(find $path -maxdepth 1 -iname '*' -not -path $path/.config); do
     $sudo ln -s $file /home/$username/$(basename $file)
 done
 
 # Add home/.config links
-for file in $(find $n0v1c3/linux/dotfiles/home/.config -maxdepth 1 -iname '*' -not -path $n0v1c3/linux/dotfiles/home/.config); do
+for file in $(find $path/.config -maxdepth 1 -iname '*' -not -path $path/.config); do
     $sudo ln -s $file /home/$username/.config/$(basename $file)
+done
+
+# Make copy of etc templates
+path="$n0v1c3/linux/dotfiles/etc/"
+for file in $(find $path -type f -iname '*'); do
+    $sudo cp $file /etc/${file#$path}
 done
 
 ###

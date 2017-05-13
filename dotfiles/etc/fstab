@@ -1,18 +1,6 @@
 ##
-# RNE
-##
-
-# rne-server
-//192.168.227.12/rne	/mnt/rne/rne-server	cifs	username=travis.gall,password=1987tJg20	0	0
-#192.168.227.20:/    /mnt/rne/rne-database   fuse.sshfs  defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa
-#rne-dlink
-#//192.168.227.2/Volume_1	mnt/dlink	cifs	sec=ntlm,username=,password=,iocharset=utf8,nobootwait,nofail	0	0
-
-##
 # TJG
 ##
 
-# tjg-nas
-#//192.168.228.100/storage/usb1_1	/mnt/tjg/nas	cifs	guest,uid=1000,iocharset=utf8,nobootwait,nofail	0	0
-#travis@tjg-elitebook:/mnt/nas	/mnt/tjg/nas	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
+travis@tjg-office:/	/mnt/tjg/office	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
 travis@tjg-mandy:/	/mnt/tjg/mandy	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0

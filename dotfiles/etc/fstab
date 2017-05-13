@@ -1,6 +1,7 @@
+
 ##
 # TJG
 ##
 
-travis@tjg-office:/	/mnt/tjg/office	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
-travis@tjg-mandy:/	/mnt/tjg/mandy	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
+tjg-office:/    /mnt/tjg/office	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
+tjg-mandy:/     /mnt/tjg/mandy	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0

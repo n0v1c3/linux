@@ -48,12 +48,12 @@ do
 done;
 echo -n $prompt_host
 read hostname
-echo -n -p $prompt_root
-read root_pass
+echo -n $prompt_root
+read -s root_pass
 echo -n $prompt_user
 read user_name
-echo -n -p $prompt_pass
-read user_pass
+echo -n $prompt_pass
+read -s user_pass
 echo -n $prompt_git
 read git_user
 echo -n $prompt_full
@@ -203,12 +203,12 @@ $sudo git clone https://github.com/$git_user/linux.git $n0v1c3/linux
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
 for file in $(find $path -maxdepth 1 -iname '*' -not -path $path/.config); do
-    $sudo ln -s $file /home/$username/$(basename $file)
+    $sudo ln -s $file /home/$user_name/$(basename $file)
 done
 
 # Add home/.config links
 for file in $(find $path/.config -maxdepth 1 -iname '*' -not -path $path/.config); do
-    $sudo ln -s $file /home/$username/.config/$(basename $file)
+    $sudo ln -s $file /home/$user_name/.config/$(basename $file)
 done
 
 # Make copy of etc templates

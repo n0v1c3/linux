@@ -1,5 +1,6 @@
 # Load X configuration
 xrdb ~/.Xresources
+xmodmap ~/.xmodmap
 
 # Disable X system bell
 xset b off

@@ -50,10 +50,12 @@ echo -n $prompt_host
 read hostname
 echo -n $prompt_root
 read -s root_pass
+echo ""
 echo -n $prompt_user
 read user_name
 echo -n $prompt_pass
 read -s user_pass
+echo ""
 echo -n $prompt_git
 read git_user
 echo -n $prompt_full
@@ -202,18 +204,19 @@ $sudo git clone https://github.com/$git_user/linux.git $n0v1c3/linux
 
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
-for file in $(find $path -maxdepth 1 -iname '*' -not -path $path/.config); do
+for file in $($sudo find $path -maxdepth 1 -iname '*' -not -path $path/.config); do
     $sudo ln -s $file /home/$user_name/$(basename $file)
 done
 
 # Add home/.config links
-for file in $(find $path/.config -maxdepth 1 -iname '*' -not -path $path/.config); do
+$sudo mkdir /home/$user_name/.config
+for file in $($sudo find $path/.config -maxdepth 1 -iname '*' -not -path $path/.config); do
     $sudo ln -s $file /home/$user_name/.config/$(basename $file)
 done
 
 # Make copy of etc templates
 path="$n0v1c3/linux/dotfiles/etc/"
-for file in $(find $path -type f -iname '*'); do
+for file in $($sudo find $path -type f -iname '*'); do
     $sudo cp $file /etc/${file#$path}
 done
 

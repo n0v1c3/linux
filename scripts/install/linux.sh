@@ -48,14 +48,14 @@ do
 done;
 echo -n $prompt_host
 read hostname
-echo -n $prompt_root
+echo -n -p $prompt_root
 read root_pass
-echo -n $promt_user
+echo -n $prompt_user
 read user_name
-echo -n $promt_pass
+echo -n -p $prompt_pass
 read user_pass
 echo -n $prompt_git
-read git_name
+read git_user
 echo -n $prompt_full
 read user_full
 echo -n $prompt_email

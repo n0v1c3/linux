@@ -245,6 +245,14 @@ $sudo sensors-detect --auto
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
 
+# Oh-my-zsh
+sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+# Powerline fonts
+$sudo clone https://github.com/powerline/fonts.git
+$sudo ./fonts/install.sh
+$sudo rm -rf fonts
+
 # Root password
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 

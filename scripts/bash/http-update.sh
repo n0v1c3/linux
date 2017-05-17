@@ -1,6 +1,6 @@
 #!/bin/bash
 
-options=("$n0v1c3/phpmyplc/http" "$rne/cacGenerator/http" "$rne/rneDatabase/html" "Quit")
+options=("$n0v1c3/phpmyplc/http" "$n0v1c3/resume/http" "$rne/cacGenerator/http" "$rne/rneDatabase/html" "Quit")
 case $(uname -a | tr '[:upper:]' '[:lower:]') in
 	# Arch OS
 	*arch*)

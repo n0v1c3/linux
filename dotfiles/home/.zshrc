@@ -8,9 +8,13 @@
 # Name: .zshrc
 # Description: Configuration for zsh shell
 
+# Path to oh-my-zsh installation
+export ZSH=/home/travis/.oh-my-zsh
+
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="random"
 #ZSH_THEME="agnoster"
+
 ZSH_THEME="robbyrussell"
 
 # Interchange - with _ and _ with -

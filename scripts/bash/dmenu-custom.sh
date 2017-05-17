@@ -26,7 +26,9 @@ retext
 shutdown
 software-center
 suspend
+synergy
 teamviewer
+terminator
 thunar
 urxvt
 virtualbox
@@ -91,8 +93,14 @@ case "$choice" in
     suspend)
         sudo pm-suspend &
         ;;
+    synergy)
+        synergy &
+        ;;
     teamviewer)
         teamviewer &
+        ;;
+    terminator)
+        terminator &
         ;;
     thunar)
         thunar &

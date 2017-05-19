@@ -6,9 +6,6 @@
 # Local backup (no delete)
 rsync --archive /home /backups/localhost
 
-# Local backup (with delete)
-rsync --archive --delete /home /backups/$(hostname)
-
 # Network backup (with delete)
 rsync --archive --delete -e ssh /home /mnt/tjg/office/backups/$(hostname)
 

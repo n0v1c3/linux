@@ -6,112 +6,41 @@
 DMENU='dmenu -i -nb #14151f -nf #999999 -sb #000000 -sf #31658C'
 
 choice=$(
-echo "android-studio
+echo " 
 arandr
 baobab
-clementine
-conky
 deluge
 firefox
-geany
-gedit
-gource
-hibernate
 kodi
 libreoffice
 logout
 reboot
 remmina
 retext
+scrot
 shutdown
-software-center
-suspend
 synergy
-teamviewer
 terminator
 thunar
-urxvt
-virtualbox
-vlc" | $DMENU
+virtualbox" | $DMENU
 )
 
 case "$choice" in
-    android-studio)
-        bash /opt/android-studio/bin/studio.sh
-        ;;
-    arandr)
-        arandr &
-        ;;
-    baobab)
-        baobab &
-        ;;
-    clementine)
-        clementine &
-        ;;
-    conky)
-        conky &
-        ;;
-    deluge)
-        deluge &
-        ;;
-    firefox)
-        firefox &
-        ;;
-    geany)
-        geany &
-        ;;
-    gedit)
-        gedit &
-        ;;
-    hibernate)
-        pm-hibernate &
-        ;;
-    kodi)
-        kodi &
-        ;;
-    libreoffice)
-        libreoffice &
-        ;;
-    logout)
-        i3-msg exit &
-        ;;
-    reboot)
-        shutdown -r now &
-        ;;
-    retext)
-        retext &
-        ;;
-    remmina)
-        remmina &
-        ;;
-    shutdown)
-        shutdown -h now &
-        ;;
-    software-center)
-        software-center &
-        ;;
-    suspend)
-        sudo pm-suspend &
-        ;;
-    synergy)
-        synergy &
-        ;;
-    teamviewer)
-        teamviewer &
-        ;;
-    terminator)
-        terminator &
-        ;;
-    thunar)
-        thunar &
-        ;;
-    urxvt)
-        urxvt &
-        ;;
-    virtualbox)
-        virtualbox &
-        ;;
-    vlc)
-        vlc &
-        ;;
+    ' ') i3-sensible-terminal & ;;
+    'arandr') arandr & ;;
+    'baobab') baobab & ;;
+    'deluge') deluge & ;;
+    'firefox') firefox & ;;
+    'kodi') kodi & ;;
+    'libreoffice') libreoffice & ;;
+    'logout') i3-msg exit & ;;
+    'reboot') shutdown -r now & ;;
+    'retext') retext & ;;
+    'remmina') remmina & ;;
+    'scrot') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot; scrot -s & ;;
+    'shutdown') shutdown -h now & ;;
+    'synergy') synergy & ;;
+    'terminator') terminator & ;;
+    'thunar') thunar & ;;
+    'virtualbox') virtualbox & ;;
 esac

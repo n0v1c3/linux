@@ -127,6 +127,7 @@ $install_cmd xorg
 $install_cmd xorg-xinit
 
 # Terminal tools
+$install_cmd apache         # Web server
 $install_cmd alsa-utils     # Advanced linux sound architecture
 $install_cmd bluez          # Bluetooth protocol stack
 $install_cmd bluez-utils    # Bluetooth bluetoothctl utility
@@ -139,10 +140,14 @@ $install_cmd fuse           # Mount for ntfs
 $install_cmd git            # Git
 $install_cmd gzip           # Gzip
 $install_cmd lm_sensors     # Linux monitoring sensors
+$install_cmd mariadb        # MySQL database
 $install_cmd networkmanager # NetworkManager service
 $install_cmd ntfs-3g        # Mount for ntfs
 $install_cmd openssh        # SSH  
 $install_cmd pandoc         # General markup converter
+$install_cmd php            # General markup converter
+$install_cmd php-apache     # General markup converter
+$install_cmd phpmyadmin     # PHP based database management
 $install_cmd python         # Python
 $install_cmd reflector      # Pacman mirror update tool
 $install_cmd rsync          # Rsync
@@ -211,6 +216,10 @@ done
 # Configuration
 ###
 
+# Apache
+# TODO [170518] - Apache configuration (/etc/httpd/conf/httpd.conf)
+$sudo systemctl enable httpd
+
 # Cronie
 $sudo systemctl enable cronie
 $sudo echo "MAILTO=\"$user_email\"\n$(cat $n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
@@ -229,11 +238,29 @@ $sudo grub-mkconfig -o /boot/grub/grub.cfg
 # Linux monitoring sensors
 $sudo sensors-detect --auto
 
+# MariaDB
+# TODO [170518] - Add $user_name to MySQL users
+$sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+$sudo systemctl enable mariadb
+$sudo mysql_secure_installation
+
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
 
 # Oh-my-zsh
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
+# PHP
+$sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /etc/httpd/conf/httpd.conf
+$sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /etc/httpd/conf/httpd.conf
+$sudo echo "LoadModule php7_module modules/libphp7.so" >> /etc/httpd/conf/httpd.conf
+$sudo echo "AddHandler php7-script php" >> /etc/httpd/conf/httpd.conf
+$sudo echo "Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
+$sudo sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
+$sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
+
+# phpMyAdmin
+# TODO [170519] - Add apache configuration
 
 # Powerline fonts
 $sudo clone https://github.com/powerline/fonts.git

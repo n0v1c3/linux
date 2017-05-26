@@ -37,6 +37,7 @@ pwd
 /bin/ls -ClF --group-directories-first --color $@ | less
 }
 alias l="ls_l"
+alias la="ls_l -a"
 alias c="clear; ls_l"
 
 # Networking

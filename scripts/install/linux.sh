@@ -11,7 +11,7 @@
 disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n"
 
 # Sudo gid
-sudo_gid=1000
+sudo_gid=101
 
 # Common commands
 sudo="arch-chroot /mnt"
@@ -39,29 +39,23 @@ file_mirrors=/etc/pacman.d/mirrorlist
 # Read
 ###
 
-# Get user's information
+# Get installation information
 echo $prompt_device
 select disk in $(lsblk -ndl --output NAME)
 do
     diskpath=/dev/$disk
     break
-done;
-echo -n $prompt_host
-read hostname
-echo -n $prompt_root
-read -s root_pass
+done
+
+echo -n $prompt_host;  read hostname
+echo -n $prompt_root;  read -s root_pass
 echo ""
-echo -n $prompt_user
-read user_name
-echo -n $prompt_pass
-read -s user_pass
+echo -n $prompt_user;  read user_name
+echo -n $prompt_pass;  read -s user_pass
 echo ""
-echo -n $prompt_git
-read git_user
-echo -n $prompt_full
-read user_full
-echo -n $prompt_email
-read user_email
+echo -n $prompt_git;   read git_user
+echo -n $prompt_full;  read user_full
+echo -n $prompt_email; read user_email
 
 ###
 # Disks
@@ -133,62 +127,55 @@ $install_cmd xorg
 $install_cmd xorg-xinit
 
 # Terminal tools
-$install_cmd alsa-utils # Advanced linux sound architecture
-$install_cmd bluez # Bluetooth protocol stack
-$install_cmd bluez-utils # Bluetooth bluetoothctl utility
-$install_cmd colordiff # Display diff using git colors
-$install_cmd cronie # Cronjob task manager
-$install_cmd curl # URL data transfer
-$install_cmd curlftpfs # FTP using curl
-$install_cmd fuse # Mount for ntfs
-$install_cmd ghostscript # Used for imagemagick
-$install_cmd git
-$install_cmd lm_sensors # Linux monitoring sensors
-$install_cmd networkmanager
-$install_cmd ntfs-3g # Mount for ntfs
-$install_cmd openssh
-$install_cmd pandoc # General markup converter
-$install_cmd python
-$install_cmd ranger
-$install_cmd reflector # Pacman mirror update tool
-$install_cmd rsync
-$install_cmd ruby
-$install_cmd samba
-$install_cmd sshfs
-$install_cmd sudo
-$install_cmd tmux
-$install_cmd vim
-$install_cmd wget
-$install_cmd xrandr
-$install_cmd zip
-$install_cmd zsh
+$install_cmd alsa-utils     # Advanced linux sound architecture
+$install_cmd bluez          # Bluetooth protocol stack
+$install_cmd bluez-utils    # Bluetooth bluetoothctl utility
+$install_cmd colordiff      # Display diff using git colors
+$install_cmd cronie         # Cronjob task manager
+$install_cmd curl           # Server exchange requests/responses
+$install_cmd curlftpfs      # Mount for FTP
+$install_cmd fdupes         # Duplicate file search
+$install_cmd fuse           # Mount for ntfs
+$install_cmd git            # Git
+$install_cmd gzip           # Gzip
+$install_cmd lm_sensors     # Linux monitoring sensors
+$install_cmd networkmanager # NetworkManager service
+$install_cmd ntfs-3g        # Mount for ntfs
+$install_cmd openssh        # SSH  
+$install_cmd pandoc         # General markup converter
+$install_cmd python         # Python
+$install_cmd reflector      # Pacman mirror update tool
+$install_cmd rsync          # Rsync
+$install_cmd ruby           # Ruby
+$install_cmd samba          # Mount Windows network shares
+$install_cmd sshfs          # Mount SSH
+$install_cmd sudo           # Sudo
+$install_cmd tmux           # Tmux
+$install_cmd vim            # Vim
+$install_cmd wget           # Server download requests
+$install_cmd zip            # Zip
+$install_cmd zsh            # Zsh
 
 # xSession tools
-$install_cmd arandr
-$install_cmd baobab # Disk usage
-$install_cmd cbatticon
-$install_cmd clementine
-$install_cmd conky
-$install_cmd deluge
-$install_cmd dmenu
-$install_cmd fdupes
-$install_cmd firefox
-$install_cmd freerdp
-$install_cmd fslint # File compare
-$install_cmd gnome-icon-theme-full
-$install_cmd gource
-$install_cmd imagemagick
-$install_cmd libreoffice
-$install_cmd network-manager-applet
-$install_cmd remmina
-$install_cmd retext
-$install_cmd rxvt-unicode
-$install_cmd scrot # Screen shot
-$install_cmd synergy # Network mouse/keyboard share
-$install_cmd thunar
-$install_cmd virtualbox
-$install_cmd vlc
-$install_cmd xautolock
+$install_cmd arandr                 # Display configuration
+$install_cmd baobab                 # Disk usage
+$install_cmd cbatticon              # Tray icon
+$install_cmd conky                  # Interactive background display
+$install_cmd deluge                 # Torrent
+$install_cmd dmenu                  # Application launcher
+$install_cmd firefox                # Firefox
+$install_cmd gnome-icon-theme-full  # Icon pack
+$install_cmd gource                 # Fun tool for git repositories
+$install_cmd libreoffice            # LibreOffice
+$install_cmd network-manager-applet # Tray icon
+$install_cmd remmina                # Remote connection interface
+$install_cmd retext                 # Markdown editor / viewer
+$install_cmd scrot                  # Screen shot
+$install_cmd synergy                # Network mouse/keyboard share
+$install_cmd terminator             # Terminal
+$install_cmd thunar                 # File browser
+$install_cmd virtualbox             # Virtualbox
+$install_cmd xautolock              # Screen autolock
 
 ###
 # Dotfiles
@@ -257,10 +244,10 @@ $sudo rm -rf fonts
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
 # User groups and password
-$sudo useradd -m -g users -s /bin/bash $user_name
+$sudo useradd -m -g $user_name -s /bin/zsh $user_name
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
-$sudo usermod -a -G sudo $user_name
-$sudo echo "$username ALL=(ALL) ALL" >> /etc/sudoers
+$sudo usermod -a -G sudoers $user_name
+$sudo echo "%sudoers ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch

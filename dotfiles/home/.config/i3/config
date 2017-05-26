@@ -240,7 +240,7 @@ exec --no-startup-id i3-msg "workspace $ws3; exec thunar"
 exec --no-startup-id i3-msg "workspace $ws2; exec firefox"
 
 # Launch terminator onto workspace 1
-exec --no-startup-id i3-msg "workspace $ws1; exec urxvt"
+exec --no-startup-id i3-msg "workspace $ws1; exec terminator"
 
 # Launch xautolock
 #exec --no-startup-id i3-msg "workspace $ws1; exec $(if ! pgrep -u $USER xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi)"

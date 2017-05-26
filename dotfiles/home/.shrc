@@ -34,7 +34,7 @@ alias -- -='cd -'
 # Shortcuts
 function ls_l() {
 pwd
-/bin/ls -ClF --group-directories-first --color $@ | less
+/bin/ls -ClFh --group-directories-first --color $@ | less
 }
 alias l="ls_l"
 alias la="ls_l -a"

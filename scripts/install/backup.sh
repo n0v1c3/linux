@@ -4,13 +4,15 @@
 # Description: 
 
 # Local backup (no delete)
-rsync --archive /home /backups/localhost
-
-# Local backup (with delete)
-rsync --archive --delete /home /backups/$(hostname)
+rsync --archive --progress /home /backups/localhost
 
 # Network backup (with delete)
-rsync --archive --delete -e ssh /home /mnt/tjg/office/backups/$(hostname)
+rsync --archive --progress --delete -e ssh /home /mnt/tjg/office/backups/$(hostname)
+
+# Backup tjg-office to usb-wd when connected
+if [ "$(hostname)" = "tjg-office" -a "$(mount | grep /mnt/usb/wd > /dev/null)" ]; then
+    rsync --archive --progress --delete --exclude={"/backups/localhost/*"} /backups /mnt/usb/wd
+fi
 
 # ====
 # Exit

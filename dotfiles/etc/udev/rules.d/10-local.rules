@@ -1,0 +1,2 @@
+KERNEL=="sd[a-z]", RUN+="/home/travis/Documents/development/n0v1c3/linux/scripts/bash/i3-usb_lock.sh"
+KERNEL=="usb*", RUN+="/home/travis/Documents/development/n0v1c3/linux/scripts/bash/i3-usb_lock.sh"

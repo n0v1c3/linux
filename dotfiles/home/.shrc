@@ -92,10 +92,14 @@ export LESS="-XFre"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# X
+export DISPLAY=":0"
+#export XAUTHORITY=$HOME/.config/xsession/.Xauthority
+export XAUTHORITY=/home/travis/.config/xsession/.Xauthority
+
 # Development
 export n0v1c3=$HOME/Documents/development/n0v1c3
 export rne=$HOME/Documents/development/rne-travis
-export XAUTHORITY=$HOME/.config/xsession/.Xauthority
 
 # History and Logs
 export HISTFILE=$HOME/.config/history/.sh_history

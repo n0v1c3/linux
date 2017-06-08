@@ -3,15 +3,17 @@
 # Name: backup.sh
 # Description: 
 
+# =======
+# Backups
+# =======
+
 # Local backup (no delete)
-rsync --archive --progress /home /backups/localhost
+rsync --archive /home /backups/localhost
 
-# Network backup (with delete)
-rsync --archive --progress --delete -e ssh /home /mnt/tjg/office/backups/$(hostname)
-
-# Backup tjg-office to usb-wd when connected
-if [ "$(hostname)" = "tjg-office" -a "$(mount | grep /mnt/usb/wd > /dev/null)" ]; then
-    rsync --archive --progress --delete --exclude={"/backups/localhost/*"} /backups /mnt/usb/wd
+# Network backup (with delete) when connected
+if [ "$(mount | grep /mnt/tjg/dlink)" ]
+then
+    rsync --archive --delete -e ssh /home /mnt/tjg/dlink/backups/$(hostname)
 fi
 
 # ====

@@ -8,12 +8,12 @@
 # =======
 
 # Local backup (no delete)
-rsync --archive /home /backups/localhost
+sudo rsync --archive /home /backups/localhost
 
 # Network backup (with delete) when connected
 if [ "$(mount | grep /mnt/tjg/dlink)" ]
 then
-    rsync --archive --delete -e ssh /home /mnt/tjg/dlink/backups/$(hostname)
+    sudo rsync --archive --delete -e ssh /home /mnt/tjg/dlink/backups/$(hostname)
 fi
 
 # ====

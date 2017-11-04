@@ -5,14 +5,14 @@ source /home/travis/.shrc
 currentWAN=$(curl -s ipinfo.io/ip)
 
 [ "$WAN" != "$currentWAN" ] && [ "$currentWAN" != "" ] && {
-    sed -i $(cat /home/travis/.shrc | grep -n 'export WAN=' | cut -d : -f 1)'s/.*/export WAN='$currentWAN'/' $n0v1c3/linux/dotfiles/home/.shrc;
+    sed -i "$(grep -f /home/travis/.shrc -n 'export WAN=' | cut -d : -f 1)"'s/.*/export WAN='"$currentWAN'/' ""$n0v1c3"/linux/dotfiles/home/.shrc;
     echo "<table>";
     echo "<tr>";
     echo "<td>";
     echo "Old WAN:";
     echo "</td>";
     echo "<td>";
-    echo $WAN;
+    echo "$WAN";
     echo "</td>";
     echo "</tr>";
     echo "<tr>";
@@ -20,7 +20,7 @@ currentWAN=$(curl -s ipinfo.io/ip)
     echo "New Wan:";
     echo "</td>";
     echo "<td>";
-    echo $currentWAN;
+    echo "$currentWAN";
     echo "</td>";
     echo "</tr>";
     echo "</table>";

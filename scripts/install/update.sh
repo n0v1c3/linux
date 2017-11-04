@@ -21,11 +21,11 @@ echo "Update pacman installed packages"
 sudo pacman -Syyu
 
 # Update personal git repositories
-cd $n0v1c3
+cd "$(printenv "$n0v1c3")" || exit
 git-pull
 
 # Generate list of "bad" files
 sudo rmlint --types="badlinks,emptydirs,emptyfiles" -o pretty:stdout /home
 
 # Backup current crontab
-crontab -l | tail -n +2 > $n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt
+crontab -l | tail -n +2 > "$n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt"

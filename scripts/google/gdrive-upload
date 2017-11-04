@@ -1,0 +1,85 @@
+#!/bin/python
+# Author(s): Travis Gall, Google
+# Description: 
+
+# Imports {{{1
+# Standard {{{2
+import httplib2
+import os
+
+# Google API {{{2
+from apiclient.discovery import build
+from apiclient.http import MediaFileUpload
+from oauth2client import client
+from oauth2client import tools
+from oauth2client.file import Storage
+from oauth2client.service_account import ServiceAccountCredentials
+
+# tkinter {{{2
+from tkinter import Tk
+from tkinter import filedialog
+from tkinter.filedialog import askopenfilename
+
+# Variables {{{1
+# Global {{{2
+HOME_PATH = os.path.expanduser('~')
+
+# Functions {{{1
+# import_file {{{2
+def import_file(drive_api, file_name, import_path, mimetype):
+    # Request hash to tell the google API what we're giving it
+    body = {'name': os.path.basename(file_name)}#,
+            #'mimeType': 'application/vnd.google-apps.file'}
+    file_metadata = {'name': os.path.basename(file_name)}
+
+    # Upload file to google drive
+    media = MediaFileUpload(file_name)#,
+            #mimetype=mimetype)
+    file = drive_api.files().create(body=body,
+            media_body=media).execute()
+
+    return file
+
+# delete_file {{{2
+def delete_file(drive_api, file_id):
+    drive_api.files().delete(fileId=file_id).execute()
+
+# get_creds {{{2
+def get_creds():
+    SCOPES = 'https://www.googleapis.com/auth/drive'
+    CLIENT_PATH = os.path.join(HOME_PATH, '.config/google')
+    #  TODO [170914] - tk pop-up select?
+    CLIENT_FILE = 'travis.gall.json'
+    APPLICATION_NAME = 'Drive API Python Quickstart'
+    
+    # Ensure directory exists
+    if not os.path.exists(CLIENT_PATH): os.makedirs(CLIENT_PATH)
+    cred_path = os.path.join(CLIENT_PATH, CLIENT_FILE)
+    os.system("touch %s" % cred_path)
+
+    # Create credentials from file
+    store = Storage(cred_path)
+    creds = store.get()
+    
+    # Invalid credentials file
+    if not creds or creds.invalid:
+        flow = client.flow_from_clientsecrets(cred_path, SCOPES)
+        flow.user_agent = APPLICATION_NAME
+        creds = tools.run_flow(flow, store, flags)
+
+    # Valid credentials found or created
+    return creds
+
+# Main {{{1
+if __name__ == '__main__':
+    # Set up a credentials object I think
+    creds = get_creds()
+    http = creds.authorize(httplib2.Http())
+    
+    # Now build our api object, thing
+    drive_api = build('drive', 'v3', credentials=creds)
+
+    # Get file and upload
+    Tk().withdraw() # Pop-up window only
+    file_name = askopenfilename()
+    print('%s' % import_file(drive_api, file_name, '', 'text/plain').get('id'))

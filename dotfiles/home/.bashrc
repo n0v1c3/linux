@@ -33,35 +33,23 @@ shopt -s checkwinsize
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
    xterm-color)
-	  color_prompt=yes
+	  export color_prompt=yes
 	  ;;
 esac
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-   if [ -f /usr/share/bash-completion/bash_completion ]; then
-	  . /usr/share/bash-completion/bash_completion
-   elif [ -f /etc/bash_completion ]; then
-	  . /etc/bash_completion
-   fi
-fi
-
 # Source common shell configurations
-#source ~/.bin/git-prompt
-source ~/.shrc
+source "$($HOME)/.shrc"
 
 # Formatting
 GREY="\e[0m"
 RED="\e[31m"
 GREEN="\e[32m"
-YELLOW="\e[33m"
+#YELLOW="\e[33m"
 BLUE="\e[34m" 
-LIGHT_RED="\e[91m"
-LIGHT_GREEN="\e[92m"
-LIGHT_YELLOW="\e[93m"
-LIGHT_BLUE="\e[94m" 
+#LIGHT_RED="\e[91m"
+#LIGHT_GREEN="\e[92m"
+#LIGHT_YELLOW="\e[93m"
+#LIGHT_BLUE="\e[94m" 
 WHITE="\e[37m" 
 
 git_status() {
@@ -87,7 +75,7 @@ prompt_command() {
     fi
     PS1+="\$ "
 }
-PS2="$white>$GREY "
+PS2="$WHITE>$GREY "
 
 # Trigger prompt to update all functions
 PROMPT_COMMAND='prompt_command'

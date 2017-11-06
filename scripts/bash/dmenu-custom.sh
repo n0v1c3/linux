@@ -21,6 +21,7 @@ scrot
 shutdown
 synergy
 terminator
+texmaker
 thunar
 virtualbox" | $DMENU
 )
@@ -35,12 +36,13 @@ case "$choice" in
     'libreoffice') libreoffice & ;;
     'logout') i3-msg exit & ;;
     'reboot') shutdown -r now & ;;
-    'retext') retext & ;;
     'remmina') remmina & ;;
-    'scrot') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot; scrot -s & ;;
+    'retext') retext & ;;
+    'scrot') mkdir -p ~/downloads/scrot; cd ~/downloads/scrot || exit; scrot -s & ;;
     'shutdown') shutdown -h now & ;;
     'synergy') synergy & ;;
     'terminator') terminator & ;;
+    'texmaker') texmaker & ;;
     'thunar') thunar & ;;
     'virtualbox') virtualbox & ;;
 esac

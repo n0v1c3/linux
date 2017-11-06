@@ -4,7 +4,7 @@
 # Description: 
 
 # xSession commands
-if [ ! -z $DISPLAY ]
+if [ ! -z "$DISPLAY" ]
 then
     # Check for previous xautolock PIDs
     if ! pgrep -u "$USER" xautolock > /dev/null

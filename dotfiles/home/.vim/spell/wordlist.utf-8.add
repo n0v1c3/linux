@@ -1,4 +1,3 @@
-AND/!
 AutoHotKey
 DHCP
 ESC
@@ -19,8 +18,6 @@ foldlevel
 foldmethod
 fstab
 ftp
-gg=G
-h1
 hostname
 linux
 modeline

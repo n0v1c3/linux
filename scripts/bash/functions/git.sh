@@ -10,8 +10,8 @@ yellow="\e[33m"
 # Syntax highlighting
 
 # Generate status prompt based on the git status of the current directory
-git_prompt() {
-    if [ $(git rev-parse -git-dir 2> /dev/null) ]; then
+git-prompt() {
+    if [ "$(git rev-parse -git-dir 2> /dev/null)" ]; then
         stat="\033[0m"
         # Check for changes in git repo
         if ! git diff-index --quiet HEAD --; then
@@ -28,17 +28,17 @@ git_prompt() {
 }
 
 # git status on current directory or one layer deep in non-repo
-git_status() {
+git-status() {
     # Confirm if current directory is a valid git repository
-    if [ $(git rev-parse -git-dir 2> /dev/null) ]; then
+    if [ "$(git rev-parse -git-dir 2> /dev/null)" ]; then
         git status -s
 
     else
         # Loop through each directory in the current directory
-        for D in `find . -mindepth 1 -maxdepth 1 -type d`; do
+        for D in $(find . -mindepth 1 -maxdepth 1 -type d); do
             # Change directory and display git status
-            pushd $D > /dev/null
-            echo "\n$blue==========$yellow"
+            pushd "$D" > /dev/null
+            printf "\n%s==========%S" "$blue" "$yellow"
             pwd
             git status -s; echo ""
             echo "$blue----------"
@@ -48,7 +48,7 @@ git_status() {
 }
 
 # Search for existing commits by email, update, and force push new committer information
-function git_committer_change
+function git-committer-change
 {
     # 1 - Open terminal
     # 2 - Create a fresh, bare clone of your repository
@@ -81,33 +81,33 @@ function git_committer_change
     # rm -rf repo
 }
 
-function git_script_dir
+function git-script-dir
 {
-    echo "$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd
 }
 
-function git_repo_dir
+function git-repo-dir
 {
     script_dir=$(scriptDir)
-    length=`echo $script_dir | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}'`
+    length=$(echo "$script_dir" | grep -b -o "/linux/" | awk 'BEGIN {FS=":"}{print $1}')
     repo_dir=${script_dir:0:$length}"/linux"
-    echo $repo_dir
+    echo "$repo_dir"
 }
 
 # Simple file meta data caching and applying
-function git_meta
+function git-meta
 {
-    : ${cacheMetaFile=$(git rev-parse --show-toplevel)/.gitmeta}
+    cacheMetaFile=$(git rev-parse --show-toplevel)/.gitmeta
 
     case $@ in
         --store|--stdout)
             case $1 in
                 --store)
-                    exec > $cacheMetaFile
+                    exec > "$cacheMetaFile"
                     ;;
             esac
 
-            find $(git ls-files)\
+            find "$(git ls-files)"\
             \( -printf 'chown %U %p\n' \) \
             \( -printf 'chgrp %G %p\n' \) \
             \( -printf 'touch -c -d "%AY-%Am-%Ad %AH:%AM:%AS" %p\n' \) \
@@ -116,7 +116,7 @@ function git_meta
 
         # Apply the current copy of $git
         --apply)
-            sh -e $cacheMetaFile
+            sh -e "$cacheMetaFile"
             ;;
         *)
             1>&2 echo "Usage: $0 --store|--stdout|--apply"

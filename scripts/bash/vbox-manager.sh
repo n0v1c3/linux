@@ -1,9 +1,6 @@
 #!/bin/bash
 # ~/VBox
 
-# Clear terminal screen
-clear
-
 # Used to mount an encrypted file system from the admin
 # mountCount=$(mount | grep -c /home/rneadmin/vBox)
 # if [ $mountCount -ge 1 ] ; then
@@ -14,7 +11,6 @@ clear
 # fi
 
 IN=$(sudo -H -u travis VBoxManage list vms)
-OIFS=$IFS
 IFS='"*"'
 VMLIST=$IN
 
@@ -51,7 +47,7 @@ vmindex=-1
 while [ $vmindex -lt 0 ] || [ $vmindex -ge $curindex ]
 do
 	printf "Please enter index of VM to {start/stop}: "
-	read vmindex
+	read -r vmindex
 done
 echo
 
@@ -66,7 +62,7 @@ fi
 echo
 sleep 2s
 echo "Press [Any Key] to continue..."
-read -n 1
+read -r -n 1
 
 # Script complete
 exit 0

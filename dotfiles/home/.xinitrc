@@ -2,6 +2,8 @@
 xrdb ~/.Xresources
 xmodmap ~/.xmodmap
 
+setxkbmap -option caps:escape &
+
 # Disable X system bell
 xset b off
 

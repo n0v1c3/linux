@@ -1,15 +1,8 @@
-#            _              
-#           | |             
-#    _______| |__  _ __ ___ 
-#   |_  / __| '_ \| '__/ __|
-#  _ / /\__ \ | | | | | (__ 
-# (_)___|___/_| |_|_|  \___|
-
 # Name: .zshrc
 # Description: Configuration for zsh shell
 
 # Path to oh-my-zsh installation
-export ZSH=/home/travis/.oh-my-zsh
+export ZSH=/home/travis/.config/zsh/oh-my-zsh
 
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="random"
@@ -36,7 +29,7 @@ plugins=(git vi-mode history-substring-search)
 bindkey -v
 
 # Oh-My-Zsh
-source $HOME/.oh-my-zsh/oh-my-zsh.sh
+source $HOME/.config/zsh/oh-my-zsh/oh-my-zsh.sh
 
 # Source common shell configurations
 source $HOME/.shrc

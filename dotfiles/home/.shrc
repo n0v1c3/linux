@@ -12,7 +12,7 @@ HISTFILESIZE=$HISTSIZE
 # ===
 # Enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    (test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)") || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
@@ -34,7 +34,7 @@ alias -- -='cd -'
 # Shortcuts
 function ls_l() {
 pwd
-/bin/ls -ClFh --group-directories-first --color $@ | less
+/bin/ls -ClFh --group-directories-first --color "$@" | less
 }
 alias l="ls_l"
 alias la="ls_l -a"
@@ -43,7 +43,6 @@ alias c="clear; ls_l"
 # Networking
 alias ip4="ip addr | grep -e 'inet ' -e ':\ '"
 alias ip6="ip addr | grep -e 'inet6 ' -e ':\ '"
-alias wan="curl -s ipinfo.io/ip"
 
 # Directory stack
 alias p='pushd . > /dev/null'
@@ -70,12 +69,18 @@ alias w3m='w3m https://google.ca/'
 # wget
 alias wget='wget --hsts-file=~/.config/cache/.wget-hsts'
 
+#alias ="du --block-size=1G ."
+alias dlink-sync="/home/travis/Documents/development/n0v1c3/linux/scripts/dlink/dlink-sync.sh"
+alias websync="rsync -avz -e ssh --progress /home/travis/Documents/development/n0v1c3/deminicos/http/ mine-001-00-01:/srv/http/"
+
 # ---
 # Exports
 # ---
 # PATH
+#RUBYPATH="$(ruby -e 'print Gem.user_dir')/bin"
 export PATH=$PATH:~/.bin # user
-export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH" # ruby
+#export PATH=$PATH:$RUBYPATH # ruby
+export PATH=$PATH:~/.vim/bundle/syntastic/syntax_checkers/vim # user vim
 
 # Default editor
 export EDITOR='vim'
@@ -99,6 +104,7 @@ export XAUTHORITY=/home/travis/.config/xsession/.Xauthority
 
 # Development
 export n0v1c3=$HOME/Documents/development/n0v1c3
+export private=$HOME/Documents/development/private
 export rne=$HOME/Documents/development/rne-travis
 
 # History and Logs
@@ -123,10 +129,10 @@ export LC_ALL=en_US.UTF-8
 # ===
 # TODO [170324] - Should have a common folder for all custom source files
 # Git functions
-source $n0v1c3/linux/scripts/bash/functions/git.sh
+source "/home/travis/Documents/development/n0v1c3/linux/scripts/bash/functions/git.sh"
 
 # ===
 # Custom functions
 # ===
 # i3 auto functions
-i3-auto > /dev/null
+#i3-auto > /dev/null

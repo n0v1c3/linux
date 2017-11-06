@@ -50,9 +50,6 @@ hi StatusLineNC ctermbg=black ctermfg=lightgreen
 set statusline=%m%r " Flags
 set statusline+=%f " Filename
 set statusline+=\ %{GetFoldStrings()} " Folds
-"set statusline=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
 
 " Format Options {{{2
 set formatoptions-=cro
@@ -80,11 +77,6 @@ set shiftwidth=4
 " Expand all tab
 set expandtab
 " }}}
-" Templates {{{
-" Load template based on current file extension (:help template)
-augroup templates
-    " Remove ALL auto commands for the current group
-=======
 " Section: Autocommands {{{1
 " Test Group {{{2
 augroup test
@@ -106,6 +98,8 @@ inoremap <silent> jk <esc>
 " Normal Mappings {{{
 " Normal Mappings {{{2
 " VIM {{{3
+nnoremap <c-j> 5<c-d>
+nnoremap <c-k> 5<c-u>
 nnoremap <silent> <c-u> mmviwU`m
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <silent> <leader>sv :mapclear<cr>:source $MYVIMRC<cr>:set nohlsearch<cr>
@@ -204,14 +198,8 @@ function! s:DiffWithSaved()
 endfunction
 command! DiffSaved call s:DiffWithSaved()
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" Set modeline to override the default foldmethod in this file
-" vim: foldmethod=marker:foldlevel=0

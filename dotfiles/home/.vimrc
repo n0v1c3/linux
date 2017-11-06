@@ -492,7 +492,9 @@ au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
 " Tabs/Indenting {{{
 " Do smart auto indenting when starting a new line
-set smartindent
+setlocal smartindent
+autocmd! FileType python setlocal nosmartindent
+
 " Set tab width
 set tabstop=4
 set softtabstop=4
@@ -511,6 +513,15 @@ augroup templates
     autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
 " }}}
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " Set modeline to override the default foldmethod in this file
 " vim: foldmethod=marker:foldlevel=0

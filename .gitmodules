@@ -10,3 +10,6 @@
 [submodule "dotfiles/home/.vim/bundle/nerdcommenter"]
 	path = dotfiles/home/.vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
+[submodule "dotfiles/home/.vim/bundle/supertab"]
+	path = dotfiles/home/.vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git

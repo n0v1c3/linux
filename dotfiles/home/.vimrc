@@ -2,6 +2,9 @@
 " Description: Autoload file for the VIM text editor
 " Authors: Travis Gall
 " Notes:
+" TODO-TJG [171106] - GetFolds is not working in SQL files
+" TODO-TJG [171106] - Sorting for folded content (sort whole bloks by fold)
+" TODO-TJG [171106] - SQL lint checker
 
 let g:mapleader="\<space>"
 let g:maplocalleader='-'
@@ -15,6 +18,7 @@ execute pathogen#infect()
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_working_path_mode = 'ra'
 
+" NERDCommenter
 let g:NERDSpaceDelims=1 " One space after auto comment
 
 " Syntastic configuration
@@ -202,3 +206,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+nnoremap K i<cr><esc>

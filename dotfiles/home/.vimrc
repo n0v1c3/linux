@@ -1,405 +1,185 @@
-" Name: .vimrc
-" Description: Custom Vim configurations
-" Author: Travis Gall
+" File: .vimrc
+" Description: Autoload file for the VIM text editor
+" Authors: Travis Gall
 " Notes:
-" - Spelling download en_u
-"   > ftp://ftp.vim.org/pub/vim/runtime/spell/
 
-" Set leader to <SPACE>
 let g:mapleader="\<space>"
+let g:maplocalleader='-'
 
-" Plugins {{{
-" Third-Party {{{
-" Pathogen source all Vim bundles found in ~/.vim/bundle
+" Section: Plugins {{{1
+" Third-Party {{{2
+" Source all bundles with pathogen
 execute pathogen#infect()
-" Case Auto-Indent enable
-let g:sh_indent_case_labels=1
-" NERDTree open to right
-let g:NERDTreeWinPos='left'
-" NERDCommenter add a space after auto comment
-let g:NERDSpaceDelims=1
 
-" Syntastic
-set statusline=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" CtrlP
+let g:ctrlp_cmd = 'CtrlPMRU'
+let g:ctrlp_working_path_mode = 'ra'
 
+let g:NERDSpaceDelims=1 " One space after auto comment
+
+" Syntastic configuration
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Lint checkers
 let g:syntastic_php_checkers = ['php', '/bin/phplint']
 let g:syntastic_sh_checkers = ['bashate', 'sh', 'shellcheck']
 let g:syntastic_sh_shellcheck_args = '--external-sources'
 let g:syntastic_vim_checkers = ['vimlint', 'vint']
-" }}} Third-Party
-" Local {{{
+
+" Local {{{2
+source ~/.vim/functions/abbreviations.vim
+source ~/.vim/functions/cleanup.vim
+source ~/.vim/functions/display.vim
+source ~/.vim/functions/folds.vim
+source ~/.vim/functions/navigation.vim
 source ~/.vim/functions/todos.vim
-" }}} Local
-" }}} Plugins
-" Custom Functions {{{1
-" Search {{{2
+source ~/.vim/functions/users.vim
+source ~/.vim/functions/windows.vim
 
-" Search current buffer for matching pattern and display in c-window
-function! FindFunc(...)
-    " Close the c-window in order for it it be in focus once re-opened
-    cclose
-    " Underline current cursor position within current document
-    set cursorline
-    " Move cursor to next pattern match
-    call search(a:1)
-    " Record line and column position into "p
-    let @p=line('.').' col '.col('.')
-    " Put Results into c-window
-    silent execute 'vimgrep /'.a:1.'/gj '.fnameescape(expand('%')) | cw
-    " Update search register
-    let @/=a:1
-    " Find line and column position in c-window list
-    call search(@p)
-    " Jump to that record
-    exe "normal \<CR>"
-    " Set focus to the c-window
-    botright cwindow
-    " Underline current cursor position within c-window
-    set cursorline
-endfunction
-
-" Clean-up {{{2
-
-" Remove all trailing spaces, ignore errors
-function! TrimFile()
-    execute "normal! :%s/\\s\\\+$//e\<CR>"
-endfunction
-
-" C-Window {{{2
-
-" Open c-window while maintaining the cursor line
-function! COpenCursor()
-    " Enable cursorline in main window
-    set cursorline
-    " Open all folds for current result
-    silent! foldopen!
-    " Open c-window
-    botright cwindow
-    " Enable cursorline in c-window
-    set cursorline
-endfunction
-
-" Close c-window and clean-up cursor line
-function! CCloseCursor()
-    " Close c-window
-    cclose
-    " Open all folds for current result
-    silent! foldopen!
-    " Remove cursor line from main window
-    set nocursorline
-endfunction
-function! CToggleCursor()
-    if &buftype!=#'quickfix'
-        call COpenCursor()
-    else
-        call CCloseCursor()
-    endif
-endfunction
-function! WinEnter()
-    if &buftype!=#'quickfix'
-        set nocursorline
-    endif
-endfunction
-
-" Markdown {{{2
-
-" Disable markdown "mode"
-function! MarkdownDisable()
-    " Remove page width
-    set colorcolumn=0
-    " Disable spell checking
-    set nospell
-endfunction
-function! MarkdownEnable()
-    " Mark page width
-    set colorcolumn=80
-    " Enable spell checking
-    setlocal spell spelllang=en_u
-endfunction
-" Underline the current line for markdown document
-function! MarkdownHeader(level)
-    echom a:level
-    if a:level ==# ''
-        " Read character from line below
-        normal! mmjv"ry`m
-        " Read the first word on the current line
-        normal! mm^v"ty`m
-        " Adjust function for current heading status
-        if @r ==# '='
-            " Replace "=" with "-"
-            normal! mmj^v$r-`m
-
-        elseif @r ==# '-'
-            " Replace "-" with leading "#"
-            execute "normal! mmjdd`mI; ### \<ESC>`m"
-
-        elseif @t ==# '#'
-            execute "normal! mm02l#\<ESC>`m"
-        else
-            " Insert h1
-            execute "normal! :call MarkdownHeader(1)\<CR>"
-        endif
-    elseif a:level == 1
-        normal! mmyypv$r=$x`m
-    elseif a:level == 2
-        normal! mmyypv$r-$x`m
-    else
-        " Set mark at current courser position, move to beginning of line
-        normal! mm^
-        " Insert header
-        execute 'normal!' a:level . "i#\<ESC>a "
-        " Return to mark
-        normal! `m
-    endif
-endfunction
-
-" Word Count {{{2
-
-" Store running count
-let g:word_count='<unknown>'
-" Calculate the number of words in a document
-function! WordCount()
-    return g:word_count
-endfunction
-" Update the value of g:word_count with the current number of words in the file
-function! UpdateWordCount()
-    " Reset line count
-    let lnum = 1
-    " Reset word count
-    let n = 0
-    " For each line
-    while lnum <= line('$')
-        " Update the number of word
-        let n = n + len(split(getline(lnum)))
-        " Update the number of line
-        let lnum = lnum + 1
-    endwhile
-    " Update system value
-    let g:word_count = n
-endfunction
-" Update the count when cursor is idle in command or insert mode
-augroup WordCounter
-    au! CursorHold,CursorHoldI * call UpdateWordCount()
-augroup END
-
-" Custom Commands {{{1
-" Comments {{{2
-
-" Toggle comments for current line
-command! Comment call NERDComment(0,"toggle")
-
-" TODO {{{2
- 
-" Find all TODO's recursively in current directory
-"command! TODO vimgrep /TODO \[\d\d\d\d\d\d\]/ **/* **/.* | cw 5
-
-" Search {{{2
-
-" Search for string in current file and put results in QuickFix window
-command! -nargs=+ -complete=command Find call FindFunc(<q-args>) | set hls
-
-" Key Mappings {{{1
-" Re-binds {{{2
-
-" Find
-nnoremap <C-f> :Find<SPACE>
-
-" Folding
-nnoremap zC mmggVGzC`m
-nnoremap zO mmggVGzO`m
-
-" Navigarion
-noremap j gj
-noremap k gk
-
-" Yank to end of line
-nnoremap Y y$
-
-" Leader key {{{2
-
-" Edit common documents
-nnoremap <silent> <leader>eb :sp ~/.bashrc<CR><C-W>o
-nnoremap <silent> <leader>ei :sp ~/.config/i3/config<CR><C-W>o
-nnoremap <silent> <leader>ep :sp ~/.pythonrc<CR><C-W>o
-nnoremap <silent> <leader>es :sp ~/.shrc<CR><C-W>o
-nnoremap <silent> <leader>et :sp ~/.tmux.conf<CR><C-W>o
-nnoremap <silent> <leader>ev :sp ~/.vimrc<CR><C-W>o
-nnoremap <silent> <leader>ex :sp ~/.xinitrc<CR><C-W>o
-nnoremap <silent> <leader>ez :sp ~/.zshrc<CR><C-W>o
-
-" Folding
-nnoremap <silent> <leader><leader> za
-
-" Highlighting
-nnoremap <silent> <leader>hd :noh<CR>
-nnoremap <silent> <leader>he :set hls<CR>
-
-" NERDTree
-nnoremap <silent> <leader>o :NERDTreeToggle<CR>
-
-" NERDComment
-nnoremap <silent> <leader>ct :Comment<CR>
-
-" Source vimrc
-nnoremap <silent> <leader>sv :so ~/.vimrc<CR>
-
-" Window
-nnoremap <silent> <leader>w <C-w>
-
-" C-Window {{{2
-
-augroup cwindow
-    " Remove underline from document when leaving Quickfix List
-    autocmd WinEnter * call WinEnter()
-
-    " Automatic navigation while in c-window
-    autocmd FileType qf map <buffer> <CR> <CR>:call CCloseCursor()<CR>
-    autocmd FileType qf map <buffer> G G<CR>:call COpenCursor()<CR>
-    autocmd FileType qf map <buffer> gg gg<CR>:call COpenCursor()<CR>
-    autocmd FileType qf map <buffer> j j<CR>:call COpenCursor()<CR>
-    autocmd FileType qf map <buffer> k k<CR>:call COpenCursor()<CR>
-augroup END
-
-" Navigation of c-window results
-noremap <silent> <leader>cj :cn<CR>:call COpenCursor()<CR>
-noremap <silent> <leader>ck :cp<CR>:call COpenCursor()<CR>
-
-" Toggle c-window
-nnoremap <silent> <leader>cc :call CToggleCursor()<CR>
-
-" Syntax {{{1
-" Global {{{2
-
-" Visual auto complete for command menu
-set wildmenu
-" Show command in bottom bar
-set showcmd
-" Do not redraw during operations such as macro
-set lazyredraw
-" Always display the status line even if only one window is displayed
-set laststatus=2
-" Display hidden char
-let g:display_hidden = 'hidden'
-" Change cursor to | and _ for insert and replace modes respectively
-let &t_SI = "\<Esc>[6 q"
-let &t_SR = "\<Esc>[4 q"
-let &t_EI = "\<Esc>[2 q"
-" Backspace over auto indent, line breaks, start of insert
-set backspace=indent,eol,start
-" Update when idle for 1000 msec (default is 4000 msec)
-set updatetime=500
-" Virtual editing, position cursor where there is are no characters (all modes)
-set virtualedit=all
-" Ignore file patterns globally
+" Section: Configurations {{{1
+" Wildignore {{{2
 set wildignore+=*.swp
-" Change default location of the .viminfo cache file
-set viminfo+=n~/.vim/.viminfo
 
-" Folding
-set foldenable
-set foldlevelstart=0
-set foldnestmax=10
-set foldmethod=marker
-set foldlevel=0
-set foldcolumn=3
+" StatusLine {{{2
+"hi StatusLine ctermbg=darkgreen ctermfg=lightgrey
+hi StatusLine ctermbg=darkgreen ctermfg=white
+hi StatusLineNC ctermbg=black ctermfg=lightgreen
+set statusline=%m%r " Flags
+set statusline+=%f " Filename
+set statusline+=\ %{GetFoldStrings()} " Folds
+"set statusline=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
-" Enable modelines
-set modeline
-set modelines=5
+" Format Options {{{2
+set formatoptions-=cro
 
-" Display line numbers relative to the current line
-set relativenumber
-" Display line number for current line
-set number
-" Start scrolling five lines before window border
-set scrolloff=5
+" Auto Indent {{{2
+set smartindent     " Auto indent enabled
+set tabstop=4       " Number of spaces in tab character
+set softtabstop=4   " Number of spaces tabs count for while editing
+set shiftwidth=4    " Auto indent spaces
+set expandtab       " Expand all tabs into spaces
 
-" 256 color
-set t_Co=256
-" Preferred background
-set background=dark
-" Preferred color scheme
-colorscheme koehler
-
-" Disable automatic text wrapping
-set textwidth=0
-
-" General settings required for highlighting
-filetype plugin indent on
-syntax on
-
-" Do smart auto indenting when starting a new line
-set smartindent
-
-" Set tab width
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-" Expand all tabs
-set expandtab
-
-" Custom spell-check list
-set spellfile=~/.vim/spell/wordlist.utf-8.add
-
-" Underline misspelled words
-highlight clear SpellBad
-highlight SpellBad cterm=underline
-
-augroup commenting
-    " Remove automatic commenting
-    autocmd Filetype * setlocal formatoptions-=r
-    autocmd Filetype * setlocal formatoptions-=o
-    autocmd FileType * set formatoptions-=c
-augroup END
-
-" Ignore case unless capitals used, highlight and search as modified
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-
-" Set output to statusline
-highlight User1 ctermbg=black guibg=black ctermfg=blue guifg=blue
-set statusline+=%1*%M%<%t\ %y%=%{WordCount()},\ %l/%L,\ %P
-set showcmd
-
-" Python {{{2
-
-augroup python
-    " Disable smartindent for python scripting
-    autocmd! FileType py setlocal nosmartindent
-augroup END
-
-" Templates {{{1
-
-" Load template based on current file extension (:help template)
-augroup templates
-    " Remove ALL auto commands for the current group
+" Section: Autocommands {{{1
+" Test Group {{{2
+augroup test
+    " Clear group
     autocmd!
-    " Expand file extension and search templates placing content at top of file
-    autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand('<afile>:e')
-    " Substitute equations between the VIM_EVAL and END_EVAL equations
-    autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
 augroup END
+"autocmd BufWrite * :echom "Writing buffer!"
+" Section: Key Mappings {{{1
+" Insert Mappings {{{2
+" VIM {{{3
+inoremap <silent> <c-u> <esc>mmviwU`ma
+inoremap <silent> <down> <nop>
+inoremap <silent> <esc> <nop>
+inoremap <silent> <left> <nop>
+inoremap <silent> <right> <nop>
+inoremap <silent> <up> <nop>
+inoremap <silent> jk <esc>
 
-" TESTING {{{1
+" Normal Mappings {{{
+" Normal Mappings {{{2
+" VIM {{{3
+nnoremap <silent> <c-u> mmviwU`m
+nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :mapclear<cr>:source $MYVIMRC<cr>:set nohlsearch<cr>
+nnoremap <silent> H ^
+nnoremap <silent> L $
+nnoremap <silent> gf :e <cfile><cr>
+nnoremap <silent> p ]p
+noremap <silent> <down> <nop>
+noremap <silent> <left> <nop>
+noremap <silent> <right> <nop>
+noremap <silent> <up> <nop>
 
-" " Fold all code only displaying the commenting
-" setlocal foldmethod=expr
-" setlocal foldexpr=GetPotionFold(v:lnum)
-" 
-" " TODO [170806] - Handle indented commenting
-" function! GetPotionFold(lnum)
-"     if getline(a:lnum) =~? '^\s*\"'
-"         return '0'
-"     else
-"         return '1'
-" endfunction
+" Autofill {{{3
+noremap <leader>x <c-x>
+
+" Clean-Up {{{3
+" TODO-TJG [171105] - Marker not restoring properly
+nnoremap <silent><leader>cf mm:CleanFile<cr>`m
+
+" Comments {{{3
+nnoremap <silent> <leader>ct :call NERDComment(0,'toggle')<cr>
+
+" CtrlP {{{3
+nnoremap <silent> <c-p> :CtrlPMRUFiles<cr>
+
+" Files {{{3
+nnoremap <leader>fs <c-w>sgf
+nnoremap <leader>fv <c-w>vgf
+
+" Folding {{{3
+" TODO-TJG [171105] - Add mapping for NERDTree (zo/zc open/close dirs)
+nnoremap <silent> <leader><leader> za
+noremap <silent> <leader>zz :call WrapFold(v:count)<cr>
+noremap <silent> <leader>zj :call WrapFold(foldlevel(line(".")) + 1)<cr>
+noremap <silent> <leader>zk :call WrapFold(foldlevel(line(".")) - 1)<cr>
+" TODO-TJG [171105] - This looks like a function waiting to happen
+noremap <silent> zO mmggvGzO`m
+noremap <silent> zC mmggvGzC`m
+
+" Highlighting {{{3
+nnoremap <silent> <leader>hd :nohlsearch<cr>
+nnoremap <silent> <leader>he :set hlsearch<cr>
+
+" Lines {{{3
+" TODO [171104] - Both will not work in visual mode
+" TODO [171104] - Will not work on the last line of the file
+nnoremap <silent> _ ddkP
+" TODO [171104] - Make function that removes usless blank lines
+nnoremap <silent> - ddp
+
+" NERDTree {{{3
+nnoremap <silent> <leader>o :NERDTreeToggle<cr>
+
+" TODOs {{{3
+nnoremap <silent> <leader>tf /TODO [<cr>
+nnoremap <silent> <leader>tg mm:call GetTODOs()<cr>`m
+nnoremap <silent> <leader>ti mmO<C-c>:call setline('.',SetTODO('TJG'))<cr>:call NERDComment(0,'toggle')<cr>==`m
+nnoremap <silent> <leader>tt :call TakeTODO('TJG')<cr>
+
+" Windows {{{3
+noremap <leader>w <c-w>
+" Operator Mappings {{{2
+" Note: there is an operaotor mapping in the folds file
+" VIM {{{3
+onoremap in( :<c-u>normal! f(vi(<cr>
+onoremap in) :<c-u>normal! f)vi(<cr>
+onoremap il( :<c-u>normal! F(vi(<cr>
+onoremap il) :<c-u>normal! F)vi(<cr>
+
+onoremap in{ :<c-u>normal! f{vi{<cr>
+onoremap in} :<c-u>normal! f}vi{<cr>
+onoremap il{ :<c-u>normal! F{vi{<cr>
+onoremap il} :<c-u>normal! F}vi{<cr>
+
+onoremap in[ :<c-u>normal! f[vi[<cr>
+onoremap in] :<c-u>normal! f]vi[<cr>
+onoremap il[ :<c-u>normal! F[vi[<cr>
+onoremap il] :<c-u>normal! F]vi[<cr>
+
+onoremap in" :<c-u>normal! f"lvi"<cr>
+onoremap il" :<c-u>normal! F"hvi"<cr>
+
+onoremap in' :<c-u>normal! f'lvi'<cr>
+onoremap il' :<c-u>normal! F'hvi'<cr>
+
+onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\rBvE"<cr>
+onoremap il@ :<c-u>execute "normal! ?@\r:nohlsearch\rBvE"<cr>
+
+" Section: Tests {{{1
+function! s:DiffWithSaved()
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe 'setlocal bt=nofile bh=wipe nobl noswf ro ft=' . filetype
+endfunction
+command! DiffSaved call s:DiffWithSaved()
+

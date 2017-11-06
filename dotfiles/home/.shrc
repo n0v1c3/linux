@@ -135,4 +135,4 @@ source "/home/travis/Documents/development/n0v1c3/linux/scripts/bash/functions/g
 # Custom functions
 # ===
 # i3 auto functions
-i3-auto > /dev/null
+#i3-auto > /dev/null

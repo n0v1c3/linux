@@ -28,6 +28,7 @@ function! CleanFile()
     call AutoIndent()
     call RemoveSpaces()
     call RemoveLines()
+    execute "normal! :echo ''<cr>"
 endfunction
 
 " Commands {{{1

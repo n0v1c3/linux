@@ -2,8 +2,9 @@
 " Description: Autoload file for the VIM text editor
 " Authors: Travis Gall
 " Notes:
+" - There is an operaotor mapping in folds.vim
 " TODO-TJG [171106] - GetFolds is not working in SQL files
-" TODO-TJG [171106] - Sorting for folded content (sort whole bloks by fold)
+" TODO-TJG [171106] - Sorting for folded content (sort whole blocks by fold)
 " TODO-TJG [171106] - SQL lint checker
 
 let g:mapleader="\<space>"
@@ -32,6 +33,7 @@ let g:syntastic_php_checkers = ['php', '/bin/phplint']
 let g:syntastic_sh_checkers = ['bashate', 'sh', 'shellcheck']
 let g:syntastic_sh_shellcheck_args = '--external-sources'
 let g:syntastic_vim_checkers = ['vimlint', 'vint']
+let g:syntastic_sql_checkers = ['sqlint']
 
 " Local {{{2
 source ~/.vim/functions/abbreviations.vim
@@ -48,12 +50,15 @@ source ~/.vim/functions/windows.vim
 set wildignore+=*.swp
 
 " StatusLine {{{2
-"hi StatusLine ctermbg=darkgreen ctermfg=lightgrey
-hi StatusLine ctermbg=darkgreen ctermfg=white
-hi StatusLineNC ctermbg=black ctermfg=lightgreen
-set statusline=%m%r " Flags
-set statusline+=%f " Filename
-set statusline+=\ %{GetFoldStrings()} " Folds
+" TODO-TJG [171106] - Broken in help files
+highlight StatusLine ctermbg=darkgreen ctermfg=white
+highlight StatusLineNC ctermbg=black ctermfg=lightgreen
+set statusline=%m%r%h                   " Flags
+set statusline+=%t                      " Filename
+set statusline+=\ %{GetFoldStrings()}   " Folds
+set statusline+=%=                      " Right side of statusline
+set statusline+=\|%2B\|                 " Cursor value in HEX
+set statusline+=%3l/%3L\|               " Current line
 
 " Format Options {{{2
 set formatoptions-=cro
@@ -69,59 +74,60 @@ set expandtab       " Expand all tabs into spaces
 " AutoHotKey
 au BufNewFile,BufRead *.ahk setf autohotkey
 " }}}
-" Tabs/Indenting {{{
-" Do smart auto indenting when starting a new line
-setlocal smartindent
-autocmd! FileType python setlocal nosmartindent
-
-" Set tab width
+" Tabs/Indenting {{{2
+set smartindent
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-" Expand all tab
 set expandtab
-" }}}
+
 " Section: Autocommands {{{1
-" Test Group {{{2
-augroup test
-    " Clear group
+" Python {{{2
+augroup Python
     autocmd!
+    autocmd! FileType python setlocal nosmartindent
 augroup END
-"autocmd BufWrite * :echom "Writing buffer!"
+
+" Help files {{{2
+augroup Help
+    autocmd!
+    autocmd! FileType help nnoremap <buffer> <esc> :q<cr>
+    autocmd! Filetype help nnoremap <buffer> <cr> <c-j>
+    autocmd! Filetype help nnoremap <buffer> <c-j> <c-j>
+    autocmd! Filetype help nnoremap <buffer> <bs> <c-t>
+    autocmd! Filetype help nnoremap <buffer> o /'\l\{2,\}'<CR>
+    autocmd! Filetype help nnoremap <buffer> O ?'\l\{2,\}'<CR>
+    autocmd! Filetype help nnoremap <buffer> s /\|\zs\S\+\ze\|<CR>
+    autocmd! Filetype help nnoremap <buffer> S ?\|\zs\S\+\ze\|<CR>
+augroup END
+
 " Section: Key Mappings {{{1
 " Insert Mappings {{{2
 " VIM {{{3
 inoremap <silent> <c-u> <esc>mmviwU`ma
 inoremap <silent> <down> <nop>
-inoremap <silent> <esc> <nop>
 inoremap <silent> <left> <nop>
 inoremap <silent> <right> <nop>
 inoremap <silent> <up> <nop>
-inoremap <silent> jk <esc>
+inoremap <silent> jk <esc>mm:call CleanFile()<cr><esc>`mzzl
 
-" Normal Mappings {{{
 " Normal Mappings {{{2
 " VIM {{{3
-nnoremap <c-j> 5<c-d>
-nnoremap <c-k> 5<c-u>
-nnoremap <silent> <c-u> mmviwU`m
 nnoremap <silent> <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <silent> <leader>sv :mapclear<cr>:source $MYVIMRC<cr>:set nohlsearch<cr>
+nnoremap <silent> <leader>sv :mapclear<cr>:source $MYVIMRC<cr>:set nohlsearch<cr>lh
 nnoremap <silent> H ^
+nnoremap <silent> K i<cr><esc>
 nnoremap <silent> L $
 nnoremap <silent> gf :e <cfile><cr>
 nnoremap <silent> p ]p
-noremap <silent> <down> <nop>
-noremap <silent> <left> <nop>
-noremap <silent> <right> <nop>
-noremap <silent> <up> <nop>
+noremap <silent> <esc> <c-s>mm:call CleanFile()<cr>`mzz<c-q><esc>
 
 " Autofill {{{3
 noremap <leader>x <c-x>
 
 " Clean-Up {{{3
-" TODO-TJG [171105] - Marker not restoring properly
 nnoremap <silent><leader>cf mm:CleanFile<cr>`m
+nnoremap <silent> <c-u> mmviwU`m
 
 " Comments {{{3
 nnoremap <silent> <leader>ct :call NERDComment(0,'toggle')<cr>
@@ -154,11 +160,24 @@ nnoremap <silent> _ ddkP
 " TODO [171104] - Make function that removes usless blank lines
 nnoremap <silent> - ddp
 
+" Navigation {{{3
+nnoremap <silent> <c-h> zh
+nnoremap <silent> <c-j> <c-e>
+nnoremap <silent> <c-k> <c-y>
+nnoremap <silent> <c-l> zl
+nnoremap <silent> <leader>j }
+nnoremap <silent> <leader>k {
+noremap <silent> <down> <nop>
+noremap <silent> <left> <nop>
+noremap <silent> <right> <nop>
+noremap <silent> <up> <nop>
+
 " NERDTree {{{3
 nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 
 " TODOs {{{3
-nnoremap <silent> <leader>tf /TODO [<cr>
+" TODO-TJG [171106] - This should be a function
+nnoremap <silent> <leader>tf /TODO-<cr>
 nnoremap <silent> <leader>tg mm:call GetTODOs()<cr>`m
 nnoremap <silent> <leader>ti mmO<C-c>:call setline('.',SetTODO('TJG'))<cr>:call NERDComment(0,'toggle')<cr>==`m
 nnoremap <silent> <leader>tt :call TakeTODO('TJG')<cr>
@@ -166,8 +185,9 @@ nnoremap <silent> <leader>tt :call TakeTODO('TJG')<cr>
 " Windows {{{3
 noremap <leader>w <c-w>
 " Operator Mappings {{{2
-" Note: there is an operaotor mapping in the folds file
 " VIM {{{3
+onoremap i_ :<c-u>normal! T_vt_<cr>
+
 onoremap in( :<c-u>normal! f(vi(<cr>
 onoremap in) :<c-u>normal! f)vi(<cr>
 onoremap il( :<c-u>normal! F(vi(<cr>
@@ -183,6 +203,11 @@ onoremap in] :<c-u>normal! f]vi[<cr>
 onoremap il[ :<c-u>normal! F[vi[<cr>
 onoremap il] :<c-u>normal! F]vi[<cr>
 
+onoremap in< :<c-u>normal! f<vi<<cr>
+onoremap in> :<c-u>normal! f>vi<<cr>
+onoremap il< :<c-u>normal! F<vi<<cr>
+onoremap il> :<c-u>normal! F>vi<<cr>
+
 onoremap in" :<c-u>normal! f"lvi"<cr>
 onoremap il" :<c-u>normal! F"hvi"<cr>
 
@@ -191,20 +216,3 @@ onoremap il' :<c-u>normal! F'hvi'<cr>
 
 onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\rBvE"<cr>
 onoremap il@ :<c-u>execute "normal! ?@\r:nohlsearch\rBvE"<cr>
-
-" Section: Tests {{{1
-function! s:DiffWithSaved()
-    let filetype=&ft
-    diffthis
-    vnew | r # | normal! 1Gdd
-    diffthis
-    exe 'setlocal bt=nofile bh=wipe nobl noswf ro ft=' . filetype
-endfunction
-command! DiffSaved call s:DiffWithSaved()
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-nnoremap K i<cr><esc>

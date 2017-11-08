@@ -9,18 +9,10 @@
 " TODO [171103] - Decrease/Increase current fold level
 " - Deacrease could move the current fold outside the parent fold
 " - Increase could increase the number of the current fold and children
+" TODO-TJG [171107] - Function to collaps all folds and expand to foldlevelstart
 
 " Data entry prompts
 let g:prompt_wrapFold = 'Fold: '
-
-" Configurations
-set foldenable
-set foldcolumn=3
-set foldlevel=1
-set foldlevelstart=1
-set foldmethod=marker
-set foldnestmax=10
-set foldtext=v:folddashes.FormatFoldString(v:foldstart)
 
 " Create a fold on the current line(s)
 function! WrapFold(foldlevel) range

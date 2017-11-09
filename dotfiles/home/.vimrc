@@ -39,6 +39,7 @@ source ~/.vim/functions/abbreviations.vim
 source ~/.vim/functions/cleanup.vim
 source ~/.vim/functions/display.vim
 source ~/.vim/functions/folds.vim
+source ~/.vim/functions/grep-operator.vim
 source ~/.vim/functions/navigation.vim
 source ~/.vim/functions/todos.vim
 source ~/.vim/functions/users.vim
@@ -76,13 +77,16 @@ set statusline+=\|%2B\|                 " Cursor value in HEX
 set statusline+=%3l/%3L\|               " Current line
 
 " Wildignore {{{2
+set wildignore+=/home/travis/.vim/bundle/.*
+set wildignore+=*/oh-my-zsh/.*
+set wildignore+=*/.oh-my-zsh/.*
 set wildignore+=*.swp
 
 " Section: Autocommands {{{1
 " AllFiles {{{2
 augroup AllFiles
     autocmd!
-    autocmd! BufReadPre * execute "normal! :CleanFile\<cr>gg"
+    "autocmd! BufReadPre * execute "normal! :CleanFile\<cr>gg"
     autocmd! BufWritePre * execute "normal! mm:CleanFile\<cr>`m"
 augroup END
 
@@ -104,10 +108,6 @@ augroup Help
     autocmd! Filetype help nnoremap <buffer> <cr> <c-j>
     autocmd! Filetype help nnoremap <buffer> <c-j> <c-j>
     autocmd! Filetype help nnoremap <buffer> <bs> <c-t>
-    autocmd! Filetype help nnoremap <buffer> o /'\l\{2,\}'<cr>
-    autocmd! Filetype help nnoremap <buffer> O ?'\l\{2,\}'<cr>
-    autocmd! Filetype help nnoremap <buffer> s /\|\zs\S\+\ze\|<cr>
-    autocmd! Filetype help nnoremap <buffer> S ?\|\zs\S\+\ze\|<cr>
 augroup END
 
 " Section: Key Mappings {{{1
@@ -129,7 +129,6 @@ nnoremap <silent> K i<cr><esc>
 nnoremap <silent> L $
 nnoremap <silent> gf :e <cfile><cr>
 nnoremap <silent> p ]p
-nnoremap / /\v
 " TODO-TJG [171107] - Will not escape a 'd'
 " TODO-TJG [171107] - Always starting a new vim in REPLACE mode
 " noremap <silent> <esc> <c-s><esc>m:call CleanFile()<cr>`mzz<c-q><esc>
@@ -162,10 +161,6 @@ noremap <silent> <leader>zk :call WrapFold(foldlevel(line(".")) - 1)<cr>
 noremap <silent> zO mmggvGzO`m
 noremap <silent> zC <c-s>mmggvGzC`m<c-q>
 
-" Highlighting {{{3
-nnoremap <silent> <leader>hd :nohlsearch<cr>
-nnoremap <silent> <leader>he :set hlsearch<cr>
-
 " Lines {{{3
 " TODO [171104] - Both will not work in visual mode
 " TODO [171104] - Will not work on the last line of the file
@@ -188,6 +183,11 @@ noremap <silent> <up> <nop>
 " NERDTree {{{3
 nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 
+" Searching {{{3
+nnoremap / :set hlsearch<cr>:set incsearch<cr>/\v
+nnoremap <silent> <leader>hd :set noincearch<cr>:nohlsearch<cr>
+nnoremap <silent> <leader>he :set incsearch<cr>:set hlsearch<cr>
+
 " TODOs {{{3
 " TODO-TJG [171106] - This should be a function
 nnoremap <silent> <leader>tf /TODO-<cr>
@@ -197,6 +197,16 @@ nnoremap <silent> <leader>tt :call TakeTODO('TJG')<cr>
 
 " Windows {{{3
 noremap <leader>w <c-w>
+" cwindow
+noremap <leader>cc :cclose<cr>
+noremap <leader>cn :cnext<cr>
+noremap <leader>co :copen 5<cr>
+noremap <leader>cp :cprevious<cr>
+" lwindow
+noremap <leader>lc :lclose<cr>
+noremap <leader>ln :lnext<cr>
+noremap <leader>lo :lopen 5<cr>
+noremap <leader>lp :lprevious<cr>
 " Operator Mappings {{{2
 " VIM {{{3
 onoremap i_ :<c-u>normal! T_vt_<cr>
@@ -230,8 +240,9 @@ onoremap il' :<c-u>normal! F'hvi'<cr>
 onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\rBvE"<cr>
 onoremap il@ :<c-u>execute "normal! ?@\r:nohlsearch\rBvE"<cr>
 
+" Section: Matchings {{{1
+" Whitespace {{{2
+highlight WhiteSpace ctermbg=yellow
+match WhiteSpace /\v\s+$/
+
 " Section: Test {{{1
-" TODO-TJG [171107] - This could be interesting
-highlight Error ctermbg=yellow ctermfg=red
-match Error /onoremap/
-match Error /\v\s+$/

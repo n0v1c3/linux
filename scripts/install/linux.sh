@@ -1,12 +1,10 @@
 #!/bin/bash
 
 # Name: linux/scripts/install/linux.sh
-# Description: Install Arch Linux with desired software and configurations 
+# Description: Install Arch Linux with desired software and configurations
+# Author: Travis Gall (n0v1c3)
 
-###
-# Variables
-###
-
+# Section: Variables  {{{1
 # Disk partition
 disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n"
 
@@ -24,7 +22,7 @@ prompt_device="Select device for installation: "
 prompt_host="Enter hostname: "
 prompt_root="Enter root password: "
 prompt_reroot="Re-enter root password: "
-prompt_user="Enter primary username: "
+prompt_user="Enter administrator username: "
 prompt_git="Enter git username: "
 prompt_pass="Enter primary password: "
 prompt_repass="Re-enter primary password: "
@@ -35,52 +33,49 @@ prompt_rank="Ranking pacman mirrors by connection speed... (This will take a whi
 # Files
 file_mirrors=/etc/pacman.d/mirrorlist
 
-###
-# Read
-###
-
+# Section: Read {{{1
 # Get installation information
-echo $prompt_device
+echo "$prompt_device"
 select disk in $(lsblk -ndl --output NAME)
 do
     diskpath=/dev/$disk
     break
 done
 
-echo -n $prompt_host;  read hostname
-echo -n $prompt_root;  read -s root_pass
+echo -n "$prompt_host";  read -r hostname
+while [ -z "${root_pass+x}" ] && [ "$root_pass" != "$root_repass" ]; do
+    echo -n "$prompt_root";  read -rs root_pass
+    echo -n "$prompt_reroot";  read -rs root_repass
+done
 echo ""
-echo -n $prompt_user;  read user_name
-echo -n $prompt_pass;  read -s user_pass
+echo -n "$prompt_user";  read -r user_name
+while [ -z "${user_pass+x}" ] && [ "$user_pass" != "$user_repass" ]; do
+    echo -n "$prompt_pass";  read -rs user_pass
+    echo -n "$prompt_repass";  read -rs user_repass
+done
 echo ""
-echo -n $prompt_git;   read git_user
-echo -n $prompt_full;  read user_full
-echo -n $prompt_email; read user_email
+echo -n "$prompt_git";   read -r git_user
+echo -n "$prompt_full";  read -r user_full
+echo -n "$prompt_email"; read -r user_email
 
-###
-# Disks
-###
-
+# Section: Disks {{{1
 # Partition (100M Grub | 4G Swap | x ext)
-echo -e $disk_partition | fdisk ${diskpath}
+echo -e "$disk_partition" | fdisk "${diskpath}"
 
 # Swap file system
-mkswap ${diskpath}2
-swapon ${diskpath}2
+mkswap "${diskpath}2"
+swapon "${diskpath}2"
 
 # Create ext4 file system
-mkfs.ext4 ${diskpath}3
+mkfs.ext4 "${diskpath}3"
 
 # Mount new file system
-mount ${diskpath}3 /mnt
+mount "${diskpath}3 /mnt"
 
-###
-# Base
-###
-
-# TODO [170509] - Can reflector be used here?
-# Rank mirrors by speed 
-echo $prompt_rank
+# Section: Base {{{1
+# TODO-TJG [170509] - Can reflector be used here?
+# Rank mirrors by speed
+echo "$prompt_rank"
 cp $file_mirrors $file_mirrors.backup
 sed -i 's/^#Server/Server/' $file_mirrors.backup
 rankmirrors -v -n 16 $file_mirrors.backup > $file_mirrors
@@ -99,23 +94,17 @@ echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" > /mnt/etc/locale.gen
 $sudo locale-gen
 echo LANG=en_US.UTF-8 > /mnt/etc/locale.conf
 
-###
-# Network
-###
-
+# Section: Network {{{1
 # Generate fstab
 genfstab -p /mnt >> /mnt/etc/fstab
 
 # Set hostname
-echo $hostname > /mnt/etc/hostname
+echo "$hostname" > /mnt/etc/hostname
 
 # Enable DHCP
 $sudo systemctl enable dhcpcd.service
 
-###
-# Software
-###
-
+# Section: Software {{{1
 # Grub
 $install_cmd grub
 
@@ -143,7 +132,7 @@ $install_cmd lm_sensors     # Linux monitoring sensors
 $install_cmd mariadb        # MySQL database
 $install_cmd networkmanager # NetworkManager service
 $install_cmd ntfs-3g        # Mount for ntfs
-$install_cmd openssh        # SSH  
+$install_cmd openssh        # SSH
 $install_cmd pandoc         # General markup converter
 $install_cmd php            # General markup converter
 $install_cmd php-apache     # General markup converter
@@ -182,57 +171,51 @@ $install_cmd thunar                 # File browser
 $install_cmd virtualbox             # Virtualbox
 $install_cmd xautolock              # Screen autolock
 
-###
-# Dotfiles
-###
-
+# Section: Dotfiles {{{1
 # n0v1c3 development path
 n0v1c3=/home/$user_name/Documents/development/n0v1c3
 
 # TODO [170511] - Add all repos (see: https://api.github.com/users/n0v1c3/repos)
 # User dotfiles
-$sudo mkdir --parents $n0v1c3
-$sudo git clone https://github.com/$git_user/linux.git $n0v1c3/linux
+$sudo mkdir --parents "$n0v1c3"
+$sudo git clone "https://github.com/$git_user/linux.git $n0v1c3/linux"
 
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
-for file in $($sudo find $path -maxdepth 1 -iname '*' -not -path $path/.config); do
-    $sudo ln -s $file /home/$user_name/$(basename $file)
+for file in $($sudo find "$path" -maxdepth 1 -iname '*' -not -path "$path/.config"); do
+    $sudo ln -s "$file" /home/"$user_name"/"$(basename "$file")"
 done
 
 # Add home/.config links
-$sudo mkdir /home/$user_name/.config
-for file in $($sudo find $path/.config -maxdepth 1 -iname '*' -not -path $path/.config); do
-    $sudo ln -s $file /home/$user_name/.config/$(basename $file)
+$sudo mkdir "/home/$user_name/.config"
+for file in $($sudo find "$path/.config" -maxdepth 1 -iname '*' -not -path "$path/.config"); do
+    $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
 done
 
 # Make copy of etc templates
 path="$n0v1c3/linux/dotfiles/etc/"
-for file in $($sudo find $path -type f -iname '*'); do
-    $sudo cp $file /etc/${file#$path}
+for file in $($sudo find "$path" -type f -iname '*'); do
+    $sudo cp "$file" "/etc/${file#$path}"
 done
 
-###
-# Configuration
-###
-
+# Section: Configuration {{{1
 # Apache
-# TODO [170518] - Apache configuration (/etc/httpd/conf/httpd.conf)
+# TODO-TJG [170518] - Apache configuration (/etc/httpd/conf/httpd.conf)
 $sudo systemctl enable httpd
 
 # Cronie
 $sudo systemctl enable cronie
-$sudo echo "MAILTO=\"$user_email\"\n$(cat $n0v1c3/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
+$sudo echo "MAILTO=\"$user_email\"\n$(cat "$n0v1c3"/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
 
 # Git
-$sudo git config --global user.email ${user_email}
-$sudo git config --global user.name ${user_full}
+$sudo git config --global user.email "${user_email}"
+$sudo git config --global user.name "${user_full}"
 
 # Groups
 $sudo groupadd -g $sudo_gid sudo
 
 # Grub
-$sudo grub-install --target=i386-pc ${diskpath}
+$sudo grub-install --target=i386-pc "${diskpath}"
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
 
 # Linux monitoring sensors
@@ -253,15 +236,12 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 # PHP
 $sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /etc/httpd/conf/httpd.conf
 $sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /etc/httpd/conf/httpd.conf
-$sudo echo "LoadModule php7_module modules/libphp7.so" >> /etc/httpd/conf/httpd.conf
-$sudo echo "AddHandler php7-script php" >> /etc/httpd/conf/httpd.conf
-$sudo echo "Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
+$sudo echo "LoadModule php7_module modules/libphp7.so"; $sudo echo "AddHandler php7-script php"; $sudo echo "Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
 $sudo sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
 $sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
 
 # phpMyAdmin
 # TODO [170519] - Add apache configuration
-
 # Powerline fonts
 $sudo clone https://github.com/powerline/fonts.git
 $sudo ./fonts/install.sh
@@ -271,17 +251,14 @@ $sudo rm -rf fonts
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
 # User groups and password
-$sudo useradd -m -g $user_name -s /bin/zsh $user_name
+$sudo useradd -m -g "$user_name" -s /bin/zsh "$user_name"
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
-$sudo usermod -a -G sudoers $user_name
+$sudo usermod -a -G sudoers "$user_name"
 $sudo echo "%sudoers ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch
 
-###
-# Clean-up
-###
-
+# Section: Clean-Up {{{1
 # Proper owner for all of user's home directory
-$sudo chown -R $user_name:users /home/$user_name
+$sudo chown -R "$user_name:users" "/home/$user_name"

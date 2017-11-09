@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name: i3-auto
-# Description: 
+# Description:
 
 # xSession commands
 if [ ! -z "$DISPLAY" ]
@@ -22,5 +22,5 @@ then
     fi
 
 else # Terminal commands
-    echo "term"    
+    echo "term"
 fi

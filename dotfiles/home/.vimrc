@@ -90,15 +90,16 @@ augroup AllFiles
     autocmd! BufWritePre * execute "normal! mm:CleanFile\<cr>`m"
 augroup END
 
-" Python {{{2
-augroup Python
-    autocmd!
-    autocmd! FileType python setlocal nosmartindent
-augroup END
-
 " AutoHotKey {{{2
 augroup AHK
-    autocmd!  BufNewFile,BufRead *.ahk setf autohotkey
+    autocmd!
+    autocmd!  BufNewFile,BufRead *.ahk setfiletype autohotkey
+augroup END
+
+" CSHTML {{{2
+augroup CSHTML
+    autocmd!
+    autocmd! BufReadPost *.cshtml setfiletype cs
 augroup END
 
 " Help files {{{2
@@ -108,6 +109,12 @@ augroup Help
     autocmd! Filetype help nnoremap <buffer> <cr> <c-j>
     autocmd! Filetype help nnoremap <buffer> <c-j> <c-j>
     autocmd! Filetype help nnoremap <buffer> <bs> <c-t>
+augroup END
+
+" Python {{{2
+augroup Python
+    autocmd!
+    autocmd! FileType python setlocal nosmartindent
 augroup END
 
 " Section: Key Mappings {{{1
@@ -128,6 +135,7 @@ nnoremap <silent> H ^
 nnoremap <silent> K i<cr><esc>
 nnoremap <silent> L $
 nnoremap <silent> gf :e <cfile><cr>
+" TODO-TJG [171109] - Auto indent on block paste
 nnoremap <silent> p ]p
 " TODO-TJG [171107] - Will not escape a 'd'
 " TODO-TJG [171107] - Always starting a new vim in REPLACE mode

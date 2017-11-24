@@ -14,6 +14,15 @@ let g:setTodoHeader = 'TODO: '
 " Functions {{{1
 " TODO-TJG [171103] - Add current file ONLY option
 " List all TODOs in the CWD
+function! GetLocalTODOs()
+    " Binary files that can be ignored
+    set wildignore+=*.jpg,*.docx,*.xlsm,*.mp4,*.vmdk
+    " Seacrch the CWD to find all of your current TODOs
+    vimgrep /TODO.*\[\d\{6}]/ % | cw 5
+    " Un-ignore the binary files
+    set wildignore-=*.jpg,*.docx,*.xlsm,*.mp4,*.vmdk
+endfunction
+
 function! GetTODOs()
     " Binary files that can be ignored
     set wildignore+=*.jpg,*.docx,*.xlsm,*.mp4,*.vmdk

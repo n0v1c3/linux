@@ -3,12 +3,14 @@
 " Authors: Travis Gall
 " Notes:
 " - There is an operaotor mapping in folds.vim
-" TODO-TJG [171106] - GetFolds is not working in SQL files
-" TODO-TJG [171106] - Sorting for folded content (sort whole blocks by fold)
 " TODO-TJG [171106] - SQL lint checker
 
 let g:mapleader="\<space>"
 let g:maplocalleader='-'
+let g:foldcolumn_init=4
+let g:quickfixlist_open=0
+let g:locationlist_open=0
+let g:quifixlist_height=5
 
 " Section: Plugins {{{1
 " Third-Party {{{2
@@ -39,7 +41,9 @@ source ~/.vim/functions/abbreviations.vim
 source ~/.vim/functions/cleanup.vim
 source ~/.vim/functions/display.vim
 source ~/.vim/functions/folds.vim
+source ~/.vim/functions/functional.vim
 source ~/.vim/functions/grep-operator.vim
+source ~/.vim/functions/hex-operator.vim
 source ~/.vim/functions/navigation.vim
 source ~/.vim/functions/todos.vim
 source ~/.vim/functions/users.vim
@@ -55,7 +59,7 @@ set expandtab       " Expand all tabs into spaces
 
 " Folds {{{2
 set foldenable
-set foldcolumn=3
+let &foldcolumn=g:foldcolumn_init
 set foldlevel=1
 set foldlevelstart=1
 set foldmethod=marker
@@ -86,7 +90,6 @@ set wildignore+=*.swp
 " AllFiles {{{2
 augroup AllFiles
     autocmd!
-    "autocmd! BufReadPre * execute "normal! :CleanFile\<cr>gg"
     autocmd! BufWritePre * execute "normal! mm:CleanFile\<cr>`m"
 augroup END
 
@@ -117,15 +120,22 @@ augroup Python
     autocmd! FileType python setlocal nosmartindent
 augroup END
 
+" QuickFix {{{2
+augroup QuickFix
+    autocmd!
+    autocmd! FileType qf nnoremap <buffer> <esc> :call QuickfixListToggle()<cr>
+augroup END
+
 " Section: Key Mappings {{{1
 " Insert Mappings {{{2
 " VIM {{{3
 inoremap <silent> <c-u> <esc>mmviwU`ma
+inoremap <silent> <c-l> <esc>mmviwu`ma
 inoremap <silent> <down> <nop>
 inoremap <silent> <left> <nop>
 inoremap <silent> <right> <nop>
 inoremap <silent> <up> <nop>
-inoremap <silent> jk <esc>mm`m
+inoremap <silent> jk <esc>
 
 " Normal Mappings {{{2
 " VIM {{{3
@@ -146,6 +156,8 @@ noremap <leader>x <c-x>
 
 " Clean-Up {{{3
 nnoremap <silent> <c-u> mmviwU`m
+" TODO-TJG [171124] - Duplicate mapping
+" nnoremap <silent> <c-l> mmviwu`ma
 nnoremap <silent> <leader>; mmA;<esc>`m
 nnoremap <silent> <leader>cf mm:CleanFile<cr>`m
 
@@ -167,7 +179,12 @@ noremap <silent> <leader>zj :call WrapFold(foldlevel(line(".")) + 1)<cr>
 noremap <silent> <leader>zk :call WrapFold(foldlevel(line(".")) - 1)<cr>
 " TODO-TJG [171105] - This looks like a function waiting to happen
 noremap <silent> zO mmggvGzO`m
-noremap <silent> zC <c-s>mmggvGzC`m<c-q>
+noremap <silent> zC mmggvGzC`m<esc>
+
+" Help {{{3
+" TODO-TJG [171109] - Make this into an operator functon
+nnoremap <leader>hh :execute "help " . "<cword>"<cr>
+vnoremap <leader>hh :execute "help " . '<'><cr>
 
 " Lines {{{3
 " TODO [171104] - Both will not work in visual mode
@@ -177,10 +194,10 @@ nnoremap <silent> _ ddkP
 nnoremap <silent> - ddp
 
 " Navigation {{{3
-nnoremap <silent> <c-h> zh
-nnoremap <silent> <c-j> <c-e>
-nnoremap <silent> <c-k> <c-y>
-nnoremap <silent> <c-l> zl
+nnoremap <silent> <c-h> 3zh
+nnoremap <silent> <c-j> 3<c-e>
+nnoremap <silent> <c-k> 3<c-y>
+nnoremap <silent> <c-l> 3zl
 nnoremap <silent> <leader>j }
 nnoremap <silent> <leader>k {
 noremap <silent> <down> <nop>
@@ -193,20 +210,21 @@ nnoremap <silent> <leader>o :NERDTreeToggle<cr>
 
 " Searching {{{3
 nnoremap / :set hlsearch<cr>:set incsearch<cr>/\v
-nnoremap <silent> <leader>hd :set noincearch<cr>:nohlsearch<cr>
-nnoremap <silent> <leader>he :set incsearch<cr>:set hlsearch<cr>
+nnoremap <silent> <leader>hd :nohlsearch<cr>
+nnoremap <silent> <leader>he :set hlsearch<cr>
 
 " TODOs {{{3
 " TODO-TJG [171106] - This should be a function
 nnoremap <silent> <leader>tf /TODO-<cr>
-nnoremap <silent> <leader>tg mm:call GetTODOs()<cr>`m
+nnoremap <silent> <leader>tg mm:call GetLocalTODOs()<cr>`m
+nnoremap <silent> <leader>tG mm:call GetTODOs()<cr>`m
 nnoremap <silent> <leader>ti mmO<C-c>:call setline('.',SetTODO('TJG'))<cr>:call NERDComment(0,'toggle')<cr>==`m
 nnoremap <silent> <leader>tt :call TakeTODO('TJG')<cr>
 
 " Windows {{{3
 noremap <leader>w <c-w>
 " cwindow
-noremap <leader>cc :cclose<cr>
+""noremap <leader>cc :cclose<cr>
 noremap <leader>cn :cnext<cr>
 noremap <leader>co :copen 5<cr>
 noremap <leader>cp :cprevious<cr>
@@ -249,8 +267,61 @@ onoremap in@ :<c-u>execute "normal! /@\r:nohlsearch\rBvE"<cr>
 onoremap il@ :<c-u>execute "normal! ?@\r:nohlsearch\rBvE"<cr>
 
 " Section: Matchings {{{1
+" TODOs {{{2
+highlight TODO ctermbg=green ctermfg=black
+
+" Quick Attention {{{2
+highlight Attention ctermbg=yellow ctermfg=black
+
 " Whitespace {{{2
 highlight WhiteSpace ctermbg=yellow
 match WhiteSpace /\v\s+$/
 
 " Section: Test {{{1
+" Clear the entire command line
+cnoremap <c-u> <c-e><c-u>
+
+" Fold column
+nnoremap <leader>Z :call <SID>FoldColumnToggle()<cr>
+function! s:FoldColumnToggle()
+    if &foldcolumn
+        let &foldcolumn=0
+    else
+        let &foldcolumn=g:foldcolumn_init
+    endif
+endfunction
+
+" NumberColumn Toggle
+nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
+
+" TODO-TJG [171124] - Move to perm file
+" Quickfix List Toggle
+" TODO-TJG [171123] - This is not mapped on initial vim open
+nnoremap <leader>cw :call <SID>QuickfixListToggle()<cr>
+function! s:QuickfixListToggle()
+    if g:quickfixlist_open
+        execute g:quickfixlist_return_to_window . 'wincmd w'
+        let g:quickfixlist_open=0
+        cclose
+    else
+        let g:quickfixlist_return_to_window = winnr()
+        let g:quickfixlist_open=1
+        copen 5
+    endif
+endfunction
+
+" TODO-TJG [171124] - Move to perm file
+" Location List Toggle
+nnoremap <leader>lw :call <SID>LocationListToggle()<cr>
+function! s:LocationListToggle()
+    if g:locationlist_open
+        execute g:locationlist_return_to_window . 'wincmd w'
+        let g:locationlist_open=0
+        lclose
+    else
+        let g:locationlist_return_to_window = winnr()
+        let g:locationlist_open=1
+        lopen 5
+        "execute 'normal! :lopen' . 5 . "\<cr>"
+    endif
+endfunction

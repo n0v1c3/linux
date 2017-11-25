@@ -16,4 +16,4 @@ Custom installation and configuration for Arch.
 ### Links
 - [Arch Wiki - GRUB](https://wiki.archlinux.org/index.php/GRUB)
 - [Arch Wiki - Installation Guide](https://wiki.archlinux.org/index.php/installation_guide)
-- [Columbia University - Arch Linux VM in VirtualBox](http://www.cs.columbia.edu/~jae/4118-LAST/arch-setup-2015-1.html)
+- [Columbia University - Arch Linux VM in VirtualBox](http://www.cs.columbia.edu/~jae/4118/arch-setup-2017-1.html)

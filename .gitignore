@@ -20,3 +20,4 @@ Desktop.ini
 Thumbs.db
 ehthumbs.db
 /dotfiles/home/.config/ranger
+/dotfiles/home/.vim/bundle

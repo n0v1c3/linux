@@ -28,7 +28,7 @@ prompt_pass="Enter primary password: "
 prompt_repass="Re-enter primary password: "
 prompt_full="Enter user's full name: "
 prompt_email="Enter user's email address: "
-prompt_rank="Ranking pacman mirrors by connection speed... (This will take a while!)"
+prompt_rank="Ranking pacman mirrors by connection speed..."
 
 # Files
 file_mirrors=/etc/pacman.d/mirrorlist
@@ -73,18 +73,17 @@ mkfs.ext4 "${diskpath}3"
 mount "${diskpath}3 /mnt"
 
 # Section: Base {{{1
-# TODO-TJG [170509] - Can reflector be used here?
 # Rank mirrors by speed
 echo "$prompt_rank"
-cp $file_mirrors $file_mirrors.backup
-sed -i 's/^#Server/Server/' $file_mirrors.backup
-rankmirrors -v -n 16 $file_mirrors.backup > $file_mirrors
+cp "/$file_mirrors" "/$file_mirrors.backup"
+sed -i 's/^#Server/Server/' "/$file_mirrors.backup"
+rankmirrors -v -n 16 "/$file_mirrors.backup" > "/$file_mirrors"
 
 # Kernel
 $base_install
 
-# Pacman mirrors
-cp $file_mirrors /mnt$file_mirrors
+# Use recently updated mirrors post install
+cp "/$file_mirrors" "/mnt/$file_mirrors"
 
 # Timezone
 $sudo ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
@@ -175,20 +174,23 @@ $install_cmd xautolock              # Screen autolock
 # n0v1c3 development path
 n0v1c3=/home/$user_name/Documents/development/n0v1c3
 
-# TODO [170511] - Add all repos (see: https://api.github.com/users/n0v1c3/repos)
 # User dotfiles
 $sudo mkdir --parents "$n0v1c3"
 $sudo git clone "https://github.com/$git_user/linux.git $n0v1c3/linux"
 
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
-for file in $($sudo find "$path" -maxdepth 1 -iname '*' -not -path "$path/.config"); do
+for file in \
+    $($sudo find "$path" -maxdepth 1 -iname '*' -not -path "$path/.config")
+do
     $sudo ln -s "$file" /home/"$user_name"/"$(basename "$file")"
 done
 
 # Add home/.config links
 $sudo mkdir "/home/$user_name/.config"
-for file in $($sudo find "$path/.config" -maxdepth 1 -iname '*' -not -path "$path/.config"); do
+for file in \
+    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
+do
     $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
 done
 
@@ -198,9 +200,19 @@ for file in $($sudo find "$path" -type f -iname '*'); do
     $sudo cp "$file" "/etc/${file#$path}"
 done
 
+# Clone required vim bundles
+mkdir /home/$user_name/.vim/bundle
+$sudo git clone https://github.com/kien/ctrlp.vim.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/scrooloose/nerdcommenter.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/scrooloose/nerdtree.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/ervandew/supertab.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/vim-syntastic/syntastic.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/tpope/vim-fugitive.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/tpope/vim-surround.git /home/$user_name/.vim/bundle/
+$sudo git clone https://github.com/Kuniwak/vint.git /home/$user_name/.vim/bundle/
+
 # Section: Configuration {{{1
 # Apache
-# TODO-TJG [170518] - Apache configuration (/etc/httpd/conf/httpd.conf)
 $sudo systemctl enable httpd
 
 # Cronie
@@ -234,14 +246,17 @@ $sudo systemctl enable NetworkManger
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 # PHP
-$sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /etc/httpd/conf/httpd.conf
-$sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /etc/httpd/conf/httpd.conf
-$sudo echo "LoadModule php7_module modules/libphp7.so"; $sudo echo "AddHandler php7-script php"; $sudo echo "Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
+$sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' \
+/etc/httpd/conf/httpd.conf
+$sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' \
+/etc/httpd/conf/httpd.conf
+$sudo echo "LoadModule php7_module modules/libphp7.so\n" . \
+"AddHandler php7-script php\n" .
+"Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
 $sudo sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
 $sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
 
 # phpMyAdmin
-# TODO [170519] - Add apache configuration
 # Powerline fonts
 $sudo clone https://github.com/powerline/fonts.git
 $sudo ./fonts/install.sh

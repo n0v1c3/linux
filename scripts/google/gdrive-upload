@@ -1,6 +1,6 @@
 #!/bin/python
 # Author(s): Travis Gall, Google
-# Description: 
+# Description:
 
 # Imports {{{1
 # Standard {{{2
@@ -48,10 +48,9 @@ def delete_file(drive_api, file_id):
 def get_creds():
     SCOPES = 'https://www.googleapis.com/auth/drive'
     CLIENT_PATH = os.path.join(HOME_PATH, '.config/google')
-    #  TODO [170914] - tk pop-up select?
     CLIENT_FILE = 'travis.gall.json'
     APPLICATION_NAME = 'Drive API Python Quickstart'
-    
+
     # Ensure directory exists
     if not os.path.exists(CLIENT_PATH): os.makedirs(CLIENT_PATH)
     cred_path = os.path.join(CLIENT_PATH, CLIENT_FILE)
@@ -60,7 +59,7 @@ def get_creds():
     # Create credentials from file
     store = Storage(cred_path)
     creds = store.get()
-    
+
     # Invalid credentials file
     if not creds or creds.invalid:
         flow = client.flow_from_clientsecrets(cred_path, SCOPES)
@@ -75,7 +74,7 @@ if __name__ == '__main__':
     # Set up a credentials object I think
     creds = get_creds()
     http = creds.authorize(httplib2.Http())
-    
+
     # Now build our api object, thing
     drive_api = build('drive', 'v3', credentials=creds)
 

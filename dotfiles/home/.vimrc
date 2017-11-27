@@ -3,7 +3,6 @@
 " Authors: Travis Gall
 " Notes:
 " - There is an operaotor mapping in folds.vim
-" TODO-TJG [171106] - SQL lint checker
 
 let g:mapleader="\<space>"
 let g:maplocalleader='-'
@@ -71,8 +70,6 @@ set formatoptions-=cro
 
 " StatusLine {{{2
 " TODO-TJG [171106] - Broken in help files
-highlight StatusLine    ctermbg=darkgreen ctermfg=white
-highlight StatusLineNC  ctermbg=black ctermfg=lightgreen
 set statusline=%m%r%h                   " Flags
 set statusline+=%t                      " Filename
 set statusline+=\ %{GetFoldStrings()}   " Folds
@@ -127,6 +124,11 @@ augroup QuickFix
 augroup END
 
 " Section: Key Mappings {{{1
+" Command Mappings {{{2
+
+" Clear the entire command line
+cnoremap <c-u> <c-e><c-u>
+
 " Insert Mappings {{{2
 " VIM {{{3
 inoremap <silent> <c-u> <esc>mmviwU`ma
@@ -277,10 +279,15 @@ highlight Attention ctermbg=yellow ctermfg=black
 highlight WhiteSpace ctermbg=yellow
 match WhiteSpace /\v\s+$/
 
-" Section: Test {{{1
-" Clear the entire command line
-cnoremap <c-u> <c-e><c-u>
+" StatusLine {{{2
+highlight StatusLine    ctermbg=darkgreen ctermfg=white
+highlight StatusLineNC  ctermbg=black ctermfg=lightgreen
 
+" Section: Commands {{{1
+" Print directory of the file in the current window
+command! Pwd execute "normal! 1<c-g>"
+
+" Section: Test {{{1
 " Fold column
 nnoremap <leader>Z :call <SID>FoldColumnToggle()<cr>
 function! s:FoldColumnToggle()
@@ -296,7 +303,6 @@ nnoremap <leader>N :setlocal number!<cr>:setlocal relativenumber!<cr>
 
 " TODO-TJG [171124] - Move to perm file
 " Quickfix List Toggle
-" TODO-TJG [171123] - This is not mapped on initial vim open
 nnoremap <leader>cw :call <SID>QuickfixListToggle()<cr>
 function! s:QuickfixListToggle()
     if g:quickfixlist_open

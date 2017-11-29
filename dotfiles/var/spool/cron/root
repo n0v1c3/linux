@@ -1,0 +1,4 @@
+MAILTO="travis.gall@gmail.com"
+CONTENT_TYPE="text/html; charset=utf-8"
+#min	hour	day	month	weekday command
+#00	00	*	*	*	/home/travis/Documents/development/n0v1c3/linux/scripts/install/backup.sh

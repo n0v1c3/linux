@@ -5,8 +5,10 @@
 # Author: Travis Gall (n0v1c3)
 
 # Section: Variables  {{{1
-# Disk partition
-disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n+4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n"
+# TODO-TJG [171128] - Make this human readable
+# Disk partition, yup that will do it
+disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n\
++4G\nn\np\n3\n\n\na\n1\nt\n2\n82\nw\n"
 
 # Sudo gid
 sudo_gid=101
@@ -186,6 +188,16 @@ do
     $sudo ln -s "$file" /home/"$user_name"/"$(basename "$file")"
 done
 
+# Add cron links
+path="$n0v1c3/linux/dotfiles/var/spool/cron/"
+for file in \
+    $($sudo find "$path" -maxdepth 1 -iname '*')
+do
+    filename="$(basename "$file")"
+    $sudo ln -s /var/spool/cron/"$filename" "$file"
+    $sudo chown "$filename":"$filename" /var/spool/cron/"$filename"
+done
+
 # Add home/.config links
 $sudo mkdir "/home/$user_name/.config"
 for file in \
@@ -201,15 +213,17 @@ for file in $($sudo find "$path" -type f -iname '*'); do
 done
 
 # Clone required vim bundles
-mkdir /home/$user_name/.vim/bundle
-$sudo git clone https://github.com/kien/ctrlp.vim.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/scrooloose/nerdcommenter.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/scrooloose/nerdtree.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/ervandew/supertab.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/vim-syntastic/syntastic.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/tpope/vim-fugitive.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/tpope/vim-surround.git /home/$user_name/.vim/bundle/
-$sudo git clone https://github.com/Kuniwak/vint.git /home/$user_name/.vim/bundle/
+bundles=/home/$user_name/.vim/bundle
+github="https://github.com"
+mkdir "$bundles"
+$sudo git clone "$github/kien/ctrlp.vim.git" "$bundles"
+$sudo git clone "$github/scrooloose/nerdcommenter.git" "$bundles"
+$sudo git clone "$github/scrooloose/nerdtree.git" "$bundles"
+$sudo git clone "$github/ervandew/supertab.git" "$bundles"
+$sudo git clone "$github/vim-syntastic/syntastic.git" "$bundles"
+$sudo git clone "$github/tpope/vim-fugitive.git" "$bundles"
+$sudo git clone "$github/tpope/vim-surround.git" "$bundles"
+$sudo git clone "$github/Kuniwak/vint.git" "$bundles"
 
 # Section: Configuration {{{1
 # Apache
@@ -217,7 +231,6 @@ $sudo systemctl enable httpd
 
 # Cronie
 $sudo systemctl enable cronie
-$sudo echo "MAILTO=\"$user_email\"\n$(cat "$n0v1c3"/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
 
 # Git
 $sudo git config --global user.email "${user_email}"
@@ -243,7 +256,8 @@ $sudo mysql_secure_installation
 $sudo systemctl enable NetworkManger
 
 # Oh-my-zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+githubuser="https://raw.githubusercontent.com"
+sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 # PHP
 $sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' \

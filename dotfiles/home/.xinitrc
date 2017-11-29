@@ -1,6 +1,5 @@
 # Load X configuration
 xrdb ~/.Xresources
-xmodmap ~/.xmodmap
 
 setxkbmap -option caps:escape &
 

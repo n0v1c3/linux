@@ -217,6 +217,9 @@ $sudo systemctl enable httpd
 
 # Cronie
 $sudo systemctl enable cronie
+$sudo touch "/var/log/cron.log"
+# TODO-TJG [171128] - Use a group here instead
+$sudo chmod 777 "/var/log/cron.log"
 $sudo echo "MAILTO=\"$user_email\"\n$(cat "$n0v1c3"/linux/dotfiles/home/.config/cron/crontab.txt)" | crontab
 
 # Git

@@ -14,7 +14,8 @@ LC_CTYPE=en_US.UTF-8
 00 23 *  *  *  /home/travis/Documents/development/n0v1c3/linux/scripts/install/vim-bundle_update.sh >> /var/log/cron.log
 
 # Section: Backups {{{1
+#30 23 *  *  *  /home/travis/Documents/development/n0v1c3/linux/backup/backup.sh >> /var/log/cron.log
 #00 23 *  *  *  /home/travis/.bin/update >> /var/log/cron.log
 
 # Section: Log {{{1
-00 00 *  *  *  echo /var/log/cron.log; echo "---$(hostname):$(whoami)<br />---" > /var/log/cron.log;
+00 06 *  *  *  cat /var/log/cron.log; echo "---$(hostname):$(whoami)---<br />" > /var/log/cron.log;

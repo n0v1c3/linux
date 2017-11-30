@@ -3,11 +3,6 @@
 # Name: backup.sh
 # Description:
 
-# Network backup (with delete) when connected
-if [ "$(mount | grep /mnt/tjg/dlink)" ]; then
-    #sudo rsync --info=progress2 \
-    sudo rsync
-    --delete -a \
-    -e ssh /home /mnt/tjg/dlink/backups/"$(hostname)"
-fi
+sudo mount /mnt/tjg/mine && sudo rsync -a --stats --delete /home /mnt/tjg/mine/back/"$(hostname)"
+
 exit 0

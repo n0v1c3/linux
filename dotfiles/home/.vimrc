@@ -117,6 +117,17 @@ augroup Python
     autocmd! FileType python setlocal nosmartindent
 augroup END
 
+" Templates {{{2
+" Load template based on current file extension (:help template)
+augroup templates
+    " Remove ALL auto commands for the current group
+    autocmd!
+    " Expand file extension and search templates placing content at top of file
+    autocmd BufNewFile *.* silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
+    " Substitute equations between the VIM_EVAL and END_EVAL equations
+    autocmd BufNewFile * %substitute#\[:VIM_EVAL:\]\(.\{-\}\)\[:END_EVAL:\]#\=eval(submatch(1))#ge
+augroup END
+
 " QuickFix {{{2
 augroup QuickFix
     autocmd!

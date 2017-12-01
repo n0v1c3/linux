@@ -8,6 +8,7 @@ $RECYCLE.BIN/
 *.rar
 *.swp
 *.tar
+*.tmp
 *.zip
 *~
 .Trash-*

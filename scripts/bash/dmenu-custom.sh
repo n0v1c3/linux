@@ -13,6 +13,7 @@ deluge
 firefox
 gimp
 kodi
+librecad
 libreoffice
 logout
 reboot
@@ -35,6 +36,7 @@ case "$choice" in
 'firefox') firefox & ;;
 'gimp') gimp & ;;
 'kodi') kodi & ;;
+'librecad') librecad & ;;
 'libreoffice') libreoffice & ;;
 'logout') i3-msg exit & ;;
 'reboot') shutdown -r now & ;;

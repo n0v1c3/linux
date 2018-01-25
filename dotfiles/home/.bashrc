@@ -13,7 +13,7 @@
 
 # If not running interactively, don't do anything
 case $- in
-   *i*) ;;
+*i*) ;;
 *) return;;
 esac
 
@@ -30,11 +30,12 @@ shopt -s histappend
 # ---
 # Update values of LINES and COLUMNS after each command
 shopt -s checkwinsize
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-   xterm-color)
-	  export color_prompt=yes
-	  ;;
+xterm-color)
+  export color_prompt=yes
+  ;;
 esac
 
 # Source common shell configurations
@@ -45,35 +46,34 @@ GREY="\e[0m"
 RED="\e[31m"
 GREEN="\e[32m"
 #YELLOW="\e[33m"
-BLUE="\e[34m" 
+BLUE="\e[34m"
 #LIGHT_RED="\e[91m"
 #LIGHT_GREEN="\e[92m"
 #LIGHT_YELLOW="\e[93m"
-#LIGHT_BLUE="\e[94m" 
-WHITE="\e[37m" 
+#LIGHT_BLUE="\e[94m"
+WHITE="\e[37m"
 
 git_status() {
-    # Default stat
-    stat="$GREEN"
-
-    branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
-    branch_name="unnamed branch"     # detached HEAD
-    branch_name=${branch_name##refs/heads/}
-    # Check for changes in git repo
-    if ! git diff-index --quiet HEAD -- 2>/dev/null; then
-        # Update '$stat'
-        stat="$RED"
-    fi
-    echo "$GREY($stat$branch_name$GREY)"
+  # Default stat
+  stat="$GREEN"
+  branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+  branch_name="unnamed branch"     # detached HEAD
+  branch_name=${branch_name##refs/heads/}
+  # Check for changes in git repo
+  if ! git diff-index --quiet HEAD -- 2>/dev/null; then
+    # Update '$stat'
+    stat="$RED"
+  fi
+  echo "$GREY($stat$branch_name$GREY)"
 }
 
 # Default prompts
 prompt_command() {
-    PS1="\n$BLUE\u$WHITE@$GREEN\h$WHITE: \w\n"
-    if git rev-parse --git-dir> /dev/null 2>/dev/null; then
-        PS1+="$(git_status)"
-    fi
-    PS1+="\$ "
+  PS1="\n$BLUE\u$WHITE@$GREEN\h$WHITE: \w\n"
+  if git rev-parse --git-dir> /dev/null 2>/dev/null; then
+    PS1+="$(git_status)"
+  fi
+  PS1+="\$ "
 }
 PS2="$WHITE>$GREY "
 

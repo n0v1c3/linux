@@ -13,8 +13,8 @@ set $sup Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-#font pango:DejaVu Sans Mono 10
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+font pango:DejaVu Sans Mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -87,19 +87,16 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-# αβγδεϚζηθι
-# <span foreground="red">vim</span>
-
-set $ws1 "1:α"
-set $ws2 "2:β"
-set $ws3 "3:γ"
-set $ws4 "4:δ"
-set $ws5 "5:ε"
-set $ws6 "6:Ϛ"
-set $ws7 "7:ζ"
-set $ws8 "8:η"
-set $ws9 "9:θ"
-set $ws0 "10:ι"
+set $ws1 "1: "
+set $ws2 "2: "
+set $ws3 "3: "
+set $ws4 "4: "
+set $ws5 "5: "
+set $ws6 "6: "
+set $ws7 "7: "
+set $ws8 "8: "
+set $ws9 "9: "
+set $ws0 "10: "
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -135,35 +132,37 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-   # These bindings trigger as soon as you enter the resize mode
+# These bindings trigger as soon as you enter the resize mode
 
-   # Pressing left will shrink the window’s width.
-   # Pressing right will grow the window’s width.
-   # Pressing up will shrink the window’s height.
-   # Pressing down will grow the window’s height.
-   bindsym j resize shrink width 10 px or 10 ppt
-   bindsym k resize grow height 10 px or 10 ppt
-   bindsym l resize shrink height 10 px or 10 ppt
-   bindsym semicolon resize grow width 10 px or 10 ppt
+# Pressing left will shrink the window’s width.
+# Pressing right will grow the window’s width.
+# Pressing up will shrink the window’s height.
+# Pressing down will grow the window’s height.
+bindsym j resize shrink width 10 px or 10 ppt
+bindsym k resize grow height 10 px or 10 ppt
+bindsym l resize shrink height 10 px or 10 ppt
+bindsym semicolon resize grow width 10 px or 10 ppt
 
-   # same bindings, but for the arrow keys
-   bindsym Left resize shrink width 10 px or 10 ppt
-   bindsym Down resize grow height 10 px or 10 ppt
-   bindsym Up resize shrink height 10 px or 10 ppt
-   bindsym Right resize grow width 10 px or 10 ppt
+# same bindings, but for the arrow keys
+bindsym Left resize shrink width 10 px or 10 ppt
+bindsym Down resize grow height 10 px or 10 ppt
+bindsym Up resize shrink height 10 px or 10 ppt
+bindsym Right resize grow width 10 px or 10 ppt
 
-   # back to normal: Enter or Escape
-   bindsym Return mode "default"
-   bindsym Escape mode "default"
+# back to normal: Enter or Escape
+bindsym Return mode "default"
+bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# Start i3bar to display a workspace bar
+# Start i3status
 bar {
-   strip_workspace_numbers yes
-   status_command	i3status
+  #mode hide
+  position bottom
+  #strip_workspace_numbers yes
+  status_command i3status
 }
 
 # ===
@@ -187,6 +186,9 @@ bindsym $mod+m bar mode toggle
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
+
+# lock screen
+bindsym $mod+x exec i3lock
 
 # Screen-shots (scrot)
 bindsym --release Print exec --no-startup-id scrot
@@ -233,11 +235,23 @@ exec --no-startup-id conky
 # CBattIcon (background system monitor)
 exec --no-startup-id cbatticon
 
-# Launch thunar onto workspace 3
-exec --no-startup-id i3-msg "workspace $ws3; exec thunar"
+# Launch virtualbox onto workspace 0
+exec --no-startup-id i3-msg "workspace $ws0; exec virtualbox"
 
-# Launch firefox onto workspace 2
-exec --no-startup-id i3-msg "workspace $ws2; exec firefox"
+# Launch remmina onto workspace 9
+exec --no-startup-id i3-msg "workspace $ws9; exec remmina"
+
+# Launch thunar onto workspace 5
+exec --no-startup-id i3-msg "workspace $ws5; exec thunar"
+
+# Launch thunar onto workspace 4
+exec --no-startup-id i3-msg "workspace $ws4; exec libreoffice"
+
+# Launch firefox onto workspace 3
+exec --no-startup-id i3-msg "workspace $ws3; exec firefox"
+
+# Launch terminator onto workspace 2
+exec --no-startup-id i3-msg "workspace $ws2; exec terminator --execute vim"
 
 # Launch terminator onto workspace 1
 exec --no-startup-id i3-msg "workspace $ws1; exec terminator"

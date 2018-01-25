@@ -106,7 +106,7 @@ export XAUTHORITY=/home/travis/.config/xsession/.Xauthority
 export n0v1c3=$HOME/Documents/development/n0v1c3
 export private=$HOME/Documents/development/private
 export rne=$HOME/Documents/development/rne-travis
-export vim=$HOME/Documents/development/vim
+#export VIM=$HOME/Documents/development/n0v1c3/vim
 
 # History and Logs
 export HISTFILE=$HOME/.config/history/.sh_history

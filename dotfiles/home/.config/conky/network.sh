@@ -35,8 +35,8 @@ do
 		tx_linkspeed=$(((`cat $interfaces_dir$i/statistics/tx_bytes`-$tx)/($linkspeed_sleep*1024)))
 
 		# Network information
-		ip_addr="$(ifconfig $i | grep 'inet addr:' | cut -d : -f 2 | awk '{print $1}')"
-		sub="$(ifconfig $i | grep 'inet addr:' | cut -d : -f 4 | awk '{print $1}')"
+		ip_addr="$(ip addr show $i | grep 'inet\b' | awk '{print $2}' | cut -d/ -f1 )"
+		sub="$(ip addr show $i | grep 'inet\b' | awk '{print $4}' )"
 		gate="$(ip route | grep '^default' | awk -v var="/$i/" '{print $3}')"
 
 		# Display information #echo "$i:     $ip_addr  $sub  $gate  $rx_linkspeed          $tx_linkspeed"

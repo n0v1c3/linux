@@ -1,11 +1,6 @@
 ################################################################################
 # conky.rc
 # Display current information regarding the local system
-#
-# TODO (160721) - CPU temperature
-# TODO (160721) - Clean up battery information
-# TODO (160721) - Graph network usage
-# TODO (160721) - Move hostname into SYSTEM
 ################################################################################
 
 # System resources
@@ -46,11 +41,16 @@ ${goto 100}${color lightblue}--TOP--${color lightgreen}
 +------------+-----------------+-----------------+-----------------+
 | USER       | PID             | NAME            | CPU             |
 +------------+-----------------+-----------------+-----------------+
-| ${top user 1}${goto 70}| ${top pid 1}${goto 160}| ${top name 1}${goto 250}| ${top cpu 1}${goto 340}|
-| ${top user 2}${goto 70}| ${top pid 2}${goto 160}| ${top name 2}${goto 250}| ${top cpu 2}${goto 340}|
-| ${top user 3}${goto 70}| ${top pid 3}${goto 160}| ${top name 3}${goto 250}| ${top cpu 3}${goto 340}|
-| ${top user 4}${goto 70}| ${top pid 4}${goto 160}| ${top name 4}${goto 250}| ${top cpu 4}${goto 340}|
-| ${top user 5}${goto 70}| ${top pid 5}${goto 160}| ${top name 5}${goto 250}| ${top cpu 5}${goto 340}|
+| ${top user 1}${goto 82}| ${top pid 1}${goto 191}| ${top name 1}${goto 299}| ${top cpu 1}${goto 407}|
+| ${top user 2}${goto 82}| ${top pid 2}${goto 191}| ${top name 2}${goto 299}| ${top cpu 2}${goto 407}|
+| ${top user 3}${goto 82}| ${top pid 3}${goto 191}| ${top name 3}${goto 299}| ${top cpu 3}${goto 407}|
+| ${top user 4}${goto 82}| ${top pid 4}${goto 191}| ${top name 4}${goto 299}| ${top cpu 4}${goto 407}|
+| ${top user 5}${goto 82}| ${top pid 5}${goto 191}| ${top name 5}${goto 299}| ${top cpu 5}${goto 407}|
 +------------+-----------------+-----------------+-----------------+
 
-BAT0: ${battery_bar 5, 105} | ${battery}
+${goto 100}${color lightblue}--BATTERY--${color lightgreen}
++------------+-----------------+
+| NAME       | BAR GRAP        |
++------------+-----------------+
+| BAT0       | ${battery_bar 5, 90} | ${battery}
++------------+-----------------+

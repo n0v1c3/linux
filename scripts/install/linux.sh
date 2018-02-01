@@ -25,9 +25,9 @@ prompt_host="Enter hostname: "
 prompt_root="Enter root password: "
 prompt_reroot="Re-enter root password: "
 prompt_user="Enter administrator username: "
+prompt_pass="Enter administrator password: "
+prompt_repass="Re-enter administrator password: "
 prompt_git="Enter git username: "
-prompt_pass="Enter primary password: "
-prompt_repass="Re-enter primary password: "
 prompt_full="Enter user's full name: "
 prompt_email="Enter user's email address: "
 prompt_rank="Ranking pacman mirrors by connection speed..."
@@ -135,8 +135,8 @@ $install_cmd networkmanager # NetworkManager service
 $install_cmd ntfs-3g        # Mount for ntfs
 $install_cmd openssh        # SSH
 $install_cmd pandoc         # General markup converter
-$install_cmd php            # General markup converter
-$install_cmd php-apache     # General markup converter
+$install_cmd php            # PHP
+$install_cmd php-apache     # PHP Apache
 $install_cmd phpmyadmin     # PHP based database management
 $install_cmd python         # Python
 $install_cmd reflector      # Pacman mirror update tool
@@ -161,6 +161,7 @@ $install_cmd dmenu                  # Application launcher
 $install_cmd firefox                # Firefox
 $install_cmd gnome-icon-theme-full  # Icon pack
 $install_cmd gource                 # Fun tool for git repositories
+$install_cmd librecad               # Drafting tools
 $install_cmd libreoffice            # LibreOffice
 $install_cmd network-manager-applet # Tray icon
 $install_cmd remmina                # Remote connection interface

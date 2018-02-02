@@ -72,7 +72,7 @@ swapon "${diskpath}2"
 mkfs.ext4 "${diskpath}3"
 
 # Mount new file system
-mount "${diskpath}3 /mnt"
+mount ${diskpath}3 /mnt
 
 # Section: Base {{{1
 # Rank mirrors by speed

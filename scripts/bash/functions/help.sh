@@ -18,4 +18,4 @@ while IFS= read -r line || [ -n "$line" ] && [[ "$line" != "" ]] || [ $row -le $
     # Increment row counter
     row=$((row + 1))
 
-done < "$0" # Pass current file to read
+done < "$1" # Pass file to read

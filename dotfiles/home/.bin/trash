@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mkdir -p ~/.trash
+mv $1 ~/.trash/
+exit 0

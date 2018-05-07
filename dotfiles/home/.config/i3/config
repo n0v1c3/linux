@@ -88,7 +88,7 @@ bindsym $mod+a focus parent
 
 # switch to workspace
 set $ws1 "1: "
-set $ws2 "2: "
+set $ws2 "2: "
 set $ws3 "3: "
 set $ws4 "4: "
 set $ws5 "5: "
@@ -236,10 +236,13 @@ exec --no-startup-id conky
 exec --no-startup-id cbatticon
 
 # Launch virtualbox onto workspace 0
-exec --no-startup-id i3-msg "workspace $ws0; exec virtualbox"
+# exec --no-startup-id i3-msg "workspace $ws0; exec virtualbox"
 
 # Launch terminator onto workspace 1
 exec --no-startup-id i3-msg "workspace $ws1; exec terminator"
+
+# Launch terminator onto workspace 2
+exec --no-startup-id i3-msg "workspace $ws2; exec terminator"
 
 # Launch remmina onto workspace 9
 exec --no-startup-id i3-msg "workspace $ws9; exec remmina"
@@ -252,9 +255,6 @@ exec --no-startup-id i3-msg "workspace $ws4; exec libreoffice"
 
 # Launch firefox onto workspace 3
 exec --no-startup-id i3-msg "workspace $ws3; exec firefox"
-
-# Launch terminator onto workspace 2
-exec --no-startup-id i3-msg "workspace $ws2; exec terminator --execute vim"
 
 # Launch xautolock
 #exec --no-startup-id i3-msg "workspace $ws1; exec $(if ! pgrep -u $USER xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi)"

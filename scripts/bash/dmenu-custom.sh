@@ -42,7 +42,7 @@ case "$choice" in
 'reboot') shutdown -r now & ;;
 'remmina') remmina & ;;
 'retext') retext & ;;
-'scrot') mkdir -p ~/downloads/scrot; cd ~/downloads/scrot || exit; scrot -s & ;;
+'scrot') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;
 'shutdown') shutdown -h now & ;;
 'synergy') synergy & ;;
 'terminator') terminator & ;;

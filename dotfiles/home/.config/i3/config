@@ -235,26 +235,26 @@ exec --no-startup-id conky
 # CBattIcon (background system monitor)
 exec --no-startup-id cbatticon
 
-# Launch virtualbox onto workspace 0
-# exec --no-startup-id i3-msg "workspace $ws0; exec virtualbox"
-
 # Launch terminator onto workspace 1
 exec --no-startup-id i3-msg "workspace $ws1; exec terminator"
 
 # Launch terminator onto workspace 2
-exec --no-startup-id i3-msg "workspace $ws2; exec terminator"
-
-# Launch remmina onto workspace 9
-exec --no-startup-id i3-msg "workspace $ws9; exec remmina"
-
-# Launch thunar onto workspace 5
-exec --no-startup-id i3-msg "workspace $ws5; exec thunar"
-
-# Launch thunar onto workspace 4
-exec --no-startup-id i3-msg "workspace $ws4; exec libreoffice"
+# exec --no-startup-id i3-msg "workspace $ws2; exec terminator"
 
 # Launch firefox onto workspace 3
-exec --no-startup-id i3-msg "workspace $ws3; exec firefox"
+# exec --no-startup-id i3-msg "workspace $ws3; exec firefox"
+
+# Launch libreoffice onto workspace 4
+# exec --no-startup-id i3-msg "workspace $ws4; exec libreoffice"
+
+# Launch thunar onto workspace 5
+# exec --no-startup-id i3-msg "workspace $ws5; exec thunar"
+
+# Launch remmina onto workspace 9
+# exec --no-startup-id i3-msg "workspace $ws9; exec remmina"
+
+# Launch virtualbox onto workspace 0
+# exec --no-startup-id i3-msg "workspace $ws0; exec virtualbox"
 
 # Launch xautolock
-#exec --no-startup-id i3-msg "workspace $ws1; exec $(if ! pgrep -u $USER xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi)"
+# exec --no-startup-id i3-msg "workspace $ws1; exec $(if ! pgrep -u $USER xautolock > /dev/null; then; nohup xautolock -time 3 -locker autolock > /dev/null &; fi)"

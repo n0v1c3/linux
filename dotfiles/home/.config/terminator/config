@@ -14,6 +14,7 @@
   edit_terminal_title = None
   edit_window_title = None
   layout_launcher = None
+  zoom_out = <Primary><Shift>plus
 [layouts]
   [[default]]
     [[[child1]]]

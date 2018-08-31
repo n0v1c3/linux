@@ -203,7 +203,12 @@ do
 done
 
 # Add link to .config
-$sudo ln -s "$n0v1c3/linux/dotfiles/home/.config" "/home/$user_name/.config"
+$sudo mkdir "/home/$user_name/.config"
+for file in \
+    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
+do
+    $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
+done
 
 # Make copy of etc templates
 path="$n0v1c3/linux/dotfiles/etc/"

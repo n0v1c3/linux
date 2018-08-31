@@ -12,6 +12,7 @@ disk_partition="o\nn\np\n1\n\n+100M\nn\np\n2\n\n\
 
 # Sudo gid
 sudo_gid=101
+user_gid=1000
 
 # Common commands
 sudo="arch-chroot /mnt"
@@ -119,7 +120,7 @@ $install_cmd xorg
 $install_cmd xorg-xinit
 
 # Terminal tools
-$install_cmd apache         # Web server
+# $install_cmd apache         # Web server
 $install_cmd alsa-utils     # Advanced linux sound architecture
 $install_cmd bluez          # Bluetooth protocol stack
 $install_cmd bluez-utils    # Bluetooth bluetoothctl utility
@@ -132,18 +133,18 @@ $install_cmd fuse           # Mount for ntfs
 $install_cmd git            # Git
 $install_cmd gzip           # Gzip
 $install_cmd lm_sensors     # Linux monitoring sensors
-$install_cmd mariadb        # MySQL database
+# $install_cmd mariadb        # MySQL database
 $install_cmd networkmanager # NetworkManager service
 $install_cmd ntfs-3g        # Mount for ntfs
 $install_cmd openssh        # SSH
-$install_cmd pandoc         # General markup converter
-$install_cmd php            # PHP
-$install_cmd php-apache     # PHP Apache
-$install_cmd phpmyadmin     # PHP based database management
+# $install_cmd pandoc         # General markup converter
+# $install_cmd php            # PHP
+# $install_cmd php-apache     # PHP Apache
+# $install_cmd phpmyadmin     # PHP based database management
 $install_cmd python         # Python
 $install_cmd reflector      # Pacman mirror update tool
 $install_cmd rsync          # Rsync
-$install_cmd ruby           # Ruby
+# $install_cmd ruby           # Ruby
 $install_cmd samba          # Mount Windows network shares
 $install_cmd sshfs          # Mount SSH
 $install_cmd sudo           # Sudo
@@ -154,25 +155,25 @@ $install_cmd zip            # Zip
 $install_cmd zsh            # Zsh
 
 # xSession tools
-$install_cmd arandr                 # Display configuration
-$install_cmd baobab                 # Disk usage
+# $install_cmd arandr                 # Display configuration
+# $install_cmd baobab                 # Disk usage
 $install_cmd cbatticon              # Tray icon
-$install_cmd conky                  # Interactive background display
-$install_cmd deluge                 # Torrent
+# $install_cmd conky                  # Interactive background display
+# $install_cmd deluge                 # Torrent
 $install_cmd dmenu                  # Application launcher
 $install_cmd firefox                # Firefox
 $install_cmd gnome-icon-theme-full  # Icon pack
-$install_cmd gource                 # Fun tool for git repositories
-$install_cmd librecad               # Drafting tools
-$install_cmd libreoffice            # LibreOffice
+# $install_cmd gource                 # Fun tool for git repositories
+# $install_cmd librecad               # Drafting tools
+# $install_cmd libreoffice            # LibreOffice
 $install_cmd network-manager-applet # Tray icon
-$install_cmd remmina                # Remote connection interface
-$install_cmd retext                 # Markdown editor / viewer
+# $install_cmd remmina                # Remote connection interface
+# $install_cmd retext                 # Markdown editor / viewer
 $install_cmd scrot                  # Screen shot
-$install_cmd synergy                # Network mouse/keyboard share
+# $install_cmd synergy                # Network mouse/keyboard share
 $install_cmd terminator             # Terminal
 $install_cmd thunar                 # File browser
-$install_cmd virtualbox             # Virtualbox
+# $install_cmd virtualbox             # Virtualbox
 $install_cmd xautolock              # Screen autolock
 
 # Section: Dotfiles {{{1
@@ -241,6 +242,7 @@ $sudo git config --global user.name "${user_full}"
 
 # Groups
 $sudo groupadd -g $sudo_gid sudo
+$sudo groupadd -g $user_gid $user_name
 
 # Grub
 $sudo grub-install --target=i386-pc "${diskpath}"
@@ -251,9 +253,9 @@ $sudo sensors-detect --auto
 
 # MariaDB
 # TODO [170518] - Add $user_name to MySQL users
-$sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-$sudo systemctl enable mariadb
-$sudo mysql_secure_installation
+# $sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+# $sudo systemctl enable mariadb
+# $sudo mysql_secure_installation
 
 # NetworkManager - Enable load on boot
 $sudo systemctl enable NetworkManger
@@ -285,8 +287,8 @@ echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 # User groups and password
 $sudo useradd -m -g "$user_name" -s /bin/zsh "$user_name"
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
-$sudo usermod -a -G sudoers "$user_name"
-$sudo echo "%sudoers ALL=(ALL) ALL" >> /etc/sudoers
+$sudo usermod -a -G sudo "$user_name"
+$sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch

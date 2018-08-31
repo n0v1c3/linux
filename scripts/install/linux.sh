@@ -47,12 +47,14 @@ done
 echo -n "$prompt_host";  read -r hostname
 while [ -z "${root_pass}" ] || [ "$root_pass" != "$root_repass" ]; do
     echo -n "$prompt_root";  read -rs root_pass
+    echo ""
     echo -n "$prompt_reroot";  read -rs root_repass
 done
 echo ""
 echo -n "$prompt_user";  read -r user_name
 while [ -z "${user_pass}" ] || [ "$user_pass" != "$user_repass" ]; do
     echo -n "$prompt_pass";  read -rs user_pass
+    echo ""
     echo -n "$prompt_repass";  read -rs user_repass
 done
 echo ""

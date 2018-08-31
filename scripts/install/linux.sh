@@ -182,7 +182,7 @@ n0v1c3=/home/$user_name/Documents/development/n0v1c3
 
 # User dotfiles
 $sudo mkdir --parents "$n0v1c3"
-$sudo git clone "https://github.com/$git_user/linux.git $n0v1c3/linux"
+$sudo git clone "https://github.com/$git_user/linux.git" "$n0v1c3/linux"
 
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
@@ -202,13 +202,8 @@ do
     $sudo chown "$filename":"$filename" /var/spool/cron/"$filename"
 done
 
-# Add home/.config links
-$sudo mkdir "/home/$user_name/.config"
-for file in \
-    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
-do
-    $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
-done
+# Add link to .config
+$sudo ln -s "$n0v1c3/linux/dotfiles/home/.config" "/home/$user_name/.config"
 
 # Make copy of etc templates
 path="$n0v1c3/linux/dotfiles/etc/"
@@ -220,14 +215,14 @@ done
 bundles=/home/$user_name/.vim/bundle
 github="https://github.com"
 mkdir "$bundles"
-$sudo git clone "$github/kien/ctrlp.vim.git" "$bundles"
-$sudo git clone "$github/scrooloose/nerdcommenter.git" "$bundles"
-$sudo git clone "$github/scrooloose/nerdtree.git" "$bundles"
-$sudo git clone "$github/ervandew/supertab.git" "$bundles"
-$sudo git clone "$github/vim-syntastic/syntastic.git" "$bundles"
-$sudo git clone "$github/tpope/vim-fugitive.git" "$bundles"
-$sudo git clone "$github/tpope/vim-surround.git" "$bundles"
-$sudo git clone "$github/Kuniwak/vint.git" "$bundles"
+$sudo git clone "$github/kien/ctrlp.vim.git" "$bundles/ctrlp.vim"
+$sudo git clone "$github/scrooloose/nerdcommenter.git" "$bundles/nerdcommenter"
+$sudo git clone "$github/scrooloose/nerdtree.git" "$bundles/nerdtree"
+$sudo git clone "$github/ervandew/supertab.git" "$bundles/supertab"
+$sudo git clone "$github/vim-syntastic/syntastic.git" "$bundles/syntastic"
+$sudo git clone "$github/tpope/vim-fugitive.git" "$bundles/vim-fugitive"
+$sudo git clone "$github/tpope/vim-surround.git" "$bundles/vim-surround"
+$sudo git clone "$github/Kuniwak/vint.git" "$bundles/vint"
 
 # Section: Configuration {{{1
 # Apache

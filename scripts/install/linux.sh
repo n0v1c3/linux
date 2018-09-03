@@ -201,6 +201,18 @@ do
     $sudo ln -s "$file" /home/"$user_name"/"$(basename "$file")"
 done
 
+# Add link to .config
+$sudo mkdir "/home/$user_name/.config"
+for file in \
+    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
+do
+    $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
+done
+
+# Blank file for .Xauthority
+$sudo mkdir --parents "/home/$user_name/.config/xsession"
+$sudo touch "/home/$user_name/.config/xsession/.Xauthority"
+
 # Add cron links
 path="$n0v1c3/linux/dotfiles/var/spool/cron/"
 for file in \
@@ -209,14 +221,6 @@ do
     filename="$(basename "$file")"
     $sudo ln -s /var/spool/cron/"$filename" "$file"
     $sudo chown "$filename":"$filename" /var/spool/cron/"$filename"
-done
-
-# Add link to .config
-$sudo mkdir "/home/$user_name/.config"
-for file in \
-    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
-do
-    $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
 done
 
 # Make copy of etc templates

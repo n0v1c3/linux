@@ -297,7 +297,7 @@ $sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
 
 # phpMyAdmin
 # Powerline fonts
-$sudo clone https://github.com/powerline/fonts.git
+$sudo git clone https://github.com/powerline/fonts.git
 $sudo ./fonts/install.sh
 $sudo rm -rf fonts
 

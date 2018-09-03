@@ -209,6 +209,10 @@ do
     $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
 done
 
+# Blank folder for histories
+$sudo mkdir --parents "/home/$user_name/.config/history"
+$sudo mkdir --parents "/home/$user_name/.config/history/zsh"
+
 # Blank file for .Xauthority
 $sudo mkdir --parents "/home/$user_name/.config/xsession"
 $sudo touch "/home/$user_name/.config/xsession/.Xauthority"

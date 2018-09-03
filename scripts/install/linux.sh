@@ -80,6 +80,7 @@ mount ${diskpath}3 /mnt
 # Section: Base {{{1
 # TODO-TJG [180902] - Move this to the installed version
 # Enusre latest pacman keys are installed
+# NOTE - Added for error installing using an older live iso
 gpg --refresh-keys
 pacman-key --init
 pacman-key --populate archlinux
@@ -270,7 +271,8 @@ $sudo systemctl enable NetworkManger
 
 # Oh-my-zsh
 githubuser="https://raw.githubusercontent.com"
-sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$sudo sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+$sudo mv /root/.oh-my-zsh /usr/share/oh-my-zsh
 
 # PHP
 $sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' \
@@ -292,11 +294,15 @@ $sudo rm -rf fonts
 # Root password
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
+# Allow sudo access
+$sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
+
 # User groups and password
 $sudo useradd -m -g "$user_name" -s /bin/zsh "$user_name"
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
+
+# Add user_name to group sudo
 $sudo usermod -a -G sudo "$user_name"
-$sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
 
 # Virtualbox guest
 $install_cmd virtualbox-guest-modules-arch

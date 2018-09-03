@@ -101,7 +101,7 @@ $base_install
 cp "/$file_mirrors" "/mnt/$file_mirrors"
 
 # Timezone
-$sudo ln -s /usr/share/zoneinfo/Canada/Mountain /mnt/etc/localtime
+$sudo ln -s /usr/share/zoneinfo/Canada/Mountain /etc/localtime
 
 # Configure locales
 echo -e "en_US.UTF-8 UTF-8\nen_US ISO-8859-1" > /mnt/etc/locale.gen

@@ -214,12 +214,12 @@ $sudo mkdir --parents "/home/$user_name/.config/xsession"
 $sudo touch "/home/$user_name/.config/xsession/.Xauthority"
 
 # Add cron links
-path="$n0v1c3/linux/dotfiles/var/spool/cron/"
+path="$n0v1c3/linux/dotfiles/var/spool/cron"
 for file in \
     $($sudo find "$path" -maxdepth 1 -iname '*')
 do
     filename="$(basename "$file")"
-    $sudo ln -s /var/spool/cron/"$filename" "$file"
+    $sudo ln -s "$file" /var/spool/cron/"$filename"
     $sudo chown "$filename":"$filename" /var/spool/cron/"$filename"
 done
 

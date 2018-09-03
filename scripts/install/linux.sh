@@ -33,8 +33,10 @@ prompt_full="Enter user's full name: "
 prompt_email="Enter user's email address: "
 prompt_rank="Ranking pacman mirrors by connection speed..."
 
-# Files
+# Update mirrors to private maintained list
 file_mirrors=/etc/pacman.d/mirrorlist
+wget https://raw.githubusercontent.com/n0v1c3/linux/master/dotfiles/etc/pacman.d/mirrorlist
+mv ./mirrorlist "$file_mirrors"
 
 # Section: Read {{{1
 # Get installation information
@@ -78,7 +80,6 @@ mkfs.ext4 ${diskpath}3
 mount ${diskpath}3 /mnt
 
 # Section: Base {{{1
-# TODO-TJG [180902] - Move this to the installed version
 # Enusre latest pacman keys are installed
 # NOTE - Added for error installing using an older live iso
 gpg --refresh-keys
@@ -86,6 +87,7 @@ pacman-key --init
 pacman-key --populate archlinux
 pacman-key --refresh-keys
 
+# TODO-TJG [180903] - Move this to a maintenance script
 # Rank mirrors by speed
 # echo "$prompt_rank"
 # cp "/$file_mirrors" "/$file_mirrors.backup"
@@ -95,7 +97,7 @@ pacman-key --refresh-keys
 # Kernel
 $base_install
 
-# Use recently updated mirrors post install
+# Use private mirror list post install
 cp "/$file_mirrors" "/mnt/$file_mirrors"
 
 # Timezone

@@ -78,6 +78,13 @@ mkfs.ext4 ${diskpath}3
 mount ${diskpath}3 /mnt
 
 # Section: Base {{{1
+# TODO-TJG [180902] - Move this to the installed version
+# Enusre latest pacman keys are installed
+gpg --refresh-keys
+pacman-key --init
+pacman-key --populate archlinux
+pacman-key --refresh-keys
+
 # Rank mirrors by speed
 echo "$prompt_rank"
 cp "/$file_mirrors" "/$file_mirrors.backup"
@@ -113,8 +120,9 @@ $sudo systemctl enable dhcpcd.service
 $install_cmd grub
 
 # xSession
-$install_cmd i3
+# $install_cmd i3
 $install_cmd i3-wm
+$install_cmd i3blocks
 $install_cmd i3status
 $install_cmd xorg
 $install_cmd xorg-xinit

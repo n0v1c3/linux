@@ -28,10 +28,10 @@ prompt_reroot="Re-enter root password: "
 prompt_user="Enter administrator username: "
 prompt_pass="Enter administrator password: "
 prompt_repass="Re-enter administrator password: "
-prompt_git="Enter git username: "
-prompt_full="Enter user's full name: "
-prompt_email="Enter user's email address: "
-prompt_rank="Ranking pacman mirrors by connection speed..."
+prompt_git="Enter administrator's git username: "
+prompt_full="Enter administrator's full name: "
+prompt_email="Enter administrator's email address: "
+# prompt_rank="Ranking pacman mirrors by connection speed..."
 
 # Update mirrors to private maintained list
 file_mirrors=/etc/pacman.d/mirrorlist
@@ -166,7 +166,7 @@ $install_cmd zip            # Zip
 $install_cmd zsh            # Zsh
 
 # xSession tools
-# $install_cmd arandr                 # Display configuration
+$install_cmd arandr                 # Display configuration
 # $install_cmd baobab                 # Disk usage
 $install_cmd cbatticon              # Tray icon
 # $install_cmd conky                  # Interactive background display
@@ -198,7 +198,7 @@ $sudo git clone "https://github.com/$git_user/linux.git" "$n0v1c3/linux"
 # Add home links
 path=$n0v1c3/linux/dotfiles/home
 for file in \
-    $($sudo find "$path" -maxdepth 1 -iname '*' -not -path "$path/.config")
+    $($sudo find "$path/" -maxdepth 1 -iname '*' -not -path "$path/.config")
 do
     $sudo ln -s "$file" /home/"$user_name"/"$(basename "$file")"
 done
@@ -206,7 +206,7 @@ done
 # Add link to .config
 $sudo mkdir "/home/$user_name/.config"
 for file in \
-    $($sudo find "$path/.config" -maxdepth 1 -iname '*')
+    $($sudo find "$path/.config/" -maxdepth 1 -iname '*')
 do
     $sudo ln -s "$file" "/home/$user_name/.config/$(basename "$file")"
 done
@@ -222,7 +222,7 @@ $sudo touch "/home/$user_name/.config/xsession/.Xauthority"
 # Add cron links
 path="$n0v1c3/linux/dotfiles/var/spool/cron"
 for file in \
-    $($sudo find "$path" -maxdepth 1 -iname '*')
+    $($sudo find "$path/" -maxdepth 1 -iname '*')
 do
     filename="$(basename "$file")"
     $sudo ln -s "$file" /var/spool/cron/"$filename"
@@ -235,6 +235,7 @@ for file in $($sudo find "$path" -type f -iname '*'); do
     $sudo cp "$file" "/etc/${file#$path}"
 done
 
+# TODO-TJG [180903] - Move to vim install script
 # Clone required vim bundles
 bundles=/home/$user_name/.vim/bundle
 github="https://github.com"
@@ -263,6 +264,9 @@ $sudo git config --global user.name "${user_full}"
 $sudo groupadd -g $sudo_gid sudo
 $sudo groupadd -g $user_gid $user_name
 
+# Allow sudo access
+$sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
+
 # Grub
 $sudo grub-install --target=i386-pc "${diskpath}"
 $sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -285,15 +289,13 @@ $sudo sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -
 $sudo mv /root/.oh-my-zsh /usr/share/oh-my-zsh
 
 # PHP
-$sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' \
-/etc/httpd/conf/httpd.conf
-$sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' \
-/etc/httpd/conf/httpd.conf
-$sudo echo "LoadModule php7_module modules/libphp7.so\n" . \
+sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /mnt/etc/httpd/conf/httpd.conf
+sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /mnt/etc/httpd/conf/httpd.conf
+echo "LoadModule php7_module modules/libphp7.so\n" . \
 "AddHandler php7-script php\n" .
-"Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
-$sudo sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
-$sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
+"Include conf/extra/php7_module.conf" >> /mnt/etc/httpd/conf/httpd.conf
+sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /mnt/etc/php/php.ini
+sed -i '/^;.*extension=mysqli.so/s/^;//' /mnt/etc/php/php.ini
 
 # phpMyAdmin
 # Powerline fonts
@@ -304,14 +306,11 @@ $sudo rm -rf fonts
 # Root password
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
-# Allow sudo access
-$sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
-
-# User groups and password
+# Addministrator groups and password
 $sudo useradd -m -g "$user_name" -s /bin/zsh "$user_name"
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 
-# Add user_name to group sudo
+# Add adminstrator to group sudo
 $sudo usermod -a -G sudo "$user_name"
 
 # Virtualbox guest

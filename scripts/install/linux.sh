@@ -86,10 +86,10 @@ pacman-key --populate archlinux
 pacman-key --refresh-keys
 
 # Rank mirrors by speed
-echo "$prompt_rank"
-cp "/$file_mirrors" "/$file_mirrors.backup"
-sed -i 's/^#Server/Server/' "/$file_mirrors.backup"
-rankmirrors -v -n 16 "/$file_mirrors.backup" > "/$file_mirrors"
+# echo "$prompt_rank"
+# cp "/$file_mirrors" "/$file_mirrors.backup"
+# sed -i 's/^#Server/Server/' "/$file_mirrors.backup"
+# rankmirrors -v -n 16 "/$file_mirrors.backup" > "/$file_mirrors"
 
 # Kernel
 $base_install

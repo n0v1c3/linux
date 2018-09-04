@@ -1,0 +1,8 @@
+[Unit]
+Description=Software updates
+
+[Service]
+ExecStart=/home/travis/.bin/software-update
+
+[Install]
+WantedBy=multi-user.target

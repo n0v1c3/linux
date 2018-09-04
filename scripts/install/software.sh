@@ -2,6 +2,7 @@
 
 # Name: software.sh
 # Description: install and update software
+# This file is called in the software-update.service
 
 BASE=false
 GRUB=false
@@ -144,3 +145,5 @@ echo "LoadModule php7_module modules/libphp7.so\n" . \
 "Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
 sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
 sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
+
+systemctl disable software-update

@@ -114,54 +114,9 @@ $sudo systemctl enable dhcpcd.service
 # NOTE-TJG [180903] - Ensure software.sh is updated as well
 # Grub
 wget https://raw.githubusercontent.com/n0v1c3/linux/master/scripts/install/software.sh
-mv ./software.sh /mnt/tmp/
-$sudo bash /tmp/software.sh --base
-
-: <<'END'
-$install_cmd grub
-
-# xSession
-$install_cmd xorg
-$install_cmd xorg-xinit
-$install_cmd i3-wm
-$install_cmd i3blocks
-$install_cmd i3status
-
-# Terminal tools
-$install_cmd bluez          # Bluetooth protocol stack
-$install_cmd bluez-utils    # Bluetooth bluetoothctl utility
-$install_cmd cronie         # Cronjob task manager
-$install_cmd curl           # Server exchange requests/responses
-$install_cmd curlftpfs      # Mount for FTP
-$install_cmd fuse           # Mount for ntfs
-$install_cmd git            # Git
-$install_cmd gzip           # Gzip
-$install_cmd lm_sensors     # Linux monitoring sensors
-$install_cmd networkmanager # NetworkManager service
-$install_cmd ntfs-3g        # Mount for ntfs
-$install_cmd openssh        # SSH
-$install_cmd rsync          # Rsync
-$install_cmd samba          # Mount Windows network shares
-$install_cmd sshfs          # Mount SSH
-$install_cmd sudo           # Sudo
-$install_cmd tmux           # Tmux
-$install_cmd vim            # Vim
-$install_cmd wget           # Server download requests
-$install_cmd zip            # Zip
-$install_cmd zsh            # Zsh
-
-# xSession tools
-$install_cmd arandr                 # Display configuration
-$install_cmd cbatticon              # Tray icon
-$install_cmd dmenu                  # Application launcher
-$install_cmd firefox                # Firefox
-$install_cmd gnome-icon-theme-full  # Icon pack
-$install_cmd network-manager-applet # Tray icon
-$install_cmd scrot                  # Screen shot
-$install_cmd terminator             # Terminal
-$install_cmd thunar                 # File browser
-$install_cmd xautolock              # Screen autolock
-END
+mv ./software.sh /mnt/root/
+$sudo bash /root/software.sh --base
+rm /mnt/root/software.sh
 
 # Section: Dotfiles {{{1
 # n0v1c3 development path

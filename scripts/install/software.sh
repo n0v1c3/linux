@@ -103,7 +103,7 @@ pacman -Syyu
 
 # Oh-my-zsh
 githubuser="https://raw.githubusercontent.com"
-sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sed '/^\s*env/d')"
 mv /root/.oh-my-zsh /usr/share/oh-my-zsh
 
 # Powerline fonts

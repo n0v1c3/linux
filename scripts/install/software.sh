@@ -5,7 +5,6 @@
 # This file is called in the software-update.service
 
 BASE=false
-GRUB=false
 
 install_cmd="pacman -S --noconfirm"
 
@@ -14,10 +13,6 @@ while test $# -gt 0; do
     -b|--base)
       shift
       BASE=true
-      ;;
-    -g|--grub)
-      shift
-      GRUB=true
       ;;
     *)
       break
@@ -110,13 +105,6 @@ mv /root/.oh-my-zsh /usr/share/oh-my-zsh
 git clone https://github.com/powerline/fonts.git
 ./fonts/install.sh
 rm -rf fonts
-
-# Config only set during base install
-if $BASE || $GRUB; then
-  # Grub
-  grub-install --target=i386-pc "${diskpath}"
-  grub-mkconfig -o /boot/grub/grub.cfg
-fi
 
 # Linux monitoring sensors
 sensors-detect --auto

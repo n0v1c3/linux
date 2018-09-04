@@ -118,6 +118,10 @@ mv ./software.sh /mnt/root/
 $sudo bash /root/software.sh --base
 rm /mnt/root/software.sh
 
+# Grub
+$sudo grub-install --target=i386-pc "${diskpath}"
+$sudo grub-mkconfig -o /boot/grub/grub.cfg
+
 # Section: Dotfiles {{{1
 # n0v1c3 development path
 n0v1c3=/home/$user_name/Documents/development/n0v1c3

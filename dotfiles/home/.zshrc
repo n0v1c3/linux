@@ -3,6 +3,7 @@
 
 # Path to oh-my-zsh installation
 export ZSH=/usr/share/oh-my-zsh
+export ZSH_COMPDUMP="${HOME}/.config/history/zsh/.zcompdump-$(hostname)-${ZSH_VERSION}"
 
 # Set name of the theme to load, look in ~/.oh-my-zsh/themes/
 #ZSH_THEME="random"

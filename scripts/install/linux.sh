@@ -202,5 +202,43 @@ echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 # Add adminstrator to group sudo
 $sudo usermod -a -G sudo "$user_name"
 
+# Linux monitoring sensors
+$sudo sensors-detect --auto
+
+# systemctl
+$sudo systemctl enable cronie
+$sudo systemctl enable NetworkManger
+$sudo systemctl enable httpd
+
+# TODO-TJG [180903] - Loop for each user
+# Git
+# git config --global user.email "${user_email}"
+# git config --global user.name "${user_full}"
+
+# MariaDB
+# TODO [170518] - Add $user_name to MySQL users
+# mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+# systemctl enable mariadb
+# mysql_secure_installation
+
+# PHP
+$sudo sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /etc/httpd/conf/httpd.conf
+$sudo sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /etc/httpd/conf/httpd.conf
+$sudo echo "LoadModule php7_module modules/libphp7.so\n" . \
+"AddHandler php7-script php\n" .
+"Include conf/extra/php7_module.conf" >> /etc/httpd/conf/httpd.conf
+$sudo sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /etc/php/php.ini
+$sudo sed -i '/^;.*extension=mysqli.so/s/^;//' /etc/php/php.ini
+
+# Oh-my-zsh
+githubuser="https://raw.githubusercontent.com"
+$sudo sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O - | sed '/^\s*env/d')"
+$sudo mv /root/.oh-my-zsh /usr/share/oh-my-zsh
+
+# Powerline fonts
+$sudo git clone https://github.com/powerline/fonts.git
+$sudo ./fonts/install.sh
+$sudo rm -rf fonts
+
 # Proper owner for all of administrator's home directory
 $sudo chown -R "$user_name:users" "/home/$user_name"

@@ -31,7 +31,6 @@ prompt_repass="Re-enter administrator password: "
 prompt_git="Enter administrator's git username: "
 prompt_full="Enter administrator's full name: "
 prompt_email="Enter administrator's email address: "
-# prompt_rank="Ranking pacman mirrors by connection speed..."
 
 # Update mirrors to private maintained list
 file_mirrors=/etc/pacman.d/mirrorlist
@@ -87,13 +86,6 @@ pacman-key --init
 pacman-key --populate archlinux
 pacman-key --refresh-keys
 
-# TODO-TJG [180903] - Move this to a maintenance script
-# Rank mirrors by speed
-# echo "$prompt_rank"
-# cp "/$file_mirrors" "/$file_mirrors.backup"
-# sed -i 's/^#Server/Server/' "/$file_mirrors.backup"
-# rankmirrors -v -n 16 "/$file_mirrors.backup" > "/$file_mirrors"
-
 # Kernel
 $base_install
 
@@ -119,43 +111,36 @@ echo "$hostname" > /mnt/etc/hostname
 $sudo systemctl enable dhcpcd.service
 
 # Section: Software {{{1
+# NOTE-TJG [180903] - Ensure software.sh is updated as well
 # Grub
+wget https://raw.githubusercontent.com/n0v1c3/linux/master/scripts/install/software.sh
+mv ./software.sh /mnt/tmp/
+$sudo bash /tmp/software.sh --base
+
+: <<'END'
 $install_cmd grub
 
 # xSession
-# $install_cmd i3
+$install_cmd xorg
+$install_cmd xorg-xinit
 $install_cmd i3-wm
 $install_cmd i3blocks
 $install_cmd i3status
-$install_cmd xorg
-$install_cmd xorg-xinit
 
 # Terminal tools
-# $install_cmd apache         # Web server
-$install_cmd alsa-utils     # Advanced linux sound architecture
 $install_cmd bluez          # Bluetooth protocol stack
 $install_cmd bluez-utils    # Bluetooth bluetoothctl utility
-$install_cmd colordiff      # Display diff using git colors
 $install_cmd cronie         # Cronjob task manager
 $install_cmd curl           # Server exchange requests/responses
 $install_cmd curlftpfs      # Mount for FTP
-$install_cmd fdupes         # Duplicate file search
 $install_cmd fuse           # Mount for ntfs
 $install_cmd git            # Git
 $install_cmd gzip           # Gzip
 $install_cmd lm_sensors     # Linux monitoring sensors
-# $install_cmd mariadb        # MySQL database
 $install_cmd networkmanager # NetworkManager service
 $install_cmd ntfs-3g        # Mount for ntfs
 $install_cmd openssh        # SSH
-# $install_cmd pandoc         # General markup converter
-# $install_cmd php            # PHP
-# $install_cmd php-apache     # PHP Apache
-# $install_cmd phpmyadmin     # PHP based database management
-$install_cmd python         # Python
-$install_cmd reflector      # Pacman mirror update tool
 $install_cmd rsync          # Rsync
-# $install_cmd ruby           # Ruby
 $install_cmd samba          # Mount Windows network shares
 $install_cmd sshfs          # Mount SSH
 $install_cmd sudo           # Sudo
@@ -167,25 +152,16 @@ $install_cmd zsh            # Zsh
 
 # xSession tools
 $install_cmd arandr                 # Display configuration
-# $install_cmd baobab                 # Disk usage
 $install_cmd cbatticon              # Tray icon
-# $install_cmd conky                  # Interactive background display
-# $install_cmd deluge                 # Torrent
 $install_cmd dmenu                  # Application launcher
 $install_cmd firefox                # Firefox
 $install_cmd gnome-icon-theme-full  # Icon pack
-# $install_cmd gource                 # Fun tool for git repositories
-# $install_cmd librecad               # Drafting tools
-# $install_cmd libreoffice            # LibreOffice
 $install_cmd network-manager-applet # Tray icon
-# $install_cmd remmina                # Remote connection interface
-# $install_cmd retext                 # Markdown editor / viewer
 $install_cmd scrot                  # Screen shot
-# $install_cmd synergy                # Network mouse/keyboard share
 $install_cmd terminator             # Terminal
 $install_cmd thunar                 # File browser
-# $install_cmd virtualbox             # Virtualbox
 $install_cmd xautolock              # Screen autolock
+END
 
 # Section: Dotfiles {{{1
 # n0v1c3 development path
@@ -250,16 +226,6 @@ $sudo git clone "$github/tpope/vim-surround.git" "$bundles/vim-surround"
 $sudo git clone "$github/Kuniwak/vint.git" "$bundles/vint"
 
 # Section: Configuration {{{1
-# Apache
-$sudo systemctl enable httpd
-
-# Cronie
-$sudo systemctl enable cronie
-
-# Git
-$sudo git config --global user.email "${user_email}"
-$sudo git config --global user.name "${user_full}"
-
 # Groups
 $sudo groupadd -g $sudo_gid sudo
 $sudo groupadd -g $user_gid $user_name
@@ -267,55 +233,15 @@ $sudo groupadd -g $user_gid $user_name
 # Allow sudo access
 $sudo echo "%sudo ALL=(ALL) ALL" >> /etc/sudoers
 
-# Grub
-$sudo grub-install --target=i386-pc "${diskpath}"
-$sudo grub-mkconfig -o /boot/grub/grub.cfg
-
-# Linux monitoring sensors
-$sudo sensors-detect --auto
-
-# MariaDB
-# TODO [170518] - Add $user_name to MySQL users
-# $sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-# $sudo systemctl enable mariadb
-# $sudo mysql_secure_installation
-
-# NetworkManager - Enable load on boot
-$sudo systemctl enable NetworkManger
-
-# Oh-my-zsh
-githubuser="https://raw.githubusercontent.com"
-$sudo sh -c "$(wget $githubuser/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-$sudo mv /root/.oh-my-zsh /usr/share/oh-my-zsh
-
-# PHP
-sed -i '/^#.*LoadModule mpm_event_module/s/^#//' /mnt/etc/httpd/conf/httpd.conf
-sed -i '/^LoadModule mpm_preford_module/s/^#*/#/' /mnt/etc/httpd/conf/httpd.conf
-echo "LoadModule php7_module modules/libphp7.so\n" . \
-"AddHandler php7-script php\n" .
-"Include conf/extra/php7_module.conf" >> /mnt/etc/httpd/conf/httpd.conf
-sed -i '/^;.*extension=pdo_mysql.so/s/^;//' /mnt/etc/php/php.ini
-sed -i '/^;.*extension=mysqli.so/s/^;//' /mnt/etc/php/php.ini
-
-# phpMyAdmin
-# Powerline fonts
-$sudo git clone https://github.com/powerline/fonts.git
-$sudo ./fonts/install.sh
-$sudo rm -rf fonts
-
 # Root password
 echo "root:$root_pass" | $sudo /usr/sbin/chpasswd
 
-# Addministrator groups and password
+# Administrator groups and password
 $sudo useradd -m -g "$user_name" -s /bin/zsh "$user_name"
 echo "$user_name:$user_pass" | $sudo /usr/sbin/chpasswd
 
 # Add adminstrator to group sudo
 $sudo usermod -a -G sudo "$user_name"
 
-# Virtualbox guest
-$install_cmd virtualbox-guest-modules-arch
-
-# Section: Clean-Up {{{1
-# Proper owner for all of user's home directory
+# Proper owner for all of administrator's home directory
 $sudo chown -R "$user_name:users" "/home/$user_name"

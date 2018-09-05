@@ -36,6 +36,7 @@ $install_cmd bluez-utils            # Bluetooth bluetoothctl utility
 $install_cmd cronie                 # Cronjob task manager
 $install_cmd curl                   # Server exchange requests/responses
 $install_cmd curlftpfs              # Mount for FTP
+$install_cmd tty-font-awesome       # Font awesome
 $install_cmd fuse                   # Mount for ntfs
 $install_cmd git                    # Git
 $install_cmd gzip                   # Gzip

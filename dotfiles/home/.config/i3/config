@@ -14,7 +14,7 @@ set $sup Mod1
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -49,10 +49,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -159,10 +159,20 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar
 # Start i3status
 bar {
-  #mode hide
+# mode hide
   position bottom
-  #strip_workspace_numbers yes
   status_command i3status
+  colors {
+    background #0d0e11
+    statusline #4794ac
+    separator #4794ac
+
+    focused_workspace  #4794ac #367c84 #0d0e11
+    active_workspace   #4794ac #367c84 #0d0e11
+    inactive_workspace #4794ac #0d0e11 #4794ac
+    urgent_workspace   #4794ac #7b0000 #4794ac
+    binding_mode       #4794ac #7b0000 #4794ac
+  }
 }
 
 # ===
@@ -194,6 +204,9 @@ bindsym $mod+x exec i3lock
 bindsym --release Print exec --no-startup-id scrot
 bindsym --release Shift+Print exec --no-startup-id scrot -s
 
+# bindsym $mod+t [instance="myterm"] scratchpad show; [instance="myterm"] move position center
+# bindsym $mod+Shift+t [instance="myterm"] move scratchpad
+
 # bindsym $mod+Left exec i3-msg move workspace to output left
 # bindsym $mod+Right exec i3-msg move workspace to output right
 
@@ -218,6 +231,13 @@ for_window [class="TeamViewer" instance="TeamViewer" title="Computers & Contacts
 
 # Main window (resize to default Windows size)
 for_window [title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;
+
+# First scratchpad attempt
+exec --no-startup-id terminator -c "vim"
+for_window [instance="vim"] floating enable;
+for_window [instance="vim"] move scratchpad; [instance="vim"] scratchpad show; move position 80px 50px; move scratchpad
+bindsym $mod+t [instance="vim"] scratchpad show, resize set 1200 650
+bindsym $mod+Shift+t [instance="vim"] move scratchpad
 
 # ---
 # Initial Executions

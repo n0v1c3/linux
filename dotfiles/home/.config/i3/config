@@ -1,11 +1,11 @@
-#  _  _____    __              __ _       
-# (_)|____ |  / /             / _(_)      
-#  _     / / / /__ ___  _ __ | |_ _  __ _ 
+#  _  _____    __              __ _
+# (_)|____ |  / /             / _(_)
+#  _     / / / /__ ___  _ __ | |_ _  __ _
 # | |    \ \/ / __/ _ \| '_ \|  _| |/ _` |
 # | |.___/ / / (_| (_) | | | | | | | (_| |
 # |_|\____/_/ \___\___/|_| |_|_| |_|\__, |
 #                                    __/ |
-#                                   |___/ 
+#                                   |___/
 
 # Set modifier = Windows, $sup = Alt
 set $mod Mod4
@@ -175,14 +175,7 @@ bar {
   }
 }
 
-# ===
-# Custom
-# ===
-
-# ---
-# Key bindings
-# ---
-
+# Key bindings {{{ 1
 # Custom "F" commands
 bindsym $mod+F1 exec firefox
 
@@ -204,13 +197,10 @@ bindsym $mod+x exec i3lock
 bindsym --release Print exec --no-startup-id scrot
 bindsym --release Shift+Print exec --no-startup-id scrot -s
 
-# bindsym $mod+t [instance="myterm"] scratchpad show; [instance="myterm"] move position center
-# bindsym $mod+Shift+t [instance="myterm"] move scratchpad
-
 # bindsym $mod+Left exec i3-msg move workspace to output left
 # bindsym $mod+Right exec i3-msg move workspace to output right
 
-# User "xprop" from a terminal to get information regarding a window
+# Use "xprop" from a terminal to get information regarding a window
 # WM_CLASS(STRING) = "instance", "class"
 # WM_NAME(STRING} = "title"
 # for_window [class="class" instance="instance" title="title"] floating window

@@ -3,6 +3,9 @@
 # Name: backup.sh
 # Description:
 
-# sudo mount /mnt/tjg/mine && sudo rsync -a --stats --delete /home /mnt/tjg/mine/back/"$(hostname)"
+dlink=$HOME/Desktop/.mnt/dlink
+
+mkdir --parents $dlink
+mount dlink:/ffp $dlink && sudo rsync -a --no-o --no-g --stats --delete $HOME/ $dlink/backups/"$(hostname)"/
 
 exit 0

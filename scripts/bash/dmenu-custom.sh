@@ -34,7 +34,7 @@ case "$choice" in
 '⏻ power') dmenu-power & ;;
 '🖧 remmina') remmina & ;;
 ' snip') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;
-' term') i3-sensible-terminal & ;;
+' terminator') terminator & ;;
 ' texmaker') texmaker & ;;
 ' thunar') thunar & ;;
 ' virtualbox') virtualbo & ;;

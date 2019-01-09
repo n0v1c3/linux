@@ -222,13 +222,6 @@ for_window [class="TeamViewer" instance="TeamViewer" title="Computers & Contacts
 # Main window (resize to default Windows size)
 for_window [title="TeamViewer"] floating enable; resize shrink width 10000px; resize grow width 606px; resize shrink height 10000px; resize grow height 430px;
 
-# First scratchpad attempt
-exec --no-startup-id terminator -c "vim"
-for_window [instance="vim"] floating enable;
-for_window [instance="vim"] move scratchpad; [instance="vim"] scratchpad show; move position 80px 50px; move scratchpad
-bindsym $mod+t [instance="vim"] scratchpad show, resize set 1200 650
-bindsym $mod+Shift+t [instance="vim"] move scratchpad
-
 # ---
 # Initial Executions
 # ---

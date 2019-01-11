@@ -182,6 +182,7 @@ $sudo git clone "$github/ervandew/supertab.git" "$bundles/supertab"
 $sudo git clone "$github/vim-syntastic/syntastic.git" "$bundles/syntastic"
 $sudo git clone "$github/tpope/vim-fugitive.git" "$bundles/vim-fugitive"
 $sudo git clone "$github/tpope/vim-surround.git" "$bundles/vim-surround"
+$sudo git clone "$github/tpope/vim-pathogen.git" "$bundles/vim-surround"
 $sudo git clone "$github/Kuniwak/vint.git" "$bundles/vint"
 
 # Section: Configuration {{{1

@@ -26,7 +26,7 @@ case "$choice" in
 '  ') i3-sensible-terminal & ;;
 '🖵 arandr') arandr & ;;
 '🖴 baobab') baobab & ;;
-' browser') qutebrowser & ;;
+' browser') firefox & ;;
 ' deluge') deluge & ;;
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
@@ -37,5 +37,5 @@ case "$choice" in
 ' terminator') terminator & ;;
 ' texmaker') texmaker & ;;
 ' thunar') thunar & ;;
-' virtualbox') virtualbo & ;;
+' virtualbox') virtualbox & ;;
 esac

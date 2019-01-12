@@ -9,7 +9,6 @@ echo " 
  baobab
  browser
  deluge
- browser
  gimp
  kodi
  libreoffice
@@ -26,16 +25,16 @@ case "$choice" in
 '  ') i3-sensible-terminal & ;;
 '🖵 arandr') arandr & ;;
 '🖴 baobab') baobab & ;;
-' browser') qutebrowser & ;;
+' browser') firefox & ;;
 ' deluge') deluge & ;;
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
 ' libreoffice') libreoffice & ;;
-'⏻ power') dmenu-power & ;;
+'⏻ power') dmenu-poer & ;;
 '🖧 remmina') remmina & ;;
 ' snip') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;
 ' terminator') terminator & ;;
 ' texmaker') texmaker & ;;
 ' thunar') thunar & ;;
-' virtualbox') virtualbo & ;;
+' virtualbox') virtualbox & ;;
 esac

@@ -30,7 +30,7 @@ case "$choice" in
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
 ' libreoffice') libreoffice & ;;
-'⏻ power') dmenu-poer & ;;
+'⏻ power') dmenu-power & ;;
 '🖧 remmina') remmina & ;;
 ' snip') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;
 ' terminator') terminator & ;;

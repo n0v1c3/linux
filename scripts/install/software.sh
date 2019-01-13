@@ -47,6 +47,7 @@ $install_cmd gzip                   # Gzip
 $install_cmd lm_sensors             # Linux monitoring sensors
 $install_cmd networkmanager         # NetworkManager service
 $install_cmd ntfs-3g                # Mount for ntfs
+$install_cmd ntp                    # Network time protocol
 $install_cmd openssh                # SSH
 $install_cmd rsync                  # Rsync
 $install_cmd samba                  # Mount Windows network shares

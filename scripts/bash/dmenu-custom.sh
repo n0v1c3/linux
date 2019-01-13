@@ -9,7 +9,6 @@ echo " 
  baobab
  browser
  deluge
- browser
  gimp
  kodi
  libreoffice

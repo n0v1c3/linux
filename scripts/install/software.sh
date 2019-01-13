@@ -4,15 +4,15 @@
 # Description: install and update software
 # This file is called in the software-update.service
 
-BASE=false
-
+base=false
 install_cmd="pacman -S --noconfirm"
 
+# Flag Check {{{1
 while test $# -gt 0; do
   case "$1" in
     -b|--base)
       shift
-      BASE=true
+      base=true
       ;;
     *)
       break
@@ -20,17 +20,21 @@ while test $# -gt 0; do
   esac
 done
 
-# Grub
+# Base Install {{{1
+# Grub {{{2
 $install_cmd grub                   # Grub boot loader
 
-# xSession
+# xSession {{{2
 $install_cmd xorg                   # Xorg display manager
 $install_cmd xorg-xinit             # Xorg xinit
 $install_cmd i3-wm                  # i3 window manager
 $install_cmd i3blocks               # i3 blocks
 $install_cmd i3status               # i3 status bar
 
-# Terminal tools
+# Fonts {{{2
+$install_cmd ttf-font-awesome       # Icon set font
+
+# Terminal tools {{{2
 $install_cmd bluez                  # Bluetooth protocol stack
 $install_cmd bluez-utils            # Bluetooth bluetoothctl utility
 $install_cmd cronie                 # Cronjob task manager
@@ -43,6 +47,7 @@ $install_cmd gzip                   # Gzip
 $install_cmd lm_sensors             # Linux monitoring sensors
 $install_cmd networkmanager         # NetworkManager service
 $install_cmd ntfs-3g                # Mount for ntfs
+$install_cmd ntp                    # Network time protocol
 $install_cmd openssh                # SSH
 $install_cmd rsync                  # Rsync
 $install_cmd samba                  # Mount Windows network shares
@@ -54,7 +59,7 @@ $install_cmd wget                   # Server download requests
 $install_cmd zip                    # Zip
 $install_cmd zsh                    # Zsh
 
-# xSession tools
+# xSession tools {{{2
 $install_cmd arandr                 # Display configuration
 $install_cmd cbatticon              # Tray icon
 $install_cmd dmenu                  # Application launcher
@@ -66,9 +71,9 @@ $install_cmd terminator             # Terminal
 $install_cmd thunar                 # File browser
 $install_cmd xautolock              # Screen autolock
 
-# Software not installed during base install
-if ! $BASE; then
-  # Terminal tools
+# Advanced {{{1
+# Terminal tools {{{2
+if ! $base; then
   $install_cmd alsa-utils           # Advanced linux sound architecture
   $install_cmd apache               # Web server
   $install_cmd colordiff            # Display diff using git colors
@@ -81,7 +86,7 @@ if ! $BASE; then
   $install_cmd python               # Python
   $install_cmd ruby                 # Ruby
 
-  # xSession tools
+  # xSession tools {{{2
   $install_cmd baobab               # Disk usage
   $install_cmd conky                # Interactive background display
   $install_cmd deluge               # Torrent
@@ -94,5 +99,6 @@ if ! $BASE; then
   $install_cmd virtualbox-guest-modules-arch
 fi
 
+# Final Update {{{1
 # Force update for all installed pacages
 pacman -Syyu

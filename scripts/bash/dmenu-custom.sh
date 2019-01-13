@@ -12,6 +12,7 @@ echo " 
  gimp
  kodi
  libreoffice
+⏻ pass
 ⏻ power
 🖧 remmina
  screen-shot
@@ -30,6 +31,7 @@ case "$choice" in
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
 ' libreoffice') libreoffice & ;;
+'⏻ pass') passmenu & ;;
 '⏻ power') dmenu-power & ;;
 '🖧 remmina') remmina & ;;
 ' snip') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;

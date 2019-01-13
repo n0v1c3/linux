@@ -4,7 +4,7 @@ choice=$(echo "lock
 logout
 exit
 reboot
-shutdown" | dmenu -i -b -p '   ' -fn 'DejaVu Sans Mono:regular:pixelsize=18' -nf '#4794ac' -nb '#0d0e11' -sb '#367c84' -sf '#0d0e11'
+shutdown" | dmenu -i -b -p ' ⏻  ' -fn 'DejaVu Sans Mono:regular:pixelsize=18' -nf '#4794ac' -nb '#0d0e11' -sb '#367c84' -sf '#0d0e11'
 )
 
 case "$choice" in

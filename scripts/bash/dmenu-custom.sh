@@ -5,38 +5,38 @@
 #===================================================================================================
 choice=$(
 echo "  
- arandr
- baobab
  browser
- deluge
+ disk
+ files
  gimp
  kodi
- libreoffice
+ LaTex
+ office
  pass
 ⏻ power
-🖧 remmina
- screen-shot
- terminator
- texmaker
- thunar
+🖧 rdp
+🖵 screen
+ snip
+ terminal
+ torrent
  virtualbox" | dmenu -i -b -p '   ' -fn 'DejaVu Sans Mono:regular:pixelsize=18' -nf '#4794ac' -nb '#0d0e11' -sb '#367c84' -sf '#0d0e11'
 )
 
 case "$choice" in
 '  ') i3-sensible-terminal & ;;
-'🖵 arandr') arandr & ;;
-'🖴 baobab') baobab & ;;
 ' browser') firefox & ;;
-' deluge') deluge & ;;
+' disk') baobab & ;;
+' files') thunar & ;;
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
-' libreoffice') libreoffice & ;;
+' LaTex') texmaker & ;;
+' office') libreoffice & ;;
 ' pass') dmenu-pass & ;;
 '⏻ power') dmenu-power & ;;
-'🖧 remmina') remmina & ;;
+'🖧 rdp') remmina & ;;
+'🖵 screen') arandr & ;;
 ' snip') mkdir -p ~/Downloads/scrot; cd ~/Downloads/scrot || exit; scrot -s & ;;
-' terminator') terminator & ;;
-' texmaker') texmaker & ;;
-' thunar') thunar & ;;
+' terminal') i3-sensible-terminal & ;;
+' torrent') deluge & ;;
 ' virtualbox') virtualbox & ;;
 esac

@@ -39,4 +39,5 @@ case "$choice" in
 ' terminal') i3-sensible-terminal & ;;
 ' torrent') deluge & ;;
 ' virtualbox') virtualbox & ;;
+*) firefox "https://google.ca/search?q=$(echo $choice | tr ' ' '+')" ;;
 esac

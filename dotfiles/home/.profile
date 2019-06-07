@@ -23,3 +23,5 @@ fi
 PATH="/usr/games:$PATH"
 
 export TERMINAL="urxvt"
+
+export WAN=$(curl -s ipinfo.io/ip)

@@ -77,6 +77,8 @@ alias wget='wget --hsts-file=~/.config/cache/.wget-hsts'
 alias dlink-sync="/home/travis/Documents/development/n0v1c3/linux/scripts/dlink/dlink-sync.sh"
 alias websync="rsync -avz -e ssh --progress /home/travis/Documents/development/n0v1c3/deminicos/http/ mine-001-00-01:/srv/http/"
 
+alias "sshdlink"="ssh tjg-dlink -t /ffp/bin/bash"
+
 # ---
 # Exports
 # ---
@@ -118,8 +120,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.ps
 export GNUPGHOME=$HOME/.config/gnupg
 
-# Networking
-export WAN=75.156.147.235
+# export WAN=$(curl -s https://ipinfo.io/ip)
 
 # Locale
 export LC_CTYPE=en_US.UTF-8

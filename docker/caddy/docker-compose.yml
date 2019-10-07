@@ -7,7 +7,7 @@ services:
     volumes:
       - ./caddyfile:/etc/Caddyfile
       - $HOME/.docker/caddy:/root/.caddy
-    # restart: always
+    # restart: unless-stopped
     ports:
       - '80:80'
       - '443:443'
@@ -21,4 +21,4 @@ services:
       - $HOME/.docker/caddy/ddclient:/config
     labels:
       com.ouroboros.enable: "true"
-    # restart: unless-stopped
+      restart: unless-stopped

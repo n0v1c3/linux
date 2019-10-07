@@ -1,24 +1,30 @@
 # Default site
-www.tgall.ca {
+# www.tgall.ca {
   # Use for forcing SSL?
-  tls { alpn http/1.1 }
-  proxy / 192.168.228.210:8080 {
-    websocket
-    transparent
-  }
-}
+  # tls { alpn http/1.1 }
+  # proxy / 192.168.1.100:8080 {
+    # websocket
+    # transparent
+  # }
+# }
 
 # JIRA site
 jira.tgall.ca {
   tls { alpn http/1.1 }
-  proxy / 192.168.228.210:8080 { transparent }
+  proxy / 192.168.1.100:8080 { transparent }
+}
+
+file.tgall.ca {
+  tls { alpn http/1.1 }
+  basicauth / mike suH2Z2EHvuDmypEQ
+  proxy / 192.168.1.100:8000 { transparent }
 }
 
 # SSH relay
-s.tgall.ca {
-  tls { alpn http/1.1 }
-  proxy / 192.168.228.210:22 {
-    websocket
-    transparent
-  }
-}
+# s.tgall.ca {
+  # tls { alpn http/1.1 }
+  # proxy / 192.168.1.100:22 {
+    # websocket
+    # transparent
+  # }
+# }

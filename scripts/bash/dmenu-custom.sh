@@ -10,6 +10,7 @@ echo " 
  files
  gimp
  kodi
+ MarkDown
  LaTex
  office
  pass
@@ -29,6 +30,7 @@ case "$choice" in
 ' files') thunar & ;;
 ' gimp') gimp & ;;
 ' kodi') kodi & ;;
+' MarkDown') typora & ;;
 ' LaTex') texmaker & ;;
 ' office') libreoffice & ;;
 ' pass') dmenu-pass & ;;

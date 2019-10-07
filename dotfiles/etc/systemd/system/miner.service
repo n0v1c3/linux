@@ -1,0 +1,9 @@
+[Unit]
+Description=Run on Boot
+
+[Service]
+Type=forking
+ExecStart=/home/travis/launcher.sh
+
+[Install]
+WantedBy=multi-user.target

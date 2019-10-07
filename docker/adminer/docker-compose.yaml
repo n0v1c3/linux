@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      # - PMA_ARBITRARY=1
+      - PMA_ABSOLUTE_URI="https://mail2.deminicos.ca"
+    # restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions

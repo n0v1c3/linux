@@ -4,10 +4,3 @@
 
 tjg-office:/    /mnt/tjg/office	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
 tjg-mandy:/     /mnt/tjg/mandy	fuse.sshfs	defaults,allow_other,_netdev,IdentityFile=/home/travis/.ssh/id_rsa	0	0
-
-##
-# TJG
-##
-
-//192.168.227.12/rne/    /mnt/rne/rne-server    cifs    file_mode=0775,dir_mode=0777,username=travis.gall,password=1987tJg20,iocharset=utf8,sec=ntlm 0   0
-//192.168.22.27/wwwroot/    /mnt/recontech/cac_db/wwwroot    cifs    file_mode=0777,dir_mode=0777,username=Administrator,password=P@ssw0rd,iocharset=utf8,sec=ntlm 0   0

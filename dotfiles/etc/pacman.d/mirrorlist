@@ -1,5 +1,5 @@
-Server = https://mirrors.kernel.org/archlinux/$repo/os/$arch
-Server = https://mirrors.xtom.com/archlinux/$repo/os/$arch
+Server = https://muug.ca/mirror/archlinux/$repo/os/$arch
+Server = https://mirror.sergal.org/archlinux/$repo/os/$arch
 Server = https://mirror.csclub.uwaterloo.ca/archlinux/$repo/os/$arch
-Server = https://mirrors.ocf.berkeley.edu/archlinux/$repo/os/$arch
-Server = https://mirror.lty.me/archlinux/$repo/os/$arch
+Server = https://archlinux.olanfa.rocks/$repo/os/$arch
+Server = https://mirror.scd31.com/arch/$repo/os/$arch

@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+  # Syncthing
+  syncthing:
+    image: syncthing/syncthing
+    restart: always
+    ports:
+      - "8384:8384"
+      - "22000:22000"
+      - "21027:21027/udp"
+    volumes:
+      - $HOME/.docker/syncthing:/var/syncthing

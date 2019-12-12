@@ -117,7 +117,7 @@ export MYSQL_HISTFILE=$HOME/.config/history/.mysql_history
 export PYTHONSTARTUP=$HOME/.pythonrc
 
 # Password Store
-export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.ps
+export PASSWORD_STORE_DIR=$HOME/.ps
 export GNUPGHOME=$HOME/.config/gnupg
 
 # export WAN=$(curl -s https://ipinfo.io/ip)

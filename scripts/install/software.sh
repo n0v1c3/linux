@@ -54,6 +54,7 @@ $install_cmd samba                  # Mount Windows network shares
 $install_cmd sshfs                  # Mount SSH
 $install_cmd sudo                   # Sudo
 $install_cmd tmux                   # Tmux
+$install_cmd trash-cli              # Comand line trash
 $install_cmd vim                    # Vim
 $install_cmd wget                   # Server download requests
 $install_cmd zip                    # Zip

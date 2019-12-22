@@ -88,3 +88,6 @@ bind 'set editing-mode vi'
 bind 'set completion-ignore-case on'
 bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

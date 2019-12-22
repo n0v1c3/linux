@@ -63,6 +63,10 @@ alias ranger="ranger -d ."
 # Stopwatch
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
+# tmux
+alias tlist='tmux list-sessions'
+alias ta='tmux a -t'
+
 # git
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --graph --all"
 alias grc='gource -i 0'
@@ -117,7 +121,7 @@ export MYSQL_HISTFILE=$HOME/.config/history/.mysql_history
 export PYTHONSTARTUP=$HOME/.pythonrc
 
 # Password Store
-export PASSWORD_STORE_DIR=$n0v1c3/linux/dotfiles/home/.ps
+export PASSWORD_STORE_DIR=$HOME/.ps
 export GNUPGHOME=$HOME/.config/gnupg
 
 # export WAN=$(curl -s https://ipinfo.io/ip)

@@ -23,6 +23,7 @@ done
 # Base Install {{{1
 # Grub {{{2
 $install_cmd grub                   # Grub boot loader
+$install_cmd linux                  # Linux
 
 # xSession {{{2
 $install_cmd xorg                   # Xorg display manager

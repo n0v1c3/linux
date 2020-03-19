@@ -72,6 +72,9 @@ $install_cmd terminator             # Terminal
 $install_cmd thunar                 # File browser
 $install_cmd xautolock              # Screen autolock
 
+# Scripts {{{2
+curl https://cht.sh/:cht.sh > ~/bin/cht.sh  # https://github.com/chubin/cheat.sh
+
 # Advanced {{{1
 # Terminal tools {{{2
 if ! $base; then

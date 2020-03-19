@@ -72,12 +72,9 @@ $install_cmd terminator             # Terminal
 $install_cmd thunar                 # File browser
 $install_cmd xautolock              # Screen autolock
 
-# Scripts {{{2
-curl https://cht.sh/:cht.sh > ~/bin/cht.sh  # https://github.com/chubin/cheat.sh
-
 # Advanced {{{1
-# Terminal tools {{{2
 if ! $base; then
+  # Terminal tools {{{2
   $install_cmd alsa-utils           # Advanced linux sound architecture
   $install_cmd apache               # Web server
   $install_cmd colordiff            # Display diff using git colors
@@ -106,3 +103,7 @@ fi
 # Final Update {{{1
 # Force update for all installed pacages
 pacman -Syyu
+
+# Scripts {{{2
+# https://github.com/chubin/cheat.sh
+curl https://cht.sh/:cht.sh > ~/bin/cht.sh

@@ -6,8 +6,7 @@ sudo qemu-system-x86_64 \
   -usb \
   -device usb-host,vendorid=0x064f,productid=0x2af9 \
   -drive file=/home/travis/qemu/accutune.qcow2,format=qcow2 \
-  -display sdl \
-  -sdl
+  -vga virtio
 
 # Script complete
 exit 0

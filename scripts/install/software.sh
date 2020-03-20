@@ -44,6 +44,7 @@ $install_cmd tty-font-awesome       # Font awesome
 $install_cmd fuse                   # Mount for ntfs
 $install_cmd git                    # Git
 $install_cmd gzip                   # Gzip
+$install_cmd htop                   # Clean `top` display
 $install_cmd lm_sensors             # Linux monitoring sensors
 $install_cmd networkmanager         # NetworkManager service
 $install_cmd ntfs-3g                # Mount for ntfs

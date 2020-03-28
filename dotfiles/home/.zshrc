@@ -35,4 +35,7 @@ source $ZSH/oh-my-zsh.sh
 # Source common shell configurations
 source $HOME/.shrc
 
+# Set term color
+[[ $TMUX != "" ]] && export TERM="screen-256color"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

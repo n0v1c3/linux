@@ -22,7 +22,7 @@ done
 
 # Base Install {{{1
 # Grub {{{2
-$install_cmd grub                   # Grub boot loader
+$install_cmd grub os-prober         # Grub boot loader
 
 # xSession {{{2
 $install_cmd xorg                   # Xorg display manager
@@ -44,6 +44,7 @@ $install_cmd tty-font-awesome       # Font awesome
 $install_cmd fuse                   # Mount for ntfs
 $install_cmd git                    # Git
 $install_cmd gzip                   # Gzip
+$install_cmd htop                   # Clean `top` display
 $install_cmd lm_sensors             # Linux monitoring sensors
 $install_cmd networkmanager         # NetworkManager service
 $install_cmd ntfs-3g                # Mount for ntfs
@@ -54,6 +55,7 @@ $install_cmd samba                  # Mount Windows network shares
 $install_cmd sshfs                  # Mount SSH
 $install_cmd sudo                   # Sudo
 $install_cmd tmux                   # Tmux
+$install_cmd trash-cli              # Comand line trash
 $install_cmd vim                    # Vim
 $install_cmd wget                   # Server download requests
 $install_cmd zip                    # Zip
@@ -72,8 +74,8 @@ $install_cmd thunar                 # File browser
 $install_cmd xautolock              # Screen autolock
 
 # Advanced {{{1
-# Terminal tools {{{2
 if ! $base; then
+  # Terminal tools {{{2
   $install_cmd alsa-utils           # Advanced linux sound architecture
   $install_cmd apache               # Web server
   $install_cmd colordiff            # Display diff using git colors
@@ -102,3 +104,7 @@ fi
 # Final Update {{{1
 # Force update for all installed pacages
 pacman -Syyu
+
+# Scripts {{{2
+# https://github.com/chubin/cheat.sh
+curl https://cht.sh/:cht.sh > ~/bin/cht.sh

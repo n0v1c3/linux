@@ -10,12 +10,12 @@ interfaces="$(find $interfaces_dir -type l -name '*' -printf '%f\n')"
 linkspeed_sleep=1
 
 # Static headers
-echo   "+------------+-----------------+"
-printf "| %-10s | %15s |\n" "HOSTNAME" "$(hostname)"
-echo   "+------------+-----------------+"
-echo   "+------------+-----------------+-----------------+-----------------+------------+------------+"
-printf "| %-10s | %-15s | %-15s | %-15s | %-10s | %-10s |\n" "INTERFACE" "IP ADDRESS" "SUBNET" "GATEWAY" "RX (kBps)" "TX (kBps)"
-echo   "+------------+-----------------+-----------------+-----------------+------------+------------+"
+echo   "+----------------------+-----------------+"
+printf "| %-20s | %15s |\n" "HOSTNAME" "$(hostname)"
+echo   "+----------------------+-----------------+"
+echo   "+----------------------+-----------------+-----------------+-----------------+------------+------------+"
+printf "| %-20s | %-15s | %-15s | %-15s | %-10s | %-10s |\n" "INTERFACE" "IP ADDRESS" "SUBNET" "GATEWAY" "RX (kBps)" "TX (kBps)"
+echo   "+----------------------+-----------------+-----------------+-----------------+------------+------------+"
 
 # Loop through all mapped network interfaces
 for i in $interfaces
@@ -40,8 +40,8 @@ do
 		gate="$(ip route | grep '^default' | awk -v var="/$i/" '{print $3}')"
 
 		# Display information #echo "$i:     $ip_addr  $sub  $gate  $rx_linkspeed          $tx_linkspeed"
-		printf "| %-10s | %15s | %15s | %15s | %10s | %10s |\n" "$i" "$ip_addr" "$sub" "$gate" "$rx_linkspeed" "$tx_linkspeed"
+		printf "| %-20s | %15s | %15s | %15s | %10s | %10s |\n" "$i" "$ip_addr" "$sub" "$gate" "$rx_linkspeed" "$tx_linkspeed"
 	fi
 done
 
-echo   "+------------+-----------------+-----------------+-----------------+------------+------------+"
+echo   "+----------------------+-----------------+-----------------+-----------------+------------+------------+"

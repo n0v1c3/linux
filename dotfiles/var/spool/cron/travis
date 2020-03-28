@@ -18,4 +18,4 @@ LC_CTYPE=en_US.UTF-8
 #00 23 *  *  *  /home/travis/.bin/update >> /var/log/cron.log
 
 # Section: Log {{{1
-00 06 *  *  *  cat /var/log/cron.log; echo "---$(hostname):$(whoami)---<br />" > /var/log/cron.log;
+00 00 *  *  *  cat /var/log/cron.log; echo "---$(hostname):$(whoami)---<br />" > /var/log/cron.log;

@@ -49,10 +49,10 @@ alias ip4="ip addr | grep -e 'inet ' -e ':\ '"
 alias ip6="ip addr | grep -e 'inet6 ' -e ':\ '"
 
 # Directory stack
-alias p='pushd . > /dev/null'
-alias P="popd > /dev/null ; pwd"
-alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; pwd"
-alias Pp="popd > /dev/null ; pushd . > /dev/null ; pwd"
+alias p='pushd . > /dev/null; dirs'
+alias P="popd > /dev/null ; dirs"
+alias pP="pushd . > /dev/null ; cd ~2 ; popd -n +2 > /dev/null ; dirs"
+alias Pp="popd > /dev/null ; pushd . > /dev/null ; dirs"
 
 # Alert for long processes
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

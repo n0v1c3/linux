@@ -34,3 +34,5 @@ source $ZSH/oh-my-zsh.sh
 
 # Source common shell configurations
 source $HOME/.shrc
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
